@@ -17,7 +17,7 @@ public class SQLCreate {
 			// Create tables: begin
 			// Statements serve to tell the data table what to do
 			Statement stmt1 = c.createStatement();
-			//tip name o the object typedthen add a. then look up for the desired command
+			//tip name o the object typed then add a then look up for the desired command
 			//requiers knowing the fucking method
 			//crl space does all the job for ya.
 			String sql1 = "CREATE TABLE Payments "
