@@ -21,6 +21,7 @@ public class SQLCreate {
 			//requiers knowing the fucking method
 			//crl space does all the job for ya.
 			String sql1 = "CREATE TABLE Payments "
+					
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " deadline   DATE , "
 					   + " isbn  INTEGER	 NOT NULL"
