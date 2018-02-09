@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class SQLInsert {
 
-	public static void main(String args[]) {
+	static void Insert(){
 		try {
 			// Open database connection
 			Class.forName("org.sqlite.JDBC");
