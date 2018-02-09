@@ -1,4 +1,4 @@
-package sample.db.jdbc;
+package data_base.db.prosthetics;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class SQLCreate {
 	
-	public static void main(String args[]) {
+	static void Create() {
 		try {
 			// Open database connection
 			Class.forName("org.sqlite.JDBC");
@@ -21,7 +21,6 @@ public class SQLCreate {
 			//requiers knowing the fucking method
 			//crl space does all the job for ya.
 			String sql1 = "CREATE TABLE Payments "
-					
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " deadline   DATE , "
 					   + " isbn  INTEGER	 NOT NULL"
@@ -32,7 +31,7 @@ public class SQLCreate {
 			//always close or fuck up everything//
 			Statement stmt2 = c.createStatement();
 			String sql2 = "CREATE TABLE Material "
-					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
+					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT," 
 					   + " price     INTEGER     NOT NULL, "
 					   + " type      TEXT, "
 					   + " provider  TEXT)";
@@ -100,22 +99,6 @@ public class SQLCreate {
 			stmt9.close();
 			
 			System.out.println("Tables created.");
-			// Create table: end
-			
-			// - Set initial values for the Primary Keys
-			// - Don't try to understand this until JPA is explained
-			// This is usually not needed, since the initial values
-			// are set when the first row is inserted, but since we
-			// are using JPA and JDBC in the same project, and JPA
-			// needs an initial value, we do this.
-			Statement stmtSeq = c.createStatement();
-			String sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('departments', 1)";
-			stmtSeq.executeUpdate(sqlSeq);
-			sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('employees', 1)";
-			stmtSeq.executeUpdate(sqlSeq);
-			sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('reports', 1)";
-			stmtSeq.executeUpdate(sqlSeq);
-			stmtSeq.close();
 			
 			// Close database connection
 			c.close();
