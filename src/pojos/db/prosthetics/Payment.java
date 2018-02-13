@@ -6,8 +6,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import sample.db.pojos.Department;
-import sample.db.pojos.Report;
 
 public class Payment implements Serializable {
 
