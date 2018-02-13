@@ -17,7 +17,6 @@ public class Address implements Serializable {
 	public Address() {
 		
 		super();
-		
 	}
 	
 	public Address(int id, String country, int postCode, String street, String town, int number, Client client) {
