@@ -4,8 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import sample.db.pojos.Employee;
-import sample.db.pojos.Report;
+
 
 
 
@@ -122,7 +121,7 @@ public class Client implements Serializable {
 		}
 
 		
-		public void addProsthetics(Prosthetics prosthetics) {
+		public void addProsthetics(Prosthetics prosthetic) {
 			if (!prosthetics.contains(prosthetic)) {
 				this.prosthetics.add(prosthetic);
 			}
