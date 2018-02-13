@@ -6,8 +6,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import sample.db.pojos.Department;
-import sample.db.pojos.Report;
 
 
 public class Prosthetics implements Serializable {
@@ -206,7 +204,7 @@ public class Prosthetics implements Serializable {
 		public void removeClient(Client client) {
 			if (clients.contains(client)) {
 				this.clients.remove(client);
-			}
+			}}
 			public void addFeatures(Features feature) {
 				if (!features.contains(feature)) {
 					this.features.add(feature);
@@ -216,16 +214,16 @@ public class Prosthetics implements Serializable {
 			public void removeFeatures(Features features) {
 				if (features.contains(feature)) {
 					this.features.remove(feature);
-				}
+				}}
 				public void addMaterial(Material material) {
 					if (!materials.contains(material)) {
 						this.materials.add(material);
 					}
 				}
 
-				public void removeMaterial(Materia material) {
+				public void removeMaterial(Material material) {
 					if (materials.contains(material)) {
 						this.materials.remove(material);
 					}
 
-}
+}}
