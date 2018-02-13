@@ -3,7 +3,7 @@ import java.sql.*;
 
 class Features {
 	
-	static String insert(String style, String	shape, boolean sensibility) {
+	static String Insert( int id, String style, String shape, boolean sensibility) {
 		String report;
 		boolean inserted;
 		try {
@@ -11,7 +11,7 @@ class Features {
 			Connection connect = DriverManager.getConnection("jdbc:sqlite:./db/prosthetics");
 			report= "connection established ";
 			Statement st1= connect.createStatement();
-			String insert= "INSERT INTO Features {(Style, Shape, Sensibility) VALUES ("
+			String insert= "INSERT INTO Features {(id, Style, Shape, Sensibility) VALUES ("+id+"," 
 					+style+", "+shape+", "+sensibility;
 			try {
 			st1.executeUpdate(insert);
@@ -23,7 +23,7 @@ class Features {
 			}
 			st1.close();
 			if(inserted==true) {
-				report= report+"and managed to insert new data:"+style +shape +sensibility;
+				report= report+"and managed to insert new data:"+id +style +shape +sensibility;
 			}
 			return(report);
 		}
