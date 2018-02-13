@@ -15,6 +15,7 @@ public class Address implements Serializable {
 	private Client client;
 	
 	public Address() {
+		
 		super();
 		
 	}
