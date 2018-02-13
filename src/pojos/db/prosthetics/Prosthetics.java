@@ -228,5 +228,4 @@ public class Prosthetics implements Serializable {
 						this.materials.remove(material);
 					}
 
-	
 }
