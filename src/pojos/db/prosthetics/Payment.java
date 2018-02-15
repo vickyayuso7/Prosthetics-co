@@ -84,6 +84,7 @@ public class Payment implements Serializable {
 		result = prime * result + ((method == null) ? 0 : method.hashCode());
 		return result;
 	}
+	
 
 	@Override
 	public boolean equals(Object obj) {
