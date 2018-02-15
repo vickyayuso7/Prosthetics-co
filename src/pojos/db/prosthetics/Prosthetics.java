@@ -13,6 +13,7 @@ public class Prosthetics implements Serializable {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 3745716868877683707L;
 	private Integer id;
 	private Float size;
@@ -28,7 +29,7 @@ public class Prosthetics implements Serializable {
 	public Prosthetics() {
 		super();
 		this.clients = new ArrayList<Client>();
-		this.features = new ArrayList<Feature>();
+		this.features = new ArrayList<Features>();
 		this.materials = new ArrayList<Material>();
 	}
 	
@@ -40,7 +41,7 @@ public class Prosthetics implements Serializable {
 		this.color = color;
 		this.type_of_amputation = type_of_amputation;
 		this.clients = new ArrayList<Client>();
-		this.features = new ArrayList<Feature>();
+		this.features = new ArrayList<Features>();
 		this.materials = new ArrayList<Material>();
 
 	}
@@ -175,7 +176,7 @@ public class Prosthetics implements Serializable {
 		this.clients = clients;
 	}
 
-	public List<Feature> getFeatures() {
+	public List<Features> getFeatures() {
 		return features;
 	}
 
@@ -211,7 +212,7 @@ public class Prosthetics implements Serializable {
 				}
 			}
 
-			public void removeFeatures(Features features) {
+			public void removeFeatures(Features feature) {
 				if (features.contains(feature)) {
 					this.features.remove(feature);
 				}}
@@ -226,4 +227,5 @@ public class Prosthetics implements Serializable {
 						this.materials.remove(material);
 					}
 
-}}
+				}
+}

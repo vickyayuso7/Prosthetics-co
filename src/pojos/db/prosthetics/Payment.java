@@ -18,7 +18,7 @@ public class Payment implements Serializable {
 	private String method;
 	private Integer id;
 	
-	private List<Prosthetic> prosthetics;
+	private List<Prosthetics> prosthetics;
 	
 	
 	// This constructor is mandatory
@@ -68,11 +68,11 @@ public class Payment implements Serializable {
 		this.id = id;
 	}
 
-	public List<Prosthetic> getProsthetics() {
+	public List<Prosthetics> getProsthetics() {
 		return prosthetics;
 	}
 
-	public void setProsthetics(List<Prosthetic> prosthetics) {
+	public void setProsthetics(List<Prosthetics> prosthetics) {
 		this.prosthetics = prosthetics;
 	}
 
@@ -120,11 +120,11 @@ public class Payment implements Serializable {
 		return true;
 	}
 	
-	public void addProsthetic(Prosthetic prosthetic ){
+	public void addProsthetic(Prosthetics prosthetic ){
 		if(!prosthetics.contains(prosthetic)){
 			this.prosthetics.add(prosthetic);
 		}
-		public void removeProsthetic(Prosthetic prosthetic){
+		public void removeProsthetic(Prosthetics prosthetic){
 		if(prosthetics.contains(prosthetic)){
 			this.prosthetics.remove(prosthetic);
 		}
