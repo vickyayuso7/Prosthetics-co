@@ -9,9 +9,6 @@ import java.util.List;
 
 public class Payment implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6057556579044540426L;
 	private Date deadline;
 	private Integer isbn;
@@ -24,15 +21,16 @@ public class Payment implements Serializable {
 	// This constructor is mandatory
 	public Payment() {
 		super();
-		this.prosthetics = new ArrayList<Prosthetic>();
+		this.prosthetics = new ArrayList<Prosthetics>();
 	}
 	
-	public Paymment(Date deadline, Integer isbn, String method, Integer id) {
-		super();
-		this.deadline = name;
-		this.isbn=isbn;
-		this.method=method;
-		this.id=id;
+	public Payment (Date deadline, Integer isbn, String method, Integer id) {
+		
+		this.deadline = deadline;
+		this.isbn = isbn;
+		this.method = method;
+		this.id = id;
+		this.prosthetics = new ArrayList<Prosthetics>();
 		
 	}
 
@@ -120,13 +118,23 @@ public class Payment implements Serializable {
 		return true;
 	}
 	
-	public void addProsthetic(Prosthetics prosthetic ){
+
+	@Override
+	public String toString() {
+		return "Payment [deadline=" + deadline + ", isbn=" + isbn + ", method=" + method + ", id=" + id
+				+  "]";
+	}
+
+	public void addProsthetic(Prosthetics prosthetic){
 		if(!prosthetics.contains(prosthetic)){
 			this.prosthetics.add(prosthetic);
 		}
+	}
+	
 		public void removeProsthetic(Prosthetics prosthetic){
 		if(prosthetics.contains(prosthetic)){
 			this.prosthetics.remove(prosthetic);
 		}
 	}
-	}
+		
+}
