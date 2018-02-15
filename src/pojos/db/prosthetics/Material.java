@@ -9,7 +9,7 @@ public class Material implements Serializable{
 	/**
 	 * 
 	 */
-	
+
 	private static final long serialVersionUID = -5860436926701456573L;
 	float price;
 	String type;
