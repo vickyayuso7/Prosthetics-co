@@ -2,6 +2,7 @@ package pojos.db.prosthetics;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Payment implements Serializable {
 	private String method;
 	private Integer id;
 	
-	private List<Prosthetic> prosthetics;
+	private List<Prosthetics> prosthetics;
 	
 	
 	// This constructor is mandatory
@@ -65,11 +66,11 @@ public class Payment implements Serializable {
 		this.id = id;
 	}
 
-	public List<Prosthetic> getProsthetics() {
+	public List<Prosthetics> getProsthetics() {
 		return prosthetics;
 	}
 
-	public void setProsthetics(List<Prosthetic> prosthetics) {
+	public void setProsthetics(List<Prosthetics> prosthetics) {
 		this.prosthetics = prosthetics;
 	}
 
@@ -84,7 +85,6 @@ public class Payment implements Serializable {
 		result = prime * result + ((method == null) ? 0 : method.hashCode());
 		return result;
 	}
-	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -118,9 +118,7 @@ public class Payment implements Serializable {
 		return true;
 	}
 	
-<<<<<<< HEAD
 	public void addProsthetic(Prosthetic prosthetic ){
-=======
 	@Override
 	public String toString() {
 		return "Payment [deadline=" + deadline + ", isbn=" + isbn + ", method=" + method + ", id=" + id
@@ -128,20 +126,33 @@ public class Payment implements Serializable {
 	}
 
 	public void addProsthetic(Prosthetics prosthetic){
->>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co.git
+	@Override
+	public String toString() {
+		return "Payment [deadline=" + deadline + ", isbn=" + isbn + ", method=" + method + ", id=" + id
+				+  "]";
+	}
+
+	public void addProsthetic(Prosthetics prosthetic){
+	@Override
+	public String toString() {
+		return "Payment [deadline=" + deadline + ", isbn=" + isbn + ", method=" + method + ", id=" + id
+				+  "]";
+	}
+
+	public void addProsthetic(Prosthetics prosthetic){
+	@Override
+	public String toString() {
+		return "Payment [deadline=" + deadline + ", isbn=" + isbn + ", method=" + method + ", id=" + id
+				+  "]";
+	}
+
+	public void addProsthetic(Prosthetics prosthetic){
 		if(!prosthetics.contains(prosthetic)){
 			this.prosthetics.add(prosthetic);
 		}
-<<<<<<< HEAD
-		public void removeProsthetic(Prosthetic prosthetic){
-=======
-	}
-	
 		public void removeProsthetic(Prosthetics prosthetic){
->>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co.git
 		if(prosthetics.contains(prosthetic)){
 			this.prosthetics.remove(prosthetic);
 		}
 	}
-		
-}
+	}

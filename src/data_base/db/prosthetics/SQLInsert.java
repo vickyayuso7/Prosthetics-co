@@ -111,7 +111,7 @@ public void SQLinsert() {
 					this.insert="INSERT INTO Prosthetics (id, size, weight, type_of_functionality"
 							+", color, type_of_amputation, payment_id) VALUES("+prstc.getId()+", "
 							+prstc.getSize()+", "+prstc.getWeight()+", "+prstc.getType_of_functionality()
-							+", "+prstc.getColor()+", "+prstc.getType_of_amputation()+", "+prstc.getPayment_id
+							+", "+prstc.getColor()+", "+prstc.getType_of_amputation()+", "+prstc.getPayment
 							+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted prosthetics"+prstc.getId()+"/n";
@@ -186,7 +186,7 @@ public void SQLinsert() {
 		}
 		return (report);
 	}
-	String Insert(Prosthetic prstc) {
+	String Insert(Prosthetics prstc) {
 		this.report="";
 		this.report="";
 		try {
@@ -246,7 +246,7 @@ public void SQLinsert() {
 			try {
 				this.insert="INSERT INTO Client (id, name, age, gender, measures, address_id)"
 						+"VALUES ("+cln.getId()+","+ cln.getName()+", "+cln.getAge()+", "
-						+cln.getGender()+", "+cln.getMeasures()+", "+cln.getAddress_id()+")";
+						+cln.getGender()+", "+cln.getMeasures()+", "+cln.getAddress()+")";
 				stm1.executeUpdate(insert);
 				report=report+"inserted Client:"+cln.getName()+"/n";
 			}
