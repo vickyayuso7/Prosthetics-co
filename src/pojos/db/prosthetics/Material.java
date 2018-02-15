@@ -11,6 +11,7 @@ public class Material implements Serializable{
 	String type;
 	String provider;
 	int id;
+	
 	Material(int id, float prc, String tp, String prv){
 		this.price=prc;
 		this.type=tp;
