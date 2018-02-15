@@ -19,6 +19,8 @@ public class Client implements Serializable {
 	private String gender;
 	private Float measures;
 	private List<Prosthetics> prosthetics;
+	private Address address;
+
 	
 	
 	//mandatory constructor
