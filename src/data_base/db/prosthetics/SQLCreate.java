@@ -32,7 +32,7 @@ public class SQLCreate {
 			Statement stmt2 = c.createStatement();
 			String sql2 = "CREATE TABLE Material "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT," 
-					   + " price     INTEGER     NOT NULL, "
+					   + " price     REAL     NOT NULL, "
 					   + " type      TEXT, "
 					   + " provider  TEXT)";
 			stmt2.executeUpdate(sql2);
