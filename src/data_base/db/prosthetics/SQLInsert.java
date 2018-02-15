@@ -46,7 +46,7 @@ public void SQLinsert() {
 				if(failed ==false) {
 					this.insert="INSERT INTO Client (id, name, age, gender, measures, address_id)"
 							+"VALUES ("+cln.getId()+","+ cln.getName()+", "+cln.getAge()+", "
-							+cln.getGender()+", "+cln.getMeasures+", "+cln.getAdddress_id()+")";
+							+cln.getGender()+", "+cln.getMeasures()+", "+cln.getAddress()+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted Client:"+cln.getName()+"/n";
 				}
@@ -111,7 +111,7 @@ public void SQLinsert() {
 					this.insert="INSERT INTO Prosthetics (id, size, weight, type_of_functionality"
 							+", color, type_of_amputation, payment_id) VALUES("+prstc.getId()+", "
 							+prstc.getSize()+", "+prstc.getWeight()+", "+prstc.getType_of_functionality()
-							+", "+prstc.getColor()+", "+prstc.getType_of_amputation()+", "+prstc.getPayment
+							+", "+prstc.getColor()+", "+prstc.getType_of_amputation()+", "+prstc.getPayment()
 							+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted prosthetics"+prstc.getId()+"/n";
@@ -197,7 +197,7 @@ public void SQLinsert() {
 				this.insert="INSERT INTO Prosthetics (id, size, weight, type_of_functionality"
 						+", color, type_of_amputation, payment_id) VALUES("+prstc.getId()+", "
 						+prstc.getSize()+", "+prstc.getWeight()+", "+prstc.getType_of_functionality()
-						+", "+prstc.getColor()+", "+prstc.getType_of_amputation()+", "+prstc.getPayment_id
+						+", "+prstc.getColor()+", "+prstc.getType_of_amputation()+", "+prstc.getPayment()
 						+")";
 				stm1.executeUpdate(insert);
 				report="inserted prosthetics"+prstc.getId()+"/n";

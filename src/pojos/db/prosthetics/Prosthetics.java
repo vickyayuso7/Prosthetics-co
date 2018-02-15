@@ -21,6 +21,7 @@ public class Prosthetics implements Serializable {
 	private String type_of_functionality;
 	private String color;
 	private String type_of_amputation;
+	private Payment payment;
 	
 	private List<Client> clients;
 	private List<Features> features;
@@ -33,17 +34,18 @@ public class Prosthetics implements Serializable {
 		this.materials = new ArrayList<Material>();
 	}
 	
-	public Prosthetics(Float size,Float weight,String type_of_functionality,String color,String type_of_amputation) {
+	public Prosthetics(Float size,Float weight,String type_of_functionality,String color,String type_of_amputation, Payment payment) {
 		super();
 		this.size = size;
 		this.weight = weight;
 		this.type_of_functionality= type_of_functionality;
 		this.color = color;
 		this.type_of_amputation = type_of_amputation;
+		this.payment= payment;
 		this.clients = new ArrayList<Client>();
 		this.features = new ArrayList<Features>();
 		this.materials = new ArrayList<Material>();
-
+		
 		
 	}
 
@@ -51,21 +53,17 @@ public class Prosthetics implements Serializable {
 	public String toString() {
 		return "Prosthetics [id=" + id + ", size=" + size + ", weight=" + weight + ", type_of_functionality="
 				+ type_of_functionality + ", color=" + color + ", type_of_amputation=" + type_of_amputation
-				+ ", features=" + features + ", materials=" + materials + "]";
+				+ ", features=" + features + ", materials=" + materials + "payment=" +payment+"]";
 	}
+
+
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((color == null) ? 0 : color.hashCode());
-		result = prime * result + ((features == null) ? 0 : features.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((materials == null) ? 0 : materials.hashCode());
-		result = prime * result + ((size == null) ? 0 : size.hashCode());
-		result = prime * result + ((type_of_amputation == null) ? 0 : type_of_amputation.hashCode());
-		result = prime * result + ((type_of_functionality == null) ? 0 : type_of_functionality.hashCode());
-		result = prime * result + ((weight == null) ? 0 : weight.hashCode());
 		return result;
 	}
 
@@ -78,45 +76,10 @@ public class Prosthetics implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Prosthetics other = (Prosthetics) obj;
-		if (color == null) {
-			if (other.color != null)
-				return false;
-		} else if (!color.equals(other.color))
-			return false;
-		if (features == null) {
-			if (other.features != null)
-				return false;
-		} else if (!features.equals(other.features))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (materials == null) {
-			if (other.materials != null)
-				return false;
-		} else if (!materials.equals(other.materials))
-			return false;
-		if (size == null) {
-			if (other.size != null)
-				return false;
-		} else if (!size.equals(other.size))
-			return false;
-		if (type_of_amputation == null) {
-			if (other.type_of_amputation != null)
-				return false;
-		} else if (!type_of_amputation.equals(other.type_of_amputation))
-			return false;
-		if (type_of_functionality == null) {
-			if (other.type_of_functionality != null)
-				return false;
-		} else if (!type_of_functionality.equals(other.type_of_functionality))
-			return false;
-		if (weight == null) {
-			if (other.weight != null)
-				return false;
-		} else if (!weight.equals(other.weight))
 			return false;
 		return true;
 	}
@@ -167,6 +130,15 @@ public class Prosthetics implements Serializable {
 
 	public void setType_of_amputation(String type_of_amputation) {
 		this.type_of_amputation = type_of_amputation;
+	}
+	
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	public List<Client> getClients() {
