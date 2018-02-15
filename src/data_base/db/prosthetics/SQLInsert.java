@@ -246,7 +246,7 @@ public void SQLinsert() {
 			try {
 				this.insert="INSERT INTO Client (id, name, age, gender, measures, address_id)"
 						+"VALUES ("+cln.getId()+","+ cln.getName()+", "+cln.getAge()+", "
-						+cln.getGender()+", "+cln.getMeasures+", "+cln.getAdddress_id()+")";
+						+cln.getGender()+", "+cln.getMeasures()+", "+cln.getAdddress_id()+")";
 				stm1.executeUpdate(insert);
 				report=report+"inserted Client:"+cln.getName()+"/n";
 			}
