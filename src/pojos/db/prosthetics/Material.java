@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package pojos.db.prosthetics;
 
 import java.io.Serializable;
@@ -49,3 +50,5 @@ public class Material implements Serializable{
 		return(this.id);
 	}
 }
+=======
+>>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co.git

@@ -17,7 +17,7 @@ public void SQLinsert() {
 /*one method that may be called upon whenever needed that does the job of inserting whatever is 
  * passed on (hopefully some useful objects that have to be PUBLIC in order for this package to 
  * make use of them and not any random garbage)*/
-	String Insert(Material mat, Client cln, Features ftr, Adress adr, Payment pmnt, Prosthetic prstc )
+	String Insert(Material mat, Client cln, Features ftr, Address adr, Payment pmnt, Prosthetics prstc )
 	{
 		this.failed=false;
 		this.insert="";
@@ -246,7 +246,7 @@ public void SQLinsert() {
 			try {
 				this.insert="INSERT INTO Client (id, name, age, gender, measures, address_id)"
 						+"VALUES ("+cln.getId()+","+ cln.getName()+", "+cln.getAge()+", "
-						+cln.getGender()+", "+cln.getMeasures+", "+cln.getAdddress_id()+")";
+						+cln.getGender()+", "+cln.getMeasures()+", "+cln.getAdddress_id()+")";
 				stm1.executeUpdate(insert);
 				report=report+"inserted Client:"+cln.getName()+"/n";
 			}

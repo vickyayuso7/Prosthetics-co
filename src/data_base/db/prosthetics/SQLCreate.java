@@ -76,7 +76,7 @@ public class SQLCreate {
 					   + " name     TEXT     NOT NULL, "
 					   + " age      INTEGER, "
 					   + " gender  TEXT,"
-					   + " measures    INTEGER   NOT NULL,"
+					   + " measures    FLOAT   NOT NULL,"
 					   + " address_id   INTEGER  REFERENCES  Address(id))";
 			stmt7.executeUpdate(sql7);
 			stmt7.close();
