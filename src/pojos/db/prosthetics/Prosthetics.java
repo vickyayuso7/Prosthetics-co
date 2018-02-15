@@ -44,6 +44,7 @@ public class Prosthetics implements Serializable {
 		this.features = new ArrayList<Features>();
 		this.materials = new ArrayList<Material>();
 
+		
 	}
 
 	@Override

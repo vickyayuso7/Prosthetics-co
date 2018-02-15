@@ -33,13 +33,14 @@ public class Client implements Serializable {
 	// You can create as many extra constructors as you wish
 		
 		
-		public Client (Integer age, String name, String gender, Float measures, List<Prosthetics> prosthetics) {
+		public Client (Integer age, String name, String gender, Float measures, List<Prosthetics> prosthetics, Address address) {
 			super();
 			this.age = age;
 			this.name = name;
 			this.gender = gender;
 			this.measures = measures;
 			this.prosthetics = new ArrayList<Prosthetics>();
+			this.address= address;
 		}
 
 		@Override
@@ -70,7 +71,7 @@ public class Client implements Serializable {
 		@Override
 		public String toString() {
 			return "Client [id=" + id + ", age=" + age + ", name=" + name +
-					", gender=" + gender + ", measures=" + measures + "]";
+					", gender=" + gender + ", measures=" + measures + "address"+address+"]";
 		}
 
 		public Integer getId() {
@@ -111,6 +112,15 @@ public class Client implements Serializable {
 
 		public void setMeasures(Float measures) {
 			this.measures = measures;
+		}
+		
+
+		public Address getAddress() {
+			return address;
+		}
+
+		public void setAddress(Address address) {
+			this.address = address;
 		}
 
 		public List<Prosthetics> getProsthetics() {
