@@ -23,7 +23,7 @@ public class SQLCreate {
 			String sql1 = "CREATE TABLE Payments "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " deadline   DATE , "
-					   + " isbn  INTEGER	 NOT NULL"
+					   + " iban  INTEGER	 NOT NULL"
 					   + " method  TEXT  NOT NULL)";
 			stmt1.executeUpdate(sql1);
 			//auto updates the statement
@@ -74,9 +74,8 @@ public class SQLCreate {
 			String sql7 = "CREATE TABLE Client "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " name     TEXT     NOT NULL, "
-					   + " age      INTEGER, "
+					   + " date_of_birth      INTEGER, "
 					   + " gender  TEXT,"
-					   + " measures    FLOAT   NOT NULL,"
 					   + " address_id   INTEGER  REFERENCES  Address(id))";
 			stmt7.executeUpdate(sql7);
 			stmt7.close();

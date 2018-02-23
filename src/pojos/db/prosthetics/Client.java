@@ -14,10 +14,9 @@ public class Client implements Serializable {
 	 */
 	private static final long serialVersionUID = 4798145916410889568L;
 	private Integer id;
-	private Integer age;
+	private Integer date_of_birth;
 	private String name;
 	private String gender;
-	private Float measures;
 	private List<Prosthetics> prosthetics;
 	private Address address;
 
@@ -33,12 +32,11 @@ public class Client implements Serializable {
 	// You can create as many extra constructors as you wish
 		
 		
-		public Client (Integer age, String name, String gender, Float measures, List<Prosthetics> prosthetics, Address address) {
+		public Client (Integer date_of_birth, String name, String gender, Float measures, List<Prosthetics> prosthetics, Address address) {
 			super();
-			this.age = age;
+			this.date_of_birth = date_of_birth;
 			this.name = name;
 			this.gender = gender;
-			this.measures = measures;
 			this.prosthetics = new ArrayList<Prosthetics>();
 			this.address= address;
 		}
@@ -70,8 +68,8 @@ public class Client implements Serializable {
 		
 		@Override
 		public String toString() {
-			return "Client [id=" + id + ", age=" + age + ", name=" + name +
-					", gender=" + gender + ", measures=" + measures + "address"+address+"]";
+			return "Client [id=" + id + ", age=" + date_of_birth + ", name=" + name +
+					", gender=" + gender  + "address"+address+"]";
 		}
 
 		public Integer getId() {
@@ -82,12 +80,12 @@ public class Client implements Serializable {
 			this.id = id;
 		}
 
-		public Integer getAge() {
-			return age;
+		public Integer getDate_of_birth() {
+			return date_of_birth;
 		}
 
-		public void setAge(Integer age) {
-			this.age = age;
+		public void setDate_of_Birth(Integer date_of_birth) {
+			this.date_of_birth = date_of_birth;
 		}
 
 		public String getName() {
@@ -106,14 +104,6 @@ public class Client implements Serializable {
 			this.gender = gender;
 		}
 
-		public Float getMeasures() {
-			return measures;
-		}
-
-		public void setMeasures(Float measures) {
-			this.measures = measures;
-		}
-		
 
 		public Address getAddress() {
 			return address;
