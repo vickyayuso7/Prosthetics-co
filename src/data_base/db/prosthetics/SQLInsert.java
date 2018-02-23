@@ -44,9 +44,9 @@ public void SQLinsert() {
 			}
 			try {
 				if(failed ==false) {
-					this.insert="INSERT INTO Client (id, name, age, gender, measures, address_id)"
-							+"VALUES ("+cln.getId()+","+ cln.getName()+", "+cln.getAge()+", "
-							+cln.getGender()+", "+cln.getMeasures()+", "+cln.getAddress()+")";
+					this.insert="INSERT INTO Client (id, name, date_of_birth, gender, address_id)"
+							+"VALUES ("+cln.getId()+","+ cln.getName()+", "+cln.getDate_of_birth()+", "
+							+cln.getGender()+", "+cln.getAddress()+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted Client:"+cln.getName()+"/n";
 				}
@@ -77,7 +77,7 @@ public void SQLinsert() {
 			try {
 				if(failed==false) {
 					this.insert="INSERT INTO Material (id, type, price, provider) VALUES ("
-							+mat.getId()+", "+mat.getType()+", "+mat.getPrice()+", "+mat.getProvider()
+							+mat.getId()+", "+mat.getType()+", "+mat.getPrice_modifier()+", "+mat.getProvider()
 							+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted material"+mat.getId()+"/n";
@@ -92,8 +92,8 @@ public void SQLinsert() {
 			}
 			try {
 				if(failed==false) {
-					this.insert="INSERT INTO Payments (id, deadline, isbn, method) VALUES("
-							+pmnt.getId()+", "+pmnt.getDeadline()+", "+pmnt.getIsbn()+", "
+					this.insert="INSERT INTO Payments (id, deadline, iban, method) VALUES("
+							+pmnt.getId()+", "+pmnt.getDeadline()+", "+pmnt.getIban()+", "
 							+pmnt.getMethod()+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted payments"+pmnt.getId()+"/n";
@@ -147,7 +147,7 @@ public void SQLinsert() {
 			Statement stm1= c.createStatement();
 			try {
 					this.insert="INSERT INTO Material (id, type, price, provider) VALUES ("
-							+mat.getId()+", "+mat.getType()+", "+mat.getPrice()+", "+mat.getProvider()
+							+mat.getId()+", "+mat.getType()+", "+mat.getPrice_modifier()+", "+mat.getProvider()
 							+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted material"+mat.getId()+"/n";
@@ -172,7 +172,8 @@ public void SQLinsert() {
 			try {
 				this.insert="INSERT INTO Features (id, style, sensibility,enhanced_movement)"
 						+"VALUES ("+ftr.getId()+", "+ftr.getStyle()+", "+ftr.getSensibility()
-						+", "+ftr.getEnhanced_movement()+")";
+						+", "+ftr.getEnhanced_movement()+", "+ftr.getExtra_price()
+						+")";
 				stm1.executeUpdate(insert);
 				report="inserted Features"+ftr.getId()+"/n";
 				c.close();
@@ -195,7 +196,7 @@ public void SQLinsert() {
 			Statement stm1=c.createStatement();
 			try {
 				this.insert="INSERT INTO Prosthetics (id, size, weight, type_of_functionality"
-						+", color, type_of_amputation, payment_id) VALUES("+prstc.getId()+", "
+						+", color, type_of_amputation, payment_id) VALUES("+prstc.getId()+", "+prstc.getBest_price()+","
 						+prstc.getSize()+", "+prstc.getWeight()+", "+prstc.getType_of_functionality()
 						+", "+prstc.getColor()+", "+prstc.getType_of_amputation()+", "+prstc.getPayment()
 						+")";
@@ -244,9 +245,9 @@ public void SQLinsert() {
 			Connection c = DriverManager.getConnection("jdbc:sqlite:./db/prosthetics");
 			Statement stm1= c.createStatement();
 			try {
-				this.insert="INSERT INTO Client (id, name, age, gender, measures, address_id)"
-						+"VALUES ("+cln.getId()+","+ cln.getName()+", "+cln.getAge()+", "
-						+cln.getGender()+", "+cln.getMeasures()+", "+cln.getAddress()+")";
+				this.insert="INSERT INTO Client (id, name, date_of_birth, gender, measures, address_id)"
+						+"VALUES ("+cln.getId()+","+ cln.getName()+", "+cln.getDate_of_birth()+", "
+						+cln.getGender()+","+cln.getAddress()+")";
 				stm1.executeUpdate(insert);
 				report=report+"inserted Client:"+cln.getName()+"/n";
 			}
@@ -268,8 +269,8 @@ public void SQLinsert() {
 			Connection c = DriverManager.getConnection("jdbc:sqlite:./db/prosthetics");
 			Statement stm1= c.createStatement();
 			try {
-				this.insert="INSERT INTO Payments (id, deadline, isbn, method) VALUES("
-						+pmnt.getId()+", "+pmnt.getDeadline()+", "+pmnt.getIsbn()+", "
+				this.insert="INSERT INTO Payments (id, deadline, iban, method) VALUES("
+						+pmnt.getId()+", "+pmnt.getDeadline()+", "+pmnt.getIban()+", "
 						+pmnt.getMethod()+")";
 				stm1.executeUpdate(insert);
 				report=report+"inserted payments"+pmnt.getId()+"/n";

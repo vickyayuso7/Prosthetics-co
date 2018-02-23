@@ -10,7 +10,7 @@ public class Payment implements Serializable {
 
 	private static final long serialVersionUID = -6057556579044540426L;
 	private Date deadline;
-	private Integer isbn;
+	private Integer iban;
 	private String method;
 	private Integer id;
 	
@@ -23,10 +23,10 @@ public class Payment implements Serializable {
 		this.prosthetics = new ArrayList<Prosthetics>();
 	}
 	
-	public Payment (Date deadline, Integer isbn, String method, Integer id) {
+	public Payment (Date deadline, Integer iban, String method, Integer id) {
 		
 		this.deadline = deadline;
-		this.isbn = isbn;
+		this.iban = iban;
 		this.method = method;
 		this.id = id;
 		this.prosthetics = new ArrayList<Prosthetics>();
@@ -41,12 +41,12 @@ public class Payment implements Serializable {
 		this.deadline = deadline;
 	}
 
-	public Integer getIsbn() {
-		return isbn;
+	public Integer getIban() {
+		return iban;
 	}
 
-	public void setIsbn(Integer isbn) {
-		this.isbn = isbn;
+	public void setIban(Integer iban) {
+		this.iban = iban;
 	}
 
 	public String getMethod() {
@@ -80,7 +80,7 @@ public class Payment implements Serializable {
 		result = prime * result
 				+ ((deadline == null) ? 0 : deadline.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+		result = prime * result + ((iban == null) ? 0 : iban.hashCode());
 		result = prime * result + ((method == null) ? 0 : method.hashCode());
 		return result;
 	}
@@ -106,10 +106,10 @@ public class Payment implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (isbn == null) {
-			if (other.isbn != null)
+		if (iban == null) {
+			if (other.iban != null)
 				return false;
-		} else if (!isbn.equals(other.isbn))
+		} else if (!iban.equals(other.iban))
 			return false;
 		if (method == null) {
 			if (other.method != null)
@@ -121,7 +121,7 @@ public class Payment implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Payment [deadline=" + deadline + ", isbn=" + isbn + ", method=" + method + ", id=" + id
+		return "Payment [deadline=" + deadline + ", iban=" + iban + ", method=" + method + ", id=" + id
 				+  "]";
 	}
 
