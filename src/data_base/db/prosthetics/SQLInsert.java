@@ -77,7 +77,7 @@ public void SQLinsert() {
 			try {
 				if(failed==false) {
 					this.insert="INSERT INTO Material (id, type, price, provider) VALUES ("
-							+mat.getId()+", "+mat.getType()+", "+mat.getPrice_refactor()+", "+mat.getProvider()
+							+mat.getId()+", "+mat.getType()+", "+mat.getPrice_modifier()+", "+mat.getProvider()
 							+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted material"+mat.getId()+"/n";
@@ -147,7 +147,7 @@ public void SQLinsert() {
 			Statement stm1= c.createStatement();
 			try {
 					this.insert="INSERT INTO Material (id, type, price, provider) VALUES ("
-							+mat.getId()+", "+mat.getType()+", "+mat.getPrice_refactor()+", "+mat.getProvider()
+							+mat.getId()+", "+mat.getType()+", "+mat.getPrice_modifier()+", "+mat.getProvider()
 							+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted material"+mat.getId()+"/n";

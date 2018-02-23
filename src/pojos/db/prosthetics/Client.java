@@ -2,6 +2,7 @@ package pojos.db.prosthetics;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 
 
@@ -14,7 +15,7 @@ public class Client implements Serializable {
 	 */
 	private static final long serialVersionUID = 4798145916410889568L;
 	private Integer id;
-	private Integer date_of_birth;
+	private Date date_of_birth;
 	private String name;
 	private String gender;
 	private List<Prosthetics> prosthetics;
@@ -32,7 +33,7 @@ public class Client implements Serializable {
 	// You can create as many extra constructors as you wish
 		
 		
-		public Client (Integer date_of_birth, String name, String gender, Float measures, List<Prosthetics> prosthetics, Address address) {
+		public Client (Date date_of_birth, String name, String gender, List<Prosthetics> prosthetics, Address address) {
 			super();
 			this.date_of_birth = date_of_birth;
 			this.name = name;
@@ -41,7 +42,7 @@ public class Client implements Serializable {
 			this.address= address;
 		}
 
-		public Client(int id, int date_of_birth, String name, String gender, float measures) {
+		public Client(int id, Date date_of_birth, String name, String gender) {
 			super();
 			this.id=id;
 			this.date_of_birth = date_of_birth;
@@ -79,7 +80,7 @@ public class Client implements Serializable {
 		
 		@Override
 		public String toString() {
-			return "Client [id=" + id + ", age=" + date_of_birth + ", name=" + name +
+			return "Client [id=" + id + ", date of birth=" + date_of_birth + ", name=" + name +
 					", gender=" + gender  + "address"+address+"]";
 		}
 
@@ -91,11 +92,11 @@ public class Client implements Serializable {
 			this.id = id;
 		}
 
-		public Integer getDate_of_birth() {
+		public Date getDate_of_birth() {
 			return date_of_birth;
 		}
 
-		public void setDate_of_Birth(Integer date_of_birth) {
+		public void setDate_of_Birth(Date date_of_birth) {
 			this.date_of_birth = date_of_birth;
 		}
 

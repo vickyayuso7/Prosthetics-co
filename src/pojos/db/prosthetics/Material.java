@@ -17,7 +17,7 @@ public class Material implements Serializable{
 	int id;
 	private List<Prosthetics> prosthetics;
 	
-	Material(int id, float prc, String tp, String prv, List<Prosthetics> prosthetics){
+	Material(Float prc, int id, String tp, String prv, List<Prosthetics> prosthetics){
 		this.price_modifier=prc;
 		this.type=tp;
 		this.provider=prv;
@@ -58,7 +58,7 @@ public class Material implements Serializable{
 			return false;
 		return true;
 	}
-	public void setPrice(float price){
+	public void setPrice_modifier(float price){
 		this.price_modifier=price;
 	}
 	public void setType(String type) {
@@ -70,7 +70,7 @@ public class Material implements Serializable{
 	public void setId(int id) {
 		this.id=id;
 	}
-	public float getPrice_refactor() {
+	public float getPrice_modifier() {
 		return(this.price_modifier);
 	}
 	public String getType() {

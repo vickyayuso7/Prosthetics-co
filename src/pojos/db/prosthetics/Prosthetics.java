@@ -33,7 +33,7 @@ public class Prosthetics implements Serializable {
 		this.materials = new ArrayList<Material>();
 	}
 	
-	public Prosthetics(Float size,Float weight,String type_of_functionality,String color,String type_of_amputation, Payment payment) {
+	public Prosthetics(Float size,Float best_price, Float weight,String type_of_functionality,String color,String type_of_amputation, Payment payment) {
 		super();
 		this.size = size;
 		this.best_price= best_price;

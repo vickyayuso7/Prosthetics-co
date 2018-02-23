@@ -21,14 +21,15 @@ public class SQLInsertPrepared{
 		
 		private static Connection c;
 
-		private static //list// printClients() throws SQLException {
+		private static  void printClients() throws SQLException 
+		{
 			Statement stmt = c.createStatement();
 			String sql = "SELECT * FROM clients";
 			ResultSet rs = stmt.executeQuery(sql);
 			//create empty list of clients
 			while (rs.next()) {
 				int id = rs.getInt("id");
-				Date date_of_birth = rs.getInt("date_of_birth");
+				Date date_of_birth = rs.getDate("date_of_birth");
 				String name = rs.getString("name");
 				String gender = rs.getString("gender");
 				Client client = new Client(id, date_of_birth, name, gender);
