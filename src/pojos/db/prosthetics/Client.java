@@ -41,13 +41,13 @@ public class Client implements Serializable {
 			this.address= address;
 		}
 
-		public Client(int id, int age, String name, String gender, float measures) {
+		public Client(int id, int date_of_birth, String name, String gender, float measures) {
 			super();
 			this.id=id;
-			this.age = age;
+			this.date_of_birth = date_of_birth;
 			this.name = name;
 			this.gender = gender;
-			this.measures = measures;
+			
 			this.prosthetics = new ArrayList<Prosthetics>();
 			
 		}
