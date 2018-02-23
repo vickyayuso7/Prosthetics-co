@@ -2,12 +2,15 @@ package graphicInterface;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 import javax.swing.*;
 
 public class Graphic_Interface extends JFrame{
 	private boolean tablesCreated=false;
 	private JFrame frame;
+	private boolean displayed_new_element=false;
+	private int warnings=3;
 	JPanel panel_1 = new JPanel();
 	/**
 	 * Launch the application.
@@ -37,7 +40,11 @@ public class Graphic_Interface extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		//frame.setBounds(100, 100, 450, 300);
+		//frame.setSize(frame.getMaximumSize());
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setUndecorated(true);
+		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -114,19 +121,10 @@ public class Graphic_Interface extends JFrame{
 		panel.setMinimumSize(new Dimension(100, 10));
 		panel.setBackground(new Color(0, 0, 204));
 		frame.getContentPane().add(panel, BorderLayout.WEST);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{89, 0};
-		gbl_panel.rowHeights = new int[]{23, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		GridLayout gbl_panel = new GridLayout(6,1);
 		panel.setLayout(gbl_panel);
 		
 		JButton btnNewButton_1 = new JButton("New Client");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				NewEntryOneTable();
-			}
-		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
@@ -135,6 +133,11 @@ public class Graphic_Interface extends JFrame{
 		panel.add(btnNewButton_1, gbc_btnNewButton_1);
 		
 		JButton btnNewButton_4 = new JButton("Add New Element");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NewEntryOneTable();
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
 		gbc_btnNewButton_4.fill = GridBagConstraints.VERTICAL;
 		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 0);
@@ -158,6 +161,13 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_3.gridy = 4;
 		panel.add(btnNewButton_3, gbc_btnNewButton_3);
 		
+		JButton btnNewButton_5 = new JButton("New button");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		
 		JButton btnNewButton = new JButton("Show:");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -169,6 +179,13 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 5;
 		panel.add(btnNewButton, gbc_btnNewButton);
+		btnNewButton_5.setText("exit");
+		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
+		gbc_btnNewButton_5.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_5.gridx = 0;
+		gbc_btnNewButton_5.gridy = 0;
+		panel.add(btnNewButton_5, gbc_btnNewButton_5);
 		
 		
 		panel_1.setBackground(new Color(255, 255, 255));
@@ -177,47 +194,188 @@ public class Graphic_Interface extends JFrame{
 	/*Requires specifying the fields of each JTextField. Aside from that remember to change the visibility of tthe buttons and textfields to false in 
 	 * the field is visible when the function is terminated. */
 	public void NewEntryOneTable () {
-		//if(this.tablesCreated==true) {
-			panel_1.setVisible(false);
-			GridLayout Createnewtype = new GridLayout(6,2);
-			panel_1.setLayout(Createnewtype);
-			JButton prs= new JButton();
-			prs.setText("New Entry (Prosthetics)");
-			panel_1.add(prs);
-			JTextField cln =new JTextField();
-			cln.setText("Pops up a window where a new entry may be added to the existing PROSTHETIC table. (fields)");
-			panel_1.add(cln);
-			JButton ad= new JButton();
-			ad.setText("New Entry (Client)");
-			panel_1.add(ad);
-			JTextField add=new JTextField();
-			add.setText("Pops up a window where a new entry may be added to the existing CLIENT table. (fields)");
-			panel_1.add(add);
-			JButton pay =new JButton();
-			pay.setText("New Entry (Payment)");
-			panel_1.add(pay);
-			JTextField paym =new JTextField();
-			paym.setText("Pops up a window where a new entry may be added to the existing PAYMENT table. (fields)");
-			panel_1.add(paym);
-			JButton Ft =new JButton();
-			Ft.setText("New Entry (Features)");
-			panel_1.add(Ft);
-			JTextField Feat = new JTextField();
-			Feat.setText("Pops up a window where a new entry may be added to the existing FEATURE table. (fields)");
-			panel_1.add(Feat);
-			JButton mat= new JButton();
-			mat.setText("New Entry (Materials)");
-			JTextField mt= new JTextField();
-			mt.setText("Pops up a window where a new entry may be added to the existing MATERIAL table. (fields)");
-			panel_1.add(mat);
-			panel_1.add(mt);
-			JButton Adr= new JButton();
-			Adr.setText("New Entry (Address)");
-			panel_1.add(Adr);
-			JTextField adr =new JTextField();
-			adr.setText("Pops up a window where a new entry may be added to the existing ADDRESS table. (fields)");
-			panel_1.add(adr);
-			panel_1.setVisible(true);
-		//}
+		if(this.tablesCreated==true) {
+			if (this.displayed_new_element==false) {
+				panel_1.setVisible(false);
+				GridLayout Createnewtype = new GridLayout(6,4);
+				panel_1.setLayout(Createnewtype);
+				JPanel filler= new JPanel();
+				JPanel filler2= new JPanel();
+				JPanel filler3= new JPanel();
+				JPanel filler4= new JPanel();
+				JPanel filler5= new JPanel();
+				JPanel filler6= new JPanel();
+				JPanel filler7= new JPanel();
+				JPanel filler8= new JPanel();
+				JPanel filler9= new JPanel();
+				JPanel filler10= new JPanel();
+				JPanel filler11= new JPanel();
+				JPanel filler12= new JPanel();
+				
+				filler.setBackground(new Color(255, 255, 255));
+				filler2.setBackground(new Color(255, 255, 255));
+				filler3.setBackground(new Color(255, 255, 255));
+				filler4.setBackground(new Color(255, 255, 255));
+				filler5.setBackground(new Color(255, 255, 255));
+				filler6.setBackground(new Color(255, 255, 255));
+				filler7.setBackground(new Color(255, 255, 255));
+				filler8.setBackground(new Color(255, 255, 255));
+				filler9.setBackground(new Color(255, 255, 255));
+				filler10.setBackground(new Color(255, 255, 255));
+				filler11.setBackground(new Color(255, 255, 255));
+				filler12.setBackground(new Color(255, 255, 255));
+				
+				panel_1.add(filler);
+				JButton prs= new JButton();
+				prs.setText("New Entry (Prosthetics)");
+				JTextArea cln =new JTextArea();
+				prs.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						cln.setVisible(true);
+					}
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						cln.setVisible(false);
+					}
+				});
+				panel_1.add(prs);
+				
+				cln.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing PROSTHETIC table. (fields)");
+				panel_1.add(cln);
+				panel_1.add(filler2);
+				panel_1.add(filler7);
+				JButton ad= new JButton();
+				ad.setText("New Entry (Client)");
+				panel_1.add(ad);
+				JTextArea add=new JTextArea();
+				ad.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						add.setVisible(true);
+					}
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						add.setVisible(false);
+					}
+				});
+				add.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing CLIENT table. (fields)");
+				panel_1.add(add);
+				panel_1.add(filler3);
+				panel_1.add(filler8);
+				JButton pay =new JButton();
+				pay.setText("New Entry (Payment)");
+				panel_1.add(pay);
+				JTextArea paym =new JTextArea();
+				pay.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						paym.setVisible(true);
+					}
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						paym.setVisible(false);
+					}
+				});
+				paym.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing PAYMENT table. (fields)");
+				panel_1.add(paym);
+				panel_1.add(filler4);
+				panel_1.add(filler9);
+				JButton Ft =new JButton();
+				Ft.setText("New Entry (Features)");
+				panel_1.add(Ft);
+				JTextArea Feat = new JTextArea();
+				Feat.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing FEATURE table. (fields)");
+				Ft.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						Feat.setVisible(true);
+					}
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						Feat.setVisible(false);
+					}
+				});
+				panel_1.add(Feat);
+				panel_1.add(filler5);
+				panel_1.add(filler10);
+				JButton mat= new JButton();
+				mat.setText("New Entry (Materials)");
+				JTextArea mt= new JTextArea();
+				mt.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing MATERIAL table. (fields)");
+				panel_1.add(mat);
+				panel_1.add(mt);
+				mat.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						mt.setVisible(true);
+					}
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						mt.setVisible(false);
+					}
+				});
+				panel_1.add(filler6);
+				panel_1.add(filler11);
+				JButton Adr= new JButton();
+				Adr.setText("New Entry (Address)");
+				panel_1.add(Adr);
+				JTextArea adr =new JTextArea();
+				adr.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing ADDRESS table. (fields)");
+				Adr.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						adr.setVisible(true);
+					}
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						adr.setVisible(false);
+					}
+				});
+				panel_1.add(adr);
+				panel_1.add(filler12);
+				cln.setVisible(false);
+				add.setVisible(false);
+				paym.setVisible(false);
+				Feat.setVisible(false);
+				mt.setVisible(false);
+				adr.setVisible(false);
+				panel_1.setVisible(true);
+				this.displayed_new_element=true;
+			}
+		}
+		else {
+			if(warnings>0) {
+				warnings=warnings-1;
+				JOptionPane.showMessageDialog(null, "For the love of chin chin can you please stop trying to break my f*cking program?\nMuch apreciated. Try opening the tables"
+						+ " or how about creating them, you dim witted stump?\n"+this.warnings+" warinings left");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "you tried to blow up my program, now im gonna blow up your prostate!");
+				this.inmolationProtocol();
+			}
+		}
+	}
+	private void inmolationProtocol() {
+		int i=0;
+		Random randomGenerator = new Random();
+		while(i>-1) {
+			JFrame XD =new JFrame();
+			int rand1=randomGenerator.nextInt(255);
+			int rand2=randomGenerator.nextInt(255);
+			int rand3=randomGenerator.nextInt(255);
+			XD.setBackground(new Color(rand1,rand2,rand3));
+			XD.setVisible(true);
+			XD.setTitle("Repent You heretic Scum!");
+			XD.setSize(XD.getMaximumSize());
+			i=i+1;
+			if(i==100) {
+				int choice= JOptionPane.showOptionDialog(null, "Wow, that was spastic... Do you repent or do you wish it to continue?", "mercy",JOptionPane.YES_NO_OPTION , JOptionPane.QUESTION_MESSAGE, null, null, null);
+				if(choice==JOptionPane.YES_NO_OPTION) {
+					i=-1;
+					XD.dispose();
+				}
+			}
+		}
 	}
 }
