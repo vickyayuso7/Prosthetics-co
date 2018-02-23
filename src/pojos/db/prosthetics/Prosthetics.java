@@ -14,6 +14,7 @@ public class Prosthetics implements Serializable {
 	
 	private static final long serialVersionUID = 3745716868877683707L;
 	private Integer id;
+	private Float best_price;
 	private Float size;
 	private Float weight;
 	private String type_of_functionality;
@@ -35,6 +36,7 @@ public class Prosthetics implements Serializable {
 	public Prosthetics(Float size,Float weight,String type_of_functionality,String color,String type_of_amputation, Payment payment) {
 		super();
 		this.size = size;
+		this.best_price= best_price;
 		this.weight = weight;
 		this.type_of_functionality= type_of_functionality;
 		this.color = color;
@@ -49,7 +51,7 @@ public class Prosthetics implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Prosthetics [id=" + id + ", size=" + size + ", weight=" + weight + ", type_of_functionality="
+		return "Prosthetics [id=" + id + ", best_price=" +best_price+"size=" + size + ", weight=" + weight + ", type_of_functionality="
 				+ type_of_functionality + ", color=" + color + ", type_of_amputation=" + type_of_amputation
 				+ ", features=" + features + ", materials=" + materials + "payment=" +payment+"]";
 	}
@@ -120,6 +122,14 @@ public class Prosthetics implements Serializable {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+	
+	public Float getBest_price() {
+		return best_price;
+	}
+
+	public void setBest_price(Float best_price) {
+		this.best_price = best_price;
 	}
 
 	public String getType_of_amputation() {
