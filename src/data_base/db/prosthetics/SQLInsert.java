@@ -77,7 +77,7 @@ public void SQLinsert() {
 			try {
 				if(failed==false) {
 					this.insert="INSERT INTO Material (id, type, price, provider) VALUES ("
-							+mat.getId()+", "+mat.getType()+", "+mat.getPrice()+", "+mat.getProvider()
+							+mat.getId()+", "+mat.getType()+", "+mat.getPrice_refactor()+", "+mat.getProvider()
 							+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted material"+mat.getId()+"/n";
@@ -147,7 +147,7 @@ public void SQLinsert() {
 			Statement stm1= c.createStatement();
 			try {
 					this.insert="INSERT INTO Material (id, type, price, provider) VALUES ("
-							+mat.getId()+", "+mat.getType()+", "+mat.getPrice()+", "+mat.getProvider()
+							+mat.getId()+", "+mat.getType()+", "+mat.getPrice_refactor()+", "+mat.getProvider()
 							+")";
 					stm1.executeUpdate(insert);
 					report=report+"inserted material"+mat.getId()+"/n";
@@ -172,7 +172,8 @@ public void SQLinsert() {
 			try {
 				this.insert="INSERT INTO Features (id, style, sensibility,enhanced_movement)"
 						+"VALUES ("+ftr.getId()+", "+ftr.getStyle()+", "+ftr.getSensibility()
-						+", "+ftr.getEnhanced_movement()+")";
+						+", "+ftr.getEnhanced_movement()+", "+ftr.getExtra_price()
+						+")";
 				stm1.executeUpdate(insert);
 				report="inserted Features"+ftr.getId()+"/n";
 				c.close();
@@ -195,7 +196,7 @@ public void SQLinsert() {
 			Statement stm1=c.createStatement();
 			try {
 				this.insert="INSERT INTO Prosthetics (id, size, weight, type_of_functionality"
-						+", color, type_of_amputation, payment_id) VALUES("+prstc.getId()+", "
+						+", color, type_of_amputation, payment_id) VALUES("+prstc.getId()+", "+prstc.getBest_price()+","
 						+prstc.getSize()+", "+prstc.getWeight()+", "+prstc.getType_of_functionality()
 						+", "+prstc.getColor()+", "+prstc.getType_of_amputation()+", "+prstc.getPayment()
 						+")";

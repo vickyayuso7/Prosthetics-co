@@ -41,6 +41,17 @@ public class Client implements Serializable {
 			this.address= address;
 		}
 
+		public Client(int id, int age, String name, String gender, float measures) {
+			super();
+			this.id=id;
+			this.age = age;
+			this.name = name;
+			this.gender = gender;
+			this.measures = measures;
+			this.prosthetics = new ArrayList<Prosthetics>();
+			
+		}
+
 		@Override
 		public int hashCode() {
 			final int prime = 31;

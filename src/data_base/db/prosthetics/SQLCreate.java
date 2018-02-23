@@ -32,7 +32,7 @@ public class SQLCreate {
 			Statement stmt2 = c.createStatement();
 			String sql2 = "CREATE TABLE Material "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT," 
-					   + " price     REAL     NOT NULL, "
+					   + " price_modifier     REAL     NOT NULL, "
 					   + " type      TEXT, "
 					   + " provider  TEXT)";
 			stmt2.executeUpdate(sql2);
@@ -40,6 +40,7 @@ public class SQLCreate {
 			Statement stmt3 = c.createStatement();
 			String sql3 = "CREATE TABLE  Prosthetics"
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
+					   + "(best_price       FLOAT  	NOT NULL,"
 					   + " size     FLOAT     NOT NULL, "
 					   + " weight  FLOAT  	NOT NULL, "
 					   + " type_of_functionality		TEXT,"
@@ -59,6 +60,7 @@ public class SQLCreate {
 			String sql5 = "CREATE TABLE Features "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " style     TEXT , "
+					   + " best_price     FLOAT     NOT NULL , "
 					   + " sensibility      BOOLEAN, "
 					   + " enhanced_movement    BOOLEAN)";
 			stmt5.executeUpdate(sql5);

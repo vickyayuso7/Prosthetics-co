@@ -11,6 +11,7 @@ public class Features implements Serializable{
 	 */
 	private static final long serialVersionUID = 3282893934193593462L;
 	private int id;
+	private Float extra_price;
 	private String style;
 	boolean sensibility;
 	boolean enhanced_movement;
@@ -18,6 +19,7 @@ public class Features implements Serializable{
 	
 	Features(int id, String style, boolean sensibility, boolean enhanced_movement){
 		this.id=id;
+		this.extra_price=extra_price;
 		this.sensibility=sensibility;
 		this.enhanced_movement=enhanced_movement;
 		this.style=style;
@@ -25,6 +27,8 @@ public class Features implements Serializable{
 	}
 	
 	
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,6 +68,14 @@ public class Features implements Serializable{
 		this.style = style;
 	}
 
+	public Float getExtra_price() {
+		return extra_price;
+	}
+
+
+	public void setExtra_price(Float extra_price) {
+		this.extra_price = extra_price;
+	}
 
 	public List<Features> getFeatures() {
 		return features;
