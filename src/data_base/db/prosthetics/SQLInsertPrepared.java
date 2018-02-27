@@ -13,16 +13,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import pojos.db.prosthetics.Client;
+import pojos.db.prosthetics.Prosthetics;
 public class SQLInsertPrepared{
 		private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		private static Connection c;
 
-		private static  void printClients() throws SQLException 
+		private static   List<Client> printClients() throws SQLException 
 		{
+			
+			List<Client> clients = new ArrayList<Client>();
 			Statement stmt = c.createStatement();
 			String sql = "SELECT * FROM clients";
 			ResultSet rs = stmt.executeQuery(sql);
@@ -33,10 +37,14 @@ public class SQLInsertPrepared{
 				String name = rs.getString("name");
 				String gender = rs.getString("gender");
 				Client client = new Client(id, date_of_birth, name, gender);
+				clients.add(client);
 				System.out.println(client);//add the client to the list
 			}
+			
 			rs.close();
 			stmt.close();//return the list
+			return clients;
+
 		}
 		
 		
