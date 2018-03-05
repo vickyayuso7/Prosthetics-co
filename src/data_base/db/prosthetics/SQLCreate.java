@@ -5,30 +5,15 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class SQLCreate {
-	
-	static void Create() {
-		try {
-			// Open database connection
-			Class.forName("org.sqlite.JDBC");
-			Connection c = DriverManager.getConnection("jdbc:sqlite:./db/prosthetics");
-			c.createStatement().execute("PRAGMA foreign_keys=ON");
-			System.out.println("Database connection opened.");
-			
-			// Create tables: begin
-			// Statements serve to tell the data table what to do
+	public static void Create(Connection c) throws Exception{
 			Statement stmt1 = c.createStatement();
-			//tip name o the object typed then add a then look up for the desired command
-			//requiers knowing the fucking method
-			//crl space does all the job for ya.
 			String sql1 = "CREATE TABLE Payments "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " deadline   DATE , "
 					   + " iban  INTEGER	 NOT NULL"
 					   + " method  TEXT  NOT NULL)";
 			stmt1.executeUpdate(sql1);
-			//auto updates the statement
 			stmt1.close(); 
-			//always close or fuck up everything//
 			Statement stmt2 = c.createStatement();
 			String sql2 = "CREATE TABLE Material "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT," 
@@ -98,14 +83,6 @@ public class SQLCreate {
 					   + " number   INTEGER  NOT NULL)";
 			stmt9.executeUpdate(sql9);
 			stmt9.close();
-			
 			System.out.println("Tables created.");
-			
-			// Close database connection
-			c.close();
-			System.out.println("Database connection closed.");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
