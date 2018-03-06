@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class SQLCreate {
+<<<<<<< HEAD
 	
 	static void Create() {
 		
@@ -15,6 +16,9 @@ public class SQLCreate {
 			c.createStatement().execute("PRAGMA foreign_keys=ON");
 			System.out.println("Database connection opened.");
 			
+=======
+	public static void Create(Connection c) throws Exception{
+>>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co
 			Statement stmt1 = c.createStatement();
 			String sql1 = "CREATE TABLE Payments "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
@@ -23,7 +27,10 @@ public class SQLCreate {
 					   + " method  TEXT  NOT NULL)";
 			stmt1.executeUpdate(sql1);
 			stmt1.close(); 
+<<<<<<< HEAD
 			
+=======
+>>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co
 			Statement stmt2 = c.createStatement();
 			String sql2 = "CREATE TABLE Material "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT," 
@@ -100,8 +107,8 @@ public class SQLCreate {
 					   + " number   INTEGER  NOT NULL)";
 			stmt9.executeUpdate(sql9);
 			stmt9.close();
-			
 			System.out.println("Tables created.");
+<<<<<<< HEAD
 			c.close();
 			System.out.println("Database connection closed.");
 			
@@ -110,5 +117,7 @@ public class SQLCreate {
 			e.printStackTrace();
 			
 		}
+=======
+>>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co
 	}
 }

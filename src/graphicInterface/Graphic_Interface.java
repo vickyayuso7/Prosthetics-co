@@ -3,45 +3,42 @@ package graphicInterface;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
-
+import wizard_Handler.*;
 import javax.swing.*;
 
 public class Graphic_Interface extends JFrame{
 	private boolean tablesCreated=false;
 	private JFrame frame;
-	private boolean displayed_new_element=false;
 	private int warnings=3;
+	private CreateANDModify cln= new CreateANDModify();
+	private WizardHandler guts;
 	JPanel panel_1 = new JPanel();
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Graphic_Interface window = new Graphic_Interface();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
-	public Graphic_Interface() {
-		initialize();
+	public Graphic_Interface(boolean admin) {
+		if(admin==true) {
+			initialize();
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Not implemented yet");
+		}
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		//window.frame.setVisible(true);
+		guts=new WizardHandler();
 		frame = new JFrame();
-		//frame.setBounds(100, 100, 450, 300);
-		//frame.setSize(frame.getMaximumSize());
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
 		frame.setVisible(true);
@@ -119,12 +116,21 @@ public class Graphic_Interface extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(100, 10));
-		panel.setBackground(new Color(0, 0, 204));
+		panel.setBackground(Color.BLACK);
 		frame.getContentPane().add(panel, BorderLayout.WEST);
 		GridLayout gbl_panel = new GridLayout(6,1);
 		panel.setLayout(gbl_panel);
 		
-		JButton btnNewButton_1 = new JButton("New Client");
+		JButton btnNewButton_1 = new JButton("Insert New...");
+		btnNewButton_1.setBackground(new Color(0,0,0));
+		btnNewButton_1.setForeground(Color.GREEN);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setFont(new Font("Consolas", Font.PLAIN, 11));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				New();
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
@@ -132,7 +138,11 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_1.gridy = 1;
 		panel.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnNewButton_4 = new JButton("Add New Element");
+		JButton btnNewButton_4 = new JButton("Edit Existent...");
+		btnNewButton_4.setForeground(Color.GREEN);
+		btnNewButton_4.setBackground(new Color(0,0,0));
+		btnNewButton_4.setBorderPainted(false);
+		btnNewButton_4.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				NewEntryOneTable();
@@ -145,7 +155,11 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_4.gridy = 2;
 		panel.add(btnNewButton_4, gbc_btnNewButton_4);
 		
-		JButton btnNewButton_2 = new JButton("Update Element");
+		JButton btnNewButton_2 = new JButton("Remove Existent...");
+		btnNewButton_2.setForeground(Color.GREEN);
+		btnNewButton_2.setBackground(new Color(0,0,0));
+		btnNewButton_2.setBorderPainted(false);
+		btnNewButton_2.setFont(new Font("Consolas", Font.PLAIN, 11));
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);
@@ -153,7 +167,17 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_2.gridy = 3;
 		panel.add(btnNewButton_2, gbc_btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Remove Element");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridy = 5;
+		
+		JButton btnNewButton_3 = new JButton("View Existent...");
+		btnNewButton_3.setForeground(Color.GREEN);
+		btnNewButton_3.setBackground(new Color(0,0,0));
+		btnNewButton_3.setFont(new Font("Consolas", Font.PLAIN, 11));
+		btnNewButton_3.setBorderPainted(false);
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
 		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton_3.fill = GridBagConstraints.BOTH;
@@ -161,24 +185,17 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_3.gridy = 4;
 		panel.add(btnNewButton_3, gbc_btnNewButton_3);
 		
-		JButton btnNewButton_5 = new JButton("New button");
+		JButton btnNewButton_5 = new JButton("Exit");
+		btnNewButton_5.setForeground(Color.GREEN);
+		btnNewButton_5.setBackground(new Color(0,0,0));
+		btnNewButton_5.setBorderPainted(false);
+		btnNewButton_5.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				guts.appClosed();
 				frame.dispose();
 			}
 		});
-		
-		JButton btnNewButton = new JButton("Show:");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 5;
-		panel.add(btnNewButton, gbc_btnNewButton);
 		btnNewButton_5.setText("exit");
 		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
 		gbc_btnNewButton_5.fill = GridBagConstraints.BOTH;
@@ -190,12 +207,13 @@ public class Graphic_Interface extends JFrame{
 		
 		panel_1.setBackground(new Color(255, 255, 255));
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new BorderLayout(0, 0));
 	}
 	/*Requires specifying the fields of each JTextField. Aside from that remember to change the visibility of tthe buttons and textfields to false in 
 	 * the field is visible when the function is terminated. */
 	public void NewEntryOneTable () {
 		if(this.tablesCreated==true) {
-			if (this.displayed_new_element==false) {
+				panel_1.removeAll();
 				panel_1.setVisible(false);
 				GridLayout Createnewtype = new GridLayout(6,4);
 				panel_1.setLayout(Createnewtype);
@@ -341,8 +359,6 @@ public class Graphic_Interface extends JFrame{
 				mt.setVisible(false);
 				adr.setVisible(false);
 				panel_1.setVisible(true);
-				this.displayed_new_element=true;
-			}
 		}
 		else {
 			if(warnings>0) {
@@ -378,4 +394,126 @@ public class Graphic_Interface extends JFrame{
 			}
 		}
 	}
+	public void New() {
+		//if(this.tablesCreated==true) {
+			panel_1.removeAll();
+			panel_1.validate();
+			panel_1.setVisible(false);
+			panel_1.setLayout(new GridLayout(7,3));
+			JPanel panel1=new JPanel();
+			JPanel panel2=new JPanel();
+			JPanel panel3=new JPanel();
+			JPanel panel4=new JPanel();
+			JPanel panel5=new JPanel();
+			JPanel panel6=new JPanel();
+			JPanel panel7=new JPanel();
+			JPanel panel8=new JPanel();
+			JPanel panel9=new JPanel();
+			JPanel panel10=new JPanel();
+			JPanel panel11=new JPanel();
+			JPanel panel12=new JPanel();
+			JPanel panel13=new JPanel();
+			JPanel panel14=new JPanel();
+			JPanel panel15=new JPanel();
+			JPanel panel16=new JPanel();
+			JPanel panel17=new JPanel();
+			JPanel panel18=new JPanel();
+			
+			panel1.setBackground(new Color(255,255,255));
+			panel2.setBackground(new Color(255,255,255));
+			panel3.setBackground(new Color(255,255,255));
+			panel4.setBackground(new Color(255,255,255));
+			panel5.setBackground(new Color(255,255,255));
+			panel6.setBackground(new Color(255,255,255));
+			panel7.setBackground(new Color(255,255,255));
+			panel8.setBackground(new Color(255,255,255));
+			panel9.setBackground(new Color(255,255,255));
+			panel10.setBackground(new Color(255,255,255));
+			panel11.setBackground(new Color(255,255,255));
+			panel12.setBackground(new Color(255,255,255));
+			panel13.setBackground(new Color(255,255,255));
+			panel14.setBackground(new Color(255,255,255));
+			panel15.setBackground(new Color(255,255,255));
+			panel16.setBackground(new Color(255,255,255));
+			panel17.setBackground(new Color(255,255,255));
+			panel18.setBackground(new Color(255,255,255));
+			
+			JButton newCln= new JButton();
+			newCln.setText("New Client");
+			newCln.setBackground(new Color(0,0,0));
+			newCln.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			JButton newFtr= new JButton();
+			newFtr.setText("New Feature");
+			newFtr.setBackground(new Color(0,0,0));
+			newFtr.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			JButton newMat= new JButton();
+			newMat.setText("New Client");
+			newMat.setBackground(new Color(0,0,0));
+			newMat.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			
+			panel_1.add(panel1);
+			panel_1.add(panel2);
+			panel_1.add(panel3);
+			panel_1.add(panel4);
+			panel_1.add(newCln);
+			panel_1.add(panel5);
+			panel_1.add(panel6);
+			panel_1.add(panel7);
+			panel_1.add(panel8);
+			panel_1.add(panel9);
+			panel_1.add(newFtr);
+			panel_1.add(panel10);
+			panel_1.add(panel11);
+			panel_1.add(panel12);
+			panel_1.add(panel13);
+			panel_1.add(panel14);
+			panel_1.add(newMat);
+			panel_1.add(panel15);
+			panel_1.add(panel16);
+			panel_1.add(panel17);
+			panel_1.add(panel18);
+			
+			panel_1.setVisible(true);
+			panel1.setVisible(true);
+			panel2.setVisible(true);
+			panel3.setVisible(true);
+			panel4.setVisible(true);
+			panel5.setVisible(true);
+			panel6.setVisible(true);
+			panel7.setVisible(true);
+			panel8.setVisible(true);
+			panel9.setVisible(true);
+			panel10.setVisible(true);
+			panel11.setVisible(true);
+			panel12.setVisible(true);
+			panel13.setVisible(true);
+			panel14.setVisible(true);
+			panel15.setVisible(true);
+			newCln.setVisible(true);
+			newFtr.setVisible(true);
+			newMat.setVisible(true);
+			
+			newCln.setForeground(new Color(0,255,0));
+			newFtr.setForeground(new Color(0,255,0));
+			newMat.setForeground(new Color(0,255,0));
+			
+			newCln.setFont(new Font("Consolas", Font.PLAIN, 11));
+			newFtr.setFont(new Font("Consolas", Font.PLAIN, 11));
+			newMat.setFont(new Font("Consolas", Font.PLAIN, 11));
+			
+		//}
+	}
 }
+
