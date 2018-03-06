@@ -17,9 +17,11 @@ public class Address implements Serializable {
 	public Address() {
 		
 		super();
+		
 	}
 	
 	public Address(int id, String country, int postCode, String street, String town, int number, Client client) {
+		
 		this.id = id;
 		this.country = country;
 		this.postCode = postCode;
@@ -27,38 +29,55 @@ public class Address implements Serializable {
 		this.town = town;
 		this.number = number;
 		this.client = client;
+		
 	}
 
 	public Integer getId() {
+		
 		return id;
+		
 	}
 
 	public void setId(Integer id) {
+		
 		this.id = id;
+		
 	}
 
 	public String getCountry() {
+		
 		return country;
+		
 	}
 
 	public void setCountry(String country) {
+		
 		this.country = country;
+		
 	}
 
 	public Integer getPostCode() {
+		
 		return postCode;
+		
 	}
 
 	public void setPostCode(Integer postCode) {
+		
 		this.postCode = postCode;
+		
 	}
 
 	public String getStreet() {
+		
 		return street;
+		
 	}
 
 	public void setStreet(String street) {
+		
 		this.street = street;
+		
 	}
 
 	public String getTown() {
