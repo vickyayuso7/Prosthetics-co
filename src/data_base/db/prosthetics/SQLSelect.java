@@ -18,34 +18,35 @@ import java.util.List;
 
 import pojos.db.prosthetics.Client;
 import pojos.db.prosthetics.Prosthetics;
-public class SQLInsertPrepared{
+
+public class SQLSelect {
+	
 		private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		
 		private static Connection c;
 
-		private static   List<Client> printClients() throws SQLException 
-		{
+		private static List<Client> selectClients() throws SQLException {
 			
 			List<Client> clients = new ArrayList<Client>();
 			Statement stmt = c.createStatement();
 			String sql = "SELECT * FROM clients";
 			ResultSet rs = stmt.executeQuery(sql);
-			//create empty list of clients
+			
 			while (rs.next()) {
+				
 				int id = rs.getInt("id");
 				Date date_of_birth = rs.getDate("date_of_birth");
 				String name = rs.getString("name");
 				String gender = rs.getString("gender");
 				Client client = new Client(id, date_of_birth, name, gender);
 				clients.add(client);
-				System.out.println(client);//add the client to the list
+				System.out.println(client);
+				
 			}
 			
 			rs.close();
-			stmt.close();//return the list
+			stmt.close();
 			return clients;
 
 		}
-		
-		
+				
 }
