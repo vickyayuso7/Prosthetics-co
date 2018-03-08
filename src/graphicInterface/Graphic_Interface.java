@@ -8,9 +8,8 @@ import javax.swing.*;
 
 public class Graphic_Interface extends JFrame{
 	private boolean tablesCreated=false;
-	private JFrame frame;
+	private JFrame frame=new JFrame();
 	private int warnings=3;
-	private CreateANDModify cln= new CreateANDModify();
 	private WizardHandler guts;
 	JPanel panel_1 = new JPanel();
 	
@@ -38,7 +37,6 @@ public class Graphic_Interface extends JFrame{
 		
 		//window.frame.setVisible(true);
 		guts=new WizardHandler();
-		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
 		frame.setVisible(true);
@@ -443,7 +441,8 @@ public class Graphic_Interface extends JFrame{
 			newCln.setBackground(new Color(0,0,0));
 			newCln.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					CreateANDModify m= new CreateANDModify();
+					m.setVisible(true);
 				}
 			});
 			JButton newFtr= new JButton();

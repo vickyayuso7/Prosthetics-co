@@ -131,8 +131,9 @@ public class Greetings extends JFrame {
 			public void run() {
 				try {
 					Greetings frame = null;
-					frame = new Greetings();
-					frame.setVisible(true);
+					//frame = new Greetings();
+					//frame.setVisible(true);
+					Graphic_Interface g=new Graphic_Interface(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
