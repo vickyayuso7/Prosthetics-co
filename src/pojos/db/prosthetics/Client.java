@@ -2,7 +2,7 @@ package pojos.db.prosthetics;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
+import java.sql.Date;
 
 
 
