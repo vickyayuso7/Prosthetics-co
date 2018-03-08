@@ -4,14 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class SQLConnect {
-	Connection connect;
-	boolean connected;
+private static	Connection connect;
+private static	boolean connected;
 	
-	public SQLConnect() {
-		connected=false;
-		connect=null;
-	}
-	public void establishConnection() {
+	 static public void establishConnection() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			connect = DriverManager.getConnection("jdbc:sqlite:./db/prosthetics");
@@ -20,17 +16,17 @@ public class SQLConnect {
 			connected=true;
 		} catch (Exception e) {
 			System.out.println("could not establish a connection.");
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	
-	public Connection getConnection() {
+	static public Connection getConnection() {
 		return(connect);
 	}
 	
-	public void closeConnection() {
+	static public void closeConnection() {
 		try {
-			this.connect.close();
+			connect.close();
 			connected=false;
 		}
 		catch(Exception e) {
@@ -38,7 +34,7 @@ public class SQLConnect {
 		}
 	}
 
-	public boolean isConnected() {
-		return(this.connected);
+	static public boolean isConnected() {
+		return(connected);
 	}
 }
