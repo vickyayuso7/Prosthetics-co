@@ -13,17 +13,35 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import net.miginfocom.swing.MigLayout;
+import wizard_Handler.WizardHandler;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.awt.event.ActionEvent;
-
+import pojos.db.prosthetics.*;
 public class CreateANDModify extends JFrame {
 	private JFrame frame=new JFrame();
+	int option1;
+	int option2;
+	String gender[]= {"Unspecified","Male","Female"};;
+	private Client cln =new Client();
+	private Prosthetics prs =new Prosthetics();
+	private Address adr= new Address();
+	private Payment pmn= new Payment();
 	
-	public CreateANDModify() {
+	public CreateANDModify(WizardHandler myNameIsTim) {
+		option1=-1;
+		option2=-1;
+		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
 		frame.setVisible(true);
@@ -39,6 +57,50 @@ public class CreateANDModify extends JFrame {
 		panel.setBackground(Color.BLACK);
 		contentPane.add(panel, BorderLayout.SOUTH);
 		JButton btnOk = new JButton("Ok");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/*how to check if the combobox is a valid option and actually contains something valid.*/
+				if(option1!=-1 && option2!=-1 && textField.getText()!=""&& textField_1.getText()!=""&& textField_2.getText()!=""&& textField_3.getText()!=""
+						&& textField_4.getText()!=""&& textField_5.getText()!=""&& textField_7.getText()!=""&& textField_8.getText()!=""&& textField_9.getText()!=""
+						&& textField_10.getText()!=""&& textField_11.getText()!=""&& textField_12.getText()!=""&& textField_13.getText()!=""&& textField_14.getText()!=""
+						&& textField_6.getText()!="") {
+					
+					adr.setCountry(textField_8.getText());
+					try {
+						adr.setNumber(Integer.parseInt(textField_13.getText()));
+					}
+					catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Number should actually be a number you gimp boy");
+					}
+					try {
+						adr.setPostCode(Integer.parseInt(textField_11.getText()));
+					}
+					catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Post Code should actually be a number you gimp boy");
+					}
+					adr.setStreet(textField_12.getText());
+					adr.setTown(textField_10.getText());
+					adr.setCity(textField_9.getText());
+					try {
+					String withoutTime = textField_14.getText()+"-"+textField_6.getText()+"-"+textField_1.getText();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					LocalDate dateOfBirth = LocalDate.parse(withoutTime, formatter);
+					cln.setDate_of_Birth(dateOfBirth);
+					}
+					catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "How about you give me  valid address you trashcan of a human being");
+					}
+					if(option1!=-1 && option1!=0) {
+						cln.setGender(gender[option1]);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
+					}
+					cln.setName(textField.getText());
+				}
+				
+			}
+		});
 		btnOk.setForeground(Color.GREEN);
 		btnOk.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnOk.setBackground(Color.BLACK);
@@ -83,12 +145,26 @@ public class CreateANDModify extends JFrame {
 		panel_2.add(textField, "cell 19 1,alignx right");
 		textField.setColumns(10);
 		
-		JLabel lblAge = new JLabel("Age:");
+		JLabel lblAge = new JLabel("Date Of Birth:");
 		panel_2.add(lblAge, "cell 19 1,alignx center");
 		
 		textField_1 = new JTextField();
 		panel_2.add(textField_1, "cell 19 1,alignx center");
-		textField_1.setColumns(10);
+		textField_1.setColumns(3);
+		
+		JLabel label = new JLabel("/");
+		panel_2.add(label, "cell 19 1");
+		
+		textField_6 = new JTextField();
+		panel_2.add(textField_6, "cell 19 1");
+		textField_6.setColumns(3);
+		
+		JLabel label_1 = new JLabel("/");
+		panel_2.add(label_1, "cell 19 1");
+		
+		textField_14 = new JTextField();
+		panel_2.add(textField_14, "cell 19 1");
+		textField_14.setColumns(3);
 		
 		JLabel lblGender = new JLabel("Gender:");
 		panel_2.add(lblGender, "cell 19 1,alignx center");
@@ -129,13 +205,16 @@ public class CreateANDModify extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Color:");
 		panel_2.add(lblNewLabel_2, "flowx,cell 19 7");
 		
-		String gender[] = {"Unspecified","Male","Female"};
 		JComboBox comboBox = new JComboBox(gender);
 		panel_2.add(comboBox, "cell 19 1,alignx trailing");
+		option1=comboBox.getSelectedIndex();
 		
-		textField_6 = new JTextField();
-		panel_2.add(textField_6, "cell 19 7,alignx left");
-		textField_6.setColumns(10);
+		//String colours[] = WizardHandler.getColours();
+		String test[] = {"Red","green","blue"};
+		JComboBox comboBox_1 = new JComboBox(test);
+		panel_2.add(comboBox_1, "cell 19 7");
+		option2=comboBox_1.getSelectedIndex();
+		//insrtintodatabase(test[option2])
 		
 		JLabel lblTypeOfFunctionality = new JLabel("Type of functionality:");
 		panel_2.add(lblTypeOfFunctionality, "cell 19 7,alignx left");
@@ -312,7 +391,6 @@ public class CreateANDModify extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField textField_6;
 	private JTextField textField_2;
 	private JTextField textField_7;
 	private JTextField txtAddress;
@@ -322,6 +400,8 @@ public class CreateANDModify extends JFrame {
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JTextField textField_13;
+	private JTextField textField_6;
+	private JTextField textField_14;
 
 	public void fullClient() {
 		//frame = new JFrame();

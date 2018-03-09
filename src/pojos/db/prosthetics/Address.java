@@ -12,6 +12,7 @@ public class Address implements Serializable {
 	private String street;
 	private String town;
 	private Integer number;
+	private String city;
 	private Client client;
 	
 	public Address() {
@@ -20,7 +21,7 @@ public class Address implements Serializable {
 		
 	}
 	
-	public Address(int id, String country, int postCode, String street, String town, int number, Client client) {
+	public Address(int id, String country, int postCode, String street, String town, int number, String city, Client client) {
 		
 		this.id = id;
 		this.country = country;
@@ -28,10 +29,18 @@ public class Address implements Serializable {
 		this.street = street;
 		this.town = town;
 		this.number = number;
-		this.client = client;
-		
+		this.city = city;
+		this.client=client;
 	}
-
+	
+	public Client getClient() {
+		return(this.client);
+	}
+	
+	public void setClient(Client cln) {
+		this.client= cln; 
+	}
+	
 	public Integer getId() {
 		
 		return id;
@@ -96,12 +105,12 @@ public class Address implements Serializable {
 		this.number = number;
 	}
 
-	public Client getClient() {
-		return client;
+	public String getCity() {
+		return city;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setCity(String city) {
+		this.city=city;
 	}
 
 	@Override

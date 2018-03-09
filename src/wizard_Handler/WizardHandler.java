@@ -1,7 +1,7 @@
 package wizard_Handler;
 import data_base.db.prosthetics.*;
  public class WizardHandler{
- 	SQLConnect connecterMaThingy;
+ 	/*SQLConnect connecterMaThingy;
  	SQLCreate creatorWand;
  	SQLDrop dropperLord;
  	SQLInsertPrepared pInserterer;
@@ -28,5 +28,5 @@ import data_base.db.prosthetics.*;
 	}
 	public void appClosed() {
 		connecterMaThingy.closeConnection();
-	}
+	}*/
 }

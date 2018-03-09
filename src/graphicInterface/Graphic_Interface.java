@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.util.Random;
 import wizard_Handler.*;
 import javax.swing.*;
-
+//guts.close must be activated
 public class Graphic_Interface extends JFrame{
 	private boolean tablesCreated=false;
 	private JFrame frame=new JFrame();
@@ -190,7 +190,7 @@ public class Graphic_Interface extends JFrame{
 		btnNewButton_5.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				guts.appClosed();
+				//guts.appClosed();
 				frame.dispose();
 			}
 		});
@@ -441,7 +441,7 @@ public class Graphic_Interface extends JFrame{
 			newCln.setBackground(new Color(0,0,0));
 			newCln.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					CreateANDModify m= new CreateANDModify();
+					CreateANDModify m= new CreateANDModify(guts);
 					m.setVisible(true);
 				}
 			});
