@@ -1,14 +1,8 @@
 package pojos.db.prosthetics;
 import java.io.Serializable;
-<<<<<<< HEAD
-import java.time.*;
-import java.util.*;
-
-=======
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
->>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co.git
 
 
 
@@ -25,7 +19,7 @@ public class Client implements Serializable {
 	private String gender;
 	private List<Prosthetics> prosthetics;
 	private Address address;
-	private LocalDate date_of_birth;
+	private Date date_of_birth;
 	
 	
 	//mandatory constructor
@@ -38,7 +32,7 @@ public class Client implements Serializable {
 	// You can create as many extra constructors as you wish
 		
 		
-		public Client (LocalDate date_of_birth, String name, String gender, List<Prosthetics> prosthetics, Address address) {
+		public Client (Date date_of_birth, String name, String gender, List<Prosthetics> prosthetics, Address address) {
 			super();
 			this.date_of_birth = date_of_birth;
 			this.name = name;
@@ -47,7 +41,7 @@ public class Client implements Serializable {
 			this.address= address;
 		}
 
-		public Client(int id, LocalDate date_of_birth, String name, String gender) {
+		public Client(int id, Date date_of_birth, String name, String gender) {
 			super();
 			this.id=id;
 			this.date_of_birth = date_of_birth;
@@ -97,11 +91,11 @@ public class Client implements Serializable {
 			this.id = id;
 		}
 
-		public LocalDate getDate_of_birth() {
+		public Date getDate_of_birth() {
 			return date_of_birth;
 		}
 
-		public void setDate_of_Birth(LocalDate date_of_birth) {
+		public void setDate_of_Birth(Date date_of_birth) {
 			this.date_of_birth = date_of_birth;
 		}
 
