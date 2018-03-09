@@ -97,6 +97,7 @@ public class CreateANDModify extends JFrame {
 						JOptionPane.showMessageDialog(null, "No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
 					}
 					cln.setName(textField.getText());
+					cln.setAddress(adr);
 				}
 				
 			}
