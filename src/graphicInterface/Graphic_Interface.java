@@ -454,7 +454,7 @@ public class Graphic_Interface extends JFrame{
 				}
 			});
 			JButton newMat= new JButton();
-			newMat.setText("New Client");
+			newMat.setText("New Material");
 			newMat.setBackground(new Color(0,0,0));
 			newMat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
