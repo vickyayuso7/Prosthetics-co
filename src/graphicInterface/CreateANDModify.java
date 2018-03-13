@@ -64,115 +64,127 @@ public class CreateANDModify extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				/*how to check if the combobox is a valid option and actually contains something valid.*/
 				fuckedup=0;
-				if(option1!=-1 && option2!=-1 && textField.getText()!=""&& textField_1.getText()!=""&& textField_2.getText()!=""&& textField_3.getText()!=""
-						&& textField_4.getText()!=""&& textField_5.getText()!=""&& textField_7.getText()!=""&& textField_8.getText()!=""&& textField_9.getText()!=""
-						&& textField_10.getText()!=""&& textField_11.getText()!=""&& textField_12.getText()!=""&& textField_13.getText()!=""&& textField_14.getText()!=""
-						&& textField_6.getText()!=""&& textField_15.getText()!=""&& textField_16.getText()!=""&& textField_17.getText()!=""&& textField_18.getText()!=""
-						&& textField_19.getText()!=""&& textField_20.getText()!="") {
-					
-					adr.setCountry(textField_8.getText());
-					try {
-						adr.setNumber(Integer.parseInt(textField_13.getText()));
-					}
-					catch(Exception ex) {
-						fuckedup=fuckedup+1;
-						textArea.setText(textArea.getText()+" Number must be an actual number,");
-					}
-					try {
-						adr.setPostCode(Integer.parseInt(textField_11.getText()));
-					}
-					catch(Exception ex) {
-						fuckedup=fuckedup+1;
-						textArea.setText(textArea.getText()+" Postcode must be an actual number,");
-					}
-					adr.setStreet(textField_12.getText());
-					adr.setTown(textField_10.getText());
-					adr.setCity(textField_9.getText());
-					try {
-					String str= textField_14.getText()+"-"+textField_6+"-"+textField_1.getText();
-					DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
-					LocalDate dt = LocalDate.parse(str,formatter);
-					cln.setDate_of_Birth(Date.valueOf(dt));
-					cln.setAddress(adr);
-					}
-					catch(Exception ex) {
-						fuckedup=fuckedup+1;
-						textArea.setText(textArea.getText()+" Address is messed up, probably because there are several empty fields,");
-					}
-					if(option1!=-1 && option1!=0) {
-						cln.setGender(gender[option1]);
+				if(option1!=-1 && option2!=-1 ) {
+					if(textField.getText().equals("") && textField_1.getText().equals("") && textField_2.getText().equals("") && textField_3.getText().equals("") && 
+							 textField_4.getText().equals("") && textField_5.getText().equals("") && textField_6.getText().equals("") && textField_7.getText().equals("") &&
+							 textField_8.getText().equals("") && textField_9.getText().equals("") && textField_10.getText().equals("") && textField_11.getText().equals("") &&
+							 textField_12.getText().equals("") && textField_13.getText().equals("") && textField_14.getText().equals("") && textField_15.getText().equals("") &&
+							 textField_16.getText().equals("") && textField_17.getText().equals("") && textField_18.getText().equals("") && textField_19.getText().equals("") &&
+							 textField_20.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "No empty fields allowed!");
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
-						fuckedup=fuckedup+1;
-					}
-					cln.setName(textField.getText());
-					try {
-						String str= textField_17.getText()+"-"+textField_18+"-"+textField_19.getText();
+						adr.setCountry(textField_8.getText());
+						try {
+							adr.setNumber(Integer.parseInt(textField_13.getText()));
+						}
+						catch(Exception ex) {
+							fuckedup=fuckedup+1;
+							textArea.setText(textArea.getText()+" Number must be an actual number,");
+						}
+						try {
+							adr.setPostCode(Integer.parseInt(textField_11.getText()));
+						}
+						catch(Exception ex) {
+							fuckedup=fuckedup+1;
+							textArea.setText(textArea.getText()+" Postcode must be an actual number,");
+						}
+						adr.setStreet(textField_12.getText());
+						adr.setTown(textField_10.getText());
+						adr.setCity(textField_9.getText());
+						try {
+						String str= textField_14.getText()+"-"+textField_6+"-"+textField_1.getText();
 						DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
 						LocalDate dt = LocalDate.parse(str,formatter);
-						pmn.setDeadline((Date.valueOf(dt)));
+						cln.setDate_of_Birth(Date.valueOf(dt));
+						cln.setAddress(adr);
+						}
+						catch(Exception ex) {
+							fuckedup=fuckedup+1;
+							textArea.setText(textArea.getText()+" Address is messed up, probably because there are several empty fields,");
+						}
+						if(option1!=-1 && option1!=0) {
+							cln.setGender(gender[option1]);
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
+							fuckedup=fuckedup+1;
+						}
+						cln.setName(textField.getText());
+						try {
+							String str= textField_17.getText()+"-"+textField_18+"-"+textField_19.getText();
+							DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
+							LocalDate dt = LocalDate.parse(str,formatter);
+							pmn.setDeadline((Date.valueOf(dt)));
+						}
+						catch(Exception ex) {
+							fuckedup=fuckedup+1;
+							textArea.setText(textArea.getText()+" The Deadline is messed up, probably because there are some empty fileds,");
+						}
+						try {
+							pmn.setIban(Integer.parseInt(textField_16.getText()));
+						}
+						catch(Exception ex) {
+							fuckedup=fuckedup+1;
+							textArea.setText(textArea.getText()+" Iban must be an actual number,");
+						}
+						if(textField_15.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "fill in the rquired field:(Method)");
+						}
+						else {
+							pmn.setMethod(textField_15.getText());
+						}
+						try {
+							prs.setBest_price(Float.parseFloat(textField_20.getText()));
+						}
+						catch(Exception ex) {
+							fuckedup=fuckedup+1;
+							textArea.setText(textArea.getText()+" Price must be an actual number,");
+						}
+						//prs.setColor(myNameIsTim.getColor(comboBox_1.getSelectedIndex()));
+						try {
+							prs.setSize(Float.parseFloat(textField_4.getText()));
+						}
+						catch(Exception ex) {
+							fuckedup=fuckedup+1;
+							textArea.setText(textArea.getText()+" Size must be an actual number,");
+						}
+						if(textField_4.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOA)");
+						}
+						else {
+							prs.setType_of_amputation(textField_7.getText());
+						}
+						if(textField_2.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOF)");
+						}
+						else {
+							prs.setType_of_functionality(textField_2.getText());
+						}
+						try {
+							prs.setWeight(Float.parseFloat(textField_5.getText()));
+						}
+						catch(Exception ex) {
+							fuckedup=fuckedup+1;
+							textArea.setText(textArea.getText()+" Wheight must be an actual number");
+						}
+						if(fuckedup!=0) {
+							JOptionPane.showMessageDialog(null, "Ok, there are "+fuckedup+" things wrong with this entry fix them before continuing\nMay I suggest checking the Warnings and Failures tab?");
+							textArea.setText(textArea.getText()+"\n");
+						}
+						else {
+							String choice=myNameIsTim.newClient(cln,adr,pmn,prs);
+							if(choice.equals("all clear")) {
+								frame.dispose();
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "failed to insert a new client\nDetails in the erro tab");
+								textArea.setForeground(Color.RED);
+								textArea.setText(textArea.getText()+choice);
+								textArea.setForeground(Color.GREEN);
+							}
+						}
 					}
-					catch(Exception ex) {
-						fuckedup=fuckedup+1;
-						textArea.setText(textArea.getText()+" The Deadline is messed up, probably because there are some empty fileds,");
-					}
-					try {
-						pmn.setIban(Integer.parseInt(textField_16.getText()));
-					}
-					catch(Exception ex) {
-						fuckedup=fuckedup+1;
-						textArea.setText(textArea.getText()+" Iban must be an actual number,");
-					}
-					if(textField_15.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "fill in the rquired field:(Method)");
-					}
-					else {
-						pmn.setMethod(textField_15.getText());
-					}
-					try {
-						prs.setBest_price(Float.parseFloat(textField_20.getText()));
-					}
-					catch(Exception ex) {
-						fuckedup=fuckedup+1;
-						textArea.setText(textArea.getText()+" Price must be an actual number,");
-					}
-					//prs.setColor(myNameIsTim.getColor(comboBox_1.getSelectedIndex()));
-					try {
-						prs.setSize(Float.parseFloat(textField_4.getText()));
-					}
-					catch(Exception ex) {
-						fuckedup=fuckedup+1;
-						textArea.setText(textArea.getText()+" Size must be an actual number,");
-					}
-					if(textField_4.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOA)");
-					}
-					else {
-						prs.setType_of_amputation(textField_7.getText());
-					}
-					if(textField_2.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOF)");
-					}
-					else {
-						prs.setType_of_functionality(textField_2.getText());
-					}
-					try {
-						prs.setWeight(Float.parseFloat(textField_5.getText()));
-					}
-					catch(Exception ex) {
-						fuckedup=fuckedup+1;
-						textArea.setText(textArea.getText()+" Wheight must be an actual number");
-					}
-					if(fuckedup!=0) {
-						JOptionPane.showMessageDialog(null, "Ok, there are "+fuckedup+" things wrong with this entry fix them before continuing\nMay I suggest checking the Warnings and Failures tab?");
-						textArea.setText(textArea.getText()+"\n");
-					}
-					else {
-						//myNameIsTim.newClient(cln,adr,pmn,prs);
-						frame.dispose();
-					}
-					
 				}
 				
 			}
