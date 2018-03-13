@@ -25,7 +25,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.sql.*;
 import java.awt.event.ActionEvent;
 import pojos.db.prosthetics.*;
 public class CreateANDModify extends JFrame {
@@ -82,10 +82,11 @@ public class CreateANDModify extends JFrame {
 					adr.setTown(textField_10.getText());
 					adr.setCity(textField_9.getText());
 					try {
-					String withoutTime = textField_14.getText()+"-"+textField_6.getText()+"-"+textField_1.getText();
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-					LocalDate dateOfBirth = LocalDate.parse(withoutTime, formatter);
-					cln.setDate_of_Birth(dateOfBirth);
+					String str= textField_14.getText()+"-"+textField_6+"-"+textField_1.getText();
+					DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
+					LocalDate dt = LocalDate.parse(str,formatter);
+					cln.setDate_of_Birth(Date.valueOf(dt));
+					cln.setAddress(adr);
 					}
 					catch(Exception ex) {
 						JOptionPane.showMessageDialog(null, "How about you give me  valid address you trashcan of a human being");
@@ -97,7 +98,22 @@ public class CreateANDModify extends JFrame {
 						JOptionPane.showMessageDialog(null, "No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
 					}
 					cln.setName(textField.getText());
-					cln.setAddress(adr);
+					try {
+						String str= textField_17.getText()+"-"+textField_18+"-"+textField_19.getText();
+						DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						LocalDate dt = LocalDate.parse(str,formatter);
+						pmn.setDeadline((Date.valueOf(dt)));
+					}
+					catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "date must be a number you gimp boy.");
+					}
+					try {
+						pmn.setIban(Integer.parseInt(textField_));
+					}
+					catch(Exception ex) {
+						
+					}
+					
 				}
 				
 			}
@@ -134,7 +150,7 @@ public class CreateANDModify extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		contentPane.add(panel_2, BorderLayout.CENTER);
-		panel_2.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][][grow]", "[][][][][][][][][][grow][][][][][][][][grow][][][][][]"));
+		panel_2.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][][grow]", "[][][][][][][][][][grow][][][][][][grow][][][grow][][][][][][]"));
 		
 		Component verticalStrut_4 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_4, "flowx,cell 19 0");
@@ -356,11 +372,18 @@ public class CreateANDModify extends JFrame {
 		Component verticalStrut_13 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_13, "cell 19 14");
 		
-		Component verticalStrut_12 = Box.createVerticalStrut(20);
-		panel_2.add(verticalStrut_12, "cell 19 15");
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.BLACK);
+		panel_2.add(panel_5, "cell 0 15 20 1,grow");
+		
+		JLabel lblPayment = new JLabel("Payment");
+		lblPayment.setFont(new Font("Consolas", Font.PLAIN, 11));
+		lblPayment.setBackground(Color.BLACK);
+		lblPayment.setForeground(Color.GREEN);
+		panel_5.add(lblPayment);
 		
 		Component verticalStrut_7 = Box.createVerticalStrut(20);
-		panel_2.add(verticalStrut_7, "cell 19 16");
+		panel_2.add(verticalStrut_7, "cell 19 17");
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Consolas", Font.PLAIN, 13));
@@ -370,19 +393,45 @@ public class CreateANDModify extends JFrame {
 		textArea.setEditable(false);
 		textArea.setRows(5);
 		textArea.setText("Warnings / Comments / Errors:\n");
-		panel_2.add(textArea, "cell 0 17 20 1,grow");
+		panel_2.add(textArea, "cell 0 18 20 1,grow");
 		
-		Component verticalStrut_8 = Box.createVerticalStrut(20);
-		panel_2.add(verticalStrut_8, "cell 19 18");
-		
-		Component verticalStrut_11 = Box.createVerticalStrut(20);
-		panel_2.add(verticalStrut_11, "cell 19 19");
-		
-		Component verticalStrut_10 = Box.createVerticalStrut(20);
-		panel_2.add(verticalStrut_10, "cell 19 20");
+		JLabel lblNewLabel_4 = new JLabel("Method:");
+		panel_2.add(lblNewLabel_4, "flowx,cell 19 22");
 		
 		Component verticalStrut_9 = Box.createVerticalStrut(20);
-		panel_2.add(verticalStrut_9, "cell 19 21");
+		panel_2.add(verticalStrut_9, "cell 19 23");
+		
+		textField_15 = new JTextField();
+		panel_2.add(textField_15, "cell 19 22");
+		textField_15.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("ISBN:");
+		panel_2.add(lblNewLabel_5, "cell 19 22");
+		
+		textField_16 = new JTextField();
+		panel_2.add(textField_16, "cell 19 22");
+		textField_16.setColumns(10);
+		
+		JLabel lblDeadline = new JLabel("Deadline:");
+		panel_2.add(lblDeadline, "cell 19 22");
+		
+		textField_17 = new JTextField();
+		panel_2.add(textField_17, "cell 19 22");
+		textField_17.setColumns(3);
+		
+		JLabel label_2 = new JLabel("/");
+		panel_2.add(label_2, "cell 19 22");
+		
+		textField_18 = new JTextField();
+		panel_2.add(textField_18, "cell 19 22");
+		textField_18.setColumns(3);
+		
+		JLabel label_3 = new JLabel("/");
+		panel_2.add(label_3, "cell 19 22");
+		
+		textField_19 = new JTextField();
+		panel_2.add(textField_19, "cell 19 22");
+		textField_19.setColumns(3);
 		panel.setVisible(true);
 	}
 
@@ -403,6 +452,11 @@ public class CreateANDModify extends JFrame {
 	private JTextField textField_13;
 	private JTextField textField_6;
 	private JTextField textField_14;
+	private JTextField textField_15;
+	private JTextField textField_16;
+	private JTextField textField_17;
+	private JTextField textField_18;
+	private JTextField textField_19;
 
 	public void fullClient() {
 		//frame = new JFrame();
