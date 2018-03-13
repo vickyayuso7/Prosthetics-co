@@ -96,7 +96,7 @@ public class CreateANDModify extends JFrame {
 						String str= textField_14.getText()+"-"+textField_6+"-"+textField_1.getText();
 						DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
 						LocalDate dt = LocalDate.parse(str,formatter);
-						cln.setDate_of_Birth(Date.valueOf(dt));
+						cln.setDateOfBirth(Date.valueOf(dt));
 						cln.setAddress(adr);
 						}
 						catch(Exception ex) {
@@ -135,7 +135,7 @@ public class CreateANDModify extends JFrame {
 							pmn.setMethod(textField_15.getText());
 						}
 						try {
-							prs.setBest_price(Float.parseFloat(textField_20.getText()));
+							prs.setBestPrice(Float.parseFloat(textField_20.getText()));
 						}
 						catch(Exception ex) {
 							fuckedup=fuckedup+1;
@@ -153,13 +153,13 @@ public class CreateANDModify extends JFrame {
 							JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOA)");
 						}
 						else {
-							prs.setType_of_amputation(textField_7.getText());
+							prs.setTypeOfAmputation(textField_7.getText());
 						}
 						if(textField_2.getText().equals("")) {
 							JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOF)");
 						}
 						else {
-							prs.setType_of_functionality(textField_2.getText());
+							prs.setTypeOfFunctionality(textField_2.getText());
 						}
 						try {
 							prs.setWeight(Float.parseFloat(textField_5.getText()));
