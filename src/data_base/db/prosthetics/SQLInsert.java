@@ -23,10 +23,10 @@ public class SQLInsert {
 	public static void newClient (Client client) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO clients (date_of_birth, name, gender) "
+		String sql = "INSERT INTO clients (dateOfBirth, name, gender) "
 				+ "VALUES (?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
-		prep.setDate(1, client.getDate_of_birth());
+		prep.setDate(1, client.getDateOfBirth());
 		prep.setString(2, client.getName());
 		prep.setString(3, client.getGender());
 		
@@ -39,7 +39,9 @@ public class SQLInsert {
 		
 		
 		
-		System.out.println("OK");
+		System.out.println("OK1");
+		
+		
 		String sql = "INSERT INTO address (country, postCode, street, town, number) "
 				+ "VALUES (?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
@@ -49,23 +51,23 @@ public class SQLInsert {
 		prep.setString(4, address.getTown());
 		prep.setInt(5, address.getNumber());
 		
-		System.out.println("OK");
+		System.out.println("OK2");
 		
 		prep.executeUpdate();
 		prep.close();
-		System.out.println("OK");
+		System.out.println("OK3");
 	}
 	
 	public static void newFeatures (Features features) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO features (extra_price, style, sensibility, enhanced_movement) "
+		String sql = "INSERT INTO features (extra_price, style, sensibility, enhancedMovement) "
 				+ "VALUES (?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
-		prep.setFloat(1, features.getExtra_price());
+		prep.setFloat(1, features.getExtraPrice());
 		prep.setString(2, features.getStyle());
 		prep.setBoolean(3, features.getSensibility());
-		prep.setBoolean(4, features.getEnhanced_movement());
+		prep.setBoolean(4, features.getEnhancedMovement());
 		
 		prep.executeUpdate();
 		prep.close();
@@ -74,10 +76,10 @@ public class SQLInsert {
 	public static void newMaterial (Material material) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO material (price_modifier, type, provider) "
+		String sql = "INSERT INTO material (priceModifier, type, provider) "
 				+ "VALUES (?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
-		prep.setFloat(1, material.getPrice_modifier());
+		prep.setFloat(1, material.getPriceModifier());
 		prep.setString(2, material.getType());
 		prep.setString(3, material.getProvider());
 		
@@ -106,15 +108,15 @@ public class SQLInsert {
 	public static void newProsthetics (Prosthetics prosthetics) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO prosthetics (best_price, size, weight, type_of_functionality, color, type_of_amputation) "
+		String sql = "INSERT INTO prosthetics (bestPrice, size, weight, typeOfFunctionality, color, typeOfAmputation) "
 				+ "VALUES (?,?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
-		prep.setFloat(1, prosthetics.getBest_price());
+		prep.setFloat(1, prosthetics.getBestPrice());
 		prep.setFloat(2, prosthetics.getSize());
 		prep.setFloat(3, prosthetics.getWeight());
-		prep.setString(4, prosthetics.getType_of_functionality());
+		prep.setString(4, prosthetics.getTypeOfFunctionality());
 		prep.setString(5, prosthetics.getColor());
-		prep.setString(6, prosthetics.getType_of_amputation());
+		prep.setString(6, prosthetics.getTypeOfAmputation());
 		
 		prep.executeUpdate();
 		prep.close();

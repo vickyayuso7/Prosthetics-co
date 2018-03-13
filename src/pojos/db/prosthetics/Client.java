@@ -19,7 +19,7 @@ public class Client implements Serializable {
 	private String gender;
 	private List<Prosthetics> prosthetics;
 	private Address address;
-	private Date date_of_birth;
+	private Date dateOfBirth;
 	
 	
 	//mandatory constructor
@@ -32,19 +32,19 @@ public class Client implements Serializable {
 	// You can create as many extra constructors as you wish
 		
 		
-		public Client (Date date_of_birth, String name, String gender, List<Prosthetics> prosthetics, Address address) {
+		public Client (Date dateOfBirth, String name, String gender, List<Prosthetics> prosthetics, Address address) {
 			super();
-			this.date_of_birth = date_of_birth;
+			this.dateOfBirth = dateOfBirth;
 			this.name = name;
 			this.gender = gender;
 			this.prosthetics = new ArrayList<Prosthetics>();
 			this.address= address;
 		}
 
-		public Client(int id, Date date_of_birth, String name, String gender) {
+		public Client(int id, Date dateOfBirth, String name, String gender) {
 			super();
 			this.id=id;
-			this.date_of_birth = date_of_birth;
+			this.dateOfBirth = dateOfBirth;
 			this.name = name;
 			this.gender = gender;
 			
@@ -79,7 +79,7 @@ public class Client implements Serializable {
 		
 		@Override
 		public String toString() {
-			return "Client [id=" + id + ", date of birth=" + date_of_birth + ", name=" + name +
+			return "Client [id=" + id + ", date of birth=" + dateOfBirth + ", name=" + name +
 					", gender=" + gender  + "address"+address+"]";
 		}
 
@@ -91,12 +91,12 @@ public class Client implements Serializable {
 			this.id = id;
 		}
 
-		public Date getDate_of_birth() {
-			return date_of_birth;
+		public Date getDateOfBirth() {
+			return dateOfBirth;
 		}
 
-		public void setDate_of_Birth(Date date_of_birth) {
-			this.date_of_birth = date_of_birth;
+		public void setDateOfBirth(Date dateOfBirth) {
+			this.dateOfBirth = dateOfBirth;
 		}
 
 		public String getName() {

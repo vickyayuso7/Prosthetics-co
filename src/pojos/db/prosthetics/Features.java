@@ -11,23 +11,30 @@ public class Features implements Serializable{
 	 */
 	private static final long serialVersionUID = 3282893934193593462L;
 	private int id;
-	private Float extra_price;
+	private Float extraPrice;
 	private String style;
 	boolean sensibility;
-	boolean enhanced_movement;
+	boolean enhancedMovement;
 	private List<Features> features;	
 	
-	Features(int id, String style, boolean sensibility, boolean enhanced_movement){
+	Features(int id, Float extraPrice, String style, boolean sensibility, boolean enhancedMovement){
 		this.id=id;
-		this.extra_price=extra_price;
+		this.extraPrice=extraPrice;
 		this.sensibility=sensibility;
-		this.enhanced_movement=enhanced_movement;
+		this.enhancedMovement=enhancedMovement;
 		this.style=style;
 		this.features= new ArrayList<Features>();
 	}
 	
 	
 	
+
+	public void setEnhancedMovement(boolean enhancedMovement) {
+		this.enhancedMovement = enhancedMovement;
+	}
+
+
+
 
 	@Override
 	public int hashCode() {
@@ -54,7 +61,7 @@ public class Features implements Serializable{
 
 	
 	public String toString() {
-		return "Features [id=" +id+ "sensibility="+sensibility+"enhanced_movement="+enhanced_movement+"style="+style;
+		return "Features [id=" +id+ "sensibility="+sensibility+"enhancedMovement="+enhancedMovement+"style="+style;
 	}
 	
 	
@@ -68,13 +75,13 @@ public class Features implements Serializable{
 		this.style = style;
 	}
 
-	public Float getExtra_price() {
-		return extra_price;
+	public Float getExtraPrice() {
+		return extraPrice;
 	}
 
 
-	public void setExtra_price(Float extra_price) {
-		this.extra_price = extra_price;
+	public void setExtraPrice(Float extraPrice) {
+		this.extraPrice = extraPrice;
 	}
 
 	public List<Features> getFeatures() {
@@ -100,8 +107,8 @@ public class Features implements Serializable{
 	public boolean getSensibility() {
 		return sensibility;
 	}
-	public boolean getEnhanced_movement() {
-		return enhanced_movement;
+	public boolean getEnhancedMovement() {
+		return enhancedMovement;
 	}
 	public void setType(String st) {
 		this.style=st;
@@ -113,7 +120,7 @@ public class Features implements Serializable{
 		this.sensibility=sens;
 	}
 	public void setEnhanced_movement(boolean movm) {
-		this.enhanced_movement=movm;
+		this.enhancedMovement=movm;
 	}
 	public int getId() {
 		return(this.id);

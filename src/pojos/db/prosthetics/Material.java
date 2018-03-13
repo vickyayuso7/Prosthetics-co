@@ -11,21 +11,21 @@ public class Material implements Serializable{
 	 */
 
 	private static final long serialVersionUID = -5860436926701456573L;
-	float price_modifier;
+	float priceModifier;
 	String type;
 	String provider;
 	int id;
 	private List<Prosthetics> prosthetics;
 	
 	Material(Float prc, int id, String tp, String prv, List<Prosthetics> prosthetics){
-		this.price_modifier=prc;
+		this.priceModifier=prc;
 		this.type=tp;
 		this.provider=prv;
 		this.id=id;
 		this.prosthetics = new ArrayList<Prosthetics>();
 	}
 	Material(){
-		this.price_modifier=0;
+		this.priceModifier=0;
 		this.provider="";
 		this.type="";
 		this.id=0;
@@ -34,7 +34,7 @@ public class Material implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Client [id=" +id+ "price=" + price_modifier + ", type=" + type + ", provider=" + provider +
+		return "Client [id=" +id+ "price=" + priceModifier + ", type=" + type + ", provider=" + provider +
 				"]";
 	}
 	
@@ -58,8 +58,8 @@ public class Material implements Serializable{
 			return false;
 		return true;
 	}
-	public void setPrice_modifier(float price){
-		this.price_modifier=price;
+	public void setPriceModifier(float price){
+		this.priceModifier=price;
 	}
 	public void setType(String type) {
 		this.type=type;
@@ -70,8 +70,8 @@ public class Material implements Serializable{
 	public void setId(int id) {
 		this.id=id;
 	}
-	public float getPrice_modifier() {
-		return(this.price_modifier);
+	public float getPriceModifier() {
+		return(this.priceModifier);
 	}
 	public String getType() {
 		return(this.type);

@@ -18,16 +18,15 @@ public class SQLCreate {
 			Statement stmt2 = c.createStatement();
 			String sql2 = "CREATE TABLE Material "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT," 
-					   + " price_modifier     REAL     NOT NULL, "
+					   + " priceModifier     REAL     NOT NULL, "
 					   + " type      TEXT, "
 					   + " provider  TEXT)";
-			System.out.println(sql2);
 			stmt2.executeUpdate(sql2);
 			stmt2.close();
 			Statement stmt3 = c.createStatement();
 			String sql3 = "CREATE TABLE  Prosthetics"
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
-					   + " best_price       FLOAT  	NOT NULL,"
+					   + " bestPrice       FLOAT  	NOT NULL,"
 					   + " size     FLOAT     NOT NULL, "
 					   + " weight  FLOAT  	NOT NULL, "
 					   + " type_of_functionality		TEXT,"
@@ -83,13 +82,12 @@ public class SQLCreate {
 			stmt8.close();
 			Statement stmt9 = c.createStatement();
 			String sql9 = "CREATE TABLE Address "
-					   + "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
-					   + " country TEXT NOT NULL, "
-					   + " post_code INTEGER NOT NULL, "
-					   + " street TEXT NOT NULL,"
-					   + " town TEXT NOT NULL,"
-					   + " number INTEGER NOT NULL)";
-			System.out.println(sql9);
+					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
+					   + " country     TEXT     NOT NULL, "
+					   + " postCode      INTEGER    NOT NULL, "
+					   + " street  TEXT   NOT NULL,"
+					   + " town    TEXT   NOT NULL,"
+					   + " number   INTEGER  NOT NULL)";
 			stmt9.executeUpdate(sql9);
 			
 			stmt9.close();
