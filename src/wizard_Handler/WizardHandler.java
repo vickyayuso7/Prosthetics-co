@@ -70,4 +70,8 @@ import pojos.db.prosthetics.*;
 			return(colours);
 		}
 	}
+	public String getStringThroughIndex(int index) {
+		String colours []=SQLSelect.getColours();
+		return(colours[index]);
+	}
 }

@@ -54,7 +54,7 @@ public class CreateANDModify extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		frame.add(contentPane);
+		//frame.add(contentPane);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
@@ -93,7 +93,7 @@ public class CreateANDModify extends JFrame {
 						adr.setTown(textField_10.getText());
 						adr.setCity(textField_9.getText());
 						try {
-						String str= textField_14.getText()+"-"+textField_6+"-"+textField_1.getText();
+						String str= textField_14.getText()+"-"+textField_6.getText()+"-"+textField_1.getText();
 						DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
 						LocalDate dt = LocalDate.parse(str,formatter);
 						cln.setDate_of_Birth(Date.valueOf(dt));
@@ -102,6 +102,7 @@ public class CreateANDModify extends JFrame {
 						catch(Exception ex) {
 							fuckedup=fuckedup+1;
 							textArea.setText(textArea.getText()+" Address is messed up, probably because there are several empty fields,");
+							ex.printStackTrace();
 						}
 						if(option1!=-1 && option1!=0) {
 							cln.setGender(gender[option1]);
