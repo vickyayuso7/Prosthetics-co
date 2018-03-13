@@ -33,11 +33,9 @@ public class Address implements Serializable {
 		this.city=city;
 	}
 	
-<<<<<<< HEAD
+
 public Address( int id, String country, int postCode, String street, String town, int number) {
-=======
-public Address( String country, int postCode, String street, String town, int number, String city) {
->>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co.git
+
 		
 		this.id= id;
 		this.country = country;
@@ -45,7 +43,7 @@ public Address( String country, int postCode, String street, String town, int nu
 		this.street = street;
 		this.town = town;
 		this.number = number;
-		this.city=city;
+	
 	}
 	public String getCity() {
 		return(this.city);
