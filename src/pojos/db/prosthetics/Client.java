@@ -2,7 +2,7 @@ package pojos.db.prosthetics;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
+import java.sql.Date;
 
 
 
@@ -15,12 +15,11 @@ public class Client implements Serializable {
 	 */
 	private static final long serialVersionUID = 4798145916410889568L;
 	private Integer id;
-	private Date date_of_birth;
 	private String name;
 	private String gender;
 	private List<Prosthetics> prosthetics;
 	private Address address;
-
+	private Date date_of_birth;
 	
 	
 	//mandatory constructor

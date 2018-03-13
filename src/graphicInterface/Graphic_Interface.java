@@ -5,12 +5,11 @@ import java.awt.event.*;
 import java.util.Random;
 import wizard_Handler.*;
 import javax.swing.*;
-
+//guts.close must be activated
 public class Graphic_Interface extends JFrame{
 	private boolean tablesCreated=false;
-	private JFrame frame;
+	private JFrame frame=new JFrame();
 	private int warnings=3;
-	private CreateANDModify cln= new CreateANDModify();
 	private WizardHandler guts;
 	JPanel panel_1 = new JPanel();
 	
@@ -38,7 +37,6 @@ public class Graphic_Interface extends JFrame{
 		
 		//window.frame.setVisible(true);
 		guts=new WizardHandler();
-		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
 		frame.setVisible(true);
@@ -192,7 +190,7 @@ public class Graphic_Interface extends JFrame{
 		btnNewButton_5.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				guts.appClosed();
+				//guts.appClosed();
 				frame.dispose();
 			}
 		});
@@ -212,7 +210,7 @@ public class Graphic_Interface extends JFrame{
 	/*Requires specifying the fields of each JTextField. Aside from that remember to change the visibility of tthe buttons and textfields to false in 
 	 * the field is visible when the function is terminated. */
 	public void NewEntryOneTable () {
-		if(this.tablesCreated==true) {
+		//if(this.tablesCreated==true) {
 				panel_1.removeAll();
 				panel_1.setVisible(false);
 				GridLayout Createnewtype = new GridLayout(6,4);
@@ -359,8 +357,8 @@ public class Graphic_Interface extends JFrame{
 				mt.setVisible(false);
 				adr.setVisible(false);
 				panel_1.setVisible(true);
-		}
-		else {
+		//}
+		//else {
 			if(warnings>0) {
 				warnings=warnings-1;
 				JOptionPane.showMessageDialog(null, "For the love of chin chin can you please stop trying to break my f*cking program?\nMuch apreciated. Try opening the tables"
@@ -370,7 +368,7 @@ public class Graphic_Interface extends JFrame{
 				JOptionPane.showMessageDialog(null, "you tried to blow up my program, now im gonna blow up your prostate!");
 				this.inmolationProtocol();
 			}
-		}
+		//}
 	}
 	private void inmolationProtocol() {
 		int i=0;
@@ -443,7 +441,8 @@ public class Graphic_Interface extends JFrame{
 			newCln.setBackground(new Color(0,0,0));
 			newCln.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					CreateANDModify m= new CreateANDModify(guts);
+					m.setVisible(true);
 				}
 			});
 			JButton newFtr= new JButton();
@@ -455,7 +454,7 @@ public class Graphic_Interface extends JFrame{
 				}
 			});
 			JButton newMat= new JButton();
-			newMat.setText("New Client");
+			newMat.setText("New Material");
 			newMat.setBackground(new Color(0,0,0));
 			newMat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
