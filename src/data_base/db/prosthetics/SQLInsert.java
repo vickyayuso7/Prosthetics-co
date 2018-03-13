@@ -37,7 +37,10 @@ public class SQLInsert {
 	public static void newAddress (Address address) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO addresss (country, postCode, street, town, number) "
+		
+		
+		System.out.println("OK");
+		String sql = "INSERT INTO address (country, postCode, street, town, number) "
 				+ "VALUES (?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setString(1, address.getCountry());
@@ -46,8 +49,11 @@ public class SQLInsert {
 		prep.setString(4, address.getTown());
 		prep.setInt(5, address.getNumber());
 		
+		System.out.println("OK");
+		
 		prep.executeUpdate();
 		prep.close();
+		System.out.println("OK");
 	}
 	
 	public static void newFeatures (Features features) throws SQLException {

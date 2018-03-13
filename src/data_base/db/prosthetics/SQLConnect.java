@@ -21,7 +21,7 @@ private static	boolean connected;
 	}
 	
 	static public Connection getConnection() {
-		return(connect);
+		return connect;
 	}
 	
 	static public void closeConnection() {
