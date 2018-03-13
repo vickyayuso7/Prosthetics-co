@@ -30,13 +30,16 @@ import java.awt.event.ActionEvent;
 import pojos.db.prosthetics.*;
 public class CreateANDModify extends JFrame {
 	private JFrame frame=new JFrame();
-	int option1;
-	int option2;
-	String gender[]= {"Unspecified","Male","Female"};;
+	private int option1;
+	private int option2;
+	private String gender[]= {"Unspecified","Male","Female"};;
 	private Client cln =new Client();
 	private Prosthetics prs =new Prosthetics();
 	private Address adr= new Address();
 	private Payment pmn= new Payment();
+	private JComboBox comboBox_1 ;
+	private int fuckedup;
+	private JTextArea textArea;
 	
 	public CreateANDModify(WizardHandler myNameIsTim) {
 		option1=-1;
@@ -51,7 +54,7 @@ public class CreateANDModify extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		//frame.add(contentPane);
+		frame.add(contentPane);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
@@ -60,23 +63,27 @@ public class CreateANDModify extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*how to check if the combobox is a valid option and actually contains something valid.*/
+				fuckedup=0;
 				if(option1!=-1 && option2!=-1 && textField.getText()!=""&& textField_1.getText()!=""&& textField_2.getText()!=""&& textField_3.getText()!=""
 						&& textField_4.getText()!=""&& textField_5.getText()!=""&& textField_7.getText()!=""&& textField_8.getText()!=""&& textField_9.getText()!=""
 						&& textField_10.getText()!=""&& textField_11.getText()!=""&& textField_12.getText()!=""&& textField_13.getText()!=""&& textField_14.getText()!=""
-						&& textField_6.getText()!="") {
+						&& textField_6.getText()!=""&& textField_15.getText()!=""&& textField_16.getText()!=""&& textField_17.getText()!=""&& textField_18.getText()!=""
+						&& textField_19.getText()!=""&& textField_20.getText()!="") {
 					
 					adr.setCountry(textField_8.getText());
 					try {
 						adr.setNumber(Integer.parseInt(textField_13.getText()));
 					}
 					catch(Exception ex) {
-						JOptionPane.showMessageDialog(null, "Number should actually be a number you gimp boy");
+						fuckedup=fuckedup+1;
+						textArea.setText(textArea.getText()+" Number must be an actual number,");
 					}
 					try {
 						adr.setPostCode(Integer.parseInt(textField_11.getText()));
 					}
 					catch(Exception ex) {
-						JOptionPane.showMessageDialog(null, "Post Code should actually be a number you gimp boy");
+						fuckedup=fuckedup+1;
+						textArea.setText(textArea.getText()+" Postcode must be an actual number,");
 					}
 					adr.setStreet(textField_12.getText());
 					adr.setTown(textField_10.getText());
@@ -89,13 +96,15 @@ public class CreateANDModify extends JFrame {
 					cln.setAddress(adr);
 					}
 					catch(Exception ex) {
-						JOptionPane.showMessageDialog(null, "How about you give me  valid address you trashcan of a human being");
+						fuckedup=fuckedup+1;
+						textArea.setText(textArea.getText()+" Address is messed up, probably because there are several empty fields,");
 					}
 					if(option1!=-1 && option1!=0) {
 						cln.setGender(gender[option1]);
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
+						fuckedup=fuckedup+1;
 					}
 					cln.setName(textField.getText());
 					try {
@@ -105,13 +114,63 @@ public class CreateANDModify extends JFrame {
 						pmn.setDeadline((Date.valueOf(dt)));
 					}
 					catch(Exception ex) {
-						JOptionPane.showMessageDialog(null, "date must be a number you gimp boy.");
+						fuckedup=fuckedup+1;
+						textArea.setText(textArea.getText()+" The Deadline is messed up, probably because there are some empty fileds,");
 					}
 					try {
-						pmn.setIban(Integer.parseInt(textField_));
+						pmn.setIban(Integer.parseInt(textField_16.getText()));
 					}
 					catch(Exception ex) {
-						
+						fuckedup=fuckedup+1;
+						textArea.setText(textArea.getText()+" Iban must be an actual number,");
+					}
+					if(textField_15.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "fill in the rquired field:(Method)");
+					}
+					else {
+						pmn.setMethod(textField_15.getText());
+					}
+					try {
+						prs.setBest_price(Float.parseFloat(textField_20.getText()));
+					}
+					catch(Exception ex) {
+						fuckedup=fuckedup+1;
+						textArea.setText(textArea.getText()+" Price must be an actual number,");
+					}
+					//prs.setColor(myNameIsTim.getColor(comboBox_1.getSelectedIndex()));
+					try {
+						prs.setSize(Float.parseFloat(textField_4.getText()));
+					}
+					catch(Exception ex) {
+						fuckedup=fuckedup+1;
+						textArea.setText(textArea.getText()+" Size must be an actual number,");
+					}
+					if(textField_4.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOA)");
+					}
+					else {
+						prs.setType_of_amputation(textField_7.getText());
+					}
+					if(textField_2.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOF)");
+					}
+					else {
+						prs.setType_of_functionality(textField_2.getText());
+					}
+					try {
+						prs.setWeight(Float.parseFloat(textField_5.getText()));
+					}
+					catch(Exception ex) {
+						fuckedup=fuckedup+1;
+						textArea.setText(textArea.getText()+" Wheight must be an actual number");
+					}
+					if(fuckedup!=0) {
+						JOptionPane.showMessageDialog(null, "Ok, there are "+fuckedup+" things wrong with this entry fix them before continuing\nMay I suggest checking the Warnings and Failures tab?");
+						textArea.setText(textArea.getText()+"\n");
+					}
+					else {
+						//myNameIsTim.newClient(cln,adr,pmn,prs);
+						frame.dispose();
 					}
 					
 				}
@@ -150,7 +209,7 @@ public class CreateANDModify extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		contentPane.add(panel_2, BorderLayout.CENTER);
-		panel_2.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][][grow]", "[][][][][][][][][][grow][][][][][][grow][][][grow][][][][][][]"));
+		panel_2.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][][grow]", "[][][][][][][][][][grow][][][][][][grow][][][grow][][][][][][][][]"));
 		
 		Component verticalStrut_4 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_4, "flowx,cell 19 0");
@@ -228,7 +287,7 @@ public class CreateANDModify extends JFrame {
 		
 		//String colours[] = WizardHandler.getColours();
 		String test[] = {"Red","green","blue"};
-		JComboBox comboBox_1 = new JComboBox(test);
+		comboBox_1 = new JComboBox(test);
 		panel_2.add(comboBox_1, "cell 19 7");
 		option2=comboBox_1.getSelectedIndex();
 		//insrtintodatabase(test[option2])
@@ -382,10 +441,13 @@ public class CreateANDModify extends JFrame {
 		lblPayment.setForeground(Color.GREEN);
 		panel_5.add(lblPayment);
 		
-		Component verticalStrut_7 = Box.createVerticalStrut(20);
-		panel_2.add(verticalStrut_7, "cell 19 17");
+		JLabel lblNewLabel_4 = new JLabel("Method:");
+		panel_2.add(lblNewLabel_4, "flowx,cell 19 22");
 		
-		JTextArea textArea = new JTextArea();
+		Component verticalStrut_7 = Box.createVerticalStrut(20);
+		panel_2.add(verticalStrut_7, "cell 19 23");
+		
+		textArea = new JTextArea();
 		textArea.setFont(new Font("Consolas", Font.PLAIN, 13));
 		textArea.setLineWrap(true);
 		textArea.setForeground(Color.GREEN);
@@ -393,13 +455,10 @@ public class CreateANDModify extends JFrame {
 		textArea.setEditable(false);
 		textArea.setRows(5);
 		textArea.setText("Warnings / Comments / Errors:\n");
-		panel_2.add(textArea, "cell 0 18 20 1,grow");
-		
-		JLabel lblNewLabel_4 = new JLabel("Method:");
-		panel_2.add(lblNewLabel_4, "flowx,cell 19 22");
+		panel_2.add(textArea, "cell 0 24 20 1,grow");
 		
 		Component verticalStrut_9 = Box.createVerticalStrut(20);
-		panel_2.add(verticalStrut_9, "cell 19 23");
+		panel_2.add(verticalStrut_9, "cell 19 25");
 		
 		textField_15 = new JTextField();
 		panel_2.add(textField_15, "cell 19 22");
@@ -432,6 +491,13 @@ public class CreateANDModify extends JFrame {
 		textField_19 = new JTextField();
 		panel_2.add(textField_19, "cell 19 22");
 		textField_19.setColumns(3);
+		
+		JLabel lblPrice = new JLabel("Price:");
+		panel_2.add(lblPrice, "cell 19 5");
+		
+		textField_20 = new JTextField();
+		panel_2.add(textField_20, "cell 19 5");
+		textField_20.setColumns(10);
 		panel.setVisible(true);
 	}
 
@@ -457,6 +523,7 @@ public class CreateANDModify extends JFrame {
 	private JTextField textField_17;
 	private JTextField textField_18;
 	private JTextField textField_19;
+	private JTextField textField_20;
 
 	public void fullClient() {
 		//frame = new JFrame();
