@@ -210,7 +210,7 @@ public class Graphic_Interface extends JFrame{
 	/*Requires specifying the fields of each JTextField. Aside from that remember to change the visibility of tthe buttons and textfields to false in 
 	 * the field is visible when the function is terminated. */
 	public void NewEntryOneTable () {
-		if(this.tablesCreated==true) {
+		//if(this.tablesCreated==true) {
 				panel_1.removeAll();
 				panel_1.setVisible(false);
 				GridLayout Createnewtype = new GridLayout(6,4);
@@ -357,8 +357,8 @@ public class Graphic_Interface extends JFrame{
 				mt.setVisible(false);
 				adr.setVisible(false);
 				panel_1.setVisible(true);
-		}
-		else {
+		//}
+		//else {
 			if(warnings>0) {
 				warnings=warnings-1;
 				JOptionPane.showMessageDialog(null, "For the love of chin chin can you please stop trying to break my f*cking program?\nMuch apreciated. Try opening the tables"
@@ -368,7 +368,7 @@ public class Graphic_Interface extends JFrame{
 				JOptionPane.showMessageDialog(null, "you tried to blow up my program, now im gonna blow up your prostate!");
 				this.inmolationProtocol();
 			}
-		}
+		//}
 	}
 	private void inmolationProtocol() {
 		int i=0;
