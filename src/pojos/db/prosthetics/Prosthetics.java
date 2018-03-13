@@ -14,12 +14,12 @@ public class Prosthetics implements Serializable {
 	
 	private static final long serialVersionUID = 3745716868877683707L;
 	private Integer id;
-	private Float best_price;
+	private Float bestPrice;
 	private Float size;
 	private Float weight;
-	private String type_of_functionality;
+	private String typeOfFunctionality;
 	private String color;
-	private String type_of_amputation;
+	private String typeOfAmputation;
 	private Payment payment;
 	
 	private List<Client> clients;
@@ -33,14 +33,14 @@ public class Prosthetics implements Serializable {
 		this.materials = new ArrayList<Material>();
 	}
 	
-	public Prosthetics(Float size,Float best_price, Float weight,String type_of_functionality,String color,String type_of_amputation, Payment payment) {
+	public Prosthetics(Float size,Float bestPrice, Float weight,String typeOfFunctionality,String color,String typeOfAmputation, Payment payment) {
 		super();
 		this.size = size;
-		this.best_price= best_price;
+		this.bestPrice= bestPrice;
 		this.weight = weight;
-		this.type_of_functionality= type_of_functionality;
+		this.typeOfFunctionality= typeOfFunctionality;
 		this.color = color;
-		this.type_of_amputation = type_of_amputation;
+		this.typeOfAmputation = typeOfAmputation;
 		this.payment= payment;
 		this.clients = new ArrayList<Client>();
 		this.features = new ArrayList<Features>();
@@ -51,8 +51,8 @@ public class Prosthetics implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Prosthetics [id=" + id + ", best_price=" +best_price+"size=" + size + ", weight=" + weight + ", type_of_functionality="
-				+ type_of_functionality + ", color=" + color + ", type_of_amputation=" + type_of_amputation
+		return "Prosthetics [id=" + id + ", bestPrice=" +bestPrice+"size=" + size + ", weight=" + weight + ", typeOfFunctionality="
+				+ typeOfFunctionality + ", color=" + color + ", typeOfAmputation=" + typeOfAmputation
 				+ ", features=" + features + ", materials=" + materials + "payment=" +payment+"]";
 	}
 
@@ -108,12 +108,12 @@ public class Prosthetics implements Serializable {
 		this.weight = weight;
 	}
 
-	public String getType_of_functionality() {
-		return type_of_functionality;
+	public String getTypeOfFunctionality() {
+		return typeOfFunctionality;
 	}
 
-	public void setType_of_functionality(String type_of_functionality) {
-		this.type_of_functionality = type_of_functionality;
+	public void setTypeOfFunctionality(String typeOfFunctionality) {
+		this.typeOfFunctionality = typeOfFunctionality;
 	}
 
 	public String getColor() {
@@ -124,20 +124,20 @@ public class Prosthetics implements Serializable {
 		this.color = color;
 	}
 	
-	public Float getBest_price() {
-		return best_price;
+	public Float getBestPrice() {
+		return bestPrice;
 	}
 
-	public void setBest_price(Float best_price) {
-		this.best_price = best_price;
+	public void setBestPrice(Float bestPrice) {
+		this.bestPrice = bestPrice;
 	}
 
-	public String getType_of_amputation() {
-		return type_of_amputation;
+	public String getTypeOfAmputation() {
+		return typeOfAmputation;
 	}
 
-	public void setType_of_amputation(String type_of_amputation) {
-		this.type_of_amputation = type_of_amputation;
+	public void setTypeOfAmputation(String typeOfAmputation) {
+		this.typeOfAmputation = typeOfAmputation;
 	}
 	
 

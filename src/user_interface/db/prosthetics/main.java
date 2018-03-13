@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 import data_base.db.prosthetics.SQLConnect;
+import data_base.db.prosthetics.SQLCreate;
 import data_base.db.prosthetics.SQLInsert;
 
 import java.sql.SQLException;
@@ -15,35 +16,41 @@ import java.io.IOException;
 
 public class main{
 	public static void main( String args[]) throws IOException {
-		try {//country, postCode, street, town, number
-			SQLConnect.establishConnection();
-			
-			imprimir("country:");
-			BufferedReader consola= new BufferedReader(new InputStreamReader(System.in));
-			String country= consola.readLine();
-			imprimir("postCode:");
-			String read= consola.readLine();
-			int postCode= Integer.parseInt(read);
-			imprimir("street:");
-			String street= consola.readLine();
-			imprimir("town:");
-			String town= consola.readLine();
-			imprimir("number:");
-			read= consola.readLine();
-			int number= Integer.parseInt(read);
-			
-			Address address= new Address(country, postCode, street, town, number);
-			imprimir(""+address);
-			SQLInsert.newAddress(address);
-			
-			
-			
-			
-		}
-		catch(SQLException e) {
+		SQLConnect.establishConnection();
+		try {
+			SQLCreate.Create(SQLConnect.getConnection());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("ERROR");
 		}
+		
+		imprimir("country:");
+		BufferedReader consola= new BufferedReader(new InputStreamReader(System.in));
+		String country= consola.readLine();
+		imprimir("post_code:");
+		String read= consola.readLine();
+		int post_code= Integer.parseInt(read);
+		imprimir("street:");
+		String street= consola.readLine();
+		imprimir("town:");
+		String town= consola.readLine();
+		imprimir("number:");
+		read= consola.readLine();
+		int number= Integer.parseInt(read);
+		int id=1;
+		
+		
+		
+		imprimir("preciosa");
+		Address address= new Address(id, country, post_code, street, town, number);
+		imprimir(""+address);
+		try {
+			SQLInsert.newAddress(address);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	static void imprimir(String s) {
 		System.out.println(s);

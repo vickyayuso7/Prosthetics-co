@@ -31,9 +31,9 @@ public class Address implements Serializable {
 		this.client=client;
 	}
 	
-public Address( String country, int postCode, String street, String town, int number) {
+public Address( int id, String country, int postCode, String street, String town, int number) {
 		
-	
+		this.id= id;
 		this.country = country;
 		this.postCode = postCode;
 		this.street = street;

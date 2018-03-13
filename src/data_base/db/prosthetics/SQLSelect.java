@@ -34,10 +34,10 @@ public class SQLSelect {
 			while (rs.next()) {
 				
 				int id = rs.getInt("id");
-				Date date_of_birth = rs.getDate("date_of_birth");
+				Date dateOfBirth = rs.getDate("dateOfBirth");
 				String name = rs.getString("name");
 				String gender = rs.getString("gender");
-				Client client = new Client(id, date_of_birth, name, gender);
+				Client client = new Client(id, dateOfBirth, name, gender);
 				clients.add(client);
 				System.out.println(client);
 				
