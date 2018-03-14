@@ -48,7 +48,6 @@ public class CreateANDModify extends JFrame {
 		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
-		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		contentPane = new JPanel();
@@ -521,6 +520,7 @@ public class CreateANDModify extends JFrame {
 		panel_2.add(textField_20, "cell 19 5");
 		textField_20.setColumns(10);
 		panel.setVisible(true);
+		frame.setVisible(true);
 	}
 
 	private JPanel contentPane;
