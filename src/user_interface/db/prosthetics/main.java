@@ -41,7 +41,7 @@ public class main{
 		
 		
 		
-		imprimir("preciosa");
+		
 		Address address= new Address(id, country, post_code, street, town, number);
 		imprimir(""+address);
 		try {
