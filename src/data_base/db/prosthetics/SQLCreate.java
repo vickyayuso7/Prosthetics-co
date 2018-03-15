@@ -12,6 +12,7 @@ public class SQLCreate {
 					   + " deadline   DATE , "
 					   + " iban  INTEGER	 NOT NULL, "
 					   + " method  TEXT  NOT NULL)";
+			System.out.println(sql1);
 			stmt1.executeUpdate(sql1);
 			stmt1.close(); 
 			Statement stmt2 = c.createStatement();
@@ -28,49 +29,55 @@ public class SQLCreate {
 					   + " bestPrice       FLOAT  	NOT NULL,"
 					   + " size     FLOAT     NOT NULL, "
 					   + " weight  FLOAT  	NOT NULL, "
-					   + " typeOfFunctionality		TEXT,"
+					   + " type_of_functionality		TEXT,"
 					   + " color   TEXT,"
-					   + " typeOfAmputation   TEXT   NOT NULL,"
+					   + " type_of_amputation   TEXT   NOT NULL,"
 					   + " payment_id   INTEGER  REFERENCES  Payments(id))";
+			System.out.println(sql3);
 			stmt3.executeUpdate(sql3);
 			stmt3.close();
 			Statement stmt4 = c.createStatement(); //many to many relationship tables//
-			String sql4 = "CREATE TABLE MaterialProsthetics "
-					   + "(material_id     INTEGER  REFERENCES Materials(id) ON UPDATE CASCADE ON DELETE SET NULL, "
-					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL, "
-					   + " PRIMARY KEY  (material_id,prosthetic_id))";
+			String sql4 = "CREATE TABLE Material-Prosthetics "
+					   + "(material_id     INTEGER  REFERENCES Materials(id) ON UPDATE CASCADE ON DELETE SET NULL,"
+					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
+					   + " PRIMARY KEY (material_id,prosthetic_id))";
+			System.out.println(sql4);
 			stmt4.executeUpdate(sql4);
 			stmt4.close();
 			Statement stmt5 = c.createStatement();
 			String sql5 = "CREATE TABLE Features "
-					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT, "
+					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " style     TEXT , "
-					   + " bestPrice     FLOAT     NOT NULL , "
+					   + " best_price     FLOAT     NOT NULL , "
 					   + " sensibility      BOOLEAN, "
-					   + " enhancedMovement    BOOLEAN)";
+					   + " enhanced_movement    BOOLEAN)";
+			System.out.println(sql5);
 			stmt5.executeUpdate(sql5);
 			stmt5.close();
 			Statement stmt6 = c.createStatement(); //many to many relationship tables//
-			String sql6 = "CREATE TABLE FeaturesProsthetics "
+			String sql6 = "CREATE TABLE Features-Prosthetics "
 					   + "(features_id     INTEGER  REFERENCES Features(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " PRIMARY KEY (features_id,prosthetic_id))";
+			System.out.println(sql6);
 			stmt6.executeUpdate(sql6);
 			stmt6.close();
 			Statement stmt7 = c.createStatement();
 			String sql7 = "CREATE TABLE Client "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " name     TEXT     NOT NULL, "
-					   + " dateOfBirth      INTEGER, "
+					   + " date_of_birth      INTEGER, "
 					   + " gender  TEXT,"
 					   + " address_id   INTEGER  REFERENCES  Address(id))";
+			System.out.println(sql7);
 			stmt7.executeUpdate(sql7);
 			stmt7.close();
 			Statement stmt8 = c.createStatement(); //many to many relationship tables//
-			String sql8 = "CREATE TABLE ClientProsthetics "
+			String sql8 = "CREATE TABLE Client-Prosthetics "
 					   + "(client_id     INTEGER  REFERENCES Client(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " PRIMARY KEY (client_id,prosthetic_id))"; 
+			System.out.println(sql8);
 			stmt8.executeUpdate(sql8);
 			stmt8.close();
 			Statement stmt9 = c.createStatement();
@@ -82,6 +89,7 @@ public class SQLCreate {
 					   + " town    TEXT   NOT NULL,"
 					   + " number   INTEGER  NOT NULL)";
 			stmt9.executeUpdate(sql9);
+			
 			stmt9.close();
 			System.out.println("Tables created.");
 	}

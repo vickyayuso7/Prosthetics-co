@@ -40,6 +40,7 @@ public class CreateANDModify extends JFrame {
 	private JComboBox comboBox_1 ;
 	private int fuckedup;
 	private JTextArea textArea;
+	private JComboBox comboBox;
 	
 	public CreateANDModify(WizardHandler myNameIsTim) {
 		option1=-1;
@@ -47,7 +48,6 @@ public class CreateANDModify extends JFrame {
 		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
-		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		contentPane = new JPanel();
@@ -93,7 +93,7 @@ public class CreateANDModify extends JFrame {
 						adr.setTown(textField_10.getText());
 						adr.setCity(textField_9.getText());
 						try {
-						String str= textField_14.getText()+"-"+textField_6+"-"+textField_1.getText();
+						String str= textField_14.getText()+" - "+textField_6.getText()+" - "+textField_1.getText();
 						DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
 						LocalDate dt = LocalDate.parse(str,formatter);
 						cln.setDateOfBirth(Date.valueOf(dt));
@@ -102,17 +102,20 @@ public class CreateANDModify extends JFrame {
 						catch(Exception ex) {
 							fuckedup=fuckedup+1;
 							textArea.setText(textArea.getText()+" Address is messed up, probably because there are several empty fields,");
+							ex.printStackTrace();
 						}
 						if(option1!=-1 && option1!=0) {
+							System.out.println(option1);
 							cln.setGender(gender[option1]);
 						}
 						else {
+							System.out.println(option1);
 							JOptionPane.showMessageDialog(null, "No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
 							fuckedup=fuckedup+1;
 						}
 						cln.setName(textField.getText());
 						try {
-							String str= textField_17.getText()+"-"+textField_18+"-"+textField_19.getText();
+							String str= textField_17.getText()+" - "+textField_18.getText()+" - "+textField_19.getText();
 							DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
 							LocalDate dt = LocalDate.parse(str,formatter);
 							pmn.setDeadline((Date.valueOf(dt)));
@@ -293,10 +296,16 @@ public class CreateANDModify extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Color:");
 		panel_2.add(lblNewLabel_2, "flowx,cell 19 7");
 		
-		JComboBox comboBox = new JComboBox(gender);
+		comboBox = new JComboBox(gender);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				option1=comboBox.getSelectedIndex();
+				textArea.setText(textArea.getText()+"\n"+option1);
+			}
+		});
 		panel_2.add(comboBox, "cell 19 1,alignx trailing");
 		option1=comboBox.getSelectedIndex();
-		
+		System.out.println(option1);
 		//String colours[] = WizardHandler.getColours();
 		String test[] = {"Red","green","blue"};
 		comboBox_1 = new JComboBox(test);
@@ -511,6 +520,7 @@ public class CreateANDModify extends JFrame {
 		panel_2.add(textField_20, "cell 19 5");
 		textField_20.setColumns(10);
 		panel.setVisible(true);
+		frame.setVisible(true);
 	}
 
 	private JPanel contentPane;

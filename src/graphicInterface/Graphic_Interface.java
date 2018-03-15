@@ -442,7 +442,6 @@ public class Graphic_Interface extends JFrame{
 			newCln.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					CreateANDModify m= new CreateANDModify(guts);
-					m.setVisible(true);
 				}
 			});
 			JButton newFtr= new JButton();
@@ -458,7 +457,7 @@ public class Graphic_Interface extends JFrame{
 			newMat.setBackground(new Color(0,0,0));
 			newMat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					NewMaterial mat= new NewMaterial();
 				}
 			});
 			
