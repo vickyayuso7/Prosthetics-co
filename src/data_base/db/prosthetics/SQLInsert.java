@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class SQLInsert {
-
+ 
 	
 	public static void newClient (Client client) throws SQLException {
 		Connection c = SQLConnect.getConnection();
