@@ -1,52 +1,74 @@
 package data_base.db.prosthetics;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import  java.sql.*;
+import pojos.db.*;
+import pojos.db.prosthetics.*;
+
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
-import pojos.db.prosthetics.Client;
-import pojos.db.prosthetics.Prosthetics;
-
-public class SQLSelect {
+public class SQLSelect{
 	
-		private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		private static Connection c;
+	public static void ShowClient(Client client){
 
-		private static List<Client> selectClients() throws SQLException {
+		try {
 			
-			List<Client> clients = new ArrayList<Client>();
-			Statement stmt = c.createStatement();
-			String sql = "SELECT * FROM clients";
-			ResultSet rs = stmt.executeQuery(sql);
+		Connection c = SQLConnect.getConnection();
+		
+		String sql = "SELECT * FROM client";
+		
+		 			
+		Statement statement = c.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery(sql);
+		while (rs.next()) {
+			int id = rs.getInt("id");
+			String name = rs.getString("name");
+			String gender = rs.getString("gender");
+			//Prosthetics prosthetics = new Prosthetics(id,bestPrice,size,weight,typeOfFunctionality,color,typeOfAmputation,payment);
+			//System.out.println(prosthetics);
+			//Address address = rs.getAddress("address");
+			Date dateOfBirth = rs.getDate("dateOfBirth");
 			
-			while (rs.next()) {
-				
-				int id = rs.getInt("id");
-				Date dateOfBirth = rs.getDate("dateOfBirth");
-				String name = rs.getString("name");
-				String gender = rs.getString("gender");
-				Client client = new Client(id, dateOfBirth, name, gender);
-				clients.add(client);
-				System.out.println(client);
-				
-			}
-			
-			rs.close();
-			stmt.close();
-			return clients;
-
 		}
-				
+		rs.close();
+		statement.close();
+
+		c.close();
+		System.out.println("Database connection closed.");
+		
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static  ShowAddress(){
+		
+		Connection c = SQLConnect.getConnection();
+		
+		String sql = "SELECT * FROM address";
+
+		Statement statement = c.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery(sql);
+		while (rs.next()) {
+			int id = rs.getInt("id");
+			String country = rs.getString("country");
+			int postCode = rs.getInt("postCode");
+			String street = rs.getString("street");
+			String town = rs.getString("town");
+			int number = rs.getInt("number");
+			String city = rs.getString("city");
+
+			
+			Address addition =new Address();
+			addition.setCity(city);
+			
+			Client client = new Client(client.setAddress(address),client.setDateOfBirth(dateOfBirth),client.setGender(gender),client.setId(id),
+					client.setName(name),client.setProsthetics(prosthetics));
+			
+		}
+		
+	}
+	
+	public static void Show
 }
