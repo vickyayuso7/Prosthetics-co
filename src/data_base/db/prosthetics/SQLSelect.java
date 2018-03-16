@@ -42,7 +42,6 @@ public class SQLSelect{
 		}
 	}
 	
-	
 	public static  ShowAddress(){
 		
 		Connection c = SQLConnect.getConnection();
