@@ -107,7 +107,7 @@ public class NewMaterial extends JFrame {
 		textField_2 = new JTextField();
 		panel_2.add(textField_2, "cell 4 5,alignx left");
 		textField_2.setColumns(10);
-		frame.add(contentPane);
+		//frame.add(contentPane);
 		frame.setVisible(true);
 	}
 
