@@ -4,17 +4,21 @@ import  java.sql.*;
 import pojos.db.*;
 import pojos.db.prosthetics.*;
 
+
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLSelect{
+	private static Connection c;
+	private static List <String> colours;
 	
 	public static void ShowClient(Client client){
 
 		try {
 			
-		Connection c = SQLConnect.getConnection();
-		
+		c = SQLConnect.getConnection();
 		String sql = "SELECT * FROM client";
 		
 		 			
@@ -43,7 +47,7 @@ public class SQLSelect{
 	}
 	
 	
-	public static  ShowAddress(){
+	public static void  ShowAddress() throws SQLException{
 		
 		Connection c = SQLConnect.getConnection();
 		
@@ -52,6 +56,7 @@ public class SQLSelect{
 		Statement statement = c.prepareStatement(sql);
 		ResultSet rs = statement.executeQuery(sql);
 		while (rs.next()) {
+			/*
 			int id = rs.getInt("id");
 			String country = rs.getString("country");
 			int postCode = rs.getInt("postCode");
@@ -66,10 +71,26 @@ public class SQLSelect{
 			
 			Client client = new Client(client.setAddress(address),client.setDateOfBirth(dateOfBirth),client.setGender(gender),client.setId(id),
 					client.setName(name),client.setProsthetics(prosthetics));
-			
+			*/
 		}
+		rs.close();
 		
 	}
 	
-	public static void Show
+	//public static void Show
+
+	public static ArrayList<String>  getColours() throws SQLException{
+		String colour="";
+		colours=new ArrayList<String>();
+		String Query="SELECT DISTINCT color FROM Prosthetics;";
+		Statement stm1 = SQLConnect.getConnection().createStatement();
+		ResultSet rs=stm1.executeQuery(Query);
+		stm1.close();
+		while(rs.next()) {
+			colour= rs.getString("color");
+			colours.add(colour);
+		}
+		rs.close();
+		return (ArrayList<String>) (colours);
+	}
 }

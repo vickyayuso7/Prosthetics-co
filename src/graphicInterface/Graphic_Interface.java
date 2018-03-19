@@ -441,7 +441,19 @@ public class Graphic_Interface extends JFrame{
 			newCln.setBackground(new Color(0,0,0));
 			newCln.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					CreateANDModify m= new CreateANDModify(guts);
+					try {
+						CreateANDModify m= new CreateANDModify(guts);
+					}
+					catch(Exception ex) {
+						ex.printStackTrace();
+						try {
+							guts.createTables();
+							JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+						}
+						catch(Exception exc) {
+							JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+						}
+					}
 				}
 			});
 			JButton newFtr= new JButton();
@@ -449,7 +461,7 @@ public class Graphic_Interface extends JFrame{
 			newFtr.setBackground(new Color(0,0,0));
 			newFtr.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					NewFeatures f= new NewFeatures();
 				}
 			});
 			JButton newMat= new JButton();

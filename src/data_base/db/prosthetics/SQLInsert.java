@@ -23,7 +23,7 @@ public class SQLInsert {
 	public static void newClient (Client client) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO clients (dateOfBirth, name, gender) "
+		String sql = "INSERT INTO Client (date_of_birth, name, gender) "
 				+ "VALUES (?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setDate(1, client.getDateOfBirth());
@@ -42,7 +42,7 @@ public class SQLInsert {
 		System.out.println("OK1");
 		
 		
-		String sql = "INSERT INTO address (country, postCode, street, town, number) "
+		String sql = "INSERT INTO Address (country, postCode, street, town, number) "
 				+ "VALUES (?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setString(1, address.getCountry());
@@ -61,7 +61,7 @@ public class SQLInsert {
 	public static void newFeatures (Features features) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO features (extra_price, style, sensibility, enhancedMovement) "
+		String sql = "INSERT INTO Features (extra_price, style, sensibility, enhancedMovement) "
 				+ "VALUES (?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setFloat(1, features.getExtraPrice());
@@ -76,7 +76,7 @@ public class SQLInsert {
 	public static void newMaterial (Material material) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO material (priceModifier, type, provider) "
+		String sql = "INSERT INTO Material (priceModifier, type, provider) "
 				+ "VALUES (?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setFloat(1, material.getPriceModifier());
@@ -92,7 +92,7 @@ public class SQLInsert {
 	public static void newPayment (Payment payment) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO payment (deadline, iban, method) "
+		String sql = "INSERT INTO Payments (deadline, iban, method) "
 				+ "VALUES (?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setDate(1, payment.getDeadline());
@@ -108,7 +108,7 @@ public class SQLInsert {
 	public static void newProsthetics (Prosthetics prosthetics) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO prosthetics (bestPrice, size, weight, typeOfFunctionality, color, typeOfAmputation) "
+		String sql = "INSERT INTO Prosthetics (bestPrice, size, weight, type_of_functionality, color, type_of_amputation) "
 				+ "VALUES (?,?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setFloat(1, prosthetics.getBestPrice());

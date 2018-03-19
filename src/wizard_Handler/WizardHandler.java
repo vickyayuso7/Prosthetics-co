@@ -1,33 +1,15 @@
 package wizard_Handler;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import data_base.db.prosthetics.*;
 import pojos.db.prosthetics.*;
- public class WizardHandler{
-	 
- 	SQLCreate creatorWand;
- 	SQLDrop magicBroom;
- 	SQLUpdate updaterLord;
- 	
- 	public WizardHandler(){
- 		this.creatorWand= new SQLCreate();
- 		this.magicBroom= new SQLDrop();
- 		this.updaterLord= new SQLUpdate();
- 		SQLConnect.establishConnection();
- 	 }
- 	/*
-	public String createTables(){
-		try {
-			SQLCreate.Create(connecterMaThingy.getConnection());
-			return("managed to create tables");
-		}
-		catch (Exception ex){
-			return("failed to create tables");
-		}
-	}
-	public void appClosed() {
-		connecterMaThingy.closeConnection();
-	}*/
+public class WizardHandler{
+
+
+	public WizardHandler(){
+		SQLConnect.establishConnection();
+	}	
 	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs) {
 		String report="all clear";
 		try {
@@ -56,22 +38,50 @@ import pojos.db.prosthetics.*;
 			e.printStackTrace();
 			report="failed prosthetic insertion";
 		}
-		
+
 		return(report);
 	}
 	public String[] getColours() {
-		//returns tables, somehow we must extract from the tables to an array the colours.
-		String[] colours = SQLSelect.getColours();
-		if(colours!=null) {
-			return(colours);
+
+		ArrayList <String> colours;
+		String[] humanfailure;
+
+		try {
+			colours = SQLSelect.getColours();
+			if(colours.isEmpty()) {
+				humanfailure=new String[1];
+				humanfailure[0]="none";
+				return(humanfailure);
+			}
+			else {
+				humanfailure =colours.toArray(new String[0]);
+				return(humanfailure);
+			}
 		}
-		else {
-			colours[0]= "none";
-			return(colours);
-		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+			return(null);
+		}	
 	}
 	public String getStringThroughIndex(int index) {
-		String colours []=SQLSelect.getColours();
-		return(colours[index]);
+		ArrayList<String> colours;
+		String[] colourIndex;
+		try {
+			colours = SQLSelect.getColours();
+			colourIndex=colours.toArray(new String[1]);
+			return(colourIndex[index]);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return("none");
+		}
+
+	}
+	public void createTables() {
+		try {
+			SQLCreate.Create(SQLConnect.getConnection());
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 }

@@ -37,7 +37,7 @@ public class SQLCreate {
 			stmt3.executeUpdate(sql3);
 			stmt3.close();
 			Statement stmt4 = c.createStatement(); //many to many relationship tables//
-			String sql4 = "CREATE TABLE Material-Prosthetics "
+			String sql4 = "CREATE TABLE Material_Prosthetics "
 					   + "(material_id     INTEGER  REFERENCES Materials(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " PRIMARY KEY (material_id,prosthetic_id))";
@@ -55,7 +55,7 @@ public class SQLCreate {
 			stmt5.executeUpdate(sql5);
 			stmt5.close();
 			Statement stmt6 = c.createStatement(); //many to many relationship tables//
-			String sql6 = "CREATE TABLE Features-Prosthetics "
+			String sql6 = "CREATE TABLE Features_Prosthetics "
 					   + "(features_id     INTEGER  REFERENCES Features(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " PRIMARY KEY (features_id,prosthetic_id))";
@@ -73,8 +73,8 @@ public class SQLCreate {
 			stmt7.executeUpdate(sql7);
 			stmt7.close();
 			Statement stmt8 = c.createStatement(); //many to many relationship tables//
-			String sql8 = "CREATE TABLE Client-Prosthetics "
-					   + "(client_id     INTEGER  REFERENCES Client(id) ON UPDATE CASCADE ON DELETE SET NULL,"
+			String sql8 = "CREATE TABLE Client_Prosthetics "
+					   + "(client_id     INTEGER  REFERENCES Clie	nt(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " PRIMARY KEY (client_id,prosthetic_id))"; 
 			System.out.println(sql8);
