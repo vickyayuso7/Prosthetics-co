@@ -76,12 +76,34 @@ public class WizardHandler{
 		}
 
 	}
-	public void createTables() {
+	public String createTables() {
 		try {
 			SQLCreate.Create(SQLConnect.getConnection());
+			return("Success");
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
+			return("Failed");
+		}
+	}
+	public void appClosed() {
+		SQLConnect.closeConnection();
+	}
+	public String reloadTables() {
+		try {
+			SQLCreate.deleteDatabase(SQLConnect.getConnection());
+			SQLCreate.Create(SQLConnect.getConnection());
+			return("success");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return("failed");
+		}
+	}
+	public void deleteTables() {
+		try {
+			SQLCreate.deleteDatabase(SQLConnect.getConnection());
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

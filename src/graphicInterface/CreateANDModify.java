@@ -352,13 +352,12 @@ public class CreateANDModify extends JFrame {
 		panel_4.setForeground(Color.GREEN);
 		panel_2.add(panel_4, "cell 0 9 20 1,growx,aligny top");
 
-		txtAddress = new JTextField();
+		txtAddress = new JLabel();
 		txtAddress.setFont(new Font("Consolas", Font.PLAIN, 11));
 		txtAddress.setBackground(Color.BLACK);
 		txtAddress.setForeground(Color.GREEN);
 		txtAddress.setText("Address");
 		panel_4.add(txtAddress);
-		txtAddress.setColumns(10);
 
 		Component verticalStrut_3 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_3, "flowx,cell 19 10");
@@ -538,7 +537,7 @@ public class CreateANDModify extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_2;
 	private JTextField textField_7;
-	private JTextField txtAddress;
+	private JLabel txtAddress;
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_10;

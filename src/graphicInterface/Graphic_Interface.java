@@ -21,7 +21,9 @@ public class Graphic_Interface extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public Graphic_Interface(boolean admin) {
+	//set the boolean back to admin
+	public Graphic_Interface (boolean admin) {
+		admin=true;
 		if(admin==true) {
 			initialize();
 		}
@@ -33,6 +35,7 @@ public class Graphic_Interface extends JFrame{
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
 	private void initialize() {
 		
 		//window.frame.setVisible(true);
@@ -48,13 +51,35 @@ public class Graphic_Interface extends JFrame{
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
-		JMenuItem mntmLoadTables = new JMenuItem("Load Tables");
+		JMenuItem mntmLoadTables = new JMenuItem("Reload Tables");
+		mntmLoadTables.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String str =guts.reloadTables();
+				if(str.equals("failed")) {
+					JOptionPane.showMessageDialog(null, "Something Went Terribly Wrong! I guess you just wanted some love and I couldn't comply...\n I'm sorry: as a small compensation here is a fragment of the necronomicon:\nThat is not dead which can eternal lie,\r\n" + 
+							" And with strange aeons even death may die ");
+				}
+			}
+		});
 		mnFile.add(mntmLoadTables);
 		
 		JMenuItem mntmCreateTables = new JMenuItem("Create Tables");
+		mntmCreateTables.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					String srt= guts.createTables();
+					if(srt.equals("Failed")) {
+						JOptionPane.showMessageDialog(null, "Tables Are Created. I guess you just wanted some love and I couldn't comply...\n I'm sorry: as a small compensation here is a fragment of the necronomicon:\n2 The Old Ones were, the Old Ones are, and the Old Ones shall be. 3 Not in the spaces we know, but between them, They walk serene and primal, undimensioned and to us unseen. ");
+					}
+			}
+		});
 		mnFile.add(mntmCreateTables);
 		
 		JMenuItem mntmDeleteTables = new JMenuItem("Delete Tables");
+		mntmDeleteTables.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guts.deleteTables();
+			}
+		});
 		mnFile.add(mntmDeleteTables);
 		
 		JMenuItem mntmSaveAllChanges = new JMenuItem("Save All Changes");
@@ -190,7 +215,7 @@ public class Graphic_Interface extends JFrame{
 		btnNewButton_5.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//guts.appClosed();
+				guts.appClosed();
 				frame.dispose();
 			}
 		});
@@ -357,18 +382,6 @@ public class Graphic_Interface extends JFrame{
 				mt.setVisible(false);
 				adr.setVisible(false);
 				panel_1.setVisible(true);
-		//}
-		//else {
-			if(warnings>0) {
-				warnings=warnings-1;
-				JOptionPane.showMessageDialog(null, "For the love of chin chin can you please stop trying to break my f*cking program?\nMuch apreciated. Try opening the tables"
-						+ " or how about creating them, you dim witted stump?\n"+this.warnings+" warinings left");
-			}
-			else {
-				JOptionPane.showMessageDialog(null, "you tried to blow up my program, now im gonna blow up your prostate!");
-				this.inmolationProtocol();
-			}
-		//}
 	}
 	private void inmolationProtocol() {
 		int i=0;
@@ -447,8 +460,14 @@ public class Graphic_Interface extends JFrame{
 					catch(Exception ex) {
 						ex.printStackTrace();
 						try {
-							guts.createTables();
-							JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+							String str = guts.createTables();
+							if(str.equals("failed")) {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+							}
+							else {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+							}
+							
 						}
 						catch(Exception exc) {
 							JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");

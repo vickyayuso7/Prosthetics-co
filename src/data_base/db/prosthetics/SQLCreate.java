@@ -2,6 +2,7 @@ package data_base.db.prosthetics;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLCreate {
@@ -92,5 +93,11 @@ public class SQLCreate {
 			
 			stmt9.close();
 			System.out.println("Tables created.");
+	}
+	public static void deleteDatabase(Connection c) throws SQLException{
+		String str1= "DROP database;";
+		Statement stm1 = c.createStatement();
+		stm1.executeUpdate(str1);
+		stm1.close();
 	}
 }
