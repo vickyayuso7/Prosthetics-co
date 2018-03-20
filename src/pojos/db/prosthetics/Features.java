@@ -26,7 +26,12 @@ public class Features implements Serializable{
 		this.features= new ArrayList<Features>();
 	}
 	
-	
+	public Features(float extraprice,String Style, boolean sensibility, boolean enhanced ){
+		this.extraPrice=extraprice;
+		this.style=Style;
+		this.sensibility= sensibility;
+		this.enhancedMovement=enhanced;
+	}
 	
 
 	public void setEnhancedMovement(boolean enhancedMovement) {

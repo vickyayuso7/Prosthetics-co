@@ -95,9 +95,17 @@ public class SQLCreate {
 			System.out.println("Tables created.");
 	}
 	public static void deleteDatabase(Connection c) throws SQLException{
-		String str1= "DROP database;";
+		String str1= "DROP Client;";
 		Statement stm1 = c.createStatement();
 		stm1.executeUpdate(str1);
+		str1 = "DROP Prosthetics;";
+		stm1.executeUpdate(str1);
+		str1 = "DROP Payments;";
+		stm1.executeUpdate(str1);
+		str1 ="DROP Materials;";
+		stm1.executeUpdate(str1);
+		str1 ="DROP Address;";
+		stm1.execute(str1);
 		stm1.close();
 	}
 }

@@ -106,4 +106,14 @@ public class WizardHandler{
 			e.printStackTrace();
 		}
 	}
+	public String newFeature(Features feat) {
+		try {
+			SQLInsert.newFeatures(feat);
+			return("success");
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return("failed");
+		}
+	}
 }

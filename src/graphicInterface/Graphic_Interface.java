@@ -480,7 +480,7 @@ public class Graphic_Interface extends JFrame{
 			newFtr.setBackground(new Color(0,0,0));
 			newFtr.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					NewFeatures f= new NewFeatures();
+					NewFeatures f= new NewFeatures(guts);
 				}
 			});
 			JButton newMat= new JButton();
