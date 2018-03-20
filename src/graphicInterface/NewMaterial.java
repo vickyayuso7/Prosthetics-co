@@ -80,7 +80,7 @@ public class NewMaterial extends JFrame {
 					textArea.setText(textArea.getText()+"\n");
 				}
 				else {
-					String status;
+					String status="";
 					try {
 						status = "price must be a number";
 						float price = Float.parseFloat(textField_1.getText());
@@ -88,10 +88,12 @@ public class NewMaterial extends JFrame {
 						String material = textField.getText();
 						Material mat =new Material(price, provider, material);
 						status="failed material insertion";
-						myNameIsTim.newMaterial(mat);
+						status= myNameIsTim.newMaterial(mat);
+						frame.dispose();
 					}
 					catch(Exception ex) {
 						JOptionPane.showMessageDialog(null, "Something Went Horribly Wrong!\n details in the error tab");
+						textArea.setText(textArea.getText()+status);
 					}
 				}
 			}
@@ -164,7 +166,7 @@ public class NewMaterial extends JFrame {
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_1, "cell 3 8");
-		//frame.add(contentPane);
+		frame.add(contentPane);
 		frame.setVisible(true);
 	}
 

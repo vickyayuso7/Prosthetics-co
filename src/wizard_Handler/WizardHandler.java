@@ -116,4 +116,15 @@ public class WizardHandler{
 			return("failed");
 		}
 	}
+	public String newMaterial(Material mat) {
+		String report="";
+		try {
+			SQLInsert.newMaterial(mat);
+			report="success";
+		}
+		catch(Exception ex) {
+			report="failure";
+		}
+		return(report);
+	}
 }
