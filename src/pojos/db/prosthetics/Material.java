@@ -24,12 +24,10 @@ public class Material implements Serializable{
 		this.id=id;
 		this.prosthetics = new ArrayList<Prosthetics>();
 	}
-	Material(){
-		this.priceModifier=0;
-		this.provider="";
-		this.type="";
-		this.id=0;
-		this.prosthetics = new ArrayList<Prosthetics>();
+	public Material(float prc, String prv, String mat){
+		this.priceModifier=prc;
+		this.provider=prv;
+		this.type=mat;
 	}
 	
 	@Override
