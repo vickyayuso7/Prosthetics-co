@@ -232,156 +232,176 @@ public class Graphic_Interface extends JFrame{
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new BorderLayout(0, 0));
 	}
-	/*Requires specifying the fields of each JTextField. Aside from that remember to change the visibility of tthe buttons and textfields to false in 
-	 * the field is visible when the function is terminated. */
+	
 	public void NewEntryOneTable () {
-		//if(this.tablesCreated==true) {
 				panel_1.removeAll();
 				panel_1.setVisible(false);
-				GridLayout Createnewtype = new GridLayout(6,4);
-				panel_1.setLayout(Createnewtype);
-				JPanel filler= new JPanel();
-				JPanel filler2= new JPanel();
-				JPanel filler3= new JPanel();
-				JPanel filler4= new JPanel();
-				JPanel filler5= new JPanel();
-				JPanel filler6= new JPanel();
-				JPanel filler7= new JPanel();
-				JPanel filler8= new JPanel();
-				JPanel filler9= new JPanel();
-				JPanel filler10= new JPanel();
-				JPanel filler11= new JPanel();
-				JPanel filler12= new JPanel();
+				panel_1.setLayout(new GridLayout(7,3));
+				JPanel panel1=new JPanel();
+				JPanel panel2=new JPanel();
+				JPanel panel3=new JPanel();
+				JPanel panel4=new JPanel();
+				JPanel panel5=new JPanel();
+				JPanel panel6=new JPanel();
+				JPanel panel7=new JPanel();
+				JPanel panel8=new JPanel();
+				JPanel panel9=new JPanel();
+				JPanel panel10=new JPanel();
+				JPanel panel11=new JPanel();
+				JPanel panel12=new JPanel();
+				JPanel panel13=new JPanel();
+				JPanel panel14=new JPanel();
+				JPanel panel15=new JPanel();
+				JPanel panel16=new JPanel();
+				JPanel panel17=new JPanel();
+				JPanel panel18=new JPanel();
 				
-				filler.setBackground(new Color(255, 255, 255));
-				filler2.setBackground(new Color(255, 255, 255));
-				filler3.setBackground(new Color(255, 255, 255));
-				filler4.setBackground(new Color(255, 255, 255));
-				filler5.setBackground(new Color(255, 255, 255));
-				filler6.setBackground(new Color(255, 255, 255));
-				filler7.setBackground(new Color(255, 255, 255));
-				filler8.setBackground(new Color(255, 255, 255));
-				filler9.setBackground(new Color(255, 255, 255));
-				filler10.setBackground(new Color(255, 255, 255));
-				filler11.setBackground(new Color(255, 255, 255));
-				filler12.setBackground(new Color(255, 255, 255));
+				panel1.setBackground(new Color(255,255,255));
+				panel2.setBackground(new Color(255,255,255));
+				panel3.setBackground(new Color(255,255,255));
+				panel4.setBackground(new Color(255,255,255));
+				panel5.setBackground(new Color(255,255,255));
+				panel6.setBackground(new Color(255,255,255));
+				panel7.setBackground(new Color(255,255,255));
+				panel8.setBackground(new Color(255,255,255));
+				panel9.setBackground(new Color(255,255,255));
+				panel10.setBackground(new Color(255,255,255));
+				panel11.setBackground(new Color(255,255,255));
+				panel12.setBackground(new Color(255,255,255));
+				panel13.setBackground(new Color(255,255,255));
+				panel14.setBackground(new Color(255,255,255));
+				panel15.setBackground(new Color(255,255,255));
+				panel16.setBackground(new Color(255,255,255));
+				panel17.setBackground(new Color(255,255,255));
+				panel18.setBackground(new Color(255,255,255));
 				
-				panel_1.add(filler);
-				JButton prs= new JButton();
-				prs.setText("New Entry (Prosthetics)");
-				JTextArea cln =new JTextArea();
-				prs.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent arg0) {
-						cln.setVisible(true);
-					}
-					@Override
-					public void mouseExited(MouseEvent arg0) {
-						cln.setVisible(false);
+				JButton newCln= new JButton();
+				newCln.setText("Edit Client");
+				newCln.setForeground(Color.GREEN);
+				newCln.setFont(new Font("Consolas", Font.PLAIN, 11));
+				newCln.setBackground(new Color(0,0,0));
+				newCln.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+						
+						}
+						catch(Exception ex) {
+							ex.printStackTrace();
+							try {
+								String str = guts.createTables();
+								if(str.equals("failed")) {
+									JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+								}
+								else {
+									JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+								}
+								
+							}
+							catch(Exception exc) {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+							}
+						}
 					}
 				});
-				panel_1.add(prs);
+				JButton newFtr= new JButton();
+				newFtr.setText("Edit Feature");
+				newFtr.setForeground(Color.GREEN);
+				newFtr.setFont(new Font("Consolas", Font.PLAIN, 11));
+				newFtr.setBackground(new Color(0,0,0));
+				newFtr.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							
+						}
+						catch(Exception ex) {
+							ex.printStackTrace();
+							try {
+								String str = guts.createTables();
+								if(str.equals("failed")) {
+									JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+								}
+								else {
+									JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+								}
+								
+							}
+							catch(Exception exc) {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+							}
+						}
+					}
+				});
+				JButton newMat= new JButton();
+				newMat.setText("Edit Material");
+				newMat.setBackground(new Color(0,0,0));
+				newMat.setForeground(Color.GREEN);
+				newMat.setFont(new Font("Consolas", Font.PLAIN, 11));
+				newMat.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							
+						}
+						catch(Exception ex) {
+							ex.printStackTrace();
+							try {
+								String str = guts.createTables();
+								if(str.equals("failed")) {
+									JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+								}
+								else {
+									JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+								}
+								
+							}
+							catch(Exception exc) {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+							}
+						}
+					}
+				});
 				
-				cln.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing PROSTHETIC table. (fields)");
-				panel_1.add(cln);
-				panel_1.add(filler2);
-				panel_1.add(filler7);
-				JButton ad= new JButton();
-				ad.setText("New Entry (Client)");
-				panel_1.add(ad);
-				JTextArea add=new JTextArea();
-				ad.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent arg0) {
-						add.setVisible(true);
-					}
-					@Override
-					public void mouseExited(MouseEvent arg0) {
-						add.setVisible(false);
-					}
-				});
-				add.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing CLIENT table. (fields)");
-				panel_1.add(add);
-				panel_1.add(filler3);
-				panel_1.add(filler8);
-				JButton pay =new JButton();
-				pay.setText("New Entry (Payment)");
-				panel_1.add(pay);
-				JTextArea paym =new JTextArea();
-				pay.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent arg0) {
-						paym.setVisible(true);
-					}
-					@Override
-					public void mouseExited(MouseEvent arg0) {
-						paym.setVisible(false);
-					}
-				});
-				paym.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing PAYMENT table. (fields)");
-				panel_1.add(paym);
-				panel_1.add(filler4);
-				panel_1.add(filler9);
-				JButton Ft =new JButton();
-				Ft.setText("New Entry (Features)");
-				panel_1.add(Ft);
-				JTextArea Feat = new JTextArea();
-				Feat.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing FEATURE table. (fields)");
-				Ft.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent arg0) {
-						Feat.setVisible(true);
-					}
-					@Override
-					public void mouseExited(MouseEvent arg0) {
-						Feat.setVisible(false);
-					}
-				});
-				panel_1.add(Feat);
-				panel_1.add(filler5);
-				panel_1.add(filler10);
-				JButton mat= new JButton();
-				mat.setText("New Entry (Materials)");
-				JTextArea mt= new JTextArea();
-				mt.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing MATERIAL table. (fields)");
-				panel_1.add(mat);
-				panel_1.add(mt);
-				mat.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent arg0) {
-						mt.setVisible(true);
-					}
-					@Override
-					public void mouseExited(MouseEvent arg0) {
-						mt.setVisible(false);
-					}
-				});
-				panel_1.add(filler6);
-				panel_1.add(filler11);
-				JButton Adr= new JButton();
-				Adr.setText("New Entry (Address)");
-				panel_1.add(Adr);
-				JTextArea adr =new JTextArea();
-				adr.setText("\n\n\nPops up a window where a new entry may\nbe added to the existing ADDRESS table. (fields)");
-				Adr.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent arg0) {
-						adr.setVisible(true);
-					}
-					@Override
-					public void mouseExited(MouseEvent arg0) {
-						adr.setVisible(false);
-					}
-				});
-				panel_1.add(adr);
-				panel_1.add(filler12);
-				cln.setVisible(false);
-				add.setVisible(false);
-				paym.setVisible(false);
-				Feat.setVisible(false);
-				mt.setVisible(false);
-				adr.setVisible(false);
+				panel_1.add(panel1);
+				panel_1.add(panel2);
+				panel_1.add(panel3);
+				panel_1.add(panel4);
+				panel_1.add(newCln);
+				panel_1.add(panel5);
+				panel_1.add(panel6);
+				panel_1.add(panel7);
+				panel_1.add(panel8);
+				panel_1.add(panel9);
+				panel_1.add(newFtr);
+				panel_1.add(panel10);
+				panel_1.add(panel11);
+				panel_1.add(panel12);
+				panel_1.add(panel13);
+				panel_1.add(panel14);
+				panel_1.add(newMat);
+				panel_1.add(panel15);
+				panel_1.add(panel16);
+				panel_1.add(panel17);
+				panel_1.add(panel18);
+				
 				panel_1.setVisible(true);
+				panel1.setVisible(true);
+				panel2.setVisible(true);
+				panel3.setVisible(true);
+				panel4.setVisible(true);
+				panel5.setVisible(true);
+				panel6.setVisible(true);
+				panel7.setVisible(true);
+				panel8.setVisible(true);
+				panel9.setVisible(true);
+				panel10.setVisible(true);
+				panel11.setVisible(true);
+				panel12.setVisible(true);
+				panel13.setVisible(true);
+				panel14.setVisible(true);
+				panel15.setVisible(true);
+				newCln.setVisible(true);
+				newFtr.setVisible(true);
+				newMat.setVisible(true);
+				
 	}
 	private void inmolationProtocol() {
 		int i=0;
@@ -480,7 +500,26 @@ public class Graphic_Interface extends JFrame{
 			newFtr.setBackground(new Color(0,0,0));
 			newFtr.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					NewFeatures f= new NewFeatures(guts);
+					try {
+						NewFeatures f= new NewFeatures(guts);
+					}
+					catch(Exception ex) {
+						ex.printStackTrace();
+						try {
+							String str = guts.createTables();
+							if(str.equals("failed")) {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+							}
+							else {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+							}
+							
+						}
+						catch(Exception exc) {
+							JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+						}
+					}
+					
 				}
 			});
 			JButton newMat= new JButton();
@@ -488,7 +527,25 @@ public class Graphic_Interface extends JFrame{
 			newMat.setBackground(new Color(0,0,0));
 			newMat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					NewMaterial mat= new NewMaterial(guts);
+					try {
+						NewMaterial mat= new NewMaterial(guts);
+					}
+					catch(Exception ex) {
+						ex.printStackTrace();
+						try {
+							String str = guts.createTables();
+							if(str.equals("failed")) {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+							}
+							else {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+							}
+							
+						}
+						catch(Exception exc) {
+							JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+						}
+					}
 				}
 			});
 			

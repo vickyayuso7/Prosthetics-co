@@ -93,4 +93,33 @@ public class SQLSelect{
 		rs.close();
 		return (ArrayList<String>) (colours);
 	}
+	public static ArrayList<String> getFeaturesId() throws SQLException{
+		String id;
+		String Query="SELECT id FROM Features;";
+		ArrayList <String> idlist= new <String> ArrayList();
+		Statement stm1 = SQLConnect.getConnection().createStatement();
+		ResultSet rs= stm1.executeQuery(Query);
+		while (rs.next()) {
+			id=""+rs.getInt("id");
+			idlist.add(id);
+		}		
+		return(idlist);
+	}
+
+	public static Features getFeatureThroughId(int id) throws SQLException{
+		String Query="SELECT * FROM Features WHERE id = ?;";
+		Features feature=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, id);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			float price = rs.getFloat("best_price");
+			String style= rs.getString("style");
+			boolean enhanced= rs.getBoolean("enhanced_movement");
+			boolean sensibility =rs.getBoolean("sensibility");
+			int idp = rs.getInt("id");
+			feature=new Features(idp, price, style, sensibility, enhanced);
+		}
+		return(feature);
+	}
 }

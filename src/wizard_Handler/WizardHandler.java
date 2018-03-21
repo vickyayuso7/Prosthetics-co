@@ -127,4 +127,31 @@ public class WizardHandler{
 		}
 		return(report);
 	}
+	public String[] getFeatureId() {
+		String[] id= new String [1];
+		try {
+			ArrayList <String> list = SQLSelect.getFeaturesId();
+			id=list.toArray(id);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			id[1]="error";
+		}
+		return(id);
+	}
+	public Features getFeatureFull(int id) {
+		Features feature=null;
+		try {
+			feature = SQLSelect.getFeatureThroughId(id);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return(feature);
+	}
+	public String editFeature(Features feat) {
+		try {
+			SQLUpdate.updateFeature(feat);
+		}
+	}
 }

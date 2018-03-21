@@ -17,7 +17,7 @@ public class Features implements Serializable{
 	boolean enhancedMovement;
 	private List<Features> features;	
 	
-	Features(int id, Float extraPrice, String style, boolean sensibility, boolean enhancedMovement){
+	public Features(int id, Float extraPrice, String style, boolean sensibility, boolean enhancedMovement){
 		this.id=id;
 		this.extraPrice=extraPrice;
 		this.sensibility=sensibility;
