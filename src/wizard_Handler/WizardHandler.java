@@ -150,8 +150,15 @@ public class WizardHandler{
 		return(feature);
 	}
 	public String editFeature(Features feat) {
+		String report="";
 		try {
-			SQLUpdate.updateFeature(feat);
+			SQLUpdate.updateFeatures(feat);
+			report="success";
 		}
+		catch(Exception ex) {
+			report="failed";
+			ex.printStackTrace();
+		}
+		return(report);
 	}
 }
