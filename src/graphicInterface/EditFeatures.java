@@ -64,15 +64,22 @@ public class EditFeatures extends JFrame {
 		lblFeatures.setBackground(Color.BLACK);
 		lblFeatures.setForeground(Color.GREEN);
 		lblFeatures.setFont(new Font("Consolas", Font.PLAIN, 11));
-		
+		try {
+			if(myNameIsTim.getFeatureId()[1].equals("error")) {
+				textArea.setText(textArea.getText()+"could not load list\n");
+				list = new JList <String>();
+			}
+			else {
+				list = new JList <String> (myNameIsTim.getFeatureId());
+			}
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if(list.getSelectedIndex()!=-1) {
 					editedFeature = myNameIsTim.getFeatureFull(Integer.parseInt(myNameIsTim.getFeatureId()[list.getSelectedIndex()]));
 					textField.setEnabled(true);
 					textField_1.setEnabled(true);
-					comboBox_1.setEditable(true);
-					comboBox.setEditable(true);
+					comboBox_1.setEnabled(true);
+					comboBox.setEnabled(true);
 					textField.setText(""+editedFeature.getExtraPrice());
 					textField_1.setText(editedFeature.getStyle());
 					if(editedFeature.getEnhancedMovement()==true) {
@@ -90,13 +97,10 @@ public class EditFeatures extends JFrame {
 				}
 			}
 		});
-		
-		if(myNameIsTim.getFeatureId()[1].equals("error")) {
-			textArea.setText(textArea.getText()+"could not load list\n");
-			list = new JList <String>();
 		}
-		else {
-			list = new JList <String> (myNameIsTim.getFeatureId());
+		catch(Exception ex) {
+			System.out.println("Catched at 95 EditFeatures");
+			ex.printStackTrace();
 		}
 		
 		list.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
@@ -260,7 +264,7 @@ public class EditFeatures extends JFrame {
 		});
 		//txtEenhancedMovement.setText(String);
 		//modificar texto, Mirar!!!
-		//frame.add(contentPane);
+		frame.add(contentPane);
 		frame.setVisible(true);
 	}
 

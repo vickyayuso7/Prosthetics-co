@@ -311,7 +311,7 @@ public class Graphic_Interface extends JFrame{
 				newFtr.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-							
+							EditFeatures f= new EditFeatures(guts);
 						}
 						catch(Exception ex) {
 							ex.printStackTrace();
