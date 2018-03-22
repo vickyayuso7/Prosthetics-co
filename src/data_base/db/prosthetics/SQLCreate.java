@@ -75,7 +75,7 @@ public class SQLCreate {
 			stmt7.close();
 			Statement stmt8 = c.createStatement(); //many to many relationship tables//
 			String sql8 = "CREATE TABLE Client_Prosthetics "
-					   + "(client_id     INTEGER  REFERENCES Clie	nt(id) ON UPDATE CASCADE ON DELETE SET NULL,"
+					   + "(client_id     INTEGER  REFERENCES Client(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " PRIMARY KEY (client_id,prosthetic_id))"; 
 			System.out.println(sql8);

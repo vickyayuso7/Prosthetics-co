@@ -163,7 +163,7 @@ public class SQLSelect{
 		clients.add(client);
 		return(clients);
 	}
-	//IX) SELECT * FROM addresss;
+	//IX) SELECT * FROM address;
 	public static ArrayList<Address> getAddress() throws SQLException{
 		ArrayList <Address> addresses =new ArrayList <Address>();
 		String Query="SELECT * FROM address;";
