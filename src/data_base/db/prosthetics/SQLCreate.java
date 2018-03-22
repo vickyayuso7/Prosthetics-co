@@ -88,6 +88,7 @@ public class SQLCreate {
 					   + " postCode      INTEGER    NOT NULL, "
 					   + " street  TEXT   NOT NULL,"
 					   + " town    TEXT   NOT NULL,"
+					   + " city   TEXT   NOT NULL,"
 					   + " number   INTEGER  NOT NULL)";
 			stmt9.executeUpdate(sql9);
 			

@@ -122,4 +122,87 @@ public class SQLSelect{
 		}
 		return(feature);
 	}
+	
+	//	II) SELECT * FROM prosthetics ORDER BY typeOfAmputation DESC;
+	
+	public static Prosthetics getProsthetics() throws SQLException{
+		String Query="SELECT * FROM prosthetics ORDER BY type_of_amputation;";
+		Prosthetics prosthetic=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			float size = rs.getFloat("size");
+			float weight = rs.getFloat("weight");
+			String type_of_funcionality= rs.getString("type_of_funcionality");
+			String type_of_amputation= rs.getString("type_of_amputation");
+			String color = rs.getString("color");
+			float bestPrice = rs.getFloat("bestPrice");
+			//Payment payment = rs.getPayment("payment");
+			int id = rs.getInt("id");
+			prosthetic=new Prosthetics(id, size, weight, type_of_funcionality, type_of_amputation,color,bestPrice);
+		}
+		return(prosthetic);
+	}
+	
+	//VI) SELECT * FROM client;
+	
+	public static ArrayList<Client> getClient() throws SQLException{
+		ArrayList <Client> clients =new ArrayList <Client>();
+		String Query="SELECT * FROM client;";
+		Client client=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			
+			String name= rs.getString("name");
+			Date date_of_birth = rs.getDate("date_of_birth");
+			String gender = rs.getString("gender");
+			int id = rs.getInt("id");
+			client=new Client (id,date_of_birth,name,gender);
+		}
+		clients.add(client);
+		return(clients);
+	}
+	//IX) SELECT * FROM addresss;
+	public static ArrayList<Address> getAddress() throws SQLException{
+		ArrayList <Address> addresses =new ArrayList <Address>();
+		String Query="SELECT * FROM address;";
+		Address address=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			
+			String country= rs.getString("country");
+			int postCode = rs.getInt("postCode");
+			String street = rs.getString("street");
+			String town = rs.getString("town");
+			int number=rs.getInt("number");
+			int id = rs.getInt("id");
+			address=new Address (id,country, postCode,street, town,number);
+		}
+		addresses.add(address);
+		return(addresses);
+	}
+	//VIII) SELECT city, town, country FROM address WHERE country <> 'Spain' ORDER BY 3 DESC;
+	
+	public static ArrayList<Address> getFromAddress() throws SQLException{
+		ArrayList <Address> addresses =new ArrayList <Address>();
+		String Query="SELECT city, town, country FROM address WHERE country <> 'Spain' ORDER BY 3 DESC;";
+		Address address=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			
+			String country= rs.getString("country");
+			
+			String town = rs.getString("town");
+			String city=rs.getString("city");
+			int id = rs.getInt("id");
+			address=new Address (id,country,town,city);
+		}
+		addresses.add(address);
+		return(addresses);
+	}
+	
+	
 }
