@@ -109,6 +109,7 @@ public class EditFeatures extends JFrame {
 		contentPane.add(list, "cell 0 1 8 3,grow");
 		
 		list.setAutoscrolls(true);
+		list.setLayoutOrientation(JList.VERTICAL_WRAP);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		JLabel lblSearch = new JLabel("Search:");
