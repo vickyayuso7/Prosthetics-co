@@ -93,6 +93,80 @@ public class SQLSelect{
 		rs.close();
 		return (ArrayList<String>) (colours);
 	}
+	
+	public static ArrayList<String> getPaymentId() throws SQLException{
+		String id;
+		String Query="SELECT id FROM Payment;";
+		ArrayList <String> idlist= new <String> ArrayList();
+		Statement stm1 = SQLConnect.getConnection().createStatement();
+		ResultSet rs= stm1.executeQuery(Query);
+		while (rs.next()) {
+			id=""+rs.getInt("id");
+			idlist.add(id);
+		}		
+		return(idlist);
+		
+	}
+	
+	public static ArrayList<String> getMaterialId() throws SQLException{
+		String id;
+		String Query="SELECT id FROM Material;";
+		ArrayList <String> idlist= new <String> ArrayList();
+		Statement stm1 = SQLConnect.getConnection().createStatement();
+		ResultSet rs= stm1.executeQuery(Query);
+		while (rs.next()) {
+			id=""+rs.getInt("id");
+			idlist.add(id);
+		}		
+		return(idlist);
+		
+	}
+	
+	
+	public static ArrayList<String> getProstheticId() throws SQLException{
+		String id;
+		String Query="SELECT id FROM Prosthetic;";
+		ArrayList <String> idlist= new <String> ArrayList();
+		Statement stm1 = SQLConnect.getConnection().createStatement();
+		ResultSet rs= stm1.executeQuery(Query);
+		while (rs.next()) {
+			id=""+rs.getInt("id");
+			idlist.add(id);
+		}		
+		return(idlist);
+		
+	}
+	
+	
+	public static ArrayList<String> getClientId() throws SQLException{
+		String id;
+		String Query="SELECT id FROM Client;";
+		ArrayList <String> idlist= new <String> ArrayList();
+		Statement stm1 = SQLConnect.getConnection().createStatement();
+		ResultSet rs= stm1.executeQuery(Query);
+		while (rs.next()) {
+			id=""+rs.getInt("id");
+			idlist.add(id);
+		}		
+		return(idlist);
+		
+	}
+	
+	public static ArrayList<String> getAddressId() throws SQLException{
+		String id;
+		String Query="SELECT id FROM Address;";
+		ArrayList <String> idlist= new <String> ArrayList();
+		Statement stm1 = SQLConnect.getConnection().createStatement();
+		ResultSet rs= stm1.executeQuery(Query);
+		while (rs.next()) {
+			id=""+rs.getInt("id");
+			idlist.add(id);
+		}		
+		return(idlist);
+		
+	}
+		
+	
 	public static ArrayList<String> getFeaturesId() throws SQLException{
 		String id;
 		String Query="SELECT id FROM Features;";
@@ -105,8 +179,8 @@ public class SQLSelect{
 		}		
 		return(idlist);
 	}
-
-	public static Features getFeatureThroughId(int id) throws SQLException{
+//SELECT * features (asking for id)
+	public static Features getFeaturesThroughId(int id) throws SQLException{
 		String Query="SELECT * FROM Features WHERE id = ?;";
 		Features feature=null;
 		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
@@ -122,8 +196,24 @@ public class SQLSelect{
 		}
 		return(feature);
 	}
+	//SELECT * features ( not asking for id)
+		public static Features getFeatures() throws SQLException{
+			String Query="SELECT * FROM Features;";
+			Features feature=null;
+			PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+			ResultSet rs = stm1.executeQuery();
+			while(rs.next()) {
+				float price = rs.getFloat("best_price");
+				String style= rs.getString("style");
+				boolean enhanced= rs.getBoolean("enhanced_movement");
+				boolean sensibility =rs.getBoolean("sensibility");
+				int idp = rs.getInt("id");
+				feature=new Features(idp, price, style, sensibility, enhanced);
+			}
+			return(feature);
+		}
 	
-	//	II) SELECT * FROM prosthetics ORDER BY typeOfAmputation DESC;
+	//	II) SELECT * FROM prosthetics ORDER BY typeOfAmputation DESC; 
 	
 	public static Prosthetics getProsthetics() throws SQLException{
 		String Query="SELECT * FROM prosthetics ORDER BY type_of_amputation;";
@@ -143,6 +233,47 @@ public class SQLSelect{
 		}
 		return(prosthetic);
 	}
+	
+//SELECT * FROM prosthetics (asking for i)
+	
+	public static Prosthetics getProstheticThroughId(int id) throws SQLException{
+		String Query="SELECT * FROM prosthetics WHERE id = ?;";
+		Prosthetics prosthetic=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, id);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			float size = rs.getFloat("size");
+			float weight = rs.getFloat("weight");
+			String type_of_funcionality= rs.getString("type_of_funcionality");
+			String type_of_amputation= rs.getString("type_of_amputation");
+			String color = rs.getString("color");
+			float bestPrice = rs.getFloat("bestPrice");
+			//Payment payment = rs.getPayment("payment");
+			int pid = rs.getInt("id");
+			prosthetic=new Prosthetics(id, size, weight, type_of_funcionality, type_of_amputation,color,bestPrice);
+		}
+		return(prosthetic);
+	}
+	
+	
+	public static Features getFeatureThroughId(int id) throws SQLException{
+		String Query="SELECT * FROM Features WHERE id = ?;";
+		Features feature=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, id);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			float price = rs.getFloat("best_price");
+			String style= rs.getString("style");
+			boolean enhanced= rs.getBoolean("enhanced_movement");
+			boolean sensibility =rs.getBoolean("sensibility");
+			int idp = rs.getInt("id");
+			feature=new Features(idp, price, style, sensibility, enhanced);
+		}
+		return(feature);
+	}
+	
 	
 	//VI) SELECT * FROM client;
 	
