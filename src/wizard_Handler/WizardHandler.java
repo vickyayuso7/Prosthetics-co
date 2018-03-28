@@ -13,17 +13,18 @@ public class WizardHandler{
 	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs) {
 		String report="all clear";
 		try {
-			SQLInsert.newClient(cln);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			report="failed client insertion";
-		}
-		try {
 			SQLInsert.newAddress(adr);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed address insertion";
+		}
+		try {
+			//Ask how to get last added index.
+			SQLInsert.newClient(cln,5);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			report="failed client insertion";
 		}
 		try {
 			SQLInsert.newPayment(pmn);
@@ -32,14 +33,18 @@ public class WizardHandler{
 			e.printStackTrace();
 			report="failed payment insertion";
 		}try {
-			SQLInsert.newProsthetics(prs);
+			//ask how to get last added id
+			SQLInsert.newProsthetics(prs,6);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed prosthetic insertion";
 		}
 		try {
-			
+			//missing block on how to get last added id.
+		}
+		catch(Exception sq) {
+			sq.printStackTrace();
 		}
 
 		return(report);

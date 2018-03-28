@@ -365,7 +365,9 @@ public class SQLSelect{
 		while (rs.next()) {
 			id=""+rs.getInt("id");
 			idlist.add(id);
-		}		
+		}
+		rs.close();
+		stm1.close();
 		return(idlist);
 		
 	}
