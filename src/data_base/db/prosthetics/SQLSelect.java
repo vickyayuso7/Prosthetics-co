@@ -371,6 +371,26 @@ public class SQLSelect{
 		return(idlist);
 		
 	}
+	public static Material getMaterial(int id) throws SQLException{
+		Material mat;
+		String Query = "SELECT * FROM Material WHERE id = ?";
+		PreparedStatement stm1 =SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, id);
+		ResultSet rs = stm1.executeQuery();
+		int ids=-1;
+		String style="";
+		String provider="";
+		float price=-1;
+		while(rs.next()) {
+			ids =rs.getInt("id");
+			style = rs.getString("type");
+			provider =rs.getString("provider");
+			price =rs.getFloat("priceModifier");
+		}
+		mat =new Material(price, provider, style);
+		return(mat);
+		
+	}
 	//Falta:
 	
 	//SELECT * PAYMENT (asking for id)

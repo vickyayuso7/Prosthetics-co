@@ -28,6 +28,7 @@ import java.time.format.DateTimeFormatter;
 import java.sql.*;
 import java.awt.event.ActionEvent;
 import pojos.db.prosthetics.*;
+import javax.swing.JList;
 
 public class CreateANDModify extends JFrame {
 	private JFrame frame = new JFrame();
@@ -42,6 +43,8 @@ public class CreateANDModify extends JFrame {
 	private int fuckedup;
 	private JTextArea textArea;
 	private JComboBox comboBox;
+	private JComboBox comboBox_2;
+	private JComboBox comboBox_3;
 
 	public CreateANDModify(WizardHandler myNameIsTim) {
 		option1 = -1;
@@ -55,7 +58,7 @@ public class CreateANDModify extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		frame.add(contentPane);
+		//frame.add(contentPane);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
@@ -184,12 +187,11 @@ public class CreateANDModify extends JFrame {
 									+ " things wrong with this entry fix them before continuing\nMay I suggest checking the Warnings and Failures tab?");
 							textArea.setText(textArea.getText() + "\n");
 						} else {
-							String choice = myNameIsTim.newClient(cln, adr, pmn, prs);
+							String choice = myNameIsTim.newClient(cln, adr, pmn, prs,Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]),Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]));
 							if (choice.equals("all clear")) {
 								frame.dispose();
 							} else {
-								JOptionPane.showMessageDialog(null,
-										"failed to insert a new client\nDetails in the erro tab");
+								JOptionPane.showMessageDialog(null,"failed to insert a new client\nDetails in the erro tab");
 								textArea.setForeground(Color.RED);
 								textArea.setText(textArea.getText() + choice);
 								textArea.setForeground(Color.GREEN);
@@ -232,8 +234,7 @@ public class CreateANDModify extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		contentPane.add(panel_2, BorderLayout.CENTER);
-		panel_2.setLayout(new MigLayout("", "[][][][][][][][][][][][][][][][][][][][grow]",
-				"[][][][][][][][][][grow][][][][][][grow][][][grow][][][][][][][][]"));
+		panel_2.setLayout(new MigLayout("", "[][][][][][][][][][grow][][grow][][][][][][][][grow]", "[][][][][][grow][][][][grow][][][][][][grow][][][grow][][][][][][][][]"));
 
 		Component verticalStrut_4 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_4, "flowx,cell 19 0");
@@ -277,6 +278,12 @@ public class CreateANDModify extends JFrame {
 
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_1, "flowx,cell 19 4");
+		
+		JLabel lblMaterial = new JLabel("Material:");
+		panel_2.add(lblMaterial, "cell 4 5");
+		
+		comboBox_2 = new JComboBox(myNameIsTim.getFeatureId());
+		panel_2.add(comboBox_2, "cell 9 5 5 1,growx");
 
 		JLabel lblMeasures = new JLabel("Measures:");
 		panel_2.add(lblMeasures, "flowx,cell 19 5,alignx left");
@@ -298,9 +305,24 @@ public class CreateANDModify extends JFrame {
 		textField_5 = new JTextField();
 		panel_2.add(textField_5, "cell 19 5");
 		textField_5.setColumns(10);
+		
+		JButton btnNewButton = new JButton("check");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setForeground(Color.GREEN);
+		btnNewButton.setBackground(Color.BLACK);
+		panel_2.add(btnNewButton, "cell 9 6 5 1,growx");
 
 		Component verticalStrut_5 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_5, "flowx,cell 19 6");
+		
+		JLabel lblFeatures = new JLabel("Features:");
+		panel_2.add(lblFeatures, "cell 4 7");
+		
+		comboBox_3 = new JComboBox(myNameIsTim.getMaterialId());
+		panel_2.add(comboBox_3, "cell 9 7 5 1,growx");
 
 		JLabel lblNewLabel_2 = new JLabel("Color:");
 		panel_2.add(lblNewLabel_2, "flowx,cell 19 7");
@@ -343,6 +365,15 @@ public class CreateANDModify extends JFrame {
 		lblProsthetics.setFont(new Font("Consolas", Font.PLAIN, 11));
 		lblProsthetics.setForeground(Color.GREEN);
 		panel_3.add(lblProsthetics);
+		
+		JButton btnNewButton_1 = new JButton("check");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setForeground(Color.GREEN);
+		btnNewButton_1.setBackground(Color.BLACK);
+		panel_2.add(btnNewButton_1, "cell 9 8 5 1,growx");
 
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_2, "flowx,cell 19 8");
@@ -397,18 +428,6 @@ public class CreateANDModify extends JFrame {
 
 		Component horizontalStrut_11 = Box.createHorizontalStrut(20);
 		panel_2.add(horizontalStrut_11, "cell 14 11");
-
-		Component horizontalStrut_12 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_12, "cell 15 11");
-
-		Component horizontalStrut_13 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_13, "cell 16 11");
-
-		Component horizontalStrut_14 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_14, "cell 17 11");
-
-		Component horizontalStrut_15 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_15, "cell 18 11");
 
 		JLabel lblCity = new JLabel("Country:");
 		panel_2.add(lblCity, "flowx,cell 19 11");
@@ -552,19 +571,5 @@ public class CreateANDModify extends JFrame {
 	private JTextField textField_18;
 	private JTextField textField_19;
 	private JTextField textField_20;
-
-	public void fullClient() {
-		// frame = new JFrame();
-		// frame.setBounds(100, 100, 450, 300);
-		// frame.setSize(frame.getMaximumSize());
-		/*
-		 * frame.setExtendedState(JFrame.MAXIMIZED_BOTH); frame.setUndecorated(true);
-		 * frame.setVisible(true); frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 * setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); setBounds(100, 100, 450,
-		 * 300); contentPane = new JPanel(); contentPane.setBorder(new EmptyBorder(5, 5,
-		 * 5, 5)); contentPane.setLayout(new BorderLayout(0, 0));
-		 * setContentPane(contentPane);
-		 */
-	}
 
 }

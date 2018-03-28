@@ -10,38 +10,43 @@ public class WizardHandler{
 	public WizardHandler(){
 		SQLConnect.establishConnection();
 	}	
-	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs) {
+	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs, int featureId, int materialId) {
 		String report="all clear";
+		int idAddress=-1;
+		int idPayment=-1;
+		int idClient=-1;
+		int idProsthetic=-1;
 		try {
-			SQLInsert.newAddress(adr);
+			idAddress=SQLInsert.newAddress(adr);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed address insertion";
 		}
 		try {
-			//Ask how to get last added index.
-			SQLInsert.newClient(cln,5);
+			idClient=SQLInsert.newClient(cln,idAddress);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			report="failed client insertion";
 		}
 		try {
-			SQLInsert.newPayment(pmn);
+			idPayment=SQLInsert.newPayment(pmn);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed payment insertion";
 		}try {
 			//ask how to get last added id
-			SQLInsert.newProsthetics(prs,6);
+			idProsthetic=SQLInsert.newProsthetics(prs,idPayment);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed prosthetic insertion";
 		}
 		try {
-			//missing block on how to get last added id.
+			SQLInsert.newClient_Prosthetics(idClient, idProsthetic);
+			SQLInsert.newMaterial_Prosthetics(materialId, idProsthetic);
+			SQLInsert.newFeatures_Prosthetics(featureId, idProsthetic);
 		}
 		catch(Exception sq) {
 			sq.printStackTrace();
@@ -202,6 +207,19 @@ public class WizardHandler{
 			ex.printStackTrace();
 			return (null);
 		}
+	}
+	public String[] getMaterialId() {
+		String[] id = new String[1];
+		try {
+			id=SQLSelect.getMaterialId().toArray(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return(id);
+	}
+	public Material getMaterialFull(int id) {
+		return (SQLSelect.getMaterial(id));
 	}
 
 }
