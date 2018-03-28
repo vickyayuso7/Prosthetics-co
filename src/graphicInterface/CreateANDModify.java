@@ -314,7 +314,8 @@ public class CreateANDModify extends JFrame {
 		JButton btnNewButton = new JButton("check");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ViewFeatures frame = new ViewFeatures(myNameIsTim,Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]));
+				frame.setVisible(true);
 			}
 		});
 		btnNewButton.setForeground(Color.GREEN);

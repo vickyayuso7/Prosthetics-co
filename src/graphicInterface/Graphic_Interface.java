@@ -82,35 +82,11 @@ public class Graphic_Interface extends JFrame{
 		});
 		mnFile.add(mntmDeleteTables);
 		
-		JMenuItem mntmSaveAllChanges = new JMenuItem("Save All Changes");
-		mnFile.add(mntmSaveAllChanges);
-		
 		JMenu mnView = new JMenu("View");
 		menuBar.add(mnView);
 		
 		JMenu mnShowTables = new JMenu("show Tables");
 		mnView.add(mnShowTables);
-		
-		JMenuItem mntmAll = new JMenuItem("All");
-		mnShowTables.add(mntmAll);
-		
-		JMenuItem mntmProsthetics = new JMenuItem("Prosthetics");
-		mnShowTables.add(mntmProsthetics);
-		
-		JMenuItem mntmClient = new JMenuItem("Client");
-		mnShowTables.add(mntmClient);
-		
-		JMenuItem mntmPayment = new JMenuItem("Payment");
-		mnShowTables.add(mntmPayment);
-		
-		JMenuItem mntmFeatures = new JMenuItem("Features");
-		mnShowTables.add(mntmFeatures);
-		
-		JMenuItem mntmMaterials = new JMenuItem("Materials");
-		mnShowTables.add(mntmMaterials);
-		
-		JMenuItem mntmAdress = new JMenuItem("Adress");
-		mnShowTables.add(mntmAdress);
 		
 		JMenuItem mntmAbout = new JMenuItem("About");
 		mnView.add(mntmAbout);
@@ -118,23 +94,31 @@ public class Graphic_Interface extends JFrame{
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
 		
-		JMenuItem mntmProsthetics_1 = new JMenuItem("Prosthetics");
-		mnEdit.add(mntmProsthetics_1);
-		
 		JMenuItem mntmClient_1 = new JMenuItem("Client");
 		mnEdit.add(mntmClient_1);
-		
-		JMenuItem mntmPayment_1 = new JMenuItem("Payment");
-		mnEdit.add(mntmPayment_1);
+		mntmClient_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//edit client;
+			}
+		});
 		
 		JMenuItem mntmFeatures_1 = new JMenuItem("Features");
 		mnEdit.add(mntmFeatures_1);
+		mntmFeatures_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditFeatures f= new EditFeatures(guts);
+			}
+		});
 		
 		JMenuItem mntmMaterial = new JMenuItem("Material");
 		mnEdit.add(mntmMaterial);
+		mntmMaterial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//edit material
+			}
+		});
 		
-		JMenuItem mntmAdress_1 = new JMenuItem("Adress");
-		mnEdit.add(mntmAdress_1);
+		
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
