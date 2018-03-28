@@ -38,6 +38,9 @@ public class WizardHandler{
 			e.printStackTrace();
 			report="failed prosthetic insertion";
 		}
+		try {
+			
+		}
 
 		return(report);
 	}
@@ -161,4 +164,39 @@ public class WizardHandler{
 		}
 		return(report);
 	}
+	public String[] getClientId(){
+		try {
+			String [] id = new String[1];
+			id= SQLSelect.getClientId().toArray(id);
+			return(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+		
+	}	
+	public String[] getClientNames(){
+		try {
+			String [] id = new String[1];
+			id= SQLSelect.getClientNames().toArray(id);
+			return(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+	}
+	public String[] magicConversionProstheticsThrouClient (int id) {
+		try {
+			String [] Prosthetics =new String[1];
+			Prosthetics=SQLSelect.getProstheticIdThruClientId(id).toArray(Prosthetics);
+			return(Prosthetics);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return (null);
+		}
+	}
+
 }

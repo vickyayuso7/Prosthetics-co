@@ -161,7 +161,7 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_1.gridy = 1;
 		panel.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnNewButton_4 = new JButton("Edit Existent...");
+		JButton btnNewButton_4 = new JButton("Edit Existing...");
 		btnNewButton_4.setForeground(Color.GREEN);
 		btnNewButton_4.setBackground(new Color(0,0,0));
 		btnNewButton_4.setBorderPainted(false);
@@ -178,7 +178,7 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_4.gridy = 2;
 		panel.add(btnNewButton_4, gbc_btnNewButton_4);
 		
-		JButton btnNewButton_2 = new JButton("Remove Existent...");
+		JButton btnNewButton_2 = new JButton("Remove Existing...");
 		btnNewButton_2.setForeground(Color.GREEN);
 		btnNewButton_2.setBackground(new Color(0,0,0));
 		btnNewButton_2.setBorderPainted(false);
@@ -196,7 +196,7 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 5;
 		
-		JButton btnNewButton_3 = new JButton("View Existent...");
+		JButton btnNewButton_3 = new JButton("View Existing...");
 		btnNewButton_3.setForeground(Color.GREEN);
 		btnNewButton_3.setBackground(new Color(0,0,0));
 		btnNewButton_3.setFont(new Font("Consolas", Font.PLAIN, 11));
@@ -206,6 +206,11 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_3.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton_3.gridx = 0;
 		gbc_btnNewButton_3.gridy = 4;
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					Tables tableViewer = new Tables(guts);
+			}
+		});
 		panel.add(btnNewButton_3, gbc_btnNewButton_3);
 		
 		JButton btnNewButton_5 = new JButton("Exit");

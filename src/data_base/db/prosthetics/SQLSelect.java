@@ -151,6 +151,19 @@ public class SQLSelect{
 		return(idlist);
 		
 	}
+	public static ArrayList<String> getClientNames() throws SQLException{
+		String id;
+		String Query="SELECT name FROM Client;";
+		ArrayList <String> idlist= new <String> ArrayList();
+		Statement stm1 = SQLConnect.getConnection().createStatement();
+		ResultSet rs= stm1.executeQuery(Query);
+		while (rs.next()) {
+			id=""+rs.getString("name");
+			idlist.add(id);
+		}		
+		return(idlist);
+		
+	}
 	
 	public static ArrayList<String> getAddressId() throws SQLException{
 		String id;
@@ -334,6 +347,21 @@ public class SQLSelect{
 		addresses.add(address);
 		return(addresses);
 	}
+	public static ArrayList<String> getProstheticIdThruClientId(int ids) throws SQLException{
+		String id;
+		String Query="SELECT prosthetic_id FROM Client_Prosthetics WHERE client_id =?";
+		ArrayList <String> idlist= new <String> ArrayList();
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, ids);
+		ResultSet rs= stm1.executeQuery();
+		while (rs.next()) {
+			id=""+rs.getInt("id");
+			idlist.add(id);
+		}		
+		return(idlist);
+		
+	}
+	
 	
 	
 }
