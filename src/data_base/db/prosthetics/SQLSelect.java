@@ -387,7 +387,7 @@ public class SQLSelect{
 			provider =rs.getString("provider");
 			price =rs.getFloat("priceModifier");
 		}
-		mat =new Material(price, provider, style);
+		mat =new Material(ids, price, provider, style);
 		return(mat);
 		
 	}

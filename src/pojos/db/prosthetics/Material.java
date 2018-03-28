@@ -29,6 +29,12 @@ public class Material implements Serializable{
 		this.provider=prv;
 		this.type=mat;
 	}
+	public Material(int id, float prc, String prv, String mat){
+		this.priceModifier=prc;
+		this.provider=prv;
+		this.type=mat;
+		this.id=id;
+	}
 	
 	@Override
 	public String toString() {

@@ -219,7 +219,13 @@ public class WizardHandler{
 		return(id);
 	}
 	public Material getMaterialFull(int id) {
-		return (SQLSelect.getMaterial(id));
+		try {
+			return (SQLSelect.getMaterial(id));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
 	}
 
 }

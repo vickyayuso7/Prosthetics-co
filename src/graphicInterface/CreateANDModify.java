@@ -58,7 +58,7 @@ public class CreateANDModify extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		//frame.add(contentPane);
+		frame.add(contentPane);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
@@ -279,10 +279,15 @@ public class CreateANDModify extends JFrame {
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_1, "flowx,cell 19 4");
 		
-		JLabel lblMaterial = new JLabel("Material:");
+		JLabel lblMaterial = new JLabel("Features:");
 		panel_2.add(lblMaterial, "cell 4 5");
 		
 		comboBox_2 = new JComboBox(myNameIsTim.getFeatureId());
+		comboBox_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		panel_2.add(comboBox_2, "cell 9 5 5 1,growx");
 
 		JLabel lblMeasures = new JLabel("Measures:");
@@ -309,6 +314,7 @@ public class CreateANDModify extends JFrame {
 		JButton btnNewButton = new JButton("check");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnNewButton.setForeground(Color.GREEN);
@@ -318,7 +324,7 @@ public class CreateANDModify extends JFrame {
 		Component verticalStrut_5 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_5, "flowx,cell 19 6");
 		
-		JLabel lblFeatures = new JLabel("Features:");
+		JLabel lblFeatures = new JLabel("Material:");
 		panel_2.add(lblFeatures, "cell 4 7");
 		
 		comboBox_3 = new JComboBox(myNameIsTim.getMaterialId());
@@ -369,6 +375,8 @@ public class CreateANDModify extends JFrame {
 		JButton btnNewButton_1 = new JButton("check");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ViewMaterial frame = new ViewMaterial(myNameIsTim,Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]));
+				frame.setVisible(true);
 			}
 		});
 		btnNewButton_1.setForeground(Color.GREEN);
