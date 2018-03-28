@@ -41,9 +41,9 @@ public class Client implements Serializable {
 			this.address= address;
 		}
 
-		public Client(int id, Date dateOfBirth, String name, String gender) {
+		public Client(int idp, Date dateOfBirth, String name, String gender) {
 			super();
-			this.id=id;
+			this.id=idp;
 			this.dateOfBirth = dateOfBirth;
 			this.name = name;
 			this.gender = gender;

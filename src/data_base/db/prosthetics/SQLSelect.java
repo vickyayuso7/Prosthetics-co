@@ -263,13 +263,13 @@ public class SQLSelect{
 			String color = rs.getString("color");
 			float bestPrice = rs.getFloat("bestPrice");
 			//Payment payment = rs.getPayment("payment");
-			int pid = rs.getInt("id");
+			int idp = rs.getInt("id");
 			prosthetic=new Prosthetics(id, size, weight, type_of_funcionality, type_of_amputation,color,bestPrice);
 		}
 		return(prosthetic);
 	}
 	
-	
+	//SELECT * FROM FEATURE (asking for id)
 	public static Features getFeatureThroughId(int id) throws SQLException{
 		String Query="SELECT * FROM Features WHERE id = ?;";
 		Features feature=null;
@@ -287,8 +287,29 @@ public class SQLSelect{
 		return(feature);
 	}
 	
+	//SELECT * FROM FEATURE (not asking for id)
 	
-	//VI) SELECT * FROM client;
+	public static ArrayList<Features> getFeature() throws SQLException{
+		ArrayList <Features> features =new ArrayList <Features>();
+		String Query="SELECT * FROM Features;";
+		Features feature=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			float price = rs.getFloat("best_price");
+			String style= rs.getString("style");
+			boolean enhanced= rs.getBoolean("enhanced_movement");
+			boolean sensibility =rs.getBoolean("sensibility");
+			int id = rs.getInt("id");
+			feature=new Features(id, price, style, sensibility, enhanced);
+		}
+		features.add(feature);
+		return(features);
+	}
+	
+	
+	
+	//VI) SELECT * FROM client;(not asking for id)
 	
 	public static ArrayList<Client> getClient() throws SQLException{
 		ArrayList <Client> clients =new ArrayList <Client>();
@@ -307,7 +328,31 @@ public class SQLSelect{
 		clients.add(client);
 		return(clients);
 	}
-	//IX) SELECT * FROM address;
+	
+	
+	//VI) SELECT * FROM client; (Asking for id)
+	
+	public static ArrayList<Client> getClient(int id) throws SQLException{
+		ArrayList <Client> clients =new ArrayList <Client>();
+		String Query="SELECT * FROM client;";
+		Client client=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1,id);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			
+			String name= rs.getString("name");
+			Date date_of_birth = rs.getDate("date_of_birth");
+			String gender = rs.getString("gender");
+			int idp = rs.getInt("id");
+			client=new Client (id,date_of_birth,name,gender);
+		}
+		clients.add(client);
+		return(clients);
+	}
+	
+	
+	//IX) SELECT * FROM address;(not asking for id)
 	public static ArrayList<Address> getAddress() throws SQLException{
 		ArrayList <Address> addresses =new ArrayList <Address>();
 		String Query="SELECT * FROM address;";
@@ -347,7 +392,7 @@ public class SQLSelect{
 		addresses.add(address);
 		return(addresses);
 	}
-	public static ArrayList<String> getProstheticIdThruClientId(int ids) throws SQLException{
+	public static ArrayList<String> getProstheticIdThroughClientId(int ids) throws SQLException{
 		String id;
 		String Query="SELECT prosthetic_id FROM Client_Prosthetics WHERE client_id =?";
 		ArrayList <String> idlist= new <String> ArrayList();
