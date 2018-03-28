@@ -30,7 +30,7 @@ import java.awt.event.ActionEvent;
 import pojos.db.prosthetics.*;
 import javax.swing.JList;
 
-public class CreateANDModify extends JFrame {
+public class NewClient extends JFrame {
 	private JFrame frame = new JFrame();
 	private int option1;
 	private int option2;
@@ -46,7 +46,7 @@ public class CreateANDModify extends JFrame {
 	private JComboBox comboBox_2;
 	private JComboBox comboBox_3;
 
-	public CreateANDModify(WizardHandler myNameIsTim) {
+	public NewClient(WizardHandler myNameIsTim) {
 		option1 = -1;
 		option2 = -1;
 

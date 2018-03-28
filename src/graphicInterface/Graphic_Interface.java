@@ -464,7 +464,7 @@ public class Graphic_Interface extends JFrame{
 			newCln.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						CreateANDModify m= new CreateANDModify(guts);
+						NewClient m= new NewClient(guts);
 					}
 					catch(Exception ex) {
 						ex.printStackTrace();
