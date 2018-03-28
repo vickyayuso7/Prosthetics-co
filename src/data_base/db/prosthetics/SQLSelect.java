@@ -14,70 +14,8 @@ public class SQLSelect{
 	private static Connection c;
 	private static List <String> colours;
 	
-	public static void ShowClient(Client client){
 
-		try {
-			
-		c = SQLConnect.getConnection();
-		String sql = "SELECT * FROM client";
-		
-		 			
-		Statement statement = c.prepareStatement(sql);
-		ResultSet rs = statement.executeQuery(sql);
-		while (rs.next()) {
-			int id = rs.getInt("id");
-			String name = rs.getString("name");
-			String gender = rs.getString("gender");
-			//Prosthetics prosthetics = new Prosthetics(id,bestPrice,size,weight,typeOfFunctionality,color,typeOfAmputation,payment);
-			//System.out.println(prosthetics);
-			//Address address = rs.getAddress("address");
-			Date dateOfBirth = rs.getDate("dateOfBirth");
-			
-		}
-		rs.close();
-		statement.close();
 
-		c.close();
-		System.out.println("Database connection closed.");
-		
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public static void  ShowAddress() throws SQLException{
-		
-		Connection c = SQLConnect.getConnection();
-		
-		String sql = "SELECT * FROM address";
-
-		Statement statement = c.prepareStatement(sql);
-		ResultSet rs = statement.executeQuery(sql);
-		while (rs.next()) {
-			/*
-			int id = rs.getInt("id");
-			String country = rs.getString("country");
-			int postCode = rs.getInt("postCode");
-			String street = rs.getString("street");
-			String town = rs.getString("town");
-			int number = rs.getInt("number");
-			String city = rs.getString("city");
-
-			
-			Address addition =new Address();
-			addition.setCity(city);
-			
-			Client client = new Client(client.setAddress(address),client.setDateOfBirth(dateOfBirth),client.setGender(gender),client.setId(id),
-					client.setName(name),client.setProsthetics(prosthetics));
-			*/
-		}
-		rs.close();
-		
-	}
-	
-	//public static void Show
 
 	public static ArrayList<String>  getColours() throws SQLException{
 		String colour="";
@@ -287,7 +225,7 @@ public class SQLSelect{
 		return(feature);
 	}
 	
-	//SELECT * FROM FEATURE (not asking for id)
+	//SELECT * FROM FEATUREs (not asking for id)
 	
 	public static ArrayList<Features> getFeature() throws SQLException{
 		ArrayList <Features> features =new ArrayList <Features>();
@@ -334,7 +272,7 @@ public class SQLSelect{
 	
 	public static ArrayList<Client> getClient(int id) throws SQLException{
 		ArrayList <Client> clients =new ArrayList <Client>();
-		String Query="SELECT * FROM client;";
+		String Query="SELECT * FROM client WHERE id =? ;";
 		Client client=null;
 		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
 		stm1.setInt(1,id);
@@ -351,6 +289,30 @@ public class SQLSelect{
 		return(clients);
 	}
 	
+	
+	
+	
+	//IX) SELECT * FROM address;(asking for id)
+	public static ArrayList<Address> getAddressThroughtId(int id) throws SQLException{
+		ArrayList <Address> addresses =new ArrayList <Address>();
+		String Query="SELECT * FROM address WHERE id = ?;";
+		Address address=null;
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1,id);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			
+			String country= rs.getString("country");
+			int postCode = rs.getInt("postCode");
+			String street = rs.getString("street");
+			String town = rs.getString("town");
+			int number=rs.getInt("number");
+			int idp = rs.getInt("id");
+			address=new Address (id,country, postCode,street, town,number);
+		}
+		addresses.add(address);
+		return(addresses);
+	}
 	
 	//IX) SELECT * FROM address;(not asking for id)
 	public static ArrayList<Address> getAddress() throws SQLException{
@@ -392,20 +354,15 @@ public class SQLSelect{
 		addresses.add(address);
 		return(addresses);
 	}
-	public static ArrayList<String> getProstheticIdThroughClientId(int ids) throws SQLException{
-		String id;
-		String Query="SELECT prosthetic_id FROM Client_Prosthetics WHERE client_id =?";
-		ArrayList <String> idlist= new <String> ArrayList();
-		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
-		stm1.setInt(1, ids);
-		ResultSet rs= stm1.executeQuery();
-		while (rs.next()) {
-			id=""+rs.getInt("id");
-			idlist.add(id);
-		}		
-		return(idlist);
-		
-	}
+
+	//Falta:
+	
+	//SELECT * PAYMENT (asking for id)
+	//SELECT * payment (not asking for id)
+	//SELECT * MATERIAL (asking for id)
+	//SELECT * MATERIAL (not asking for id)
+	
+	
 	
 	
 	
