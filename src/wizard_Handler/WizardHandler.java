@@ -227,5 +227,18 @@ public class WizardHandler{
 			return(null);
 		}
 	}
+	public Client getClientFull(int id) {
+		try {
+			return(SQLSelect.getClient(id));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public int getAddressIdThruClientId(int id) {
+		SQLSelect.getAddressIdThroughClientId(id);
+		return 0;
+	}
 
 }

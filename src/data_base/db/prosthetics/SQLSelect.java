@@ -270,8 +270,7 @@ public class SQLSelect{
 	
 	//VI) SELECT * FROM client; (Asking for id)
 	
-	public static ArrayList<Client> getClient(int id) throws SQLException{
-		ArrayList <Client> clients =new ArrayList <Client>();
+	public static Client getClient(int id) throws SQLException{
 		String Query="SELECT * FROM client WHERE id =? ;";
 		Client client=null;
 		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
@@ -285,8 +284,7 @@ public class SQLSelect{
 			int idp = rs.getInt("id");
 			client=new Client (id,date_of_birth,name,gender);
 		}
-		clients.add(client);
-		return(clients);
+		return(client);
 	}
 	
 	
@@ -391,11 +389,14 @@ public class SQLSelect{
 		return(mat);
 		
 	}
-	//Falta:
+
+	public static void getAddressIdThroughClientId(int id) {
+		
+		
+	}
 	
 	//SELECT * PAYMENT (asking for id)
 	//SELECT * payment (not asking for id)
-	//SELECT * MATERIAL (asking for id)
 	//SELECT * MATERIAL (not asking for id)
 	
 	
