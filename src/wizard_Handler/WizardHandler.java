@@ -237,8 +237,62 @@ public class WizardHandler{
 		return null;
 	}
 	public int getAddressIdThruClientId(int id) {
-		SQLSelect.getAddressIdThroughClientId(id);
-		return 0;
+		try {
+			int ids=SQLSelect.getAddressIdThroughClientId(id);
+			return(ids);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(-1);
+		}
+	}
+	public Address getAddressFull(int addressId) {
+		try {
+			return(SQLSelect.getAddress(addressId));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+	}
+	public int getProstheticIdThruClientId(int clientId) {
+		try {
+			String[] id =new String[1];
+			id =SQLSelect.getProstheticIdThruClientId(clientId).toArray(id);
+			return(Integer.parseInt(id[1]));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(-1);
+		}
+	}
+	public Prosthetics getProstheticFull(int prostheticId) {
+		try {
+			return(SQLSelect.getProstheticThroughId(prostheticId));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+		
+	}
+	public int getPaymentIdThruProstheticId(int prostheticId) {
+		try {
+			return(SQLSelect.getPaymentIdThruProstheticId(prostheticId));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(-1);
+		}
+	}
+	public Payment getPaymentFull(int paymentId) {
+		try {
+			return(SQLSelect.getPayment(paymentId));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

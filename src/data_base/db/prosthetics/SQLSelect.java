@@ -4,9 +4,6 @@ import  java.sql.*;
 import pojos.db.*;
 import pojos.db.prosthetics.*;
 
-
-import java.sql.Connection;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -291,8 +288,7 @@ public class SQLSelect{
 	
 	
 	//IX) SELECT * FROM address;(asking for id)
-	public static ArrayList<Address> getAddressThroughtId(int id) throws SQLException{
-		ArrayList <Address> addresses =new ArrayList <Address>();
+	public static Address getAddress(int id) throws SQLException{
 		String Query="SELECT * FROM address WHERE id = ?;";
 		Address address=null;
 		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
@@ -308,8 +304,7 @@ public class SQLSelect{
 			int idp = rs.getInt("id");
 			address=new Address (id,country, postCode,street, town,number);
 		}
-		addresses.add(address);
-		return(addresses);
+		return(address);
 	}
 	
 	//IX) SELECT * FROM address;(not asking for id)
@@ -390,12 +385,50 @@ public class SQLSelect{
 		
 	}
 
-	public static void getAddressIdThroughClientId(int id) {
-		
+	public static int getAddressIdThroughClientId(int id) throws SQLException{
+		String Query= "SELECT address_id FROM Client WHERE id =?";
+		PreparedStatement stm1 =SQLConnect.getConnection().prepareStatement(Query);		
+		stm1.setInt(1, id);
+		ResultSet rs =stm1.executeQuery();
+		int ids=-1;
+		while (rs.next()) {
+			ids=rs.getInt("address_id");
+		}
+		return(ids);
+	}
+
+	public static int getPaymentIdThruProstheticId(int prostheticId) throws SQLException {
+		String Query= "SELECT payment_id FROM Prosthetics WHERE id =?";
+		PreparedStatement stm1 =SQLConnect.getConnection().prepareStatement(Query);		
+		stm1.setInt(1, prostheticId);
+		ResultSet rs =stm1.executeQuery();
+		int ids=-1;
+		while (rs.next()) {
+			ids=rs.getInt("address_id");
+		}
+		return(ids);
 		
 	}
+
+	public static Payment getPayment(int paymentId) throws SQLException {
+		String Query = "SELECT * FROM Payments WHERE id =?";
+		PreparedStatement stm1 =SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, paymentId);
+		ResultSet rs=stm1.executeQuery();
+		Payment pmn =new Payment();
+		while(rs.next()) {
+			int id =rs.getInt("id");
+			Date deadline = rs.getDate("date_of_birth");
+			int iban =rs.getInt("iban");
+			String method =rs.getString("method");
+			pmn.setDeadline(deadline);
+			pmn.setIban(iban);
+			pmn.setId(id);
+			pmn.setMethod(method);
+		}
+		return(pmn);
+	}
 	
-	//SELECT * PAYMENT (asking for id)
 	//SELECT * payment (not asking for id)
 	//SELECT * MATERIAL (not asking for id)
 	

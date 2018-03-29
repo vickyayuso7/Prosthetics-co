@@ -257,6 +257,53 @@ public class EditClient extends JFrame {
 					prs=myNameIsTim.getProstheticFull(prostheticId);
 					int paymentId = myNameIsTim.getPaymentIdThruProstheticId(prostheticId);
 					pmn=myNameIsTim.getPaymentFull(paymentId);
+					textField.setText(cln.getName());
+					textField.setEditable(true);
+					textField_1.setText(""+cln.getDateOfBirth().getDay());
+					textField_1.setEditable(true);
+					textField_6.setText(""+cln.getDateOfBirth().getMonth());
+					textField_6.setEditable(true);
+					textField_14.setText(""+cln.getDateOfBirth().getYear());
+					textField_14.setEditable(true);
+					if(cln.getGender().equals("Male")) {
+						comboBox.setSelectedIndex(1);
+					}
+					else {
+						comboBox.setSelectedIndex(2);
+					}
+					comboBox.setEnabled(true);
+					
+					
+					textField_4.setText(""+prs.getSize());
+					textField_4.setEditable(true);
+					textField_5.setText(""+prs.getWeight());
+					textField_5.setEditable(true);
+					textField_20.setText(""+prs.getBestPrice());
+					textField_20.setEditable(true);
+					comboBox_1.removeAllItems();
+					String[] colors =myNameIsTim.getColours();
+					for (int i = 0; i < colors.length; i++) {
+						comboBox_1.addItem(colors[i]);
+					}
+					int index=0;
+					for (int j = 0; j < colors.length; j++) {
+						if(colors[j].equals(prs.getColor())) {
+							index=j;
+							break;
+						}
+						else {
+							continue;
+						}
+					}
+					comboBox_1.setSelectedIndex(index);
+					comboBox_1.setVisible(false);
+					comboBox_1.setEnabled(true);
+					comboBox_1.setVisible(true);
+					textField_2.setText(prs.getTypeOfFunctionality());
+					textField_2.setEditable(true);
+					textField_7.setText(prs.getTypeOfAmputation());
+					textField_7.setEditable(true);
+					
 				}
 			}
 		});
