@@ -34,8 +34,8 @@ public class SQLSelect{
 			Address addition =new Address();
 			addition.setCity(city);
 			
-			Client client = new Client(client.setAddress(address),client.setDateOfBirth(dateOfBirth),client.setGender(gender),client.setId(id),
-					client.setName(name),client.setProsthetics(prosthetics));
+			//Client client = new Client(client.setAddress(address),client.setDateOfBirth(dateOfBirth),client.setGender(gender),client.setId(id),
+					//client.setName(name),client.setProsthetics(prosthetics));
 			
 		}
 		rs.close();
