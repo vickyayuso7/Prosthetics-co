@@ -75,9 +75,10 @@ public class SQLCreate {
 			stmt7.close();
 			Statement stmt8 = c.createStatement(); //many to many relationship tables//
 			String sql8 = "CREATE TABLE Client_Prosthetics "
-					   + "(client_id     INTEGER  REFERENCES Clie	nt(id) ON UPDATE CASCADE ON DELETE SET NULL,"
+					   + "(client_id     INTEGER  REFERENCES Client(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
-					   + " PRIMARY KEY (client_id,prosthetic_id))"; 
+					   + " date DATETIME NOT NULL,"
+					   + " PRIMARY KEY (client_id,prosthetic_id,date))"; 
 			System.out.println(sql8);
 			stmt8.executeUpdate(sql8);
 			stmt8.close();
@@ -88,6 +89,7 @@ public class SQLCreate {
 					   + " postCode      INTEGER    NOT NULL, "
 					   + " street  TEXT   NOT NULL,"
 					   + " town    TEXT   NOT NULL,"
+					   + " city   TEXT   NOT NULL,"
 					   + " number   INTEGER  NOT NULL)";
 			stmt9.executeUpdate(sql9);
 			

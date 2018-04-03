@@ -45,6 +45,19 @@ public Address( int id, String country, int postCode, String street, String town
 		this.number = number;
 	
 	}
+
+public Address( int id, String country, String town, String city) {
+
+	
+	this.id= id;
+	this.country = country;
+	
+	this.town = town;
+	this.city = city;
+
+}
+
+
 	public String getCity() {
 		return(this.city);
 	}

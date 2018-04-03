@@ -10,33 +10,46 @@ public class WizardHandler{
 	public WizardHandler(){
 		SQLConnect.establishConnection();
 	}	
-	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs) {
+	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs, int featureId, int materialId) {
 		String report="all clear";
+		int idAddress=-1;
+		int idPayment=-1;
+		int idClient=-1;
+		int idProsthetic=-1;
 		try {
-			SQLInsert.newClient(cln);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			report="failed client insertion";
-		}
-		try {
-			SQLInsert.newAddress(adr);
+			idAddress=SQLInsert.newAddress(adr);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed address insertion";
 		}
 		try {
-			SQLInsert.newPayment(pmn);
+			idClient=SQLInsert.newClient(cln,idAddress);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			report="failed client insertion";
+		}
+		try {
+			idPayment=SQLInsert.newPayment(pmn);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed payment insertion";
 		}try {
-			SQLInsert.newProsthetics(prs);
+			//ask how to get last added id
+			idProsthetic=SQLInsert.newProsthetics(prs,idPayment);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed prosthetic insertion";
+		}
+		try {
+			SQLInsert.newClient_Prosthetics(idClient, idProsthetic);
+			SQLInsert.newMaterial_Prosthetics(materialId, idProsthetic);
+			SQLInsert.newFeatures_Prosthetics(featureId, idProsthetic);
+		}
+		catch(Exception sq) {
+			sq.printStackTrace();
 		}
 
 		return(report);
@@ -161,4 +174,125 @@ public class WizardHandler{
 		}
 		return(report);
 	}
+	public String[] getClientId(){
+		try {
+			String [] id = new String[1];
+			id= SQLSelect.getClientId().toArray(id);
+			return(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+		
+	}	
+	public String[] getClientNames(){
+		try {
+			String [] id = new String[1];
+			id= SQLSelect.getClientNames().toArray(id);
+			return(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+	}
+	public String[] magicConversionProstheticsThrouClient (int id) {
+		try {
+			String [] Prosthetics =new String[1];
+			Prosthetics=SQLSelect.getProstheticIdThruClientId(id).toArray(Prosthetics);
+			return(Prosthetics);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return (null);
+		}
+	}
+	public String[] getMaterialId() {
+		String[] id = new String[1];
+		try {
+			id=SQLSelect.getMaterialId().toArray(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return(id);
+	}
+	public Material getMaterialFull(int id) {
+		try {
+			return (SQLSelect.getMaterial(id));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+	}
+	public Client getClientFull(int id) {
+		try {
+			return(SQLSelect.getClient(id));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public int getAddressIdThruClientId(int id) {
+		try {
+			int ids=SQLSelect.getAddressIdThroughClientId(id);
+			return(ids);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(-1);
+		}
+	}
+	public Address getAddressFull(int addressId) {
+		try {
+			return(SQLSelect.getAddress(addressId));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+	}
+	public int getProstheticIdThruClientId(int clientId) {
+		try {
+			String[] id =new String[1];
+			id =SQLSelect.getProstheticIdThruClientId(clientId).toArray(id);
+			return(Integer.parseInt(id[1]));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(-1);
+		}
+	}
+	public Prosthetics getProstheticFull(int prostheticId) {
+		try {
+			return(SQLSelect.getProstheticThroughId(prostheticId));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(null);
+		}
+		
+	}
+	public int getPaymentIdThruProstheticId(int prostheticId) {
+		try {
+			return(SQLSelect.getPaymentIdThruProstheticId(prostheticId));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(-1);
+		}
+	}
+	public Payment getPaymentFull(int paymentId) {
+		try {
+			return(SQLSelect.getPayment(paymentId));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }
