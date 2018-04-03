@@ -11,7 +11,36 @@ public class SQLSelect{
 	private static Connection c;
 	private static List <String> colours;
 	
+	
+	public static void  ShowAddress() throws SQLException{
+		
+		Connection c = SQLConnect.getConnection();
+		
+		String sql = "SELECT * FROM address join clients on id = sdt";
 
+		Statement statement = c.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery(sql);
+		while (rs.next()) {
+			
+			int id = rs.getInt("id");
+			String country = rs.getString("country");
+			int postCode = rs.getInt("postCode");
+			String street = rs.getString("street");
+			String town = rs.getString("town");
+			int number = rs.getInt("number");
+			String city = rs.getString("city");
+
+			
+			Address addition =new Address();
+			addition.setCity(city);
+			
+			Client client = new Client(client.setAddress(address),client.setDateOfBirth(dateOfBirth),client.setGender(gender),client.setId(id),
+					client.setName(name),client.setProsthetics(prosthetics));
+			
+		}
+		rs.close();
+		
+	}
 
 
 	public static ArrayList<String>  getColours() throws SQLException{
