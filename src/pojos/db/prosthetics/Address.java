@@ -151,7 +151,7 @@ public Address( int id, String country, int postCode, String street, String town
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", country=" + country + ", postCode=" + postCode + ", street=" + street
-				+ ", town=" + town + ", number=" + number + "]";
+				+ ", town=" + town + ", number=" + number + ", city="+city+"]";
 	}
 
 	

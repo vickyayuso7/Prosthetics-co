@@ -56,22 +56,21 @@ public class SQLSelect{
 		Statement statement = c.prepareStatement(sql);
 		ResultSet rs = statement.executeQuery(sql);
 		while (rs.next()) {
-			/*
+			
 			int id = rs.getInt("id");
 			String country = rs.getString("country");
 			int postCode = rs.getInt("postCode");
 			String street = rs.getString("street");
 			String town = rs.getString("town");
 			int number = rs.getInt("number");
-			String city = rs.getString("city");
 
 			
 			Address addition =new Address();
-			addition.setCity(city);
 			
-			Client client = new Client(client.setAddress(address),client.setDateOfBirth(dateOfBirth),client.setGender(gender),client.setId(id),
-					client.setName(name),client.setProsthetics(prosthetics));
-			*/
+			Client client = new Client();
+			
+			//String sql2="SELECT name FROM Client AS c JOIN Address AS a WHERE c.address=a.id ";
+			
 		}
 		rs.close();
 		

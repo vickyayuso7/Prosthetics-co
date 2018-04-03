@@ -61,7 +61,7 @@ public class SQLInsert {
 	public static void newFeatures (Features features) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO Features (extra_price, style, sensibility, enhancedMovement) "
+		String sql = "INSERT INTO Features (extraPrice, style, sensibility, enhancedMovement) "
 				+ "VALUES (?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setFloat(1, features.getExtraPrice());

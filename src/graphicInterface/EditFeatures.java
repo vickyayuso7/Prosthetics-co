@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
@@ -31,6 +32,7 @@ public class EditFeatures extends JFrame {
 	
 	
 	public EditFeatures() {
+		setResizable(false);
 		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
@@ -46,7 +48,7 @@ public class EditFeatures extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new MigLayout("", "[][][grow][][][][][][][grow][][][][][][][][grow][][][][][grow]", "[][][][][][][][][][]"));
-		frame.add(contentPane);
+		//frame.add(contentPane);
 		
 		JLabel lblEditFeatures = new JLabel("Edit Features");
 		lblEditFeatures.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
@@ -90,6 +92,8 @@ public class EditFeatures extends JFrame {
 		JButton btnOk = new JButton("Ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//
+				JOptionPane.showMessageDialog(null, "Not implemented yet");
 			}
 		});
 		panel.add(btnOk, "cell 3 9");
