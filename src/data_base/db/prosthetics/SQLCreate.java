@@ -16,7 +16,7 @@ public class SQLCreate {
 			System.out.println(sql1);
 			stmt1.executeUpdate(sql1);
 			stmt1.close(); 
-			Statement stmt2 = c.createStatement();
+			Statement stmt2 =  c.createStatement();
 			String sql2 = "CREATE TABLE Material "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT," 
 					   + " priceModifier     REAL     NOT NULL, "
