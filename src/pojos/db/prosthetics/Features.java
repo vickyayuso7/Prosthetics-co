@@ -17,7 +17,7 @@ public class Features implements Serializable{
 	boolean enhancedMovement;
 	private List<Features> features;	
 	
-	Features(int id, Float extraPrice, String style, boolean sensibility, boolean enhancedMovement){
+	public Features(int id, Float extraPrice, String style, boolean sensibility, boolean enhancedMovement){
 		this.id=id;
 		this.extraPrice=extraPrice;
 		this.sensibility=sensibility;
@@ -26,7 +26,12 @@ public class Features implements Serializable{
 		this.features= new ArrayList<Features>();
 	}
 	
-	
+	public Features(float extraprice,String Style, boolean sensibility, boolean enhanced ){
+		this.extraPrice=extraprice;
+		this.style=Style;
+		this.sensibility= sensibility;
+		this.enhancedMovement=enhanced;
+	}
 	
 
 	public void setEnhancedMovement(boolean enhancedMovement) {

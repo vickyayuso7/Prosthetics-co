@@ -48,6 +48,21 @@ public class Prosthetics implements Serializable {
 		
 		
 	}
+	
+	public Prosthetics (int id, float size, float weight, String typeOfFuncionality, String type_of_amputation, String color, float bestPrice){
+	super();
+	this.id=id;
+	this.size=size;
+	this.weight=weight;
+	this.typeOfFunctionality=typeOfFuncionality;
+	this.typeOfAmputation=typeOfAmputation;
+	this.color=color;
+	this.bestPrice=bestPrice;
+	
+	
+	
+	
+	}
 
 	@Override
 	public String toString() {

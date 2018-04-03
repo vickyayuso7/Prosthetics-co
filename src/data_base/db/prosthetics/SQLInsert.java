@@ -20,28 +20,27 @@ import java.time.format.DateTimeFormatter;
 public class SQLInsert {
   
 	
-	public static void newClient (Client client) throws SQLException {
+	public static int newClient (Client client, int address_id) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO Client (date_of_birth, name, gender) "
-				+ "VALUES (?,?,?);";
+		String sql = "INSERT INTO Client (date_of_birth, name, gender, address_id) "
+				+ "VALUES (?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setDate(1, client.getDateOfBirth());
 		prep.setString(2, client.getName());
 		prep.setString(3, client.getGender());
-		
+		prep.setInt(4, address_id);
 		prep.executeUpdate();
 		prep.close();
+		String Query = "SELECT last_insert_rowid() AS lastId";
+		PreparedStatement stm2 =SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs=stm2.executeQuery();
+		int lastId = rs.getInt("lastId");
+		return(lastId);
 	}
 	
-	public static void newAddress (Address address) throws SQLException {
+	public static int newAddress (Address address) throws SQLException {
 		Connection c = SQLConnect.getConnection();
-		
-		
-		
-		System.out.println("OK1");
-		
-		
 		String sql = "INSERT INTO Address (country, postCode, street, town, number) "
 				+ "VALUES (?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
@@ -49,31 +48,36 @@ public class SQLInsert {
 		prep.setInt(2, address.getPostCode());
 		prep.setString(3, address.getStreet());
 		prep.setString(4, address.getTown());
-		prep.setInt(5, address.getNumber());
-		
-		System.out.println("OK2");
-		
+		prep.setInt(5, address.getNumber());	
 		prep.executeUpdate();
 		prep.close();
-		System.out.println("OK3");
+		String Query = "SELECT last_insert_rowid() AS lastId";
+		PreparedStatement stm2 =SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs=stm2.executeQuery();
+		int lastId = rs.getInt("lastId");
+		return(lastId);
 	}
 	
-	public static void newFeatures (Features features) throws SQLException {
+	public static int newFeatures (Features features) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO Features (extraPrice, style, sensibility, enhancedMovement) "
+		String sql = "INSERT INTO Features (best_price, style, sensibility, enhanced_movement) "
 				+ "VALUES (?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setFloat(1, features.getExtraPrice());
 		prep.setString(2, features.getStyle());
 		prep.setBoolean(3, features.getSensibility());
 		prep.setBoolean(4, features.getEnhancedMovement());
-		
 		prep.executeUpdate();
 		prep.close();
+		String Query = "SELECT last_insert_rowid() AS lastId";
+		PreparedStatement stm2 =SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs=stm2.executeQuery();
+		int lastId = rs.getInt("lastId");
+		return(lastId);
 	}
 	
-	public static void newMaterial (Material material) throws SQLException {
+	public static int newMaterial (Material material) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
 		String sql = "INSERT INTO Material (priceModifier, type, provider) "
@@ -82,14 +86,17 @@ public class SQLInsert {
 		prep.setFloat(1, material.getPriceModifier());
 		prep.setString(2, material.getType());
 		prep.setString(3, material.getProvider());
-		
-		
 		prep.executeUpdate();
 		prep.close();
+		String Query = "SELECT last_insert_rowid() AS lastId";
+		PreparedStatement stm2 =SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs=stm2.executeQuery();
+		int lastId = rs.getInt("lastId");
+		return(lastId);
 	}
 	
 	
-	public static void newPayment (Payment payment) throws SQLException {
+	public static int newPayment (Payment payment) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
 		String sql = "INSERT INTO Payments (deadline, iban, method) "
@@ -98,18 +105,21 @@ public class SQLInsert {
 		prep.setDate(1, payment.getDeadline());
 		prep.setInt(2, payment.getIban());
 		prep.setString(3, payment.getMethod());
-		
-		
 		prep.executeUpdate();
 		prep.close();
+		String Query = "SELECT last_insert_rowid() AS lastId";
+		PreparedStatement stm2 =SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs=stm2.executeQuery();
+		int lastId = rs.getInt("lastId");
+		return(lastId);
 	}
 	
 	
-	public static void newProsthetics (Prosthetics prosthetics) throws SQLException {
+	public static int newProsthetics (Prosthetics prosthetics,int payment_id) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO Prosthetics (bestPrice, size, weight, type_of_functionality, color, type_of_amputation) "
-				+ "VALUES (?,?,?,?,?,?);";
+		String sql = "INSERT INTO Prosthetics (bestPrice, size, weight, type_of_functionality, color, type_of_amputation, payment_id) "
+				+ "VALUES (?,?,?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setFloat(1, prosthetics.getBestPrice());
 		prep.setFloat(2, prosthetics.getSize());
@@ -117,24 +127,37 @@ public class SQLInsert {
 		prep.setString(4, prosthetics.getTypeOfFunctionality());
 		prep.setString(5, prosthetics.getColor());
 		prep.setString(6, prosthetics.getTypeOfAmputation());
-		
+		prep.setInt(7, payment_id);
 		prep.executeUpdate();
 		prep.close();
+		String Query = "SELECT last_insert_rowid() AS lastId";
+		PreparedStatement stm2 =SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs=stm2.executeQuery();
+		int lastId = rs.getInt("lastId");
+		return(lastId);
 	}
-	
-	
-	
-	
-	public static void main(String args[]) {
-		try {
-		
-			
-			
-		
-		
-		
-	} catch (Exception e) {
-		e.printStackTrace();
+	public static void newClient_Prosthetics(int client_id,int prosthetic_id) throws SQLException {
+		String sql ="INSERT INTO Client_Prosthetics (client_id, prosthetic_id, date) VALUES (?,?,CURRENT_TIMESTAMP)";
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(sql);
+		stm1.setInt(1, client_id);
+		stm1.setInt(2, prosthetic_id);
+		stm1.executeUpdate();
+		stm1.close();
 	}
-}
+	public static void newFeatures_Prosthetics(int feature_id, int prosthetic_id )throws SQLException {
+		String sql ="INSERT INTO Features_Prosthetics (feature_id, prosthetic_id) VALUES (?,?)";
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(sql);
+		stm1.setInt(1, feature_id);
+		stm1.setInt(2, prosthetic_id);
+		stm1.executeUpdate();
+		stm1.close();
+	}
+	public static void newMaterial_Prosthetics(int material_id, int prosthetic_id )throws SQLException {
+		String sql ="INSERT INTO Features_Prosthetics (material_id, prosthetic_id) VALUES (?,?)";
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(sql);
+		stm1.setInt(1, material_id);
+		stm1.setInt(2, prosthetic_id);
+		stm1.executeUpdate();
+		stm1.close();
+	}
 }
