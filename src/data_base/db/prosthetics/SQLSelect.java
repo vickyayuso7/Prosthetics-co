@@ -51,12 +51,12 @@ public class SQLSelect{
 		
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "SELECT * FROM address";
+		String sql = "SELECT * FROM address join clients on id = sdt";
 
 		Statement statement = c.prepareStatement(sql);
 		ResultSet rs = statement.executeQuery(sql);
 		while (rs.next()) {
-			/*
+			
 			int id = rs.getInt("id");
 			String country = rs.getString("country");
 			int postCode = rs.getInt("postCode");
@@ -71,7 +71,7 @@ public class SQLSelect{
 			
 			Client client = new Client(client.setAddress(address),client.setDateOfBirth(dateOfBirth),client.setGender(gender),client.setId(id),
 					client.setName(name),client.setProsthetics(prosthetics));
-			*/
+			
 		}
 		rs.close();
 		
