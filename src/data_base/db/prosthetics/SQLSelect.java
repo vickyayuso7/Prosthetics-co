@@ -193,7 +193,7 @@ public class SQLSelect{
 		while(rs.next()) {
 			float size = rs.getFloat("size");
 			float weight = rs.getFloat("weight");
-			String type_of_funcionality= rs.getString("type_of_funcionality");
+			String type_of_funcionality= rs.getString("type_of_functionality");
 			String type_of_amputation= rs.getString("type_of_amputation");
 			String color = rs.getString("color");
 			float bestPrice = rs.getFloat("bestPrice");
@@ -300,9 +300,10 @@ public class SQLSelect{
 			int postCode = rs.getInt("postCode");
 			String street = rs.getString("street");
 			String town = rs.getString("town");
+			String city =rs.getString("city");
 			int number=rs.getInt("number");
 			int idp = rs.getInt("id");
-			address=new Address (id,country, postCode,street, town,number);
+			address=new Address (id,country, postCode,street, town,number,null, city);
 		}
 		return(address);
 	}
@@ -356,7 +357,7 @@ public class SQLSelect{
 		stm1.setInt(1, ids);
 		ResultSet rs= stm1.executeQuery();
 		while (rs.next()) {
-			id=""+rs.getInt("id");
+			id=""+rs.getInt("prosthetic_id");
 			idlist.add(id);
 		}
 		rs.close();
@@ -404,7 +405,7 @@ public class SQLSelect{
 		ResultSet rs =stm1.executeQuery();
 		int ids=-1;
 		while (rs.next()) {
-			ids=rs.getInt("address_id");
+			ids=rs.getInt("payment_id");
 		}
 		return(ids);
 		
@@ -418,7 +419,7 @@ public class SQLSelect{
 		Payment pmn =new Payment();
 		while(rs.next()) {
 			int id =rs.getInt("id");
-			Date deadline = rs.getDate("date_of_birth");
+			Date deadline = rs.getDate("deadline");
 			int iban =rs.getInt("iban");
 			String method =rs.getString("method");
 			pmn.setDeadline(deadline);

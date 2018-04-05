@@ -49,7 +49,7 @@ public class EditClient extends JFrame {
 	public EditClient(WizardHandler myNameIsTim) {
 		option1 = -1;
 		option2 = -1;
-
+		System.out.println("paso");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,7 +58,7 @@ public class EditClient extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		//frame.add(contentPane);
+		frame.add(contentPane);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
@@ -188,7 +188,7 @@ public class EditClient extends JFrame {
 							textArea.setText(textArea.getText() + "\n");
 						} else {
 							String choice="";
-							//Wizard Handler modify Client 
+							choice=myNameIsTim.editClient(cln,adr,prs,pmn);
 							if (choice.equals("all clear")) {
 								frame.dispose();
 							} else {
@@ -304,6 +304,31 @@ public class EditClient extends JFrame {
 					textField_7.setText(prs.getTypeOfAmputation());
 					textField_7.setEditable(true);
 					
+					
+					textField_8.setText(adr.getCountry());
+					textField_8.setEditable(true);
+					textField_9.setText(adr.getCity());
+					textField_9.setEditable(true);
+					textField_10.setText(adr.getTown());
+					textField_10.setEditable(true);
+					textField_11.setText(""+adr.getPostCode());
+					textField_11.setEditable(true);
+					textField_12.setText(adr.getStreet());
+					textField_12.setEditable(true);
+					textField_13.setText(""+adr.getNumber());
+					textField_13.setEditable(true);
+					
+					
+					textField_15.setText(pmn.getMethod());
+					textField_15.setEditable(true);
+					textField_16.setText(""+pmn.getIban());
+					textField_16.setEditable(true);
+					textField_17.setText(""+pmn.getDeadline().getDay());
+					textField_17.setEditable(true);
+					textField_18.setText(""+pmn.getDeadline().getMonth());
+					textField_18.setEditable(true);
+					textField_19.setText(""+pmn.getDeadline().getYear());
+					textField_19.setEditable(true);
 				}
 			}
 		});

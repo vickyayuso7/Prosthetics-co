@@ -17,6 +17,7 @@ public class WizardHandler{
 		int idClient=-1;
 		int idProsthetic=-1;
 		try {
+			System.out.println(adr.getCountry()+"\n"+adr.getCity()+"\n"+adr.getTown()+"\n"+adr.getStreet()+"\n"+adr.getNumber()+"\n"+adr.getPostCode());
 			idAddress=SQLInsert.newAddress(adr);
 		}
 		catch(SQLException e) {
@@ -148,7 +149,7 @@ public class WizardHandler{
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
-			id[1]="error";
+			id[0]="error";
 		}
 		return(id);
 	}
@@ -259,7 +260,12 @@ public class WizardHandler{
 		try {
 			String[] id =new String[1];
 			id =SQLSelect.getProstheticIdThruClientId(clientId).toArray(id);
-			return(Integer.parseInt(id[1]));
+			int ids=0;
+			for (int i = 0; i < id.length; i++) {
+				System.out.println(id[i]);
+				ids = Integer.parseInt(id[i]);
+			}
+			return(ids);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -293,6 +299,10 @@ public class WizardHandler{
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public String editClient(Client cln, Address adr, Prosthetics prs, Payment pmn) {
+		// TODO Auto-generated method stub
+		return ("all clear");
 	}
 
 }

@@ -41,14 +41,15 @@ public class SQLInsert {
 	
 	public static int newAddress (Address address) throws SQLException {
 		Connection c = SQLConnect.getConnection();
-		String sql = "INSERT INTO Address (country, postCode, street, town, number) "
-				+ "VALUES (?,?,?,?,?);";
+		String sql = "INSERT INTO Address (country, postCode, street, town, number, city) "
+				+ "VALUES (?,?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setString(1, address.getCountry());
 		prep.setInt(2, address.getPostCode());
 		prep.setString(3, address.getStreet());
 		prep.setString(4, address.getTown());
-		prep.setInt(5, address.getNumber());	
+		prep.setInt(5, address.getNumber());
+		prep.setString(6, address.getCity());
 		prep.executeUpdate();
 		prep.close();
 		String Query = "SELECT last_insert_rowid() AS lastId";
@@ -153,7 +154,7 @@ public class SQLInsert {
 		stm1.close();
 	}
 	public static void newMaterial_Prosthetics(int material_id, int prosthetic_id )throws SQLException {
-		String sql ="INSERT INTO Features_Prosthetics (material_id, prosthetic_id) VALUES (?,?)";
+		String sql ="INSERT INTO Material_Prosthetics (material_id, prosthetic_id) VALUES (?,?)";
 		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(sql);
 		stm1.setInt(1, material_id);
 		stm1.setInt(2, prosthetic_id);
