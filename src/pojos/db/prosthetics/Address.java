@@ -2,9 +2,39 @@ package pojos.db.prosthetics;
 
 import java.io.Serializable;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+
+
+@Entity
+@Table(name = "address")
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 6147789758100340047L;
+	
+	
+	@Id
+	@GeneratedValue(generator = "address")
+	@TableGenerator(name = "address", table = "sqlite_sequence",
+		pkColumnName = "address", valueColumnName = "seq", pkColumnValue = "address")
+	
+	
 	
 	private Integer id;
 	private String country;
@@ -12,14 +42,21 @@ public class Address implements Serializable {
 	private String street;
 	private String town;
 	private Integer number;
-	private Client client;
 	private String city;
 	
+	
+@Basic(fetch = FetchType.LAZY) //this are not retrieved until are used
+	
+
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="client_id")
+	private Client client;	
 	public Address() {
-		
 		super();
-		
+		this.client = client;
 	}
+	
+	
 	
 	public Address(int id, String country, int postCode, String street, String town, int number, Client client, String city) {
 		
