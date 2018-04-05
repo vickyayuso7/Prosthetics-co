@@ -1,9 +1,25 @@
-
 package pojos.db.prosthetics;
-
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+@Entity
+@Table(name = "material")
 
 public class Material implements Serializable{
 	/**
@@ -11,11 +27,30 @@ public class Material implements Serializable{
 	 */
 
 	private static final long serialVersionUID = -5860436926701456573L;
+	
+	@Id
+	@GeneratedValue(generator = "material")
+	@TableGenerator(name = "material", table = "sqlite_sequence",
+		pkColumnName = "material", valueColumnName = "seq", pkColumnValue = "material")
+	
+	
 	float priceModifier;
 	String type;
 	String provider;
 	int id;
+	
+	
+	
+	@Basic(fetch = FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
+	private Address address;	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Prosthetics> prosthetics;
+	public Material() {
+		super();
+		this.prosthetics = new ArrayList<Prosthetics>();
+	}
 	
 	Material(Float prc, int id, String tp, String prv, List<Prosthetics> prosthetics){
 		this.priceModifier=prc;

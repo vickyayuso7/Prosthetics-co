@@ -1,11 +1,29 @@
 package pojos.db.prosthetics;
-
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 
+
+
+@Entity
+@Table(name = "prosthetics")
 public class Prosthetics implements Serializable {
 
 	/**
@@ -13,6 +31,14 @@ public class Prosthetics implements Serializable {
 	 */
 	
 	private static final long serialVersionUID = 3745716868877683707L;
+	
+	@Id
+	@GeneratedValue(generator = "prosthetics")
+	@TableGenerator(name = "prosthetics", table = "sqlite_sequence",
+		pkColumnName = "prosthetics", valueColumnName = "seq", pkColumnValue = "prosthetics")
+	
+	
+	
 	private Integer id;
 	private Float bestPrice;
 	private Float size;
@@ -20,11 +46,27 @@ public class Prosthetics implements Serializable {
 	private String typeOfFunctionality;
 	private String color;
 	private String typeOfAmputation;
+	
+	
+	
+	
+	@Basic(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "payment_id")
 	private Payment payment;
 	
-	private List<Client> clients;
-	private List<Features> features;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Material> materials;
+	
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List<Features> features;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List<Client> clients;
+	
 	
 	public Prosthetics() {
 		super();

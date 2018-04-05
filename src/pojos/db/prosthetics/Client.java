@@ -1,33 +1,67 @@
 package pojos.db.prosthetics;
+
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 
 
 
-
+@Entity
+@Table(name = "client")
 public class Client implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4798145916410889568L;
+	
+	 
+		@Id
+		@GeneratedValue(generator = "client")
+		@TableGenerator(name = "client", table = "sqlite_sequence",
+			pkColumnName = "client", valueColumnName = "seq", pkColumnValue = "client")
+		
+		
 	private Integer id;
 	private String name;
 	private String gender;
-	private List<Prosthetics> prosthetics;
-	private Address address;
+	
 	private Date dateOfBirth;
 	
 	
+	
+	
+	@Basic(fetch = FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
+	private Address address;	
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List<Prosthetics> prosthetics;
+	
 	//mandatory constructor
-
 	public Client() {
 		super();
 		this.prosthetics = new ArrayList<Prosthetics>();
 	}
+	
+	
+
 	
 	// You can create as many extra constructors as you wish
 		
