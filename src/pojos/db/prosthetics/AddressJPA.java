@@ -31,7 +31,7 @@ public class AddressJPA implements Serializable {
 	@Id
 	@GeneratedValue(generator = "address")
 	@TableGenerator(name = "address", table = "sqlite_sequence",
-		pkColumnName = "id", valueColumnName = "seq", pkColumnValue = "address")
+		pkColumnName = "address", valueColumnName = "seq", pkColumnValue = "address")
 	private Integer id;
 	private String country;
 	private Integer postCode;
