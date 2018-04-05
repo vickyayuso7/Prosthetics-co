@@ -26,7 +26,7 @@ public class SQLUpdate{
 		stm1.executeUpdate();
 		stm1.close();
 	}
-	
+	//
 		public static void updateAddress(Address ad) throws SQLException{
 			String update= "UPDATE Address SET country= ? SET postCode = ? SET "
 					+ "street =? SET town = ? SET number = ? SET city = ? WHERE id =?";
