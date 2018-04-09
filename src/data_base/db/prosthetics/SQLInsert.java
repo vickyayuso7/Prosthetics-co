@@ -127,6 +127,7 @@ public class SQLInsert {
 		prep.setFloat(3, prosthetics.getWeight());
 		prep.setString(4, prosthetics.getTypeOfFunctionality());
 		prep.setString(5, prosthetics.getColor());
+		System.out.println(prosthetics.getTypeOfAmputation());
 		prep.setString(6, prosthetics.getTypeOfAmputation());
 		prep.setInt(7, payment_id);
 		prep.executeUpdate();
@@ -146,7 +147,7 @@ public class SQLInsert {
 		stm1.close();
 	}
 	public static void newFeatures_Prosthetics(int feature_id, int prosthetic_id )throws SQLException {
-		String sql ="INSERT INTO Features_Prosthetics (feature_id, prosthetic_id) VALUES (?,?)";
+		String sql ="INSERT INTO Features_Prosthetics (features_id, prosthetic_id) VALUES (?,?)";
 		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(sql);
 		stm1.setInt(1, feature_id);
 		stm1.setInt(2, prosthetic_id);

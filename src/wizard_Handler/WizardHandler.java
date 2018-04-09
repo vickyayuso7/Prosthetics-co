@@ -166,6 +166,7 @@ public class WizardHandler{
 	public String editFeature(Features feat) {
 		String report="";
 		try {
+			//System.out.println(feat.getStyle());
 			SQLUpdate.updateFeatures(feat);
 			report="success";
 		}
@@ -301,8 +302,31 @@ public class WizardHandler{
 		}
 	}
 	public String editClient(Client cln, Address adr, Prosthetics prs, Payment pmn) {
-		// TODO Auto-generated method stub
-		return ("all clear");
+		try {
+			SQLUpdate.updateClient(cln);
+			SQLUpdate.updateAddress(adr);
+			SQLUpdate.updateProsthetics(prs);
+			SQLUpdate.updatePayment(pmn);
+			return ("all clear");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("throw me a plugged toaster while i bathe in my tears");
+			return("Just fucking kill me already");
+		}
+		
+	}
+	public String[] magicConversionPaymentsThrouProsthetic(int index) {
+		try {
+			String [] Payments =new String[1];
+			Payments=SQLSelect.getPaymentIdThruprostheticId(index).toArray(Payments);
+			return(Payments);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return (null);
+		}
+		
 	}
 
 }

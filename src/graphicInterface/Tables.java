@@ -15,6 +15,7 @@ import wizard_Handler.WizardHandler;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -23,6 +24,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Tables extends JFrame{
 
@@ -182,16 +185,27 @@ public class Tables extends JFrame{
 		listClients.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if(listClients.getSelectedIndex()!=-1) {
-					System.out.println("paso por aquí");
-					System.out.println(listClients.getSelectedIndex());
-					System.out.println(listClients.getSelectedValue());
 					int index= Integer.parseInt(listClients.getSelectedValue());
 					listProsthetics.setListData(myNameIsTim.magicConversionProstheticsThrouClient(index));
 					listProsthetics.setVisible(false);
 					listProsthetics.setVisible(true);
+					String[] id = new String[1];
+					id[0]=""+myNameIsTim.getAddressIdThruClientId(index);
+					listAddresses.setListData(id);;
 				}
 			}
 		});
+		listClients.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					int index = Integer.parseInt(listClients.getSelectedValue());
+					EditClient c =new EditClient(myNameIsTim,index);
+				}
+			}
+		});
+		/*index= Integer.parseInt(listProsthetics.getSelectedValue())
+		listPayments.setListData(myNameIsTim.magicConversionPaymentsThrouProsthetic(index));*/
 
 		listClients.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		listClients.setBackground(Color.LIGHT_GRAY);

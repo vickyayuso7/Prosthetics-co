@@ -202,6 +202,7 @@ public class SQLSelect{
 			float weight = rs.getFloat("weight");
 			String type_of_funcionality= rs.getString("type_of_funcionality");
 			String type_of_amputation= rs.getString("type_of_amputation");
+			System.out.println(type_of_amputation+"it is I Bendthatdiccuminbich but you can call me benefitial cucumber, what a pleasure is to meet you and so forth.");
 			String color = rs.getString("color");
 			float bestPrice = rs.getFloat("bestPrice");
 			//Payment payment = rs.getPayment("payment");
