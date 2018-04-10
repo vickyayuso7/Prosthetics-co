@@ -39,7 +39,7 @@ public class SQLCreate {
 			stmt3.close();
 			Statement stmt4 = c.createStatement(); //many to many relationship tables//
 			String sql4 = "CREATE TABLE Material_Prosthetics "
-					   + "(material_id     INTEGER  REFERENCES Materials(id) ON UPDATE CASCADE ON DELETE SET NULL,"
+					   + "(material_id     INTEGER  REFERENCES Material(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " prosthetic_id   INTEGER  REFERENCES Prosthetics(id) ON UPDATE CASCADE ON DELETE SET NULL,"
 					   + " PRIMARY KEY (material_id,prosthetic_id))";
 			System.out.println(sql4);

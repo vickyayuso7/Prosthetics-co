@@ -96,7 +96,7 @@ public class Prosthetics implements Serializable {
 	this.size=size;
 	this.weight=weight;
 	this.typeOfFunctionality=typeOfFuncionality;
-	this.typeOfAmputation=typeOfAmputation;
+	this.typeOfAmputation=type_of_amputation;
 	this.color=color;
 	this.bestPrice=bestPrice;
 	

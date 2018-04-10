@@ -170,6 +170,7 @@ public class NewClient extends JFrame {
 							JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOA)");
 						} else {
 							prs.setTypeOfAmputation(textField_7.getText());
+							System.out.println(prs.getTypeOfAmputation());
 						}
 						if (textField_2.getText().equals("")) {
 							JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOF)");

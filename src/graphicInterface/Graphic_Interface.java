@@ -98,7 +98,7 @@ public class Graphic_Interface extends JFrame{
 		mnEdit.add(mntmClient_1);
 		mntmClient_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//edit client;
+				EditClient c= new EditClient(guts);
 			}
 		});
 		
@@ -272,7 +272,7 @@ public class Graphic_Interface extends JFrame{
 				newCln.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-						
+							EditClient c =new EditClient(guts);
 						}
 						catch(Exception ex) {
 							ex.printStackTrace();

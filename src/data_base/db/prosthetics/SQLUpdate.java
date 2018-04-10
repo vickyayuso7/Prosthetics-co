@@ -14,22 +14,23 @@ import pojos.db.prosthetics.Prosthetics;
 public class SQLUpdate{
 	
 	public static void updateFeatures(Features feat) throws SQLException{
-		String update= "UPDATE Features SET style= ? SET best_price = ? SET "
-				+ "sensibility =? SET enhanced_movement = ? WHERE id =?";
+		String update= "UPDATE Features SET style= ?, best_price = ?, "
+				+ "sensibility =?, enhanced_movement = ? WHERE id =?";
 		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(update);
 		stm1.setString(1, feat.getStyle());
 		stm1.setFloat(2, feat.getExtraPrice());
 		stm1.setBoolean(3, feat.getSensibility());
 		stm1.setBoolean(4, feat.getEnhancedMovement());
-		System.out.println(feat.getStyle()+"\n"+feat.getId()+"\n"+feat.getExtraPrice()+"\n"+feat.getEnhancedMovement()+"\n"+feat.getSensibility());
+		//System.out.println(feat.getStyle());
+		//System.out.println(feat.getStyle()+"\n"+feat.getId()+"\n"+feat.getExtraPrice()+"\n"+feat.getEnhancedMovement()+"\n"+feat.getSensibility());
 		stm1.setInt(5, feat.getId());
 		stm1.executeUpdate();
 		stm1.close();
 	}
 	//
 		public static void updateAddress(Address ad) throws SQLException{
-			String update= "UPDATE Address SET country= ? SET postCode = ? SET "
-					+ "street =? SET town = ? SET number = ? SET city = ? WHERE id =?";
+			String update= "UPDATE Address SET country= ?, postCode = ?, "
+					+ "street =?, town = ?, number = ?, city = ? WHERE id =?";
 			PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(update);
 			stm1.setString(1, ad.getCountry());
 			stm1.setInt(2, ad.getPostCode());
@@ -44,7 +45,7 @@ public class SQLUpdate{
 		}
 		
 		public static void updateMaterial(Material mat) throws SQLException{
-			String update= "UPDATE Material SET priceModifier= ? SET type = ? SET "
+			String update= "UPDATE Material SET priceModifier= ?, type = ?, "
 					+ "provider =? WHERE id =?";
 			PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(update);
 			stm1.setFloat(1, mat.getPriceModifier());
@@ -58,8 +59,8 @@ public class SQLUpdate{
 		
 		
 		public static void updateClient(Client cli) throws SQLException{
-			String update= "UPDATE Client SET name= ? SET date_of_birth = ? SET "
-					+ "gender =? SET address_id = ? WHERE id =?";
+			String update= "UPDATE Client SET name= ?, date_of_birth = ?, "
+					+ "gender =? WHERE id =?";
 			PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(update);
 			stm1.setString(1, cli.getName());
 			stm1.setDate(2, cli.getDateOfBirth());
@@ -73,7 +74,7 @@ public class SQLUpdate{
 		
 		
 		public static void updatePayment(Payment pay) throws SQLException{
-			String update= "UPDATE Payment SET iban= ? SET deadline = ? SET "
+			String update= "UPDATE Payments SET iban= ?, deadline = ?, "
 					+ "method =?  WHERE id =?";
 			PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(update);
 			stm1.setInt(1, pay.getIban());
@@ -87,8 +88,8 @@ public class SQLUpdate{
 		}
 		
 		public static void updateProsthetics(Prosthetics pro) throws SQLException{
-			String update= "UPDATE Prosthetics SET bestPrice= ? SET size = ? SET "
-					+ "weight =? SET type_of_funcionality = ? SET color =? SET type_of_amputation = ? WHERE id =?";
+			String update= "UPDATE Prosthetics SET bestPrice= ?, size = ?, "
+					+ "weight =?, type_of_functionality = ?, color =?, type_of_amputation = ? WHERE id =?";
 			PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(update);
 			stm1.setFloat(1, pro.getBestPrice());
 			stm1.setFloat(2, pro.getSize());

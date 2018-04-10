@@ -227,6 +227,7 @@ public class EditFeatures extends JFrame {
 							result="price must be a number";
 							float price = Float.parseFloat(textField.getText());
 							String style =textField_1.getText();
+							//System.out.println(style);
 							boolean enhanced;
 							boolean sensibility;
 							if(comboBox.getSelectedIndex()==1) {
