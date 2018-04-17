@@ -21,30 +21,28 @@ import javax.persistence.TableGenerator;
 
 @Entity
 @Table(name = "userType")
-public class UserType implements Serializable {
+public class Privilege implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3005995623235179539L;
 	@Id
-	@GeneratedValue(generator = "userType")
-	@TableGenerator(name = "userType", table = "sqlite_sequence", pkColumnName = "userType", valueColumnName = "seq", pkColumnValue = "userType")
+	@GeneratedValue(generator = "Privilege")
+	@TableGenerator(name = "Privilege", table = "sqlite_sequence", pkColumnName = "Privilege", valueColumnName = "seq", pkColumnValue = "Privilege")
 
 	private Integer id;
-	private String name;
-	private String password;
+	private boolean privilege;
 	
 	@Basic(fetch = FetchType.LAZY)
 	@OneToOne (fetch=FetchType.LAZY)
-	private UserType userType;
+	private Privilege userType;
 
-	public UserType(Integer id, String name, String password, UserType userType) {
+	public Privilege(Integer id, boolean privilege) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.userType = userType;
+		this.privilege=privilege;
+	
 	}
 
 	public Integer getId() {
@@ -55,27 +53,19 @@ public class UserType implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public boolean getPrivilege() {
+		return privilege;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPrivilege(boolean privilege) {
+		this.privilege = privilege;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public UserType getUserType() {
+	public Privilege getUserType() {
 		return userType;
 	}
 
-	public void setUserType(UserType userType) {
+	public void setUserType(Privilege userType) {
 		this.userType = userType;
 	}
 
@@ -85,7 +75,7 @@ public class UserType implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserType [id=" + id + ", name=" + name + ", password=" + password + ", userType=" + userType + "]";
+		return "UserType [id=" + id + ", privilage=" + privilege + "]";
 	}
 
 	@Override
@@ -104,7 +94,7 @@ public class UserType implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserType other = (UserType) obj;
+		Privilege other = (Privilege) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

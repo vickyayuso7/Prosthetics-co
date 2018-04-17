@@ -96,6 +96,31 @@ public class SQLCreate {
 			stmt9.close();
 			System.out.println("Tables created.");
 	}
+	
+	
+	/*public static void CreateUser(Connection c) throws Exception{
+		Statement stmt1 = c.createStatement();
+		String sql1 = "CREATE TABLE Users "
+				+"(id   INTEGER  PRIMARY KEY AUTOINCREMENT,"
+				+"name  TEXT  NOT NULL,"
+				+"password 		TEXT NOT NULL, "
+				+ "userType_id	INTEGER  REFERENCES  UseType(id))";
+		System.out.println(sql1);
+		stmt1.executeUpdate(sql1);
+		stmt1.close();
+		
+		Statement stmt2= c.createStatement();
+		String sql2= "CREATE TABLE UserType"
+				+"id		INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ "privilege		BOOLEAN NOT NULL)";
+		
+		System.out.println(sql2);
+		stmt2.executeUpdate(sql2);
+		stmt2.close();
+				
+	
+	}*/
+	
 	public static void deleteDatabase(Connection c) throws SQLException{
 		String str1= "DROP Client;";
 		Statement stm1 = c.createStatement();

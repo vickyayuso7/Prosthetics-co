@@ -38,14 +38,22 @@ public class User implements Serializable {
 	
 	@Basic(fetch = FetchType.LAZY)
 	@OneToOne (fetch=FetchType.LAZY)
-	private User user;
+	private UserType userType;
 
-	public User(Integer id, String name, String password, User user) {
+	public User(Integer id, String name, String password, UserType userType) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
-		this.user = user;
+		this.userType = userType;
+	}
+
+	public User String name, String password, UserType userType) {
+		super();
+		
+		this.name = name;
+		this.password = password;
+		this.userType = userType;
 	}
 
 	public Integer getId() {
@@ -72,12 +80,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public User getUser() {
-		return user;
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 	@Override
