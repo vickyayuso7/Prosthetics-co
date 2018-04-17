@@ -31,7 +31,7 @@ public class User implements Serializable {
 	@GeneratedValue(generator = "user")
 	@TableGenerator(name = "user", table = "sqlite_sequence", pkColumnName = "user", valueColumnName = "seq", pkColumnValue = "user")
 
-	
+	//
 	private Integer id;
 	private String name;
 	private String password;
