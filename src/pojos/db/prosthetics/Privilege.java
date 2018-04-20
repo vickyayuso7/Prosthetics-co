@@ -36,7 +36,7 @@ public class Privilege implements Serializable {
 	
 	@Basic(fetch = FetchType.LAZY)
 	@OneToOne (fetch=FetchType.LAZY)
-	private Privilege userType;
+	private Privilege privilege;
 
 	public Privilege(Integer id, boolean privilege) {
 		super();
@@ -61,12 +61,12 @@ public class Privilege implements Serializable {
 		this.option = privilege;
 	}
 
-	public Privilege getUserType() {
-		return userType;
+	public Privilege getPRivilege() {
+		return privilege;
 	}
 
-	public void setUserType(Privilege userType) {
-		this.userType = userType;
+	public void setPrivilege(Privilege privilege) {
+		this.privilege = privilege;
 	}
 
 	public static long getSerialversionuid() {
@@ -75,7 +75,7 @@ public class Privilege implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserType [id=" + id + ", privilage=" + option + "]";
+		return "Privilege [id=" + id + ", privilege=" + option + "]";
 	}
 
 	@Override
