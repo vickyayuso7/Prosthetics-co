@@ -424,33 +424,33 @@ public class NewClient extends JFrame {
 		Component horizontalStrut_6 = Box.createHorizontalStrut(20);
 		panel_2.add(horizontalStrut_6, "cell 9 11");
 
-		Component horizontalStrut_7 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_7, "cell 10 11");
+		//Component horizontalStrut_7 = Box.createHorizontalStrut(20);
+		//panel_2.add(horizontalStrut_7, "cell 10 11");
 
-		Component horizontalStrut_8 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_8, "cell 11 11");
+		//Component horizontalStrut_8 = Box.createHorizontalStrut(20);
+		//panel_2.add(horizontalStrut_8, "cell 11 11");
 
 		Component horizontalStrut_9 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_9, "cell 12 11");
+		//panel_2.add(horizontalStrut_9, "cell 12 11");
 
 		Component horizontalStrut_10 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_10, "cell 13 11");
+		//panel_2.add(horizontalStrut_10, "cell 13 11");
 
 		Component horizontalStrut_11 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_11, "cell 14 11");
+		//panel_2.add(horizontalStrut_11, "cell 14 11");
 
 		JLabel lblCity = new JLabel("Country:");
-		panel_2.add(lblCity, "flowx,cell 19 11");
+		panel_2.add(lblCity, "flowx,cell 15 11");
 
 		textField_8 = new JTextField();
-		panel_2.add(textField_8, "cell 19 11,aligny top");
+		panel_2.add(textField_8, "cell 16 11,aligny top");
 		textField_8.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("City:");
-		panel_2.add(lblNewLabel_3, "cell 19 11");
+		panel_2.add(lblNewLabel_3, "cell 17 11");
 
 		textField_9 = new JTextField();
-		panel_2.add(textField_9, "cell 19 11");
+		panel_2.add(textField_9, "cell 18 11");
 		textField_9.setColumns(10);
 
 		JLabel lblTown = new JLabel("Town:");

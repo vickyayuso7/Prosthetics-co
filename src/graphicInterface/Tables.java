@@ -132,7 +132,7 @@ public class Tables extends JFrame{
 		btnAddresses.setBorderPainted(false);
 		panel_1.add(btnAddresses);
 		
-		JButton btnExit = new JButton("Exit");
+		JButton btnExit = new JButton("Back");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -212,7 +212,7 @@ public class Tables extends JFrame{
 				listProsthetics.setVisible(false);
 				listProsthetics.setVisible(true);
 				String[] idadr = new String[1];
-				idadr[0]=""+myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id));   
+				idadr[0]=""+myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id))+":   "+myNameIsTim.getAddressFull(myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id))).getStreet();   
 				listAddresses.setListData(idadr);
 			}
 		});
@@ -259,7 +259,7 @@ public class Tables extends JFrame{
 						if(escapechar && prostheticsId[i]==' ') {
 							counter=counter+1;
 						}
-						if(counter == 3) {
+						if(counter == 3 && prostheticsId[i]!=' ') {
 							id=id+prostheticsId[i];
 						}
 					}
@@ -283,15 +283,38 @@ public class Tables extends JFrame{
 						if(escapechar && prostheticsId[i]==' ') {
 							counter=counter+1;
 						}
-						if(counter == 3) {
+						if(counter == 3 && prostheticsId[i]!=' ') {
 							id=id+prostheticsId[i];
 						}
 					}
+					System.out.println(id);
 					prsId=Integer.parseInt(id);
 					pmnId=myNameIsTim.getPaymentIdThruProstheticId(prsId);
 					String[] aFineAditionToMyCollection=new String[1];
 					aFineAditionToMyCollection[0]=""+pmnId;
 					listPayments.setListData(aFineAditionToMyCollection);
+				}
+			}
+		});
+		
+		listAddresses.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+
+					char[] address=listAddresses.getSelectedValue().toCharArray();
+					String id="";
+					boolean escapechar=false;
+					for (int i = 0; i < address.length; i++) {
+						if(address[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar!=true) {
+							id=id+address[i];
+						}
+					}
+					int idAdr=Integer.parseInt(id);
+					ViewAdress a=new ViewAdress(myNameIsTim,idAdr);
 				}
 			}
 		});
