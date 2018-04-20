@@ -3,11 +3,11 @@ package data_base.db.prosthetics;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class SQLConnect {
+public class SQLConnect implements Yisus{
 private static	Connection connect;
 private static	boolean connected;
 	
-	 static public void establishConnection() {
+	 public void establishConnection(){
 		try {
 			Class.forName("org.sqlite.JDBC");
 			connect = DriverManager.getConnection("jdbc:sqlite:./db/prosthetics");
@@ -24,7 +24,7 @@ private static	boolean connected;
 		return connect;
 	}
 	
-	static public void closeConnection() {
+	public void closeConnection() {
 		try {
 			connect.close();
 			connected=false;

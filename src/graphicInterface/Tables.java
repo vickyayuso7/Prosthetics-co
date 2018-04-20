@@ -204,7 +204,11 @@ public class Tables extends JFrame{
 						id=id+charcmp;
 					}
 				}
-				listProsthetics.setListData(myNameIsTim.magicConversionProstheticsThrouClient(Integer.parseInt(id)));
+				String[]prosthetics=myNameIsTim.magicConversionProstheticsThrouClient(Integer.parseInt(id));
+				for (int i = 0; i < prosthetics.length; i++) {
+					prosthetics[i]="Prosthetic:   "+prosthetics[i];
+				}
+				listProsthetics.setListData(prosthetics);
 				listProsthetics.setVisible(false);
 				listProsthetics.setVisible(true);
 				String[] idadr = new String[1];
@@ -226,7 +230,11 @@ public class Tables extends JFrame{
 							id=id+charcmp;
 						}
 					}
-					listProsthetics.setListData(myNameIsTim.magicConversionProstheticsThrouClient(Integer.parseInt(id)));
+					String[]prosthetics=myNameIsTim.magicConversionProstheticsThrouClient(Integer.parseInt(id));
+					for (int i = 0; i < prosthetics.length; i++) {
+						prosthetics[i]="Prosthetic:   "+prosthetics[i];
+					}
+					listProsthetics.setListData(prosthetics);
 					listProsthetics.setVisible(false);
 					listProsthetics.setVisible(true);
 					String[] idadr = new String[1];
@@ -240,7 +248,22 @@ public class Tables extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(arg0.getClickCount()==2) {
-					ViewProsthetic p =new ViewProsthetic(myNameIsTim,Integer.parseInt(listProsthetics.getSelectedValue()));
+					char[] prostheticsId=listProsthetics.getSelectedValue().toCharArray();
+					String id="";
+					int counter=0;
+					boolean escapechar=false;
+					for (int i = 0; i < prostheticsId.length; i++) {
+						if(prostheticsId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && prostheticsId[i]==' ') {
+							counter=counter+1;
+						}
+						if(counter == 3) {
+							id=id+prostheticsId[i];
+						}
+					}
+					ViewProsthetic p =new ViewProsthetic(myNameIsTim,Integer.parseInt(id));
 				}
 			}
 		});
@@ -249,7 +272,22 @@ public class Tables extends JFrame{
 				int pmnId;
 				int prsId;
 				if(listProsthetics.getSelectedIndex()!=-1) {
-					prsId= Integer.parseInt((String)listProsthetics.getSelectedValue());
+					char[] prostheticsId=listProsthetics.getSelectedValue().toCharArray();
+					String id="";
+					int counter=0;
+					boolean escapechar=false;
+					for (int i = 0; i < prostheticsId.length; i++) {
+						if(prostheticsId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && prostheticsId[i]==' ') {
+							counter=counter+1;
+						}
+						if(counter == 3) {
+							id=id+prostheticsId[i];
+						}
+					}
+					prsId=Integer.parseInt(id);
 					pmnId=myNameIsTim.getPaymentIdThruProstheticId(prsId);
 					String[] aFineAditionToMyCollection=new String[1];
 					aFineAditionToMyCollection[0]=""+pmnId;

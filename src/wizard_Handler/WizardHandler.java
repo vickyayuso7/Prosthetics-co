@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import data_base.db.prosthetics.*;
 import pojos.db.prosthetics.*;
 public class WizardHandler{
-
+SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 
 	public WizardHandler(){
-		SQLConnect.establishConnection();
+		thisIsYourFaultRodrigoDamnYou.establishConnection();
 	}	
 	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs, int featureId, int materialId) {
 		String report="all clear";
@@ -101,7 +101,7 @@ public class WizardHandler{
 		}
 	}
 	public void appClosed() {
-		SQLConnect.closeConnection();
+		thisIsYourFaultRodrigoDamnYou.closeConnection();
 	}
 	public String reloadTables() {
 		try {

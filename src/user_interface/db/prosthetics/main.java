@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class main{
 	public static void main( String args[]) throws IOException {
-		SQLConnect.establishConnection();
+		//SQLConnect.establishConnection();
 		try {
 			SQLCreate.Create(SQLConnect.getConnection());
 		} catch (Exception e) {

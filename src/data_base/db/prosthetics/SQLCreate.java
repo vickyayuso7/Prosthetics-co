@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SQLCreate {
+public abstract class SQLCreate implements ILiveInAConstantStateOfFearAndMisery{
 	public static void Create(Connection c) throws Exception{
 			Statement stmt1 = c.createStatement();
 			String sql1 = "CREATE TABLE Payments "
