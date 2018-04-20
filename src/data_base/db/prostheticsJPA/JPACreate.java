@@ -18,6 +18,7 @@ public class JPACreate {
 		user.getTransaction().commit();
 		
 		System.out.println("Please, input the user info:");
+		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		System.out.print("Name: ");
