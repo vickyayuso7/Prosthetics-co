@@ -9,10 +9,17 @@ import pojos.db.prosthetics.User;
 
 
 public class JPADelete {
-	private static EntityManager user;
+	private static EntityManager manager;
 
-	private static void printEmployees() {
-		Query q2 = user.createNativeQuery("SELECT * FROM User", User.class);
+	private static void printUser() {
+		Query q1 = manager.createNativeQuery("SELECT * FROM User", User.class);
+		List<User> users = (List<User>) q1.getResultList();
+		for (User tempUser : users ) {
+			System.out.println(tempUser);
+		}
+	}
+	public static void main(String[] args){
+		printUser();
 		
 	}
 }

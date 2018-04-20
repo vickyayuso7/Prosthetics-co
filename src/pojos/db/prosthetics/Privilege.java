@@ -35,8 +35,8 @@ public class Privilege implements Serializable {
 	private boolean option;
 	
 	@Basic(fetch = FetchType.LAZY)
-	@OneToOne (fetch=FetchType.LAZY)
-	private Privilege userType;
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List<User> user;
 
 	public Privilege(Integer id, boolean privilege) {
 		super();
@@ -61,12 +61,12 @@ public class Privilege implements Serializable {
 		this.option = privilege;
 	}
 
-	public Privilege getUserType() {
-		return userType;
+	public List<User> getUser() {
+		return user;
 	}
 
-	public void setUserType(Privilege userType) {
-		this.userType = userType;
+	public void setUser(List<User> user) {
+		this.user = user;
 	}
 
 	public static long getSerialversionuid() {
