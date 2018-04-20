@@ -85,7 +85,7 @@ public class Privilege implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Privilege [id=" + id + ", privilege=" + option + "]";
+		return "Privilege [id=" + id + ", option=" + option + ", user=" + user + ", privilege=" + privilege + "]";
 	}
 
 	@Override
