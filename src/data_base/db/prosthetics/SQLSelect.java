@@ -459,9 +459,51 @@ public class SQLSelect{
 		}
 		return(pmn);
 	}
+
+
+	public static int[] getClientIdthrouName(String name) throws SQLException{
+		ArrayList <String> names =new ArrayList <String>();
+		String Query="SELECT id FROM client WHERE name = ?;";
+		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setString(1, name);
+		ResultSet rs = stm1.executeQuery();
+		while(rs.next()) {
+			names.add(rs.getString("id"));
+		}
+		String[]arrayNames = names.toArray(new String[1]);
+		int[]id =new int[arrayNames.length];
+		for (int i = 0; i < id.length; i++) {
+			id[i] =Integer.parseInt(arrayNames[i]);
+		}
+		return(id);
+	}
 	
+	public static int getMaterialIdthruProstheticId(int id) throws SQLException{
+		int matId=-1;
+		String Query="SELECT material_id FROM Material_Prosthetics WHERE prosthetic_id =?";
+		PreparedStatement stm1 =SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, id);
+		ResultSet rs= stm1.executeQuery();
+		while(rs.next()) {
+			matId=rs.getInt("material_id");
+		}
+		return(matId);
+	}
 	//SELECT * payment (not asking for id)
 	//SELECT * MATERIAL (not asking for id)
+
+
+	public static int getFeatureIdthruProstheticId(int prsId) throws SQLException{
+		int featId=-1;
+		String Query="SELECT features_id FROM Features_Prosthetics WHERE prosthetic_id =?";
+		PreparedStatement stm1 =SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, prsId);
+		ResultSet rs= stm1.executeQuery();
+		while(rs.next()) {
+			featId=rs.getInt("features_id");
+		}
+		return(featId);
+	}
 	
 	
 	
