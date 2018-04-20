@@ -454,6 +454,7 @@ public class NewClient extends JFrame {
 		textField_9.setColumns(10);
 
 		JLabel lblTown = new JLabel("Town:");
+		
 		panel_2.add(lblTown, "cell 19 11");
 
 		textField_10 = new JTextField();
