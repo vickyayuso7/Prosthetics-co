@@ -35,13 +35,12 @@ public class Privilege implements Serializable {
 	private boolean option;
 	
 	@Basic(fetch = FetchType.LAZY)
-<<<<<<< HEAD
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<User> user;
-=======
+
 	@OneToOne (fetch=FetchType.LAZY)
 	private Privilege privilege;
->>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co
 
 	public Privilege(Integer id, boolean privilege) {
 		super();
@@ -66,22 +65,18 @@ public class Privilege implements Serializable {
 		this.option = privilege;
 	}
 
-<<<<<<< HEAD
 	public List<User> getUser() {
 		return user;
-=======
+	}
 	public Privilege getPRivilege() {
 		return privilege;
->>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co
 	}
 
-<<<<<<< HEAD
 	public void setUser(List<User> user) {
 		this.user = user;
-=======
+	}
 	public void setPrivilege(Privilege privilege) {
 		this.privilege = privilege;
->>>>>>> branch 'master' of https://github.com/vickyayuso7/Prosthetics-co
 	}
 
 	public static long getSerialversionuid() {
