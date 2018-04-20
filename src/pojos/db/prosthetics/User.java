@@ -38,22 +38,21 @@ public class User implements Serializable {
 	
 	@Basic(fetch = FetchType.LAZY)
 	@OneToOne (fetch=FetchType.LAZY)
-	private UserType userType;
+	private Privilege privilege;
 
-	public User(Integer id, String name, String password, UserType userType) {
+	public User(Integer id, String name, String password) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
-		this.userType = userType;
 	}
 
-	public User String name, String password, UserType userType) {
+	public User (String name, String password) {
 		super();
 		
 		this.name = name;
 		this.password = password;
-		this.userType = userType;
+		
 	}
 
 	public Integer getId() {
@@ -80,12 +79,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public UserType getUserType() {
-		return userType;
+	public Privilege getPrivilege() {
+		return privilege;
 	}
 
-	public void setUserType(UserType userType) {
-		this.userType = userType;
+	public void setUserType(Privilege userType) {
+		this.privilege = privilege;
 	}
 
 	@Override
