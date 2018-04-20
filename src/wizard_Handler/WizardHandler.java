@@ -316,17 +316,63 @@ public class WizardHandler{
 		}
 		
 	}
-	public String[] magicConversionPaymentsThrouProsthetic(int index) {
+		
+	public int[] getClientIdThrouName(String name) {
 		try {
-			String [] Payments =new String[1];
-			Payments=SQLSelect.getPaymentIdThruprostheticId(index).toArray(Payments);
-			return(Payments);
+			int[]id = SQLSelect.getClientIdthrouName(name);
+			return(id);
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
-			return (null);
+			return(null);
 		}
-		
 	}
-
+	public String EditMaterial(Material mat) {
+		String report ="";
+		try {
+			SQLUpdate.updateMaterial(mat);
+			report="success";
+		}
+		catch(Exception ex) {
+			report="failed";
+		}
+		return report;
+	}
+	public String newProsthetic(Prosthetics prs,Material mat, Features feat, Payment pmn,int clnID) {
+		String report="failed";
+		int idpay;
+		int idprs;
+		try {
+			idpay=SQLInsert.newPayment(pmn);
+			idprs=SQLInsert.newProsthetics(prs, idpay);
+			SQLInsert.newClient_Prosthetics(clnID, idprs);
+			SQLInsert.newFeatures_Prosthetics(feat.getId(), idprs);
+			SQLInsert.newMaterial_Prosthetics(mat.getId(), idprs);
+			report="success";
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return report;
+	}
+	public int  getMaterialidThrouProstheticId(int prsId) {
+		int id=-1;
+		try {
+			id= SQLSelect.getMaterialIdthruProstheticId(prsId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return(id);
+	}
+	public int  getFeatureidThrouProstheticId(int prsId) {
+		int id=-1;
+		try {
+			id= SQLSelect.getFeatureIdthruProstheticId(prsId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return(id);
+	}
+	
 }

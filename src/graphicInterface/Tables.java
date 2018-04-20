@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -22,13 +23,15 @@ import java.awt.GridLayout;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Tables extends JFrame{
-
+	private static int selectedIndex=0;
 	private JFrame frame =new JFrame();
 	private JPanel contentPane;
 	private static JPanel panel_2;
@@ -177,30 +180,80 @@ public class Tables extends JFrame{
 		panel_2.add(panel_4,BorderLayout.NORTH);
 		panel_2.add(panel_3,BorderLayout.CENTER);
 		panel_3.setLayout(new GridLayout(1,4));
-		JList <String> listClients=new <String> JList(myNameIsTim.getClientId());
+		final String[] clientIds = myNameIsTim.getClientId();
+		final String[]names=new String[clientIds.length];
+		for (int i = 0; i < clientIds.length; i++) {
+			names[i]=clientIds[i]+":   "+myNameIsTim.getClientFull(Integer.parseInt(clientIds[i])).getName();
+		}
+				
+		JList <String> listClients=new <String> JList(names);
 		listClients.setSelectedIndex(-1);
 		JList <String> listProsthetics =new JList();
 		JList <String> listPayments =new JList();
 		JList <String> listAddresses =new JList();
+		
 		listClients.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				if(listClients.getSelectedIndex()!=-1) {
-					int index= Integer.parseInt(listClients.getSelectedValue());
-					listProsthetics.setListData(myNameIsTim.magicConversionProstheticsThrouClient(index));
-					listProsthetics.setVisible(false);
-					listProsthetics.setVisible(true);
-					String[] id = new String[1];
-					id[0]=""+myNameIsTim.getAddressIdThruClientId(index);
-					listAddresses.setListData(id);;
+				int Index;
+				char charcmp='D';
+				char[]name=listClients.getSelectedValue().toCharArray();
+				String id="";
+				for(int i=0;	charcmp!=':';	i++) {
+					charcmp=name[i];
+					if(charcmp!=':') {
+						id=id+charcmp;
+					}
 				}
+				listProsthetics.setListData(myNameIsTim.magicConversionProstheticsThrouClient(Integer.parseInt(id)));
+				listProsthetics.setVisible(false);
+				listProsthetics.setVisible(true);
+				String[] idadr = new String[1];
+				idadr[0]=""+myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id));   
+				listAddresses.setListData(idadr);
 			}
 		});
 		listClients.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(arg0.getClickCount()==2) {
-					int index = Integer.parseInt(listClients.getSelectedValue());
-					EditClient c =new EditClient(myNameIsTim,index);
+					int Index;
+					char charcmp='D';
+					char[]name=listClients.getSelectedValue().toCharArray();
+					String id="";
+					for(int i=0;	charcmp!=':';	i++) {
+						charcmp=name[i];
+						if(charcmp!=':') {
+							id=id+charcmp;
+						}
+					}
+					listProsthetics.setListData(myNameIsTim.magicConversionProstheticsThrouClient(Integer.parseInt(id)));
+					listProsthetics.setVisible(false);
+					listProsthetics.setVisible(true);
+					String[] idadr = new String[1];
+					idadr[0]=""+myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id));   
+					listAddresses.setListData(idadr);
+					EditClient c =new EditClient(myNameIsTim,Integer.parseInt(id));
+				}
+			}
+		});
+		listProsthetics.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					ViewProsthetic p =new ViewProsthetic(myNameIsTim,Integer.parseInt(listProsthetics.getSelectedValue()));
+				}
+			}
+		});
+		listProsthetics.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				int pmnId;
+				int prsId;
+				if(listProsthetics.getSelectedIndex()!=-1) {
+					prsId= Integer.parseInt((String)listProsthetics.getSelectedValue());
+					pmnId=myNameIsTim.getPaymentIdThruProstheticId(prsId);
+					String[] aFineAditionToMyCollection=new String[1];
+					aFineAditionToMyCollection[0]=""+pmnId;
+					listPayments.setListData(aFineAditionToMyCollection);
 				}
 			}
 		});

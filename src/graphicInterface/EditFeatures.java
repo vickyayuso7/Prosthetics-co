@@ -242,7 +242,8 @@ public class EditFeatures extends JFrame {
 							else {
 								sensibility =false;
 							}
-							Features feat =new Features(price, style, sensibility, enhanced);
+							int id=Integer.parseInt(list.getSelectedValue());
+							Features feat =new Features(id, price, style, sensibility, enhanced);
 							result= myNameIsTim.editFeature(feat);
 							frame.dispose();
 						}

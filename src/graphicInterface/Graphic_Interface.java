@@ -114,7 +114,7 @@ public class Graphic_Interface extends JFrame{
 		mnEdit.add(mntmMaterial);
 		mntmMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//edit material
+				EditMaterial m =new EditMaterial(guts);
 			}
 		});
 		
@@ -245,6 +245,7 @@ public class Graphic_Interface extends JFrame{
 				JPanel panel17=new JPanel();
 				JPanel panel18=new JPanel();
 				
+				
 				panel1.setBackground(new Color(255,255,255));
 				panel2.setBackground(new Color(255,255,255));
 				panel3.setBackground(new Color(255,255,255));
@@ -328,7 +329,7 @@ public class Graphic_Interface extends JFrame{
 				newMat.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-							
+							EditMaterial mat =new EditMaterial(guts);
 						}
 						catch(Exception ex) {
 							ex.printStackTrace();
@@ -348,6 +349,7 @@ public class Graphic_Interface extends JFrame{
 						}
 					}
 				});
+				
 				
 				panel_1.add(panel1);
 				panel_1.add(panel2);
@@ -419,7 +421,7 @@ public class Graphic_Interface extends JFrame{
 			panel_1.removeAll();
 			panel_1.validate();
 			panel_1.setVisible(false);
-			panel_1.setLayout(new GridLayout(7,3));
+			panel_1.setLayout(new GridLayout(9,3));
 			JPanel panel1=new JPanel();
 			JPanel panel2=new JPanel();
 			JPanel panel3=new JPanel();
@@ -438,6 +440,11 @@ public class Graphic_Interface extends JFrame{
 			JPanel panel16=new JPanel();
 			JPanel panel17=new JPanel();
 			JPanel panel18=new JPanel();
+			JPanel panel19=new JPanel();
+			JPanel panel20=new JPanel();
+			JPanel panel21=new JPanel();
+			JPanel panel22=new JPanel();
+			JPanel panel23=new JPanel();
 			
 			panel1.setBackground(new Color(255,255,255));
 			panel2.setBackground(new Color(255,255,255));
@@ -457,6 +464,11 @@ public class Graphic_Interface extends JFrame{
 			panel16.setBackground(new Color(255,255,255));
 			panel17.setBackground(new Color(255,255,255));
 			panel18.setBackground(new Color(255,255,255));
+			panel23.setBackground(new Color(255,255,255));
+			panel19.setBackground(new Color(255,255,255));
+			panel20.setBackground(new Color(255,255,255));
+			panel21.setBackground(new Color(255,255,255));
+			panel22.setBackground(new Color(255,255,255));
 			
 			JButton newCln= new JButton();
 			newCln.setText("New Client");
@@ -537,6 +549,32 @@ public class Graphic_Interface extends JFrame{
 					}
 				}
 			});
+			JButton newPrs= new JButton();
+			newPrs.setText("New Prosthetic");
+			newPrs.setBackground(new Color(0,0,0));
+			newPrs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						NewProsthetic p =new NewProsthetic(guts);
+					}
+					catch(Exception ex) {
+						ex.printStackTrace();
+						try {
+							String str = guts.createTables();
+							if(str.equals("failed")) {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+							}
+							else {
+								JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard: np fam, Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul");
+							}
+							
+						}
+						catch(Exception exc) {
+							JOptionPane.showMessageDialog(null, " -Program: DataBase not created, Wizard u got this dude?\n-Wizard:np brah, YOU SHALL NOT PASS!\n*falls into pit of darkness and dies anticlimatically\n anyhow, your tables are fucked fix em up before continiung");
+						}
+					}
+				}
+			});
 			
 			panel_1.add(panel1);
 			panel_1.add(panel2);
@@ -559,6 +597,12 @@ public class Graphic_Interface extends JFrame{
 			panel_1.add(panel16);
 			panel_1.add(panel17);
 			panel_1.add(panel18);
+			panel_1.add(panel19);
+			panel_1.add(newPrs);
+			panel_1.add(panel20);
+			panel_1.add(panel21);
+			panel_1.add(panel22);
+			panel_1.add(panel23);
 			
 			panel_1.setVisible(true);
 			panel1.setVisible(true);
@@ -576,17 +620,28 @@ public class Graphic_Interface extends JFrame{
 			panel13.setVisible(true);
 			panel14.setVisible(true);
 			panel15.setVisible(true);
+			panel16.setVisible(true);
+			panel17.setVisible(true);
+			panel18.setVisible(true);
+			panel19.setVisible(true);
+			panel20.setVisible(true);
+			panel21.setVisible(true);
+			panel22.setVisible(true);
+			panel23.setVisible(true);
 			newCln.setVisible(true);
 			newFtr.setVisible(true);
 			newMat.setVisible(true);
+			newPrs.setVisible(true);
 			
 			newCln.setForeground(new Color(0,255,0));
 			newFtr.setForeground(new Color(0,255,0));
 			newMat.setForeground(new Color(0,255,0));
+			newPrs.setForeground(new Color(0,255,0));
 			
 			newCln.setFont(new Font("Consolas", Font.PLAIN, 11));
 			newFtr.setFont(new Font("Consolas", Font.PLAIN, 11));
 			newMat.setFont(new Font("Consolas", Font.PLAIN, 11));
+			newPrs.setFont(new Font("Consolas", Font.PLAIN, 11));
 			
 		//}
 	}

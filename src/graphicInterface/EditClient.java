@@ -102,7 +102,7 @@ public class EditClient extends JFrame {
 						adr.setTown(textField_10.getText());
 						adr.setCity(textField_9.getText());
 						try {
-							if(Integer.parseInt(textField_6.getText())<10 && textField_6.getText().toCharArray()[0]!='0') {
+							if(Integer.parseInt(textField_6.getText())<10 && textField_6.getText().toCharArray()[0]!=0) {
 								textField_6.setText("0"+textField_6.getText());
 							}
 							String str = textField_14.getText() + "-" + textField_6.getText() + "-"
@@ -726,34 +726,34 @@ public class EditClient extends JFrame {
 		panel_2.add(verticalStrut_1, "flowx,cell 19 4");
 
 		JLabel lblMeasures = new JLabel("Measures:");
-		panel_2.add(lblMeasures, "flowx,cell 19 5,alignx left");
+		//panel_2.add(lblMeasures, "flowx,cell 19 5,alignx left");
 
 		textField_3 = new JTextField();
 		textField_3.setEditable(false);
-		panel_2.add(textField_3, "cell 19 5,alignx right");
+		//panel_2.add(textField_3, "cell 19 5,alignx right");
 		textField_3.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Size:");
-		panel_2.add(lblNewLabel, "cell 19 5");
+		//panel_2.add(lblNewLabel, "cell 19 5");
 
 		textField_4 = new JTextField();
 		textField_4.setEditable(false);
-		panel_2.add(textField_4, "cell 19 5");
+		//panel_2.add(textField_4, "cell 19 5");
 		textField_4.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Weight:");
-		panel_2.add(lblNewLabel_1, "cell 19 5");
+		//panel_2.add(lblNewLabel_1, "cell 19 5");
 
 		textField_5 = new JTextField();
 		textField_5.setEditable(false);
-		panel_2.add(textField_5, "cell 19 5");
+		//panel_2.add(textField_5, "cell 19 5");
 		textField_5.setColumns(10);
 
 		Component verticalStrut_5 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_5, "flowx,cell 19 6");
 
 		JLabel lblNewLabel_2 = new JLabel("Color:");
-		panel_2.add(lblNewLabel_2, "flowx,cell 19 7");
+		//panel_2.add(lblNewLabel_2, "flowx,cell 19 7");
 
 		comboBox = new JComboBox(gender);
 		comboBox.setEnabled(false);
@@ -768,29 +768,29 @@ public class EditClient extends JFrame {
 		String colours[] = myNameIsTim.getColours();
 		comboBox_1 = new JComboBox(colours);
 		comboBox_1.setEnabled(false);
-		panel_2.add(comboBox_1, "cell 19 7");
+		//panel_2.add(comboBox_1, "cell 19 7");
 		option2 = comboBox_1.getSelectedIndex();
 
 		JLabel lblTypeOfFunctionality = new JLabel("Type of functionality:");
-		panel_2.add(lblTypeOfFunctionality, "cell 19 7,alignx left");
+		//panel_2.add(lblTypeOfFunctionality, "cell 19 7,alignx left");
 
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
-		panel_2.add(textField_2, "cell 19 7");
+		//panel_2.add(textField_2, "cell 19 7");
 		textField_2.setColumns(10);
 
 		JLabel lblTypeOfAmputation = new JLabel("Type of Amputation");
-		panel_2.add(lblTypeOfAmputation, "cell 19 7");
+		//panel_2.add(lblTypeOfAmputation, "cell 19 7");
 
 		textField_7 = new JTextField();
 		textField_7.setEditable(false);
-		panel_2.add(textField_7, "cell 19 7");
+		//panel_2.add(textField_7, "cell 19 7");
 		textField_7.setColumns(10);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setForeground(Color.GREEN);
 		panel_3.setBackground(Color.BLACK);
-		panel_2.add(panel_3, "cell 0 3 20 1,growx");
+		//panel_2.add(panel_3, "cell 0 3 20 1,growx");
 
 		JLabel lblProsthetics = new JLabel("Prosthetic\r\n");
 		lblProsthetics.setFont(new Font("Consolas", Font.PLAIN, 11));
@@ -907,7 +907,7 @@ public class EditClient extends JFrame {
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(Color.BLACK);
-		panel_2.add(panel_5, "cell 0 15 20 1,grow");
+		//panel_2.add(panel_5, "cell 0 15 20 1,grow");
 
 		JLabel lblPayment = new JLabel("Payment");
 		lblPayment.setFont(new Font("Consolas", Font.PLAIN, 11));
@@ -916,7 +916,7 @@ public class EditClient extends JFrame {
 		panel_5.add(lblPayment);
 
 		JLabel lblNewLabel_4 = new JLabel("Method:");
-		panel_2.add(lblNewLabel_4, "flowx,cell 19 22");
+		//panel_2.add(lblNewLabel_4, "flowx,cell 19 22");
 
 		Component verticalStrut_7 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_7, "cell 19 23");
@@ -936,47 +936,47 @@ public class EditClient extends JFrame {
 
 		textField_15 = new JTextField();
 		textField_15.setEditable(false);
-		panel_2.add(textField_15, "cell 19 22");
+		//panel_2.add(textField_15, "cell 19 22");
 		textField_15.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("ISBN:");
-		panel_2.add(lblNewLabel_5, "cell 19 22");
+		//panel_2.add(lblNewLabel_5, "cell 19 22");
 
 		textField_16 = new JTextField();
 		textField_16.setEditable(false);
-		panel_2.add(textField_16, "cell 19 22");
+		//panel_2.add(textField_16, "cell 19 22");
 		textField_16.setColumns(10);
 
 		JLabel lblDeadline = new JLabel("Deadline:");
-		panel_2.add(lblDeadline, "cell 19 22");
+		//panel_2.add(lblDeadline, "cell 19 22");
 
 		textField_17 = new JTextField();
 		textField_17.setEditable(false);
-		panel_2.add(textField_17, "cell 19 22");
+		//panel_2.add(textField_17, "cell 19 22");
 		textField_17.setColumns(3);
 
 		JLabel label_2 = new JLabel("/");
-		panel_2.add(label_2, "cell 19 22");
+		//panel_2.add(label_2, "cell 19 22");
 
 		textField_18 = new JTextField();
 		textField_18.setEditable(false);
-		panel_2.add(textField_18, "cell 19 22");
+		//panel_2.add(textField_18, "cell 19 22");
 		textField_18.setColumns(3);
 
 		JLabel label_3 = new JLabel("/");
-		panel_2.add(label_3, "cell 19 22");
+		//panel_2.add(label_3, "cell 19 22");
 
 		textField_19 = new JTextField();
 		textField_19.setEditable(false);
-		panel_2.add(textField_19, "cell 19 22");
+		//panel_2.add(textField_19, "cell 19 22");
 		textField_19.setColumns(3);
 
 		JLabel lblPrice = new JLabel("Price:");
-		panel_2.add(lblPrice, "cell 19 5");
+		//panel_2.add(lblPrice, "cell 19 5");
 
 		textField_20 = new JTextField();
 		textField_20.setEditable(false);
-		panel_2.add(textField_20, "cell 19 5");
+		//panel_2.add(textField_20, "cell 19 5");
 		textField_20.setColumns(10);
 		panel.setVisible(true);
 		frame.setVisible(true);
