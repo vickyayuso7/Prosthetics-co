@@ -66,10 +66,6 @@ public class NewClient extends JFrame {
 		JButton btnOk = new JButton("Ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*
-				 * how to check if the combobox is a valid option and actually contains
-				 * something valid.
-				 */
 				fuckedup = 0;
 				if (option1 != -1 && option2 != -1) {
 					if (textField.getText().equals("") && textField_1.getText().equals("")
@@ -118,7 +114,6 @@ public class NewClient extends JFrame {
 							ex.printStackTrace();
 						}
 						if (option1 != -1 && option1 != 0) {
-							System.out.println(option1);
 							cln.setGender(gender[option1]);
 						} else {
 							System.out.println(option1);
@@ -170,7 +165,6 @@ public class NewClient extends JFrame {
 							JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOA)");
 						} else {
 							prs.setTypeOfAmputation(textField_7.getText());
-							System.out.println(prs.getTypeOfAmputation());
 						}
 						if (textField_2.getText().equals("")) {
 							JOptionPane.showMessageDialog(null, "fill in the rquired field:(TOF)");
@@ -284,11 +278,6 @@ public class NewClient extends JFrame {
 		panel_2.add(lblMaterial, "cell 4 5");
 		
 		comboBox_2 = new JComboBox(myNameIsTim.getFeatureId());
-		comboBox_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		panel_2.add(comboBox_2, "cell 9 5 5 1,growx");
 
 		JLabel lblMeasures = new JLabel("Measures:");
@@ -424,33 +413,33 @@ public class NewClient extends JFrame {
 		Component horizontalStrut_6 = Box.createHorizontalStrut(20);
 		panel_2.add(horizontalStrut_6, "cell 9 11");
 
-		//Component horizontalStrut_7 = Box.createHorizontalStrut(20);
-		//panel_2.add(horizontalStrut_7, "cell 10 11");
+		Component horizontalStrut_7 = Box.createHorizontalStrut(20);
+		panel_2.add(horizontalStrut_7, "cell 10 11");
 
-		//Component horizontalStrut_8 = Box.createHorizontalStrut(20);
-		//panel_2.add(horizontalStrut_8, "cell 11 11");
+		Component horizontalStrut_8 = Box.createHorizontalStrut(20);
+		panel_2.add(horizontalStrut_8, "cell 11 11");
 
 		Component horizontalStrut_9 = Box.createHorizontalStrut(20);
-		//panel_2.add(horizontalStrut_9, "cell 12 11");
+		panel_2.add(horizontalStrut_9, "cell 12 11");
 
 		Component horizontalStrut_10 = Box.createHorizontalStrut(20);
-		//panel_2.add(horizontalStrut_10, "cell 13 11");
+		panel_2.add(horizontalStrut_10, "cell 13 11");
 
 		Component horizontalStrut_11 = Box.createHorizontalStrut(20);
-		//panel_2.add(horizontalStrut_11, "cell 14 11");
+		panel_2.add(horizontalStrut_11, "cell 14 11");
 
 		JLabel lblCity = new JLabel("Country:");
-		panel_2.add(lblCity, "flowx,cell 15 11");
+		panel_2.add(lblCity, "flowx,cell 19 11");
 
 		textField_8 = new JTextField();
-		panel_2.add(textField_8, "cell 16 11,aligny top");
+		panel_2.add(textField_8, "cell 19 11,aligny top");
 		textField_8.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("City:");
-		panel_2.add(lblNewLabel_3, "cell 17 11");
+		panel_2.add(lblNewLabel_3, "cell 19 11");
 
 		textField_9 = new JTextField();
-		panel_2.add(textField_9, "cell 18 11");
+		panel_2.add(textField_9, "cell 19 11");
 		textField_9.setColumns(10);
 
 		JLabel lblTown = new JLabel("Town:");

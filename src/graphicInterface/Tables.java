@@ -238,7 +238,7 @@ public class Tables extends JFrame{
 					listProsthetics.setVisible(false);
 					listProsthetics.setVisible(true);
 					String[] idadr = new String[1];
-					idadr[0]=""+myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id));   
+					idadr[0]=""+myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id))+":   "+myNameIsTim.getAddressFull(myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id))).getStreet();   
 					listAddresses.setListData(idadr);
 					EditClient c =new EditClient(myNameIsTim,Integer.parseInt(id));
 				}
@@ -267,6 +267,29 @@ public class Tables extends JFrame{
 				}
 			}
 		});
+		listPayments.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					char[]paymentId=listPayments.getSelectedValue().toCharArray();
+					String id="";
+					boolean escapechar=false;
+					int counter=0;
+					for (int i = 0; i < paymentId.length; i++) {
+						if(paymentId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && paymentId[i]==' ') {
+							counter=counter +1;
+						}
+						if(counter==3 && paymentId[i]!=' ') {
+							id=id+paymentId[i];
+						}
+					}
+					
+				}
+			}
+		});
 		listProsthetics.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				int pmnId;
@@ -291,7 +314,7 @@ public class Tables extends JFrame{
 					prsId=Integer.parseInt(id);
 					pmnId=myNameIsTim.getPaymentIdThruProstheticId(prsId);
 					String[] aFineAditionToMyCollection=new String[1];
-					aFineAditionToMyCollection[0]=""+pmnId;
+					aFineAditionToMyCollection[0]="Payment Id:   "+pmnId;
 					listPayments.setListData(aFineAditionToMyCollection);
 				}
 			}

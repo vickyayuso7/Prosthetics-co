@@ -374,5 +374,14 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 		}
 		return(id);
 	}
+	public float getFullPrice(int prostheticId) {
+		int id=0;
+		try {
+			SQLSelect.getFullPrice(prostheticId);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return 0;
+	}
 	
 }

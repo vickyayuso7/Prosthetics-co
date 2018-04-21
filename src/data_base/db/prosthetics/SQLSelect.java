@@ -52,6 +52,7 @@ public class SQLSelect{
 		stm1.close();
 		while(rs.next()) {
 			colour= rs.getString("color");
+			System.out.println(colour);
 			colours.add(colour);
 		}
 		rs.close();
@@ -503,6 +504,12 @@ public class SQLSelect{
 			featId=rs.getInt("features_id");
 		}
 		return(featId);
+	}
+
+
+	public static float getFullPrice(int prostheticId) {
+		//String Query ="SELECT priceModifier + best_price + bestPrice FROM Material AS mat JOIN Features AS feat JOIN Prosthetics AS prs WHERE mat.id = "
+		return(0);
 	}
 	
 	
