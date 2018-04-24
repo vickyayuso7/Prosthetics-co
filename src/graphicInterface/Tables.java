@@ -286,7 +286,23 @@ public class Tables extends JFrame{
 							id=id+paymentId[i];
 						}
 					}
-					
+					char[]prostheticsId=listProsthetics.getSelectedValue().toCharArray();
+					escapechar=false;
+					String prsId="";
+					counter=0;
+					for (int i = 0; i < prostheticsId.length; i++) {
+						if(prostheticsId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && prostheticsId[i]==' ') {
+							counter=counter+1;
+						}
+						if(counter == 3 && prostheticsId[i]!=' ') {
+							prsId=prsId+prostheticsId[i];
+						}
+					}
+					System.out.println(prsId);
+				ViewPayment p= new ViewPayment(myNameIsTim, Integer.parseInt(id), Integer.parseInt(prsId));
 				}
 			}
 		});

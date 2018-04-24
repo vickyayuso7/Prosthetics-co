@@ -45,7 +45,7 @@ public class ViewPayment extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		//frame.add(contentPane);
+		frame.add(contentPane);
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
 		contentPane.add(panel, BorderLayout.NORTH);
