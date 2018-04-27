@@ -11,22 +11,13 @@ import pojos.db.prosthetics.*;;
 
 public class JPACreate {
 
-	public static void main(String[] args)throws IOException{
+	public static void create (User user1)throws IOException{
 		EntityManager user = Persistence.createEntityManagerFactory("user").createEntityManager();
 		user.getTransaction().begin();
 		user.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
 		user.getTransaction().commit();
 		
-		System.out.println("Please, input the user info:");
-		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		System.out.print("Password: ");
-		String password = reader.readLine();
-		
-		User user1= new User(name, password);
+		//-----------------
 		// Begin transaction 
 				user.getTransaction().begin();
 				// Store the object
@@ -43,7 +34,7 @@ public class JPACreate {
 		priviledge.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
 		priviledge.getTransaction().commit();
 		
-		System.out.println("Please, input the user info:");
+		/*System.out.println("Please, input the user info:");
 		
 		System.out.print("Option: ");
 		String option = reader.readLine();
@@ -59,6 +50,21 @@ public class JPACreate {
 				
 				// Close the entity manager
 				priviledge.close(); 
+	*/	
+	}
+	
+	public static void main(String []args) throws IOException {
+System.out.println("Please, input the user info:");
 		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
+		System.out.print("Name: ");
+		String name = reader.readLine();
+		System.out.print("Password: ");
+		String password = reader.readLine();
+		
+		User user1= new User(name, password);
+		
+		create(user1);
 	}
 }

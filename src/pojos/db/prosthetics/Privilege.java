@@ -48,7 +48,12 @@ public class Privilege implements Serializable {
 		this.option=privilege;
 	
 	}
-
+	public Privilege() {
+		super();
+		this.id=id;
+		this.option=option;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
