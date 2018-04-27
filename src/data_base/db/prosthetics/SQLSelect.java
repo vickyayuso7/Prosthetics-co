@@ -90,7 +90,7 @@ public class SQLSelect{
 	
 	public static ArrayList<String> getProstheticId() throws SQLException{
 		String id;
-		String Query="SELECT id FROM Prosthetic;";
+		String Query="SELECT id FROM Prosthetics;";
 		ArrayList <String> idlist= new <String> ArrayList();
 		Statement stm1 = SQLConnect.getConnection().createStatement();
 		ResultSet rs= stm1.executeQuery(Query);
@@ -99,7 +99,6 @@ public class SQLSelect{
 			idlist.add(id);
 		}		
 		return(idlist);
-		
 	}
 	
 	
@@ -510,6 +509,19 @@ public class SQLSelect{
 	public static float getFullPrice(int prostheticId) {
 		//String Query ="SELECT priceModifier + best_price + bestPrice FROM Material AS mat JOIN Features AS feat JOIN Prosthetics AS prs WHERE mat.id = "
 		return(0);
+	}
+
+
+	public static int getProstheticIdThruPaymentId(int parseInt) throws SQLException{
+		int featId=-1;
+		String Query="SELECT id FROM Prosthetics WHERE payment_id =?";
+		PreparedStatement stm1 =SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, parseInt);
+		ResultSet rs= stm1.executeQuery();
+		while(rs.next()) {
+			featId=rs.getInt("id");
+		}
+		return(featId);
 	}
 	
 	

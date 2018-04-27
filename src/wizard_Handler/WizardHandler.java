@@ -383,5 +383,26 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 		}
 		return 0;
 	}
+	public String[] getProstheticsId() {
+		try {
+			String[] id=SQLSelect.getProstheticId().toArray(new String[1]);
+			return(id);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return(null);
+		}
+	}
+	public int getProstheticIdThruPaymentId(int parseInt) {
+		int id;
+		try {
+			id = SQLSelect.getProstheticIdThruPaymentId(parseInt);
+			return id;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return(0);
+		}
+		
+	}
 	
 }
