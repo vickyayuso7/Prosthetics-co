@@ -29,7 +29,7 @@ public class Privilege implements Serializable {
 	private static final long serialVersionUID = -3005995623235179539L;
 	@Id
 	@GeneratedValue(generator = "Privilege")
-	@TableGenerator(name = "Privilege", table = "sqlite_sequence", pkColumnName = "Privilege", valueColumnName = "seq", pkColumnValue = "Privilege")
+	@TableGenerator(name = "Privilege", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "Privilege")
 
 	private Integer id;
 	private boolean option;

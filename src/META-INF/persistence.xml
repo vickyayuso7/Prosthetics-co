@@ -6,7 +6,7 @@
 	<!-- Persistence Provider -->
 	<!-- RESOURCE-LOCAL: Application-managed transactions -->
 	<!-- JTA: Container-managed transactions -->
-	<persistence-unit name="user" transaction-type="RESOURCE_LOCAL">  
+	<persistence-unit name="manager" transaction-type="RESOURCE_LOCAL">  
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
  
  
@@ -20,15 +20,14 @@
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
 		    <property name="javax.persistence.jdbc.url"	value="jdbc:sqlite:./db/prosthetics" />  
 			<!-- Fill if we need user and password -->
-			<property name="javax.persistence.jdbc.user" value="" />
-			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.manager" value="" />
 		    
 		    <!-- Controls logging level -->
 		    <property name="eclipselink.logging.level" value="INFO" />
 		    <!-- <property name="eclipselink.logging.level" value="ALL" /> -->
 
 			<!-- JPA doesn't create the schema -->
-			<property name="eclipselink.ddl-generation" value="none" />    
+			<property name="eclipselink.ddl-generation" value="create-tables" />    
 			<!-- JPA destroys and recreates the schema -->
 			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables" /> -->
 		</properties>
