@@ -81,7 +81,7 @@ public class Greetings extends JFrame {
 		passwordField = new JPasswordField();
 		panel_1.add(passwordField, "cell 2 3,growx");
 		passwordField.setEditable(false);
-		String options[]= {"User","Admin"};
+		String options[]= {"User","Admin","sudosu"};
 		JComboBox comboBox = new JComboBox(options);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -11,39 +11,27 @@ import pojos.db.prosthetics.*;;
 
 public class JPACreate {
 
-	public static void main(String[] args)throws IOException{
-		EntityManager user = Persistence.createEntityManagerFactory("user").createEntityManager();
-		user.getTransaction().begin();
-		user.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
-		user.getTransaction().commit();
+	public static void create (User user1)throws IOException{
+		EntityManager manager = Persistence.createEntityManagerFactory("manager").createEntityManager();
+		manager.getTransaction().begin();
+		manager.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
+		manager.getTransaction().commit();
 		
-		System.out.println("Please, input the user info:");
-		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		System.out.print("Password: ");
-		String password = reader.readLine();
-		
-		User user1= new User(name, password);
+		//-----------------
 		// Begin transaction 
-				user.getTransaction().begin();
+				manager.getTransaction().begin();
 				// Store the object
-				user.persist(user1);
+				manager.persist(user1);
 				// End transaction
-				user.getTransaction().commit();
+				manager.getTransaction().commit();
 				
-				// Close the entity manager
-				user.close(); 
 		
 	
-		EntityManager priviledge = Persistence.createEntityManagerFactory("priviledge").createEntityManager();
-		priviledge.getTransaction().begin();
-		priviledge.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
-		priviledge.getTransaction().commit();
-		
-		System.out.println("Please, input the user info:");
+		manager.getTransaction().begin();
+		manager.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
+		manager.getTransaction().commit();
+		manager.close();
+		/*System.out.println("Please, input the user info:");
 		
 		System.out.print("Option: ");
 		String option = reader.readLine();
@@ -59,6 +47,21 @@ public class JPACreate {
 				
 				// Close the entity manager
 				priviledge.close(); 
+	*/	
+	}
+	
+	public static void main(String []args) throws IOException {
+System.out.println("Please, input the user info:");
 		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
+		System.out.print("Name: ");
+		String name = reader.readLine();
+		System.out.print("Password: ");
+		String password = reader.readLine();
+		
+		User user1= new User(name, password);
+		
+		create(user1);
 	}
 }

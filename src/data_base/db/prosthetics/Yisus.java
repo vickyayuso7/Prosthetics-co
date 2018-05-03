@@ -1,6 +1,6 @@
 package data_base.db.prosthetics;
 
-interface Yisus {
+public interface Yisus {
 	public void establishConnection();
 	public void closeConnection();
 }
