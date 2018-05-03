@@ -17,10 +17,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "material")
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Material")
 public class Material implements Serializable{
 	/**
 	 * 
@@ -33,20 +39,26 @@ public class Material implements Serializable{
 	@TableGenerator(name = "material", table = "sqlite_sequence",
 		pkColumnName = "material", valueColumnName = "seq", pkColumnValue = "material")
 	
-	
+	@XmlAttribute
 	float priceModifier;
+	@XmlAttribute
 	String type;
+	@XmlAttribute
 	String provider;
+	@XmlAttribute
 	int id;
 	
 	
 	
 	@Basic(fetch = FetchType.LAZY)
 	@OneToOne(fetch=FetchType.LAZY)
+	@XmlTransient
 	private Address address;	
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@XmlTransient
 	private List<Prosthetics> prosthetics;
+	
 	public Material() {
 		super();
 		this.prosthetics = new ArrayList<Prosthetics>();

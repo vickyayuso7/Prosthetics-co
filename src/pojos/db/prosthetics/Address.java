@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -19,11 +18,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+
 
 
 
 @Entity
 @Table(name = "address")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Address")
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 6147789758100340047L;
@@ -35,22 +43,30 @@ public class Address implements Serializable {
 		pkColumnName = "address", valueColumnName = "seq", pkColumnValue = "address")
 	
 	
-	
+	@XmlAttribute
 	private Integer id;
+	@XmlAttribute
 	private String country;
+	@XmlAttribute
 	private Integer postCode;
+	@XmlAttribute
 	private String street;
+	@XmlAttribute
 	private String town;
+	@XmlAttribute
 	private Integer number;
+	@XmlAttribute
 	private String city;
 	
 	
-@Basic(fetch = FetchType.LAZY) //this are not retrieved until are used
+	@Basic(fetch = FetchType.LAZY) //this are not retrieved until are used
 	
 
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="client_id")
+	@XmlTransient
 	private Client client;	
+
 	public Address() {
 		super();
 		this.client = client;
@@ -59,6 +75,7 @@ public class Address implements Serializable {
 	
 	
 	public Address(int id, String country, int postCode, String street, String town, int number, Client client, String city) {
+		
 		
 		this.id = id;
 		this.country = country;

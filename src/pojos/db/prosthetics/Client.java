@@ -1,5 +1,6 @@
 package pojos.db.prosthetics;
 
+
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -18,12 +19,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 
 
 @Entity
 @Table(name = "client")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Client")
 public class Client implements Serializable {
 
 	/**
@@ -32,27 +43,31 @@ public class Client implements Serializable {
 	private static final long serialVersionUID = 4798145916410889568L;
 	
 	 
-		@Id
-		@GeneratedValue(generator = "client")
-		@TableGenerator(name = "client", table = "sqlite_sequence",
-			pkColumnName = "client", valueColumnName = "seq", pkColumnValue = "client")
+	@Id
+	@GeneratedValue(generator = "client")
+	@TableGenerator(name = "client", table = "sqlite_sequence",
+		pkColumnName = "client", valueColumnName = "seq", pkColumnValue = "client")
 		
-		
+	@XmlAttribute	
 	private Integer id;
+	@XmlAttribute
 	private String name;
+	@XmlAttribute
 	private String gender;
-	
+	@XmlAttribute
+	@XmlJavaTypeAdapter(SQLDateAdapter.class) //Bajar del proyecto de rodrigo
 	private Date dateOfBirth;
-	
-	
-	
 	
 	@Basic(fetch = FetchType.LAZY)
 	@OneToOne(fetch=FetchType.LAZY)
+	@XmlAttribute
 	private Address address;	
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@XmlElement (name = "Prosthetic")
+	@XmlElementWrapper(name="Prosthetics")
 	private List<Prosthetics> prosthetics;
+	
 	
 	//mandatory constructor
 	public Client() {

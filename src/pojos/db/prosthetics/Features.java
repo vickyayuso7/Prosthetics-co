@@ -17,10 +17,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @Entity
 @Table(name = "features")
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Features")
 public class Features implements Serializable{
 	/**
 	 * 
@@ -32,18 +42,25 @@ public class Features implements Serializable{
 	@TableGenerator(name = "features", table = "sqlite_sequence",
 		pkColumnName = "features", valueColumnName = "seq", pkColumnValue = "features")
 	
-	
+	@XmlAttribute
 	private int id;
+	@XmlAttribute
 	private Float extraPrice;
+	@XmlAttribute
 	private String style;
+	@XmlAttribute
 	boolean sensibility;
+	@XmlAttribute
 	boolean enhancedMovement;
+	@XmlElement(name ="Feature")
+	@XmlElementWrapper(name ="features")
 	private List<Features> features;	
 	
 	
-@Basic(fetch = FetchType.LAZY)	
+	@Basic(fetch = FetchType.LAZY)	
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@XmlTransient
 	private List<Prosthetics> prosthetics;
 
 	public Features() {
