@@ -22,7 +22,6 @@ private static EntityManager connection;
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
 		
 		connection = Persistence.createEntityManagerFactory("user").createEntityManager();
 		connection.getTransaction().begin();
@@ -47,7 +46,9 @@ private static EntityManager connection;
 		
 	
 		connection.close();
-	}
+	
+		public static void main(String[] args) throws Exception {
+		}	
 }
 
 
