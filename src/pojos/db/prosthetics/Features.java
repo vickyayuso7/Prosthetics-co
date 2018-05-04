@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,17 +19,24 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.xml.bind.annotation.*;
 
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @Entity
 @Table(name = "features")
 
-//Indicating that the JAXB will look inside the class for XML annotations which are found in the class attributes.
 @XmlAccessorType(XmlAccessType.FIELD)
-
-//The root element is the first tag of the document.
 @XmlRootElement(name = "Features")
-
 public class Features implements Serializable{
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 3282893934193593462L;
 	
 	@Id
@@ -36,19 +44,18 @@ public class Features implements Serializable{
 	@TableGenerator(name = "features", table = "sqlite_sequence",
 		pkColumnName = "features", valueColumnName = "seq", pkColumnValue = "features")
 	
-	//Want to track existing features
 	@XmlAttribute
 	private int id;
-	@XmlElement
+	@XmlAttribute
 	private Float extraPrice;
-	@XmlElement
+	@XmlAttribute
 	private String style;
-	@XmlElement
+	@XmlAttribute
 	boolean sensibility;
-	@XmlElement
+	@XmlAttribute
 	boolean enhancedMovement;
-	@XmlElement(name = "Feature")
-	@XmlElementWrapper(name = "Features")
+	@XmlElement(name ="Feature")
+	@XmlElementWrapper(name ="features")
 	private List<Features> features;	
 	
 	
@@ -58,106 +65,46 @@ public class Features implements Serializable{
 	@XmlTransient
 	private List<Prosthetics> prosthetics;
 
-	//Need an empty constructor
-
 	public Features() {
-		
 		super();
 		this.prosthetics = new ArrayList<Prosthetics>();
-		
 	}
 	
 	public Features(int id, Float extraPrice, String style, boolean sensibility, boolean enhancedMovement){
-		
 		this.id=id;
 		this.extraPrice=extraPrice;
 		this.sensibility=sensibility;
 		this.enhancedMovement=enhancedMovement;
 		this.style=style;
 		this.features= new ArrayList<Features>();
-		
 	}
 	
 	public Features(float extraprice,String Style, boolean sensibility, boolean enhanced ){
-		
 		this.extraPrice=extraprice;
 		this.style=Style;
 		this.sensibility= sensibility;
 		this.enhancedMovement=enhanced;
-		
 	}
 	
-	//Need public getters and setters
 
 	public void setEnhancedMovement(boolean enhancedMovement) {
 		this.enhancedMovement = enhancedMovement;
 	}
-	
-	public String getStyle() {
-		return style;
-	}
 
-	public void setStyle(String style) {
-		this.style = style;
-	}
 
-	public Float getExtraPrice() {
-		return extraPrice;
-	}
 
-	public void setExtraPrice(Float extraPrice) {
-		this.extraPrice = extraPrice;
-	}
 
-	public List<Features> getFeatures() {
-		return features;
-	}
-	
-	public void setFeatures(List<Features> features) {
-		this.features = features;
-	}
-
-	public boolean getSensibility() {
-		return sensibility;
-	}
-	
-	public boolean getEnhancedMovement() {
-		return enhancedMovement;
-	}
-	
-	public void setType(String st) {
-		this.style=st;
-	}
-	
-	public void setId(int id) {
-		this.id=id;
-	}
-	
-	public void setSensibility(boolean sens) {
-		this.sensibility=sens;
-	}
-	
-	public void setEnhanced_movement(boolean movm) {
-		this.enhancedMovement=movm;
-	}
-	
-	public int getId() {
-		return(this.id);
-	}
-	
 	@Override
 	public int hashCode() {
-		
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
 		return result;
-		
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
-		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -168,33 +115,72 @@ public class Features implements Serializable{
 		if (id != other.id)
 			return false;
 		return true;
-		
 	}
+
 	
 	public String toString() {
-		
 		return "Features [id=" +id+ "sensibility="+sensibility+"enhancedMovement="+enhancedMovement+"style="+style;
-		
+	}
+	
+	
+
+	public String getStyle() {
+		return style;
+	}
+
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+
+	public Float getExtraPrice() {
+		return extraPrice;
+	}
+
+
+	public void setExtraPrice(Float extraPrice) {
+		this.extraPrice = extraPrice;
+	}
+
+	public List<Features> getFeatures() {
+		return features;
+	}
+
+
+	public void setFeatures(List<Features> features) {
+		this.features = features;
 	}
 	
 	public void addFeatures(Features feature) {
-		
 		if(!features.contains(feature)) {
-			
 			this.features.add(feature);
-			
 		}
-		
 	}
 	
 	public void removeFeatures(Features feature) {
-		
 		if(features.contains(feature)) {
-			
 			this.features.remove(feature);
-			
 		}
-		
 	}
-	
+	public boolean getSensibility() {
+		return sensibility;
+	}
+	public boolean getEnhancedMovement() {
+		return enhancedMovement;
+	}
+	public void setType(String st) {
+		this.style=st;
+	}
+	public void setId(int id) {
+		this.id=id;
+	} 
+	public void setSensibility(boolean sens) {
+		this.sensibility=sens;
+	}
+	public void setEnhanced_movement(boolean movm) {
+		this.enhancedMovement=movm;
+	}
+	public int getId() {
+		return(this.id);
+	}
 }

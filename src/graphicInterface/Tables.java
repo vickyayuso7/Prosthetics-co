@@ -31,7 +31,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Tables extends JFrame{
-	private static int selectedIndex=0;
 	private JFrame frame =new JFrame();
 	private JPanel contentPane;
 	private static JPanel panel_2;
@@ -80,6 +79,7 @@ public class Tables extends JFrame{
 		JButton btnNewButton = new JButton("Prosthetics");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ModifyViewForProsthetics(myNameIsTim);
 			}
 		});
 		btnNewButton.setBackground(Color.BLACK);
@@ -91,6 +91,7 @@ public class Tables extends JFrame{
 		JButton btnPayments = new JButton("Payments");
 		btnPayments.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ModifyViewForPayments(myNameIsTim);
 			}
 		});
 		btnPayments.setFont(new Font("Consolas", Font.PLAIN, 11));
@@ -102,6 +103,7 @@ public class Tables extends JFrame{
 		JButton btnMaterials = new JButton("Materials");
 		btnMaterials.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ModifyViewForMaterials(myNameIsTim);
 			}
 		});
 		btnMaterials.setBackground(Color.BLACK);
@@ -113,6 +115,7 @@ public class Tables extends JFrame{
 		JButton btnFeatures = new JButton("Features");
 		btnFeatures.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ModifyViewForFeatures(myNameIsTim);
 			}
 		});
 		btnFeatures.setForeground(Color.GREEN);
@@ -124,6 +127,7 @@ public class Tables extends JFrame{
 		JButton btnAddresses = new JButton("Addresses");
 		btnAddresses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ModifyViewForAddresses(myNameIsTim);
 			}
 		});
 		btnAddresses.setFont(new Font("Consolas", Font.PLAIN, 11));
@@ -379,5 +383,432 @@ public class Tables extends JFrame{
 		panel_2.setVisible(false);
 		panel_2.setVisible(true);
 	}
-
+	private static void ModifyViewForProsthetics(WizardHandler myNameIsTim) {
+		panel_2.removeAll();
+		panel_2.setVisible(false);
+		JPanel panel_3 =new JPanel();
+		JPanel panel_4 =new JPanel();
+		panel_3.setBackground(Color.BLACK);
+		panel_4.setBackground(Color.WHITE);
+		panel_3.setLayout(new GridLayout(1,2));
+		JLabel label_1 =new JLabel("Prosthetics");
+		JLabel label_2 =new JLabel("Payments");
+		label_1.setFont(new Font("consolas",Font.PLAIN,11));
+		label_2.setFont(new Font("consolas",Font.PLAIN,11));
+		label_1.setForeground(Color.GREEN);
+		label_2.setForeground(Color.GREEN);
+		panel_3.add(label_1);
+		panel_3.add(label_2);
+		panel_2.setLayout(new BorderLayout());
+		panel_2.add(panel_3,BorderLayout.NORTH);
+		panel_2.add(panel_4,BorderLayout.CENTER);
+		panel_3.setVisible(true); 
+		panel_4.setVisible(true);
+		panel_2.setVisible(true);
+		System.out.println("i have a bad case of diahrrea");
+		JList<String> listProsthetics =new JList<String>();
+		JList<String> listPayments = new JList<String>();
+		listProsthetics.setBackground(Color.LIGHT_GRAY);
+		listPayments.setBackground(Color.LIGHT_GRAY);
+		listPayments.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		listProsthetics.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		panel_4.setLayout(new GridLayout(1,2));
+		panel_4.add(listProsthetics);
+		panel_4.add(listPayments);
+		String[]prsIds=myNameIsTim.getProstheticsId();
+		for (int i = 0; i < prsIds.length; i++) {
+			prsIds[i]="Prosthetic:   "+prsIds[i];
+		}
+		listProsthetics.setListData(prsIds);
+		listProsthetics.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				int pmnId;
+				int prsId;
+				if(listProsthetics.getSelectedIndex()!=-1) {
+					char[] prostheticsId=listProsthetics.getSelectedValue().toCharArray();
+					String id="";
+					int counter=0;
+					boolean escapechar=false;
+					for (int i = 0; i < prostheticsId.length; i++) {
+						if(prostheticsId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && prostheticsId[i]==' ') {
+							counter=counter+1;
+						}
+						if(counter == 3 && prostheticsId[i]!=' ') {
+							id=id+prostheticsId[i];
+						}
+					}
+					System.out.println(id);
+					prsId=Integer.parseInt(id);
+					pmnId=myNameIsTim.getPaymentIdThruProstheticId(prsId);
+					String[] aFineAditionToMyCollection=new String[1];
+					aFineAditionToMyCollection[0]="Payment Id:   "+pmnId;
+					listPayments.setListData(aFineAditionToMyCollection);
+				}
+			}
+		});
+		listProsthetics.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					char[] prostheticsId=listProsthetics.getSelectedValue().toCharArray();
+					String id="";
+					int counter=0;
+					boolean escapechar=false;
+					for (int i = 0; i < prostheticsId.length; i++) {
+						if(prostheticsId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && prostheticsId[i]==' ') {
+							counter=counter+1;
+						}
+						if(counter == 3 && prostheticsId[i]!=' ') {
+							id=id+prostheticsId[i];
+						}
+					}
+					ViewProsthetic p =new ViewProsthetic(myNameIsTim,Integer.parseInt(id));
+				}
+			}
+		});
+		listPayments.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					char[]paymentId=listPayments.getSelectedValue().toCharArray();
+					String id="";
+					boolean escapechar=false;
+					int counter=0;
+					for (int i = 0; i < paymentId.length; i++) {
+						if(paymentId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && paymentId[i]==' ') {
+							counter=counter +1;
+						}
+						if(counter==3 && paymentId[i]!=' ') {
+							id=id+paymentId[i];
+						}
+					}
+					char[]prostheticsId=listProsthetics.getSelectedValue().toCharArray();
+					escapechar=false;
+					String prsId="";
+					counter=0;
+					for (int i = 0; i < prostheticsId.length; i++) {
+						if(prostheticsId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && prostheticsId[i]==' ') {
+							counter=counter+1;
+						}
+						if(counter == 3 && prostheticsId[i]!=' ') {
+							prsId=prsId+prostheticsId[i];
+						}
+					}
+					System.out.println(prsId);
+				ViewPayment p= new ViewPayment(myNameIsTim, Integer.parseInt(id), Integer.parseInt(prsId));
+				}
+			}
+		});
+		
+	}
+	private static void ModifyViewForPayments(WizardHandler myNameIsTim) {
+		panel_2.removeAll();
+		panel_2.setVisible(false);
+		panel_2.setLayout(new BorderLayout());
+		JPanel panel_3 =new JPanel();
+		JPanel panel_4 =new JPanel();
+		panel_3.setBackground(Color.BLACK);
+		panel_4.setBackground(Color.WHITE);
+		JLabel client =new JLabel("Client:");
+		client.setFont(new Font("consolas",Font.PLAIN,11));
+		client.setForeground(Color.GREEN);
+		JLabel payments =new JLabel("Payments:");
+		payments.setFont(new Font("consolas", Font.PLAIN,11));
+		payments.setForeground(Color.GREEN);
+		panel_3.setLayout(new GridLayout(1,2));
+		panel_3.add(client);
+		panel_3.add(payments);
+		panel_4.setLayout(new GridLayout(1,2));
+		final String[] clientIds = myNameIsTim.getClientId();
+		final String[]names=new String[clientIds.length];
+		for (int i = 0; i < clientIds.length; i++) {
+			names[i]=clientIds[i]+":   "+myNameIsTim.getClientFull(Integer.parseInt(clientIds[i])).getName();
+		}
+				
+		JList <String> listClients=new <String> JList(names);
+		listClients.setSelectedIndex(-1);
+		JList<String> listPayments=new JList<String>();
+		listClients.setBackground(Color.LIGHT_GRAY);
+		listPayments.setBackground(Color.LIGHT_GRAY);
+		listClients.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		listPayments.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		listClients.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				int Index;
+				char charcmp='D';
+				char[]name=listClients.getSelectedValue().toCharArray();
+				String id="";
+				for(int i=0;	charcmp!=':';	i++) {
+					charcmp=name[i];
+					if(charcmp!=':') {
+						id=id+charcmp;
+					}
+				}
+				String[]prosthetics=myNameIsTim.magicConversionProstheticsThrouClient(Integer.parseInt(id));
+				String paymentId[]=new String[prosthetics.length];
+				for (int i = 0; i < prosthetics.length; i++) {
+					paymentId[i]="Payment Id:   "+myNameIsTim.getPaymentIdThruProstheticId(Integer.parseInt(prosthetics[i]));
+					prosthetics[i]="Prosthetic:   "+prosthetics[i];
+				}
+				
+				listPayments.setListData(paymentId);
+				listPayments.setVisible(false);
+				listPayments.setVisible(true);
+			}
+		});
+		listClients.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					int Index;
+					char charcmp='D';
+					char[]name=listClients.getSelectedValue().toCharArray();
+					String id="";
+					for(int i=0;	charcmp!=':';	i++) {
+						charcmp=name[i];
+						if(charcmp!=':') {
+							id=id+charcmp;
+						}
+					}
+					EditClient c =new EditClient(myNameIsTim,Integer.parseInt(id));
+				}
+			}
+		});
+		listPayments.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					char[]paymentId=listPayments.getSelectedValue().toCharArray();
+					String id="";
+					boolean escapechar=false;
+					int counter=0;
+					for (int i = 0; i < paymentId.length; i++) {
+						if(paymentId[i]==':') {
+							escapechar=true;
+						}
+						if(escapechar && paymentId[i]==' ') {
+							counter=counter +1;
+						}
+						if(counter==3 && paymentId[i]!=' ') {
+							id=id+paymentId[i];
+						}
+					}
+					int prsId=myNameIsTim.getProstheticIdThruPaymentId(Integer.parseInt(id));
+					ViewPayment p= new ViewPayment(myNameIsTim, Integer.parseInt(id), prsId);
+				}
+			}
+		});
+		panel_4.add(listClients);
+		panel_4.add(listPayments);
+		panel_2.add(panel_3,BorderLayout.NORTH);
+		panel_2.add(panel_4,BorderLayout.CENTER);
+		panel_2.setVisible(true);
+	}
+	private static void ModifyViewForMaterials(WizardHandler myNameIsTim) {
+		panel_2.removeAll();
+		JPanel panel_3 = new JPanel();
+		JPanel panel_4 = new JPanel();
+		panel_3.setBackground(Color.BLACK);
+		panel_4.setBackground(Color.WHITE);
+		JLabel label =new JLabel("Materials");
+		panel_3.add(label);
+		panel_2.setLayout(new BorderLayout());
+		panel_2.add(panel_3,BorderLayout.NORTH);
+		panel_2.add(panel_4,BorderLayout.CENTER);
+		label.setFont(new Font("consolas",Font.PLAIN,11));
+		label.setForeground(Color.GREEN);
+		JList<String> listMaterials = new<String> JList();
+		listMaterials.setBackground(Color.LIGHT_GRAY);
+		listMaterials.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		String[] materials= myNameIsTim.getMaterialId();
+		for (int i = 0; i < materials.length; i++) {
+			materials[i]=materials[i]+":   "+myNameIsTim.getMaterialFull(Integer.parseInt(materials[i])).getType();
+		}
+		listMaterials.setListData(materials);
+		panel_4.setLayout(new BorderLayout());
+		panel_4.add(listMaterials,BorderLayout.CENTER);
+		listMaterials.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					char[] matID = listMaterials.getSelectedValue().toCharArray();
+					String id="";
+					for (int i = 0; i < matID.length; i++) {
+						if(matID[i]!=':') {
+							id=id+matID[i];
+						}
+						if(matID[i]==':') {
+							break;
+						}
+					}
+					System.out.println(id);
+					ViewMaterial m=new ViewMaterial(myNameIsTim,Integer.parseInt(id));
+					m.setVisible(true);
+				}
+			}
+		});
+		panel_2.setVisible(false);
+		panel_2.setVisible(true);
+	}
+	private static void ModifyViewForFeatures(WizardHandler myNameIsTim) {
+		panel_2.removeAll();
+		JPanel panel_3 = new JPanel();
+		JPanel panel_4 = new JPanel();
+		panel_3.setBackground(Color.BLACK);
+		panel_4.setBackground(Color.WHITE);
+		JLabel label =new JLabel("Materials");
+		panel_3.add(label);
+		panel_2.setLayout(new BorderLayout());
+		panel_2.add(panel_3,BorderLayout.NORTH);
+		panel_2.add(panel_4,BorderLayout.CENTER);
+		label.setFont(new Font("consolas",Font.PLAIN,11));
+		label.setForeground(Color.GREEN);
+		JList<String> listFeatures = new<String> JList();
+		listFeatures.setBackground(Color.LIGHT_GRAY);
+		listFeatures.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		String[] materials= myNameIsTim.getFeatureId();
+		for (int i = 0; i < materials.length; i++) {
+			materials[i]=materials[i]+":   "+myNameIsTim.getFeatureFull(Integer.parseInt(materials[i])).getStyle();
+		}
+		listFeatures.setListData(materials);
+		panel_4.setLayout(new BorderLayout());
+		panel_4.add(listFeatures,BorderLayout.CENTER);
+		listFeatures.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					char[] matID = listFeatures.getSelectedValue().toCharArray();
+					String id="";
+					for (int i = 0; i < matID.length; i++) {
+						if(matID[i]!=':') {
+							id=id+matID[i];
+						}
+						if(matID[i]==':') {
+							break;
+						}
+					}
+					System.out.println(id);
+					ViewFeatures m=new ViewFeatures(myNameIsTim,Integer.parseInt(id));
+					m.setVisible(true);
+				}
+			}
+		});
+		panel_2.setVisible(false);
+		panel_2.setVisible(true);
+	}
+	private static void ModifyViewForAddresses(WizardHandler myNameIsTim) {
+		JPanel panel_3=new JPanel();
+		JPanel panel_4=new JPanel();
+		panel_3.setBackground(Color.BLACK);
+		panel_3.setLayout(new GridLayout(1,4));
+		panel_4.setLayout(new GridLayout(1,4));
+		JLabel label = new JLabel("Country:");
+		JLabel label1 =new JLabel("city:");
+		JLabel label2=new JLabel("Street:");
+		JLabel label3=new JLabel("Name:");
+		panel_3.setLayout(new GridLayout(1,4));
+		label.setForeground(Color.GREEN);
+		label1.setForeground(Color.GREEN);
+		label2.setForeground(Color.GREEN);
+		label3.setForeground(Color.GREEN);
+		label.setFont(new Font("consolas",Font.PLAIN,11));
+		label1.setFont(new Font("consolas",Font.PLAIN,11));
+		label2.setFont(new Font("consolas",Font.PLAIN,11));
+		label3.setFont(new Font("consolas",Font.PLAIN,11));	
+		panel_3.add(label3);
+		panel_3.add(label);
+		panel_3.add(label1);
+		panel_3.add(label2);
+		JList<String> listClients =new JList<String>();
+		JList<String> listCities =new JList<String>();
+		JList<String> listCountry =new JList<String>();
+		JList<String> listStreets =new JList<String>();
+		JPanel panel_5=new JPanel();
+		panel_5.setBackground(Color.BLACK);
+		JButton btn1 =new JButton(); 	//order by Country
+		JButton btn2 =new JButton();	//order by city
+		JButton btn3 =new JButton();	//order by Street
+		JButton btn4 =new JButton();	//order by names
+		btn1.setBackground(Color.BLACK);
+		btn3.setBackground(Color.BLACK);
+		btn2.setBackground(Color.BLACK);
+		btn4.setBackground(Color.BLACK);
+		btn1.setBorderPainted(false);
+		btn2.setBorderPainted(false);
+		btn3.setBorderPainted(false);
+		btn4.setBorderPainted(false);
+		btn1.setForeground(Color.GREEN);
+		btn2.setForeground(Color.GREEN);
+		btn3.setForeground(Color.GREEN);
+		btn4.setForeground(Color.GREEN);
+		btn1.setText("Order By Country");
+		btn2.setText("Order By City");
+		btn3.setText("Order By Street");
+		btn4.setText("Order By Names");
+		btn1.setFont(new Font("consolas",Font.PLAIN,11));
+		btn2.setFont(new Font("consolas",Font.PLAIN,11));
+		btn3.setFont(new Font("consolas",Font.PLAIN,11));
+		btn4.setFont(new Font("consolas",Font.PLAIN,11));
+		panel_5.setLayout(new GridLayout(4,1));
+		panel_5.add(btn1);
+		panel_5.add(btn2);
+		panel_5.add(btn3);
+		panel_5.add(btn4);
+		String[] clientNames=myNameIsTim.getClientId();
+		int[] id =new int[clientNames.length];
+		for (int i = 0; i < clientNames.length; i++) {
+			id[i]=Integer.parseInt(clientNames[i]);
+			clientNames[i]=clientNames[i]+":   "+myNameIsTim.getClientFull(Integer.parseInt(clientNames[i])).getName();
+		}
+		String[] CountryNames=new String[id.length];
+		for (int j = 0; j < id.length; j++) {
+			CountryNames[j]=myNameIsTim.getAddressFull(myNameIsTim.getAddressIdThruClientId(id[j])).getCountry();
+		}
+		String[] cityNames=new String[id.length];
+		for (int i = 0; i < cityNames.length; i++) {
+			cityNames[i]=myNameIsTim.getAddressFull(myNameIsTim.getAddressIdThruClientId(id[i])).getCity();
+		}
+		String[] streetNames=new String[id.length];
+		for (int i = 0; i < streetNames.length; i++) {
+			streetNames[i]=myNameIsTim.getAddressFull(myNameIsTim.getAddressIdThruClientId(id[i])).getStreet();
+		}
+		listClients.setListData(clientNames);
+		listCountry.setListData(CountryNames);
+		listCities.setListData(cityNames);
+		listStreets.setListData(streetNames);
+		listClients.setBackground(Color.LIGHT_GRAY);
+		listCountry.setBackground(Color.LIGHT_GRAY);
+		listCities.setBackground(Color.LIGHT_GRAY);
+		listStreets.setBackground(Color.LIGHT_GRAY);
+		listClients.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		listCountry.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		listCities.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		listStreets.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		panel_4.add(listClients);
+		panel_4.add(listCountry);
+		panel_4.add(listCities);
+		panel_4.add(listStreets);
+		panel_2.removeAll();
+		panel_2.setLayout(new BorderLayout());
+		panel_2.add(panel_3,BorderLayout.NORTH);
+		panel_2.add(panel_4,BorderLayout.CENTER);
+		panel_2.add(panel_5,BorderLayout.EAST);
+		panel_2.setVisible(false);
+		panel_3.setVisible(false);
+		panel_3.setVisible(true);
+		panel_2.setVisible(true);
+	}
 }
+

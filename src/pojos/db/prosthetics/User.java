@@ -26,7 +26,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = -3005995623235179539L;
 	@Id
 	@GeneratedValue(generator = "user")
-	@TableGenerator(name = "user", table = "sqlite_sequence", pkColumnName = "user", valueColumnName = "seq", pkColumnValue = "user")
+	@TableGenerator(name = "user", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "user")
 
 	//
 	private Integer id;
@@ -52,7 +52,12 @@ public class User implements Serializable {
 		this.password = password;
 		
 	}
-
+public User() {
+	super();
+	this.id=id;
+	this.name=name;
+	this.password=password;
+}
 	public Integer getId() {
 		return id;
 	}
