@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import pojos.db.prosthetics.User;
 
+
 public class JPARead {
 
 }
