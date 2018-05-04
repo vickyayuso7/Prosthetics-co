@@ -65,7 +65,7 @@ public class EditFeatures extends JFrame {
 		lblFeatures.setForeground(Color.GREEN);
 		lblFeatures.setFont(new Font("Consolas", Font.PLAIN, 11));
 		try {
-			if(myNameIsTim.getFeatureId()[1].equals("error")) {
+			if(myNameIsTim.getFeatureId()[0].equals("error")) {
 				textArea.setText(textArea.getText()+"could not load list\n");
 				list = new JList <String>();
 			}

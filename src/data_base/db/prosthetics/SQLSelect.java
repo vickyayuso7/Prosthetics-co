@@ -152,6 +152,7 @@ public class SQLSelect{
 		ResultSet rs= stm1.executeQuery(Query);
 		while (rs.next()) {
 			id=""+rs.getInt("id");
+			System.out.println(id);
 			idlist.add(id);
 		}		
 		return(idlist);
@@ -228,7 +229,6 @@ public class SQLSelect{
 			String color = rs.getString("color");
 			float bestPrice = rs.getFloat("bestPrice");
 			//Payment payment = rs.getPayment("payment");
-			int idp = rs.getInt("id");
 			prosthetic=new Prosthetics(id, size, weight, type_of_funcionality, type_of_amputation,color,bestPrice);
 		}
 		return(prosthetic);
@@ -308,7 +308,6 @@ public class SQLSelect{
 			String name= rs.getString("name");
 			Date date_of_birth = rs.getDate("date_of_birth");
 			String gender = rs.getString("gender");
-			int idp = rs.getInt("id");
 			client=new Client (id,date_of_birth,name,gender);
 		}
 		return(client);
@@ -332,7 +331,6 @@ public class SQLSelect{
 			String town = rs.getString("town");
 			String city =rs.getString("city");
 			int number=rs.getInt("number");
-			int idp = rs.getInt("id");
 			address=new Address (id,country, postCode,street, town,number,null, city);
 		}
 		return(address);
@@ -523,10 +521,70 @@ public class SQLSelect{
 		}
 		return(featId);
 	}
-	
-	
-	
-	
-	
 
+
+	public static String [] getCountriesOrdered() throws SQLException{
+		String query = "SELECT country, city, street, name FROM Address JOIN Client WHERE address_id = Address.id ORDER BY country";
+		Statement smt1= SQLConnect.getConnection().createStatement();
+		ResultSet rs= smt1.executeQuery(query);	
+		ArrayList <String> imAshamedToBeCalledGodsCreation=new ArrayList <String>();
+		while(rs.next()) {
+			String iWantToDie="";
+			iWantToDie = rs.getString("country");
+			iWantToDie= iWantToDie+";" +rs.getString("street");
+			iWantToDie= iWantToDie+";" +rs.getString("city");
+			iWantToDie= iWantToDie+";" +rs.getString("name");
+			imAshamedToBeCalledGodsCreation.add(iWantToDie);
+		}
+		return imAshamedToBeCalledGodsCreation.toArray(new String [1]);
+	}
+
+
+	public static String[] getCitiesOrdered() throws SQLException{
+		String query = "SELECT country, city, street, name FROM Address JOIN Client WHERE address_id = Address.id ORDER BY city";
+		Statement smt1= SQLConnect.getConnection().createStatement();
+		ResultSet rs= smt1.executeQuery(query);	
+		ArrayList <String> imAshamedToBeCalledGodsCreation=new ArrayList <String>();
+		while(rs.next()) {
+			String iWantToDie="";
+			iWantToDie = rs.getString("country");
+			iWantToDie= iWantToDie+";" +rs.getString("street");
+			iWantToDie= iWantToDie+";" +rs.getString("city");
+			iWantToDie= iWantToDie+";" +rs.getString("name");
+			imAshamedToBeCalledGodsCreation.add(iWantToDie);
+		}
+		return imAshamedToBeCalledGodsCreation.toArray(new String [1]);
+	}
+	
+	public static String[] getStreetsOrdered() throws SQLException{
+		String query = "SELECT country, city, street, name FROM Address JOIN Client WHERE address_id = Address.id ORDER BY street";
+		Statement smt1= SQLConnect.getConnection().createStatement();
+		ResultSet rs= smt1.executeQuery(query);	
+		ArrayList <String> imAshamedToBeCalledGodsCreation=new ArrayList <String>();
+		while(rs.next()) {
+			String iWantToDie="";
+			iWantToDie = rs.getString("country");
+			iWantToDie= iWantToDie+";" +rs.getString("street");
+			iWantToDie= iWantToDie+";" +rs.getString("city");
+			iWantToDie= iWantToDie+";" +rs.getString("name");
+			imAshamedToBeCalledGodsCreation.add(iWantToDie);
+		}
+		return imAshamedToBeCalledGodsCreation.toArray(new String [1]);
+	}
+	
+	public static String[] getNamesOrdered() throws SQLException{
+		String query = "SELECT country, city, street, name FROM Address JOIN Client WHERE address_id = Address.id ORDER BY name";
+		Statement smt1= SQLConnect.getConnection().createStatement();
+		ResultSet rs= smt1.executeQuery(query);	
+		ArrayList <String> imAshamedToBeCalledGodsCreation=new ArrayList <String>();
+		while(rs.next()) {
+			String iWantToDie="";
+			iWantToDie = rs.getString("country");
+			iWantToDie= iWantToDie+";" +rs.getString("street");
+			iWantToDie= iWantToDie+";" +rs.getString("city");
+			iWantToDie= iWantToDie+";" +rs.getString("name");
+			imAshamedToBeCalledGodsCreation.add(iWantToDie);
+		}
+		return imAshamedToBeCalledGodsCreation.toArray(new String [1]);
+	}
 }

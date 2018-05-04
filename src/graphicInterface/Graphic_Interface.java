@@ -167,6 +167,11 @@ public class Graphic_Interface extends JFrame{
 		btnNewButton_2.setBackground(new Color(0,0,0));
 		btnNewButton_2.setBorderPainted(false);
 		btnNewButton_2.setFont(new Font("Consolas", Font.PLAIN, 11));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					DeleteProsthetic d = new DeleteProsthetic(guts);
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);

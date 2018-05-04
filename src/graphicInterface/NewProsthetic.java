@@ -184,7 +184,20 @@ public class NewProsthetic extends JFrame {
 						comboBox.setEnabled(false);
 					}
 					else {
-						System.out.println("found name ="+id);
+						textField_1.setEditable(true);
+						textField_2.setEditable(true);
+						textField_3.setEditable(true);
+						textField_4.setEditable(true);
+						textField_5.setEditable(true);
+						textField_6.setEditable(true);
+						textField_7.setEditable(true);
+						textField_8.setEditable(true);
+						textField_9.setEditable(true);
+						textField_10.setEditable(true);
+						textField_11.setEditable(true);
+						textField_12.setEditable(true);
+						comboBox.setEnabled(true);
+						
 					}
 				}
 				
@@ -449,6 +462,7 @@ public class NewProsthetic extends JFrame {
 						prs.setBestPrice(price);
 						prs.setTypeOfAmputation(TOA);
 						prs.setTypeOfFunctionality(TOF);
+						prs.setColor(color);
 						Payment pmn = new Payment();
 						pmn.setMethod(Method);
 						pmn.setIban(Iban);
