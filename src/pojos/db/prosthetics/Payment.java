@@ -18,10 +18,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "payment")
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Payment")
 public class Payment implements Serializable {
 
 	private static final long serialVersionUID = -6057556579044540426L;
@@ -31,9 +38,13 @@ public class Payment implements Serializable {
 	@TableGenerator(name = "payment", table = "sqlite_sequence",
 		pkColumnName = "payment", valueColumnName = "seq", pkColumnValue = "payment")
 	
+	@XmlAttribute
 	private Date deadline;
+	@XmlAttribute
 	private Integer iban;
+	@XmlAttribute
 	private String method;
+	@XmlAttribute
 	private Integer id;
 	
 
@@ -42,6 +53,7 @@ public class Payment implements Serializable {
 
 	
 	@OneToMany(fetch = FetchType.LAZY)
+@XmlTransient
 	private List<Prosthetics> prosthetics;
 	public Payment() {
 		super();

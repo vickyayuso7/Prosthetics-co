@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,10 +18,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 
 
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Prosthetics")
 @Entity
 @Table(name = "prosthetics")
 public class Prosthetics implements Serializable {
@@ -37,13 +48,19 @@ public class Prosthetics implements Serializable {
 		pkColumnName = "prosthetics", valueColumnName = "seq", pkColumnValue = "prosthetics")
 	
 	
-	
+	@XmlAttribute
 	private Integer id;
+	@XmlAttribute
 	private Float bestPrice;
+	@XmlAttribute
 	private Float size;
+	@XmlAttribute
 	private Float weight;
+	@XmlAttribute
 	private String typeOfFunctionality;
+	@XmlAttribute
 	private String color;
+	@XmlAttribute
 	private String typeOfAmputation;
 	
 	
@@ -52,18 +69,24 @@ public class Prosthetics implements Serializable {
 	@Basic(fetch = FetchType.LAZY)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "payment_id")
+	@XmlAttribute
 	private Payment payment;
 	
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@XmlElement(name="Material")
+	@XmlElementWrapper(name="materials")
 	private List<Material> materials;
 	
 
 	@ManyToMany(fetch = FetchType.LAZY)
+	@XmlTransient
 	private List<Features> features;
 	
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@XmlElement(name="Client")
+	@XmlElementWrapper(name ="Clients")
 	private List<Client> clients;
 	
 	
