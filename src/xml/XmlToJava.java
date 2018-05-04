@@ -65,7 +65,7 @@ public class XmlToJava {
 		// We assume the authors are not already in the database
 		// In a real world, we should check if they already exist
 		// and update them instead of inserting as new
-		for (Prosthetic : prosthetics) {
+		for (Prosthetics : prosthetics) {
 			em.persist(prosthetics);
 		}
 		em.persist(client);
