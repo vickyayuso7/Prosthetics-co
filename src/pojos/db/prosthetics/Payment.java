@@ -18,10 +18,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.*;
 
 @Entity
 @Table(name = "payment")
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Payment")
 public class Payment implements Serializable {
 
 	private static final long serialVersionUID = -6057556579044540426L;
@@ -31,21 +34,31 @@ public class Payment implements Serializable {
 	@TableGenerator(name = "payment", table = "sqlite_sequence",
 		pkColumnName = "payment", valueColumnName = "seq", pkColumnValue = "payment")
 	
-	private Date deadline;
-	private Integer iban;
-	private String method;
+	//To track the payment
+	@XmlAttribute
 	private Integer id;
-	
+	@XmlElement
+	@XmlJavaTypeAdapter(SQLDateAdapter.class)
+	private Date deadline;
+	@XmlElement
+	private Integer iban;
+	@XmlElement
+	private String method;
 
-	
-@Basic(fetch = FetchType.LAZY)
+	@Basic(fetch = FetchType.LAZY)
 
-	
 	@OneToMany(fetch = FetchType.LAZY)
+	@XmlElement(name = "Prosthetic")
+	@XmlElementWrapper(name = "Prosthetics")
 	private List<Prosthetics> prosthetics;
+	
+	//Need an empty constructor
+	
 	public Payment() {
+		
 		super();
 		this.prosthetics = new ArrayList<Prosthetics>();
+		
 	}
 	
 	public Payment (Date deadline, Integer iban, String method, Integer id) {
@@ -57,6 +70,8 @@ public class Payment implements Serializable {
 		this.prosthetics = new ArrayList<Prosthetics>();
 		
 	}
+	
+	//Public getters and setters
 
 	public Date getDeadline() {
 		return deadline;
@@ -100,6 +115,7 @@ public class Payment implements Serializable {
 
 	@Override
 	public int hashCode() {
+		
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
@@ -108,12 +124,12 @@ public class Payment implements Serializable {
 		result = prime * result + ((iban == null) ? 0 : iban.hashCode());
 		result = prime * result + ((method == null) ? 0 : method.hashCode());
 		return result;
+		
 	}
-	
-	
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -142,24 +158,35 @@ public class Payment implements Serializable {
 		} else if (!method.equals(other.method))
 			return false;
 		return true;
+		
 	}
 	
 	@Override
 	public String toString() {
+		
 		return "Payment [deadline=" + deadline + ", iban=" + iban + ", method=" + method + ", id=" + id
 				+  "]";
+		
 	}
 
-	public void addProsthetic(Prosthetics prosthetic){
+	public void addProsthetic(Prosthetics prosthetic) {
+		
 		if(!prosthetics.contains(prosthetic)){
+			
 			this.prosthetics.add(prosthetic);
+			
 		}
+		
 	}
 	
-		public void removeProsthetic(Prosthetics prosthetic){
+		public void removeProsthetic(Prosthetics prosthetic) {
+			
 		if(prosthetics.contains(prosthetic)){
+			
 			this.prosthetics.remove(prosthetic);
+			
 		}
+		
 	}
 		
 }

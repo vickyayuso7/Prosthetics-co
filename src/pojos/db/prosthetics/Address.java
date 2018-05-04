@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-
+import javax.xml.bind.annotation.*;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -20,44 +20,51 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-
-
 @Entity
 @Table(name = "address")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Address")
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 6147789758100340047L;
-	
 	
 	@Id
 	@GeneratedValue(generator = "address")
 	@TableGenerator(name = "address", table = "sqlite_sequence",
 		pkColumnName = "address", valueColumnName = "seq", pkColumnValue = "address")
-	
-	
-	
+
+	//To track existing addresses
+	@XmlAttribute
 	private Integer id;
+	@XmlElement
 	private String country;
+	@XmlElement
 	private Integer postCode;
+	@XmlElement
 	private String street;
+	@XmlElement
 	private String town;
+	@XmlElement
 	private Integer number;
+	@XmlElement
 	private String city;
 	
 	
-@Basic(fetch = FetchType.LAZY) //this are not retrieved until are used
-	
-
+	@Basic(fetch = FetchType.LAZY) //This are not retrieved until they are used
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="client_id")
+	@XmlTransient
 	private Client client;	
+
+	//Need an empty constructor
+
 	public Address() {
+		
 		super();
 		this.client = client;
+		
 	}
-	
-	
-	
+
 	public Address(int id, String country, int postCode, String street, String town, int number, Client client, String city) {
 		
 		this.id = id;
@@ -68,10 +75,11 @@ public class Address implements Serializable {
 		this.number = number;
 		this.client=client;
 		this.city=city;
+		
 	}
 	
 
-public Address( int id, String country, int postCode, String street, String town, int number) {
+	public Address(int id, String country, int postCode, String street, String town, int number) {
 
 		
 		this.id= id;
@@ -83,7 +91,7 @@ public Address( int id, String country, int postCode, String street, String town
 	
 	}
 
-public Address( int id, String country, String town, String city) {
+	public Address(int id, String country, String town, String city) {
 
 	
 	this.id= id;
@@ -92,15 +100,17 @@ public Address( int id, String country, String town, String city) {
 	this.town = town;
 	this.city = city;
 
-}
+	}
 
 
 	public String getCity() {
 		return(this.city);
 	}
+	
 	public void setCity(String city) {
 		this.city=city;
 	}
+	
 	public Client getClient() {
 		return(this.client);
 	}
@@ -110,51 +120,35 @@ public Address( int id, String country, String town, String city) {
 	}
 	
 	public Integer getId() {
-		
-		return id;
-		
+		return id;	
 	}
 
-	public void setId(Integer id) {
-		
+	public void setId(Integer id) {	
 		this.id = id;
-		
 	}
 
 	public String getCountry() {
-		
 		return country;
-		
 	}
 
 	public void setCountry(String country) {
-		
 		this.country = country;
-		
 	}
 
 	public Integer getPostCode() {
-		
 		return postCode;
-		
 	}
 
 	public void setPostCode(Integer postCode) {
-		
 		this.postCode = postCode;
-		
 	}
 
 	public String getStreet() {
-		
 		return street;
-		
 	}
 
 	public void setStreet(String street) {
-		
 		this.street = street;
-		
 	}
 
 	public String getTown() {
@@ -175,14 +169,17 @@ public Address( int id, String country, String town, String city) {
 
 	@Override
 	public int hashCode() {
+		
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
+		
 	}
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -196,20 +193,15 @@ public Address( int id, String country, String town, String city) {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+		
 	}
 
 	@Override
 	public String toString() {
+		
 		return "Address [id=" + id + ", country=" + country + ", postCode=" + postCode + ", street=" + street
 				+ ", town=" + town + ", number=" + number + ", city="+city+"]";
+		
 	}
 
-	
-	
-
-	
-	
-	
-	
-	
 }

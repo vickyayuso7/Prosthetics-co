@@ -23,9 +23,6 @@ import javax.persistence.TableGenerator;
 @Table(name = "userType")
 public class Privilege implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3005995623235179539L;
 	@Id
 	@GeneratedValue(generator = "Privilege")
@@ -112,7 +109,5 @@ public class Privilege implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
