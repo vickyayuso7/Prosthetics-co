@@ -10,16 +10,14 @@ import pojos.db.prosthetics.Prosthetics;
 public class SQLDelete {
 
 
-	public void SQLDeleteProsthetic (int id) throws IOException, SQLException {
+	public static void deleteProsthetic(Prosthetics prostheticFull) throws SQLException{
+		Connection c = SQLConnect.getConnection();
+		String sql = "DELETE FROM Prosthetics WHERE id=?";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.setInt(1, prostheticFull.getId());
+		prep.executeUpdate();
+		prep.close();
 		
-			
-			Connection c = SQLConnect.getConnection();
-			//SQLDeleteFeatures(prosthetic);
-			String sql = "DELETE FROM Posthetics WHERE id=?";
-			PreparedStatement prep = c.prepareStatement(sql);
-			prep.setInt(1, id);
-			prep.executeUpdate();
-			prep.close();
 	}
 	
 }

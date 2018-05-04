@@ -404,5 +404,51 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 		}
 		
 	}
+	public String[] getCountriesOrdered() {
+		
+		try {
+			return SQLSelect.getCountriesOrdered();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return(null);
+		}
+	}
+	public String[] getCitiesOrdered() {
+		
+		try {
+			return SQLSelect.getCitiesOrdered();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public String[] getStreetsOrdered() {
+		
+		try {
+			return SQLSelect.getStreetsOrdered();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public String[] getNamesOrdered() {
+		
+		try {
+			return SQLSelect.getNamesOrdered();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public String deleteProsthetic(Prosthetics prostheticFull) {
+		try {
+			SQLDelete.deleteProsthetic(prostheticFull);
+			return("success");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return("failure");
+		}
+	}
 	
 }

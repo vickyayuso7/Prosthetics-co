@@ -98,8 +98,9 @@ public class NewClient extends JFrame {
 						adr.setTown(textField_10.getText());
 						adr.setCity(textField_9.getText());
 						try {
-							if(Integer.parseInt(textField_6.getText())<10 && textField_6.getText().toCharArray()[0]!='0') {
-								textField_6.setText("0"+textField_6.getText());
+							if (Integer.parseInt(textField_6.getText()) < 10
+									&& textField_6.getText().toCharArray()[0] != '0') {
+								textField_6.setText("0" + textField_6.getText());
 							}
 							String str = textField_14.getText() + "-" + textField_6.getText() + "-"
 									+ textField_1.getText();
@@ -123,7 +124,8 @@ public class NewClient extends JFrame {
 						}
 						cln.setName(textField.getText());
 						try {
-							if (Integer.parseInt(textField_18.getText()) < 10 && textField_18.getText().toCharArray()[0]!='0') {
+							if (Integer.parseInt(textField_18.getText()) < 10
+									&& textField_18.getText().toCharArray()[0] != '0') {
 								textField_18.setText("0" + textField_18.getText());
 							}
 							String str = textField_19.getText() + "-" + textField_18.getText() + "-"
@@ -182,14 +184,62 @@ public class NewClient extends JFrame {
 									+ " things wrong with this entry fix them before continuing\nMay I suggest checking the Warnings and Failures tab?");
 							textArea.setText(textArea.getText() + "\n");
 						} else {
-							String choice = myNameIsTim.newClient(cln, adr, pmn, prs,Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]),Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]));
-							if (choice.equals("all clear")) {
-								frame.dispose();
+							char[] dontYouDare;
+							boolean PUNisher = false;
+							// 9 and 12
+							dontYouDare = textField_8.getText().toCharArray();
+							for (int i = 0; i < dontYouDare.length; i++) {
+								if (dontYouDare[i] == ';') {
+									PUNisher = true;
+								}
+								if (PUNisher == true) {
+									break;
+								}
+							}
+							dontYouDare = textField_9.getText().toCharArray();
+							for (int i = 0; i < dontYouDare.length; i++) {
+								if (dontYouDare[i] == ';') {
+									PUNisher = true;
+								}
+								if (PUNisher == true) {
+									break;
+								}
+							}
+							dontYouDare = textField_12.getText().toCharArray();
+							for (int i = 0; i < dontYouDare.length; i++) {
+								if (dontYouDare[i] == ';') {
+									PUNisher = true;
+								}
+								if (PUNisher == true) {
+									break;
+								}
+							}
+							dontYouDare = textField.getText().toCharArray();
+							for (int i = 0; i < dontYouDare.length; i++) {
+								if (dontYouDare[i] == ';') {
+									PUNisher = true;
+								}
+								if (PUNisher == true) {
+									break;
+								}
+							}
+							if (PUNisher == false) {
+								String choice = myNameIsTim.newClient(cln, adr, pmn, prs,
+										Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]),
+										Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]));
+								if (choice.equals("all clear")) {
+									frame.dispose();
+								} else {
+									JOptionPane.showMessageDialog(null,
+											"failed to insert a new client\nDetails in the erro tab");
+									textArea.setForeground(Color.RED);
+									textArea.setText(textArea.getText() + choice);
+									textArea.setForeground(Color.GREEN);
+								}
 							} else {
-								JOptionPane.showMessageDialog(null,"failed to insert a new client\nDetails in the erro tab");
-								textArea.setForeground(Color.RED);
-								textArea.setText(textArea.getText() + choice);
-								textArea.setForeground(Color.GREEN);
+								while(true) {
+									JOptionPane.showMessageDialog(null,"I TOLD YOU NOT TO!! WHAT HAVE YOU DONE??\nYOU HAVE DOOMED US ALL!!");
+								}
 							}
 						}
 					}
@@ -229,7 +279,8 @@ public class NewClient extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		contentPane.add(panel_2, BorderLayout.CENTER);
-		panel_2.setLayout(new MigLayout("", "[][][][][][][][][][grow][][grow][][][][][][][][grow]", "[][][][][][grow][][][][grow][][][][][][grow][][][grow][][][][][][][][]"));
+		panel_2.setLayout(new MigLayout("", "[][][][][][][][][][grow][][grow][][][][][][][][grow]",
+				"[][][][][][grow][][][][grow][][][][][][grow][][][grow][][][][][][][][]"));
 
 		Component verticalStrut_4 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_4, "flowx,cell 19 0");
@@ -273,10 +324,10 @@ public class NewClient extends JFrame {
 
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_1, "flowx,cell 19 4");
-		
+
 		JLabel lblMaterial = new JLabel("Features:");
 		panel_2.add(lblMaterial, "cell 4 5");
-		
+
 		comboBox_2 = new JComboBox(myNameIsTim.getFeatureId());
 		panel_2.add(comboBox_2, "cell 9 5 5 1,growx");
 
@@ -300,11 +351,12 @@ public class NewClient extends JFrame {
 		textField_5 = new JTextField();
 		panel_2.add(textField_5, "cell 19 5");
 		textField_5.setColumns(10);
-		
+
 		JButton btnNewButton = new JButton("check");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewFeatures frame = new ViewFeatures(myNameIsTim,Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]));
+				ViewFeatures frame = new ViewFeatures(myNameIsTim,
+						Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]));
 				frame.setVisible(true);
 			}
 		});
@@ -314,10 +366,10 @@ public class NewClient extends JFrame {
 
 		Component verticalStrut_5 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_5, "flowx,cell 19 6");
-		
+
 		JLabel lblFeatures = new JLabel("Material:");
 		panel_2.add(lblFeatures, "cell 4 7");
-		
+
 		comboBox_3 = new JComboBox(myNameIsTim.getMaterialId());
 		panel_2.add(comboBox_3, "cell 9 7 5 1,growx");
 
@@ -362,11 +414,12 @@ public class NewClient extends JFrame {
 		lblProsthetics.setFont(new Font("Consolas", Font.PLAIN, 11));
 		lblProsthetics.setForeground(Color.GREEN);
 		panel_3.add(lblProsthetics);
-		
+
 		JButton btnNewButton_1 = new JButton("check");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewMaterial frame = new ViewMaterial(myNameIsTim,Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]));
+				ViewMaterial frame = new ViewMaterial(myNameIsTim,
+						Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]));
 				frame.setVisible(true);
 			}
 		});
@@ -443,7 +496,7 @@ public class NewClient extends JFrame {
 		textField_9.setColumns(10);
 
 		JLabel lblTown = new JLabel("Town:");
-		
+
 		panel_2.add(lblTown, "cell 19 11");
 
 		textField_10 = new JTextField();

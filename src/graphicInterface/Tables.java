@@ -11,6 +11,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import pojos.db.prosthetics.Address;
 import wizard_Handler.WizardHandler;
 
 import java.awt.BorderLayout;
@@ -224,7 +225,6 @@ public class Tables extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(arg0.getClickCount()==2) {
-					int Index;
 					char charcmp='D';
 					char[]name=listClients.getSelectedValue().toCharArray();
 					String id="";
@@ -741,6 +741,219 @@ public class Tables extends JFrame{
 		JButton btn2 =new JButton();	//order by city
 		JButton btn3 =new JButton();	//order by Street
 		JButton btn4 =new JButton();	//order by names
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String []orderedCountries=myNameIsTim.getCountriesOrdered();
+				String[] countries=new String [orderedCountries.length];
+				String[] cities =new String[orderedCountries.length];
+				String[] street = new String[orderedCountries.length];
+				String[] name = new String [orderedCountries.length];
+				int thisIsWhyWeCantHaveNiceThings=0;
+				
+				for (int i = 0; i < orderedCountries.length; i++) {
+					countries[i]="";
+					cities[i]="";
+					street[i]="";
+					name[i]="";
+					thisIsWhyWeCantHaveNiceThings=0;
+					char[] nastyStuff= orderedCountries[i].toCharArray();
+					
+					for (int j = 0; j < nastyStuff.length; j++) {
+						if(thisIsWhyWeCantHaveNiceThings ==0 && nastyStuff[j]!=';') {
+							countries[i]=countries[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==1 && nastyStuff[j]!=';') {
+							street[i]=street[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==2 && nastyStuff[j]!=';') {
+							cities[i]=cities[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==3 && nastyStuff[j]!=';') {
+							name[i]=name[i]+nastyStuff[j];
+						}
+						if(nastyStuff[j]==';') {
+							thisIsWhyWeCantHaveNiceThings=thisIsWhyWeCantHaveNiceThings+1;
+						}
+					}
+				}
+				listCountry.setListData(countries);
+				listCities.setListData(cities);
+				listStreets.setListData(street);
+				listClients.setListData(name);
+				
+				listCountry.setVisible(false);
+				listCountry.setVisible(true);
+				
+				listClients.setVisible(false);
+				listClients.setVisible(true);
+				
+				listStreets.setVisible(false);
+				listStreets.setVisible(true);
+				
+				listCities.setVisible(false);
+				listCities.setVisible(true);
+				//System.out.println("ordered by countires");
+			}
+		});
+		btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String []orderedCities=myNameIsTim.getCitiesOrdered();
+				String[] countries=new String [orderedCities.length];
+				String[] cities =new String[orderedCities.length];
+				String[] street = new String[orderedCities.length];
+				String[] name = new String [orderedCities.length];
+				int thisIsWhyWeCantHaveNiceThings=0;
+				
+				for (int i = 0; i < orderedCities.length; i++) {
+					countries[i]="";
+					cities[i]="";
+					street[i]="";
+					name[i]="";
+					thisIsWhyWeCantHaveNiceThings=0;
+					char[] nastyStuff= orderedCities[i].toCharArray();
+					
+					for (int j = 0; j < nastyStuff.length; j++) {
+						if(thisIsWhyWeCantHaveNiceThings ==0 && nastyStuff[j]!=';') {
+							countries[i]=countries[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==1 && nastyStuff[j]!=';') {
+							street[i]=street[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==2 && nastyStuff[j]!=';') {
+							cities[i]=cities[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==3 && nastyStuff[j]!=';') {
+							name[i]=name[i]+nastyStuff[j];
+						}
+						if(nastyStuff[j]==';') {
+							thisIsWhyWeCantHaveNiceThings=thisIsWhyWeCantHaveNiceThings+1;
+						}
+					}
+				}
+				listCountry.setListData(countries);
+				listCities.setListData(cities);
+				listStreets.setListData(street);
+				listClients.setListData(name);
+				
+				listCountry.setVisible(false);
+				listCountry.setVisible(true);
+				
+				listClients.setVisible(false);
+				listClients.setVisible(true);
+				
+				listStreets.setVisible(false);
+				listStreets.setVisible(true);
+				
+				listCities.setVisible(false);
+				listCities.setVisible(true);
+			}
+		});
+		btn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String []orderedCities=myNameIsTim.getStreetsOrdered();
+				String[] countries=new String [orderedCities.length];
+				String[] cities =new String[orderedCities.length];
+				String[] street = new String[orderedCities.length];
+				String[] name = new String [orderedCities.length];
+				int thisIsWhyWeCantHaveNiceThings=0;
+				
+				for (int i = 0; i < orderedCities.length; i++) {
+					countries[i]="";
+					cities[i]="";
+					street[i]="";
+					name[i]="";
+					thisIsWhyWeCantHaveNiceThings=0;
+					char[] nastyStuff= orderedCities[i].toCharArray();
+					
+					for (int j = 0; j < nastyStuff.length; j++) {
+						if(thisIsWhyWeCantHaveNiceThings ==0 && nastyStuff[j]!=';') {
+							countries[i]=countries[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==1 && nastyStuff[j]!=';') {
+							street[i]=street[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==2 && nastyStuff[j]!=';') {
+							cities[i]=cities[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==3 && nastyStuff[j]!=';') {
+							name[i]=name[i]+nastyStuff[j];
+						}
+						if(nastyStuff[j]==';') {
+							thisIsWhyWeCantHaveNiceThings=thisIsWhyWeCantHaveNiceThings+1;
+						}
+					}
+				}
+				listCountry.setListData(countries);
+				listCities.setListData(cities);
+				listStreets.setListData(street);
+				listClients.setListData(name);
+				
+				listCountry.setVisible(false);
+				listCountry.setVisible(true);
+				
+				listClients.setVisible(false);
+				listClients.setVisible(true);
+				
+				listStreets.setVisible(false);
+				listStreets.setVisible(true);
+				
+				listCities.setVisible(false);
+				listCities.setVisible(true);
+			}
+		});
+		btn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String []orderedCities=myNameIsTim.getNamesOrdered();
+				String[] countries=new String [orderedCities.length];
+				String[] cities =new String[orderedCities.length];
+				String[] street = new String[orderedCities.length];
+				String[] name = new String [orderedCities.length];
+				int thisIsWhyWeCantHaveNiceThings=0;
+				
+				for (int i = 0; i < orderedCities.length; i++) {
+					countries[i]="";
+					cities[i]="";
+					street[i]="";
+					name[i]="";
+					thisIsWhyWeCantHaveNiceThings=0;
+					char[] nastyStuff= orderedCities[i].toCharArray();
+					
+					for (int j = 0; j < nastyStuff.length; j++) {
+						if(thisIsWhyWeCantHaveNiceThings ==0 && nastyStuff[j]!=';') {
+							countries[i]=countries[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==1 && nastyStuff[j]!=';') {
+							street[i]=street[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==2 && nastyStuff[j]!=';') {
+							cities[i]=cities[i]+nastyStuff[j];
+						}
+						if(thisIsWhyWeCantHaveNiceThings ==3 && nastyStuff[j]!=';') {
+							name[i]=name[i]+nastyStuff[j];
+						}
+						if(nastyStuff[j]==';') {
+							thisIsWhyWeCantHaveNiceThings=thisIsWhyWeCantHaveNiceThings+1;
+						}
+					}
+				}
+				listCountry.setListData(countries);
+				listCities.setListData(cities);
+				listStreets.setListData(street);
+				listClients.setListData(name);
+				
+				listCountry.setVisible(false);
+				listCountry.setVisible(true);
+				
+				listClients.setVisible(false);
+				listClients.setVisible(true);
+				
+				listStreets.setVisible(false);
+				listStreets.setVisible(true);
+				
+				listCities.setVisible(false);
+				listCities.setVisible(true);
+			}
+		});
 		btn1.setBackground(Color.BLACK);
 		btn3.setBackground(Color.BLACK);
 		btn2.setBackground(Color.BLACK);
@@ -809,6 +1022,24 @@ public class Tables extends JFrame{
 		panel_3.setVisible(false);
 		panel_3.setVisible(true);
 		panel_2.setVisible(true);
+		listClients.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2) {
+					char charcmp='D';
+					char[]name=listClients.getSelectedValue().toCharArray();
+					String id="";
+					for(int i=0;	charcmp!=':';	i++) {
+						charcmp=name[i];
+						if(charcmp!=':') {
+							id=id+charcmp;
+						}
+					EditClient c =new EditClient(myNameIsTim,Integer.parseInt(id));
+				}
+				}
+			}
+		});
 	}
+
 }
 
