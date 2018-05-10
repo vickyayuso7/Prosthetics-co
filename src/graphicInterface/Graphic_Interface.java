@@ -22,9 +22,8 @@ public class Graphic_Interface extends JFrame{
 	 * Create the application.
 	 */
 	//set the boolean back to admin
-	public Graphic_Interface (boolean admin) {
-		admin=true;
-		if(admin==true) {
+	public Graphic_Interface (int admin) {
+		if(admin==1) {
 			initialize();
 		}
 		else {
@@ -85,8 +84,14 @@ public class Graphic_Interface extends JFrame{
 		JMenu mnView = new JMenu("View");
 		menuBar.add(mnView);
 		
-		JMenu mnShowTables = new JMenu("show Tables");
+		JMenuItem mnShowTables = new JMenuItem("show Tables");
 		mnView.add(mnShowTables);
+		mnShowTables.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Tables c= new Tables(guts);
+				//c.setVisible(true);
+			}
+		});
 		
 		JMenuItem mntmAbout = new JMenuItem("About");
 		mnView.add(mntmAbout);

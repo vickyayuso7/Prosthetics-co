@@ -80,7 +80,11 @@ public class DeleteProsthetic extends JFrame {
 		btnCancel.setForeground(Color.GREEN);
 		btnCancel.setBackground(Color.BLACK);
 		panel_1.add(btnCancel);
-		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+			}
+		});
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		contentPane.add(panel_2, BorderLayout.CENTER);

@@ -49,12 +49,13 @@ public class SQLSelect{
 		String Query="SELECT DISTINCT color FROM Prosthetics;";
 		Statement stm1 = SQLConnect.getConnection().createStatement();
 		ResultSet rs=stm1.executeQuery(Query);
-		stm1.close();
+		
 		while(rs.next()) {
 			colour= rs.getString("color");
 			System.out.println(colour);
 			colours.add(colour);
 		}
+		stm1.close();
 		rs.close();
 		return (ArrayList<String>) (colours);
 	}
