@@ -24,6 +24,7 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 			e.printStackTrace();
 			report="failed address insertion";
 		}
+		///
 		try {
 			idClient=SQLInsert.newClient(cln,idAddress);
 		} catch (SQLException e) {
@@ -37,13 +38,13 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 			e.printStackTrace();
 			report="failed payment insertion";
 		}try {
-			//ask how to get last added id
 			idProsthetic=SQLInsert.newProsthetics(prs,idPayment);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 			report="failed prosthetic insertion";
 		}
+		
 		try {
 			SQLInsert.newClient_Prosthetics(idClient, idProsthetic);
 			SQLInsert.newMaterial_Prosthetics(materialId, idProsthetic);
@@ -90,6 +91,7 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 		}
 
 	}
+	///
 	public String createTables() {
 		try {
 			SQLCreate.Create(SQLConnect.getConnection());
@@ -100,6 +102,7 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 			return("Failed");
 		}
 	}
+	///
 	public void appClosed() {
 		thisIsYourFaultRodrigoDamnYou.closeConnection();
 	}
@@ -153,6 +156,7 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 		}
 		return(id);
 	}
+	//retourned obj
 	public Features getFeatureFull(int id) {
 		Features feature=null;
 		try {
@@ -163,6 +167,7 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 		}
 		return(feature);
 	}
+	//update user
 	public String editFeature(Features feat) {
 		String report="";
 		try {
@@ -440,6 +445,7 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 			return null;
 		}
 	}
+	//
 	public String deleteProsthetic(Prosthetics prostheticFull) {
 		try {
 			SQLDelete.deleteProsthetic(prostheticFull);
