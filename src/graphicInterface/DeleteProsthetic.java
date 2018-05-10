@@ -83,6 +83,7 @@ public class DeleteProsthetic extends JFrame {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
+				
 			}
 		});
 		JPanel panel_2 = new JPanel();
