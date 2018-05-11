@@ -29,7 +29,7 @@ public class Privilege implements Serializable {
 	@TableGenerator(name = "Privilege", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "Privilege")
 
 	private Integer id;
-	private boolean option;
+	private int option;
 	
 	@Basic(fetch = FetchType.LAZY)
 
@@ -39,9 +39,9 @@ public class Privilege implements Serializable {
 	@OneToOne (fetch=FetchType.LAZY)
 	private Privilege privilege;
 
-	public Privilege(Integer id, boolean privilege) {
+	public Privilege(int privilege) {
 		super();
-		this.id = id;
+		
 		this.option=privilege;
 	
 	}
@@ -59,11 +59,11 @@ public class Privilege implements Serializable {
 		this.id = id;
 	}
 
-	public boolean getPrivilege() {
+	public int getPrivilege() {
 		return option;
 	}
 
-	public void setPrivilege(boolean privilege) {
+	public void setPrivilege(int privilege) {
 		this.option = privilege;
 	}
 
