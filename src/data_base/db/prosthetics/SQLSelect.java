@@ -588,4 +588,29 @@ public class SQLSelect{
 		}
 		return imAshamedToBeCalledGodsCreation.toArray(new String [1]);
 	}
+	public static int getUserIdThruClientId(int id) throws SQLException{
+		String Query= "SELECT user_id FROM Client WHERE id=?";
+		int userId=-1;
+		PreparedStatement stm1= SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, id);
+		ResultSet rs=stm1.executeQuery();
+		while(rs.next()) {
+			userId=rs.getInt("user_id");
+		}
+		return(userId);
+	}
+	public static int[] getUserId() throws SQLException{
+		String Query= "SELECT user_id FROM Client";
+		ArrayList <String> userId= new ArrayList<String>();
+		PreparedStatement stm1= SQLConnect.getConnection().prepareStatement(Query);
+		ResultSet rs=stm1.executeQuery();
+		while(rs.next()) {
+			userId.add(""+rs.getInt("user_id"));
+		}
+		int[] userList=new int[userId.toArray(new String[0]).length];
+		for (int i = 0; i < userList.length; i++) {
+			userList[i]=Integer.parseInt(userId.toArray(new String[0])[i]);
+		}
+		return(userList);
+	}
 }

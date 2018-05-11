@@ -69,7 +69,8 @@ public abstract class SQLCreate implements ILiveInAConstantStateOfFearAndMisery{
 					   + " name     TEXT     NOT NULL, "
 					   + " date_of_birth      INTEGER, "
 					   + " gender  TEXT,"
-					   + " address_id   INTEGER  REFERENCES  Address(id))";
+					   + " address_id   INTEGER  REFERENCES  Address(id), "
+					   + " user_id INTEGER REFERENCES user(id))";
 			System.out.println(sql7);
 			stmt7.executeUpdate(sql7);
 			stmt7.close();

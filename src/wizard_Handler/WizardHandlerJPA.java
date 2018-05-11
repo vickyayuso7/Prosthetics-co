@@ -44,4 +44,11 @@ public class WizardHandlerJPA {
 		
 		return report;
 	} 
+	//porfa modificad el código para que me devuelva los id de todos los usuarios
+	public String[] getUserId() {
+		String[] test =new String[1];
+		test[0]=""+1;
+		System.out.println("userId: "+test[0]);
+		return(test);
+	}
 }

@@ -88,7 +88,11 @@ public class NewProsthetic extends JFrame {
 		final String[] clientIds = myNameIsTim.getClientId();
 		final String[]names=new String[clientIds.length];
 		for (int i = 0; i < clientIds.length; i++) {
+			try {
 			names[i]=clientIds[i]+":   "+myNameIsTim.getClientFull(Integer.parseInt(clientIds[i])).getName();
+			}catch(Exception ex){
+				JOptionPane.showMessageDialog(null,"No clients are available");
+			}
 		}
 		JList list = new JList(names);
 		list.addListSelectionListener(new ListSelectionListener() {

@@ -23,12 +23,13 @@ public class SQLInsert {
 	public static int newClient (Client client, int address_id) throws SQLException {
 		Connection c = SQLConnect.getConnection();
 		
-		String sql = "INSERT INTO Client (date_of_birth, name, gender, address_id) "
-				+ "VALUES (?,?,?,?);";
+		String sql = "INSERT INTO Client (date_of_birth, name, gender, address_id, user_id) "
+				+ "VALUES (?,?,?,?,?);";
 		PreparedStatement prep = c.prepareStatement(sql);
 		prep.setDate(1, client.getDateOfBirth());
 		prep.setString(2, client.getName());
 		prep.setString(3, client.getGender());
+		prep.setInt(5, client.getUserId());
 		prep.setInt(4, address_id);
 		prep.executeUpdate();
 		prep.close();
