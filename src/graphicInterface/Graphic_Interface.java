@@ -5,12 +5,14 @@ import java.awt.event.*;
 import java.util.Random;
 import wizard_Handler.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 //guts.close must be activated
 public class Graphic_Interface extends JFrame{
 	private boolean tablesCreated=false;
 	private JFrame frame=new JFrame();
 	private int warnings=3;
 	private WizardHandler guts;
+	private WizardHandlerJPA guts2;
 	JPanel panel_1 = new JPanel();
 	
 	/**
@@ -22,23 +24,147 @@ public class Graphic_Interface extends JFrame{
 	 * Create the application.
 	 */
 	//set the boolean back to admin
-	public Graphic_Interface (int admin) {
+	public Graphic_Interface (int admin,int userId) {
 		if(admin==1) {
-			initialize();
+			initialize(admin);
 		}
-		else {
-			JOptionPane.showMessageDialog(null, "Not implemented yet");
+		if(admin==0) {
+			initializeC(admin);
+			guts.setUserId(userId);
 		}
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	private void initializeC(int admin) {
+		frame.getContentPane().removeAll();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setUndecorated(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		guts=new WizardHandler();
+		guts2=new WizardHandlerJPA();
+		guts.setAdmin(admin);
+		JPanel contentPane=new JPanel();
+		contentPane.setLayout(new BorderLayout());
+		JPanel panel=new JPanel();
+		JPanel panel_19=new JPanel();
+		panel_19.setBackground(Color.PINK);
+		panel.setBackground(Color.WHITE);
+		panel.setLayout(new GridLayout(7,3));
+		JPanel panel_1=new JPanel();
+		JPanel panel_2=new JPanel();
+		JPanel panel_3=new JPanel();
+		JPanel panel_4=new JPanel();
+		JPanel panel_5=new JPanel();
+		JPanel panel_6=new JPanel();
+		JPanel panel_7=new JPanel();
+		JPanel panel_8=new JPanel();
+		JPanel panel_9=new JPanel();
+		JPanel panel_10=new JPanel();
+		JPanel panel_11=new JPanel();
+		JPanel panel_12=new JPanel();
+		JPanel panel_13=new JPanel();
+		JPanel panel_14=new JPanel();
+		JPanel panel_15=new JPanel();
+		JPanel panel_16=new JPanel();
+		JPanel panel_17=new JPanel();
+		JPanel panel_18=new JPanel();
+		JPanel panel_20=new JPanel();
+		panel_20.setBackground(Color.PINK);
+		JLabel label =new JLabel("Welcome, user");
+		label.setFont(new Font("Comic Sans MS",Font.PLAIN,11));
+		panel_20.add(label);
+		contentPane.add(panel_20, BorderLayout.NORTH);
+		JButton btnNewClient=new JButton("Register As Client");
+		JButton btnNewProsthetic=new JButton("New Prosthetic");
+		JButton btnEditClient=new JButton("Edit Profile");
+		JButton btnExit =new JButton("Exit"); 
+		btnExit.setBackground(Color.PINK);
+		btnNewClient.setBackground(Color.PINK);
+		btnEditClient.setBackground(Color.PINK);
+		btnNewProsthetic.setBackground(Color.PINK);
+		btnExit.setBorderPainted(false);
+		btnNewClient.setFont(new Font("Comic Sans MS",Font.PLAIN,11));
+		btnEditClient.setFont(new Font("Comic Sans MS",Font.PLAIN,11));
+		btnNewProsthetic.setFont(new Font("Comic Sans MS",Font.PLAIN,11));
+		btnExit.setFont(new Font("Comic Sans MS", Font.PLAIN,11));
+		btnNewClient.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		btnEditClient.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		btnNewProsthetic.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		panel_1.setBackground(Color.WHITE);
+		panel_2.setBackground(Color.WHITE);
+		panel_3.setBackground(Color.WHITE);
+		panel_4.setBackground(Color.WHITE);
+		panel_5.setBackground(Color.WHITE);
+		panel_6.setBackground(Color.WHITE);
+		panel_7.setBackground(Color.WHITE);
+		panel_8.setBackground(Color.WHITE);
+		panel_9.setBackground(Color.WHITE);
+		panel_10.setBackground(Color.WHITE);
+		panel_11.setBackground(Color.WHITE);
+		panel_12.setBackground(Color.WHITE);
+		panel_13.setBackground(Color.WHITE);
+		panel_14.setBackground(Color.WHITE);
+		panel_15.setBackground(Color.WHITE);
+		panel_16.setBackground(Color.WHITE);
+		panel_17.setBackground(Color.WHITE);
+		panel_18.setBackground(Color.WHITE);
+		panel.add(panel_1);
+		panel.add(panel_2);
+		panel.add(panel_3);
+		panel.add(panel_4);
+		panel.add(btnNewClient);
+		panel.add(panel_5);
+		panel.add(panel_6);
+		panel.add(panel_7);
+		panel.add(panel_8);
+		panel.add(panel_9);
+		panel.add(btnEditClient);
+		panel.add(panel_10);
+		panel.add(panel_11);
+		panel.add(panel_12);
+		panel.add(panel_13);
+		panel.add(panel_14);
+		panel.add(btnNewProsthetic);
+		panel.add(panel_15);
+		panel.add(panel_16);
+		panel.add(panel_17);
+		panel.add(panel_18);
+		contentPane.add(panel, BorderLayout.CENTER);
+		contentPane.add(panel_19,BorderLayout.SOUTH);
+		panel_19.add(btnExit);
+		btnNewClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewClient c= new NewClient(guts,guts2);
+			}
+		});
+		btnEditClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditClient c=new EditClient(guts);
+			}
+		});
+		btnNewProsthetic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewProsthetic p=new NewProsthetic(guts);
+			}
+		});
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		frame.getContentPane().add(contentPane);
+		contentPane.setVisible(true);
+		System.out.println("paso");
+		frame.setVisible(false);
+		frame.setVisible(true);
+	}
 	
-	private void initialize() {
+	private void initialize(int admin) {
 		
 		//window.frame.setVisible(true);
 		guts=new WizardHandler();
+		guts.setAdmin(admin);
+		guts2=new WizardHandlerJPA();
+		frame.getContentPane().removeAll();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
 		frame.setVisible(true);
@@ -486,7 +612,7 @@ public class Graphic_Interface extends JFrame{
 			newCln.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						NewClient m= new NewClient(guts);
+						NewClient m= new NewClient(guts,guts2);
 					}
 					catch(Exception ex) {
 						ex.printStackTrace();

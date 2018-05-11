@@ -89,10 +89,20 @@ public class Greetings extends JFrame {
 		JButton btnOk = new JButton("Ok");
 		
 		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) { 
 				String str = new String(passwordField.getPassword());
 				System.out.println(comboBox.getSelectedIndex() + "	" + str + "		" + textField.getText());
-				Graphic_Interface g = new Graphic_Interface(1);
+				System.out.println((String)comboBox.getSelectedItem());
+				if(((String)comboBox.getSelectedItem()).equals("Pleb User")) {
+					admin =0;
+				}
+				if(((String)comboBox.getSelectedItem()).equals("Evil Overlord")) {
+					admin =1;
+				}
+				if(((String)comboBox.getSelectedItem()).equals("Auditor")) {
+					admin =2;
+				}
+				Graphic_Interface g = new Graphic_Interface(admin,1);
 				frame.dispose();
 			}
 		});

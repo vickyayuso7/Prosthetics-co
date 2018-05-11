@@ -6,10 +6,31 @@ import data_base.db.prosthetics.*;
 import pojos.db.prosthetics.*;
 public class WizardHandler{
 SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
+private int admin;
+private int UserId;
 
 	public WizardHandler(){
 		thisIsYourFaultRodrigoDamnYou.establishConnection();
-	}	
+	}
+	public void setAdmin(int admin) {
+		this.admin=admin;
+	}
+	public int getAdmin() {
+		return this.admin;
+	}
+	public int getUserId() {
+		return this.UserId;
+	}
+	public void setUserId(int userId) {
+		this.UserId=userId;
+	}
+	public int getUserIdThruClientId(int id) {
+		try {
+			return(SQLSelect.getUserIdThruClientId(id));
+		}catch(Exception ex) {
+			return -1;
+		}
+	}
 	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs, int featureId, int materialId) {
 		String report="all clear";
 		int idAddress=-1;
@@ -26,6 +47,7 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 		}
 		///
 		try {
+			cln.setUserId(this.getUserId());
 			idClient=SQLInsert.newClient(cln,idAddress);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,7 +91,14 @@ SQLConnect thisIsYourFaultRodrigoDamnYou=new SQLConnect();
 				return(humanfailure);
 			}
 			else {
+				
 				humanfailure =colours.toArray(new String[0]);
+				for (int i = 0; i < humanfailure.length; i++) {
+					if(humanfailure[i]==null) {
+						humanfailure[i]="the world is bleak and colourless";
+					}
+				}
+				
 				return(humanfailure);
 			}
 		}

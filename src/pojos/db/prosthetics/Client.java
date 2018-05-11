@@ -60,6 +60,7 @@ public class Client implements Serializable {
 	@XmlJavaTypeAdapter(SQLDateAdapter.class) //Bajar del proyecto de rodrigo
 	private Date dateOfBirth;
 	
+	private int userId;
 	@Basic(fetch = FetchType.LAZY)
 	@OneToOne(fetch=FetchType.LAZY)
 	@XmlAttribute
@@ -182,7 +183,12 @@ public class Client implements Serializable {
 		public void setProsthetics(List<Prosthetics> prosthetics) {
 			this.prosthetics = prosthetics;
 		}
-
+		public int getUserId() {
+			return this.userId;
+		}
+		public void setUserId(int id) {
+			this.userId=id;
+		}
 		
 		public void addProsthetics(Prosthetics prosthetic) {
 			if (!prosthetics.contains(prosthetic)) {
