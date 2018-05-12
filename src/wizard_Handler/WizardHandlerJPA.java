@@ -2,6 +2,7 @@ package wizard_Handler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import data_base.db.prosthetics.SQLInsert;
 import data_base.db.prostheticsJPA.*;
@@ -13,8 +14,8 @@ public class WizardHandlerJPA {
 	public WizardHandlerJPA() {
 		estoyLlorandoEnMiHabitacion.establishConnection();
 	}
-	public String newUser(User user,int privilege_id){
-		String report="";
+	public User newUser(User user){
+		int user_id=-1;
 		try {
 			System.out.println(user.getName()+"\n"+user.getPassword()+"\n");
 			JPACreate.create(user);
@@ -22,33 +23,71 @@ public class WizardHandlerJPA {
 		}
 		catch(IOException e) {
 			e.printStackTrace();
-			report="Failed user insertion";
+			System.out.println("Failed user insertion");
 		}
 
 		
-		return report;
+		return user;
 	} 
 	
-	public String newPrivilege(Privilege privilege,int user_id){
-		String report="";
+	public int newPrivilege(Privilege privilege){
+		
 		try {
 			System.out.println(privilege.getPrivilege()+"\n");
-			JPACreate.create(privilege);
+			JPACreate.create2(privilege);
 	
 		}
 		catch(IOException e) {
 			e.printStackTrace();
-			report="Failed privilege insertion";
+			System.out.println("Failed privilege insertion");
 		}
 
 		
-		return report;
+		return privilege.getId();
 	} 
 	//porfa modificad el código para que me devuelva los id de todos los usuarios
-	public String[] getUserId() {
-		String[] test =new String[1];
-		test[0]=""+1;
-		System.out.println("userId: "+test[0]);
-		return(test);
+	
+	public List<User> getUser() {
+		
+		try{
+			
+			return JPARead.readUser();
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return null;
+		}
+		
 	}
+	public List<Privilege> getPrivilege() {
+		
+		try{
+			
+			return JPARead.readPrivilege();
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	public void deleteUser(User user) throws Exception{
+		JPADelete.deleteUser(user);
+		
+	}
+	public void deletePrivilege(Privilege privilege) throws Exception{
+		JPADelete.deletePrivilege(privilege);
+		
+	}
+	
+	public void EditUser(User user) throws Exception{
+		String name="";
+		JPAUpdate.EditUser(user,name);
+		
+	}
+	
+	public void EditPrivilege(Privilege privilege) throws Exception{
+		int option=0;
+		JPAUpdate.EditPrivilege(privilege, option);		
+		
+	}	
 }

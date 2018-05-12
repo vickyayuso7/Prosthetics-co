@@ -7,44 +7,31 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
+import pojos.db.prosthetics.Privilege;
 import pojos.db.prosthetics.User;
 
 
 public class JPAUpdate {
-
-private static EntityManager connection;
 	
-	private static void printUsers() throws Exception {
-		Query q1 = connection.createNativeQuery("SELECT * FROM users", User.class);
+	public static void EditUser(User user, String name) throws Exception {
+	
+		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM users", User.class);
 		List<User> users = (List<User>) q1.getResultList();
-		for (User user : users) {
-			System.out.println(user);
-		}		
-		/*connection = Persistence.createEntityManagerFactory("user").createEntityManager();
-		connection.getTransaction().begin();
-		connection.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
-		connection.getTransaction().commit();
-*/
+
+		q1.setParameter(1, "%" + name + "%");
+		user = (User) q1.getSingleResult();
 		
-		System.out.println("Users' names:");
-		printUsers();
-		System.out.print("Type a name to change its password:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		int user_id = Integer.parseInt(reader.readLine());
-		Query q2 = connection.createNativeQuery("SELECT * FROM users WHERE id = ?", User.class);
-		q2.setParameter(1, user_id);
-		User user = (User) q1.getSingleResult();
-		System.out.print("Type a new password:");
-		String newPassword = reader.readLine();
+	}
+	public static void EditPrivilege(Privilege privilege, int option) throws Exception {
 		
-		connection.getTransaction().begin();
-		user.setPassword(newPassword);
-		connection.getTransaction().commit();
+		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM privilege", User.class);
+		List<Privilege> privileges = (List<Privilege>) q1.getResultList();
+
+		q1.setParameter(1, "%" + option + "%");
+		privilege = (Privilege) q1.getSingleResult();
 		
-	
-		connection.close();
 	}
 }
-
 
  
