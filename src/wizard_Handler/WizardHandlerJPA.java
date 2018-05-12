@@ -85,6 +85,7 @@ public class WizardHandlerJPA {
 		
 	}
 	
+	
 	public void EditPrivilege(Privilege privilege) throws Exception{
 		int option=0;
 		JPAUpdate.EditPrivilege(privilege, option);		
