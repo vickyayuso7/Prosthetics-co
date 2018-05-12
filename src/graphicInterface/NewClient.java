@@ -50,9 +50,24 @@ public class NewClient extends JFrame {
 	private JComboBox comboBox_2;
 	private JComboBox comboBox_3;
 	private JList <String> list;
+	private JButton createUser;
+	private boolean selected;
+	JButton btnOk;
 
 	public NewClient(WizardHandler myNameIsTim,WizardHandlerJPA oz) {
 		//myNameIsTim.getAdmin()==1
+		selected=false;
+		createUser=new JButton("crate new User");
+		createUser.setBackground(Color.BLACK);
+		createUser.setForeground(Color.GREEN);
+		createUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				selected=true;
+				btnOk.setEnabled(true);
+				//userId=
+			}
+		});
+		
 		if(myNameIsTim.getAdmin()==1) {
 			option1 = -1;
 			option2 = -1;
@@ -71,8 +86,7 @@ public class NewClient extends JFrame {
 			JPanel panel = new JPanel();
 			panel.setBackground(Color.BLACK);
 			contentPane.add(panel, BorderLayout.SOUTH);
-			JButton btnOk = new JButton("Ok");
-			//if(list.getSelectedIndex()==-1 && )
+			btnOk = new JButton("Ok");
 			btnOk.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					fuckedup = 0;
@@ -292,6 +306,8 @@ public class NewClient extends JFrame {
 
 			Component verticalStrut_4 = Box.createVerticalStrut(20);
 			panel_2.add(verticalStrut_4, "flowx,cell 19 0");
+			
+			panel_2.add(createUser,"cell 10 0 1, grow");
 
 			JLabel lblName = new JLabel("Name:");
 			panel_2.add(lblName, "flowx,cell 19 1,alignx left");
@@ -590,12 +606,16 @@ public class NewClient extends JFrame {
 					}
 					id=Integer.parseInt(idString);
 					userId=id;
+					btnOk.setEnabled(true);
 				}
 			});
 			list.setBackground(Color.LIGHT_GRAY);
 			list.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 			panel_2.add(list,"cell 0 25 20 2,growx");
-
+			if(list.getSelectedIndex()==-1 && selected==false) {
+				btnOk.setEnabled(false);
+			}
+			
 			textField_15 = new JTextField();
 			panel_2.add(textField_15, "cell 19 22");
 			textField_15.setColumns(10);
