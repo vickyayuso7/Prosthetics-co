@@ -13,6 +13,9 @@ import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
 import net.miginfocom.swing.MigLayout;
+import pojos.db.prosthetics.User;
+import wizard_Handler.WizardHandlerJPA;
+
 import javax.swing.JButton;
 import javax.swing.JTree;
 import javax.swing.JPasswordField;
@@ -29,6 +32,7 @@ public class Greetings extends JFrame {
 	private JTextField textField;
 	private JTextField txtPassword;
 	private JPasswordField passwordField;
+	private WizardHandlerJPA oz=new WizardHandlerJPA();
 	int admin;
 
 	public Greetings() {
@@ -92,7 +96,7 @@ public class Greetings extends JFrame {
 			public void actionPerformed(ActionEvent arg0) { 
 				String str = new String(passwordField.getPassword());
 				System.out.println(comboBox.getSelectedIndex() + "	" + str + "		" + textField.getText());
-				System.out.println((String)comboBox.getSelectedItem());
+				System.out.println((String)comboBox.getSelectedItem()+"privilege level");
 				if(((String)comboBox.getSelectedItem()).equals("Pleb User")) {
 					admin =0;
 				}
@@ -102,8 +106,28 @@ public class Greetings extends JFrame {
 				if(((String)comboBox.getSelectedItem()).equals("Auditor")) {
 					admin =2;
 				}
-				Graphic_Interface g = new Graphic_Interface(admin,1);
-				frame.dispose();
+				String usr;
+				String psw;
+				User[] users=oz.getUser().toArray(new User[1]);
+				User logged=null;
+				boolean found=false;
+				for (int i = 0; i < users.length; i++) {
+					usr=users[i].getName();
+					psw=users[i].getPassword();
+					if(usr.equals(textField.getText())&&psw.equals(str)) {
+						found=true;
+						logged=users[i];
+						break;
+					}
+				}
+				if(found) {
+					Graphic_Interface g = new Graphic_Interface(oz,logged);
+					frame.dispose();
+				}else {
+					JOptionPane.showMessageDialog(null,"Incorrect Password or username");
+					System.out.println(str+"   "+textField.getText());
+				}
+				
 			}
 		});
 		panel_1.add(btnOk, "cell 2 6,growx");

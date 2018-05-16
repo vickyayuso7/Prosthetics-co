@@ -14,22 +14,25 @@ import pojos.db.prosthetics.User;
 
 public class JPAUpdate {
 	
-	public static void EditUser(User user, String name) throws Exception {
+	public static void EditUser(User user) throws Exception {
 	
-		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM users", User.class);
-		List<User> users = (List<User>) q1.getResultList();
-
-		q1.setParameter(1, "%" + name + "%");
-		user = (User) q1.getSingleResult();
-		
+		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM users WHERE id=?", User.class);
+		q1.setParameter(1, user.getId());
+		User user1 = (User) q1.getSingleResult();
+		JPAConnect.getEntityManager().getTransaction().begin();
+		user1=user;
+		JPAConnect.getEntityManager().getTransaction().commit();
+		JPAConnect.getEntityManager().flush();
 	}
-	public static void EditPrivilege(Privilege privilege, int option) throws Exception {
+	public static void EditPrivilege(Privilege privilege) throws Exception {
 		
-		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM privilege", User.class);
-		List<Privilege> privileges = (List<Privilege>) q1.getResultList();
-
-		q1.setParameter(1, "%" + option + "%");
-		privilege = (Privilege) q1.getSingleResult();
+		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM users WHERE id=?", User.class);
+		q1.setParameter(1, privilege.getId());
+		Privilege privilege1 = (Privilege) q1.getSingleResult();
+		JPAConnect.getEntityManager().getTransaction().begin();
+		privilege1=privilege;
+		JPAConnect.getEntityManager().getTransaction().commit();
+		JPAConnect.getEntityManager().flush();
 		
 	}
 }

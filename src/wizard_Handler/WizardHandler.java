@@ -12,18 +12,6 @@ private int UserId;
 	public WizardHandler(){
 		thisIsYourFaultRodrigoDamnYou.establishConnection();
 	}
-	public void setAdmin(int admin) {
-		this.admin=admin;
-	}
-	public int getAdmin() {
-		return this.admin;
-	}
-	public int getUserId() {
-		return this.UserId;
-	}
-	public void setUserId(int userId) {
-		this.UserId=userId;
-	}
 	public int getUserIdThruClientId(int id) {
 		try {
 			return(SQLSelect.getUserIdThruClientId(id));
@@ -31,7 +19,7 @@ private int UserId;
 			return -1;
 		}
 	}
-	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs, int featureId, int materialId) {
+	public String newClient(Client cln, Address adr, Payment pmn, Prosthetics prs, int featureId, int materialId,User us) {
 		String report="all clear";
 		int idAddress=-1;
 		int idPayment=-1;
@@ -47,7 +35,7 @@ private int UserId;
 		}
 		///
 		try {
-			cln.setUserId(this.getUserId());
+			cln.setUserId(us.getId());
 			idClient=SQLInsert.newClient(cln,idAddress);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -200,7 +188,6 @@ private int UserId;
 	public String editFeature(Features feat) {
 		String report="";
 		try {
-			//System.out.println(feat.getStyle());
 			SQLUpdate.updateFeatures(feat);
 			report="success";
 		}
@@ -297,7 +284,6 @@ private int UserId;
 			id =SQLSelect.getProstheticIdThruClientId(clientId).toArray(id);
 			int ids=0;
 			for (int i = 0; i < id.length; i++) {
-				System.out.println(id[i]);
 				ids = Integer.parseInt(id[i]);
 			}
 			return(ids);

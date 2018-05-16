@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
 public class CreateUser extends JFrame {
@@ -29,13 +30,13 @@ public class CreateUser extends JFrame {
 	private JTextField textField_2;
 	private int id;
 	private JFrame frame=new JFrame();
-	public CreateUser(WizardHandlerJPA myNameIsTim) {
+	private WizardHandlerJPA myNameIsTim=new WizardHandlerJPA();
+	public CreateUser() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		frame.setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
@@ -70,8 +71,17 @@ public class CreateUser extends JFrame {
 		textField_2 = new JTextField();
 		panel_1.add(textField_2, "cell 4 5,alignx left");
 		textField_2.setColumns(10);
-		
-		JComboBox comboBox = new JComboBox();
+		Privilege[] pr=new Privilege[3];
+		Iterator <Privilege> it=myNameIsTim.getPrivilege().iterator();
+		for(int i=0;it.hasNext();i++) {
+			pr[i]=it.next();
+			//weird casting error
+		}
+		String[] privilege=new String[pr.length];
+		privilege[0]=pr[0].getPrivilege()+":Pleb User";
+		privilege[1]=pr[1].getPrivilege()+": Evil Overlord";
+		privilege[2]=pr[2].getPrivilege()+": Acustic Auditor";
+		JComboBox comboBox = new JComboBox(privilege);
 		panel_1.add(comboBox, "cell 3 7,growx");
 		
 		JPanel panel_2 = new JPanel();
@@ -99,12 +109,16 @@ public class CreateUser extends JFrame {
 						JOptionPane.showMessageDialog(null,"Passwords must match!");
 					}
 					else {
-						Privilege pr=new Privilege();
-						pr.setPrivilege(comboBox.getSelectedIndex());
 						User us=new User();
+						Privilege pr =myNameIsTim.getStatus(comboBox.getSelectedIndex());
 						us.setName(textField.getText());
 						us.setPassword(textField_1.getText());
-						//myNameIsTim.new
+						us.setUserType(pr);
+						pr.setUser(us);
+						us=myNameIsTim.newUser(us);
+						myNameIsTim.EditPrivilege(pr);
+						setId(us.getId());
+						frame.dispose();
 					}
 				}
 			}
@@ -112,9 +126,16 @@ public class CreateUser extends JFrame {
 		btnCancel.setForeground(Color.GREEN);
 		btnCancel.setBackground(Color.BLACK);
 		panel_2.add(btnCancel);
+		frame.getContentPane().add((contentPane));
+		frame.setVisible(false);
+		frame.setVisible(true);
+		
 	}
 	public int getid() {
 		return this.id;
+	}
+	public void setId(int id) {
+		this.id=id;
 	}
 
 }

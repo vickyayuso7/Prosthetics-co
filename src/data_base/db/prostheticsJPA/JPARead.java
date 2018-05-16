@@ -12,37 +12,21 @@ import pojos.db.prosthetics.Privilege;
 import pojos.db.prosthetics.User;
 
 public class JPARead {
-
-	public User getUsers(User user){
-		return user;
-		
-	}
-	public static List<User> readUser() throws Exception{
-
-		String name = null;
-		
-		Query q1 = JPAConnect.getEntityManager().createNamedQuery("SELECT * FROM user", User.class);
-
-		q1.setParameter(1, "%" + name + "%");
-		List<User> user = (List<User>) q1.getResultList(); // a list of the
-															// objects we put
-															// here		
 	
+	public static List<User> readUser() throws Exception{
+		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM user", User.class);
+		List<User> user = (List<User>) q1.getResultList();
 		return user;
-
 	}
 	public static List<Privilege> readPrivilege() throws Exception{
-
-		String name = null;
-		
-		Query q1 = JPAConnect.getEntityManager().createNamedQuery("SELECT * FROM privilege", User.class);
-
-		q1.setParameter(1, "%" + name + "%");
-		List<Privilege> privilege = (List<Privilege>) q1.getResultList(); // a list of the
-															// objects we put
-															// here		
-	
+		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM userType", User.class);
+		List<Privilege> privilege = (List<Privilege>) q1.getResultList();
 		return privilege;
-
+	}
+	public static Privilege getStatus(int level) throws Exception{
+		Query q1 =JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM userType WHERE Privilege = ?");
+		q1.setParameter(1, level);
+		Privilege pr=(Privilege)q1.getSingleResult();
+		return pr;
 	}
 }

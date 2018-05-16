@@ -36,7 +36,7 @@ public class User implements Serializable {
 	@Basic(fetch = FetchType.LAZY)
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	private List<Privilege> privilege;
+	private Privilege privilege;
 
 	public User(Integer id, String name, String password) {
 		super();
@@ -82,12 +82,12 @@ public User() {
 		this.password = password;
 	}
 
-	public List<Privilege> getPrivilege() {
+	public Privilege getPrivilege() {
 		return privilege;
 	}
 
-	public void setUserType(List<Privilege> userType) {
-		this.privilege = privilege;
+	public void setUserType(Privilege userType) {
+		this.privilege = userType;
 	}
 
 	@Override

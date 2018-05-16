@@ -41,7 +41,7 @@ public class Privilege implements Serializable {
 
 	public Privilege(int privilege) {
 		super();
-		
+		user=new ArrayList <User>();
 		this.option=privilege;
 	
 	}
@@ -74,8 +74,8 @@ public class Privilege implements Serializable {
 		return privilege;
 	}
 
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setUser(User user) {
+		this.user.add(user);
 	}
 	public void setPrivilege(Privilege privilege) {
 		this.privilege = privilege;

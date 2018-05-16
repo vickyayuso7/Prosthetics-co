@@ -37,7 +37,7 @@ public class NewClient extends JFrame {
 	private JFrame frame = new JFrame();
 	private int option1;
 	private int option2;
-	private int userId;
+	int userId;
 	private String gender[] = { "Unspecified", "Male", "Female" };;
 	private Client cln = new Client();
 	private Prosthetics prs = new Prosthetics();
@@ -51,11 +51,10 @@ public class NewClient extends JFrame {
 	private JComboBox comboBox_3;
 	private JList <String> list;
 	private JButton createUser;
-	private boolean selected;
+	boolean selected;
 	JButton btnOk;
 
-	public NewClient(WizardHandler myNameIsTim,WizardHandlerJPA oz) {
-		//myNameIsTim.getAdmin()==1
+	public NewClient(WizardHandler myNameIsTim,WizardHandlerJPA oz,User admin) {
 		selected=false;
 		createUser=new JButton("crate new User");
 		createUser.setBackground(Color.BLACK);
@@ -63,12 +62,13 @@ public class NewClient extends JFrame {
 		createUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				selected=true;
+				CreateUser u =new CreateUser();
 				btnOk.setEnabled(true);
-				//userId=
+				userId=u.getid();
 			}
 		});
-		
-		if(myNameIsTim.getAdmin()==1) {
+
+		if(admin.getPrivilege().getPrivilege()==1) {
 			option1 = -1;
 			option2 = -1;
 			userId=-1;
@@ -76,7 +76,7 @@ public class NewClient extends JFrame {
 			frame.setUndecorated(true);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-			
+
 			contentPane = new JPanel();
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			contentPane.setLayout(new BorderLayout(0, 0));
@@ -140,7 +140,6 @@ public class NewClient extends JFrame {
 							if (option1 != -1 && option1 != 0) {
 								cln.setGender(gender[option1]);
 							} else {
-								System.out.println(option1);
 								JOptionPane.showMessageDialog(null,
 										"No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
 								fuckedup = fuckedup + 1;
@@ -247,9 +246,20 @@ public class NewClient extends JFrame {
 									}
 								}
 								if (PUNisher == false) {
-									String choice = myNameIsTim.newClient(cln, adr, pmn, prs,
-											Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]),
-											Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]));
+									String choice="not clear";
+									if(selected) {
+										User us =new User(userId,"generic name","genericPassword");
+										choice = myNameIsTim.newClient(cln, adr, pmn, prs,
+												Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]),
+												Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]),
+												us);
+									}else {
+										User us=new User(Integer.parseInt(list.getSelectedValue()),"generic name","generic password");
+										choice = myNameIsTim.newClient(cln, adr, pmn, prs,
+												Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]),
+												Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]),
+												us);
+									}
 									if (choice.equals("all clear")) {
 										frame.dispose();
 									} else {
@@ -306,7 +316,7 @@ public class NewClient extends JFrame {
 
 			Component verticalStrut_4 = Box.createVerticalStrut(20);
 			panel_2.add(verticalStrut_4, "flowx,cell 19 0");
-			
+
 			panel_2.add(createUser,"cell 10 0 1, grow");
 
 			JLabel lblName = new JLabel("Name:");
@@ -409,7 +419,6 @@ public class NewClient extends JFrame {
 			});
 			panel_2.add(comboBox, "cell 19 1,alignx trailing");
 			option1 = comboBox.getSelectedIndex();
-			System.out.println(option1);
 			String colours[] = myNameIsTim.getColours();
 			comboBox_1 = new JComboBox(colours);
 			panel_2.add(comboBox_1, "cell 19 7");
@@ -578,44 +587,12 @@ public class NewClient extends JFrame {
 			textArea.setEditable(false);
 			textArea.setRows(5);
 			textArea.setText("Warnings / Comments / Errors:\n");
-			String[]users= oz.getUserId();
+			User[]user= oz.getUser().toArray(new User[1]);
+			String[] users =new String[user.length];
 			for (int i = 0; i < users.length; i++) {
-				users[i]="User Id:   "+users[i];
+				users[i]="User Id:   "+user[i].getId();
 			}
-			
 			panel_2.add(textArea, "cell 0 24 20 1,grow");
-			list =new JList<String>();
-			list.setListData(users);
-			list.addListSelectionListener(new ListSelectionListener() {
-				public void valueChanged(ListSelectionEvent arg0) {
-					int id;
-					String idString="";
-					char[] name=list.getSelectedValue().toCharArray();
-					boolean found=false;
-					int counter=0;
-					for (int i = 0; i < name.length; i++) {
-						if(name[i]==':') {
-							found=true;
-						}
-						if(found && name[i]==' ') {
-							counter=counter+1;
-						}
-						if(counter==3 && name[i]!=' ') {
-							idString=idString+name[i];
-						}
-					}
-					id=Integer.parseInt(idString);
-					userId=id;
-					btnOk.setEnabled(true);
-				}
-			});
-			list.setBackground(Color.LIGHT_GRAY);
-			list.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-			panel_2.add(list,"cell 0 25 20 2,growx");
-			if(list.getSelectedIndex()==-1 && selected==false) {
-				btnOk.setEnabled(false);
-			}
-			
 			textField_15 = new JTextField();
 			panel_2.add(textField_15, "cell 19 22");
 			textField_15.setColumns(10);
@@ -657,7 +634,7 @@ public class NewClient extends JFrame {
 			panel.setVisible(true);
 			frame.setVisible(true);
 		}
-		if(myNameIsTim.getAdmin()==0) {
+		if(admin.getPrivilege().getPrivilege()==0) {
 			option1 = -1;
 			option2 = -1;
 
@@ -728,7 +705,6 @@ public class NewClient extends JFrame {
 							if (option1 != -1 && option1 != 0) {
 								cln.setGender(gender[option1]);
 							} else {
-								System.out.println(option1);
 								JOptionPane.showMessageDialog(null,
 										"No, no unspecified gender allowed, we are a filthy bunch of cis white males that only accept 2 genders in their lives.");
 								fuckedup = fuckedup + 1;
@@ -837,7 +813,8 @@ public class NewClient extends JFrame {
 								if (PUNisher == false) {
 									String choice = myNameIsTim.newClient(cln, adr, pmn, prs,
 											Integer.parseInt(myNameIsTim.getFeatureId()[comboBox_2.getSelectedIndex()]),
-											Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]));
+											Integer.parseInt(myNameIsTim.getMaterialId()[comboBox_3.getSelectedIndex()]),
+											admin);
 									if (choice.equals("all clear")) {
 										frame.dispose();
 									} else {
@@ -996,7 +973,6 @@ public class NewClient extends JFrame {
 			});
 			panel_2.add(comboBox, "cell 19 1,alignx trailing");
 			option1 = comboBox.getSelectedIndex();
-			System.out.println(option1);
 			String colours[] = myNameIsTim.getColours();
 			comboBox_1 = new JComboBox(colours);
 			panel_2.add(comboBox_1, "cell 19 7");

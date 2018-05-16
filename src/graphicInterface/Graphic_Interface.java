@@ -6,13 +6,14 @@ import java.util.Random;
 import wizard_Handler.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
+import pojos.db.prosthetics.User;
 //guts.close must be activated
 public class Graphic_Interface extends JFrame{
 	private boolean tablesCreated=false;
 	private JFrame frame=new JFrame();
 	private int warnings=3;
 	private WizardHandler guts;
-	private WizardHandlerJPA guts2;
 	JPanel panel_1 = new JPanel();
 	
 	/**
@@ -24,24 +25,21 @@ public class Graphic_Interface extends JFrame{
 	 * Create the application.
 	 */
 	//set the boolean back to admin
-	public Graphic_Interface (int admin,int userId) {
-		if(admin==1) {
-			initialize(admin);
+	public Graphic_Interface (WizardHandlerJPA oz, User logged) {
+		if(logged.getPrivilege().getPrivilege()==1) {
+			initialize(oz, logged);
 		}
-		if(admin==0) {
-			initializeC(admin);
-			guts.setUserId(userId);
+		if(logged.getPrivilege().getPrivilege()==0) {
+			initializeC(oz, logged);
 		}
 	}
 
-	private void initializeC(int admin) {
+	private void initializeC(WizardHandlerJPA oz, User admin) {
 		frame.getContentPane().removeAll();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		guts=new WizardHandler();
-		guts2=new WizardHandlerJPA();
-		guts.setAdmin(admin);
 		JPanel contentPane=new JPanel();
 		contentPane.setLayout(new BorderLayout());
 		JPanel panel=new JPanel();
@@ -133,7 +131,7 @@ public class Graphic_Interface extends JFrame{
 		panel_19.add(btnExit);
 		btnNewClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewClient c= new NewClient(guts,guts2);
+				NewClient c= new NewClient(guts,oz,admin);
 			}
 		});
 		btnEditClient.addActionListener(new ActionListener() {
@@ -158,12 +156,10 @@ public class Graphic_Interface extends JFrame{
 		frame.setVisible(true);
 	}
 	
-	private void initialize(int admin) {
+	private void initialize(WizardHandlerJPA oz, User logged) {
 		
 		//window.frame.setVisible(true);
 		guts=new WizardHandler();
-		guts.setAdmin(admin);
-		guts2=new WizardHandlerJPA();
 		frame.getContentPane().removeAll();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(true);
@@ -266,7 +262,7 @@ public class Graphic_Interface extends JFrame{
 		btnNewButton_1.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				New();
+				New(oz,logged);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
@@ -552,7 +548,7 @@ public class Graphic_Interface extends JFrame{
 			}
 		}
 	}
-	public void New() {
+	public void New(WizardHandlerJPA oz,User admin) {
 		//if(this.tablesCreated==true) {
 			panel_1.removeAll();
 			panel_1.validate();
@@ -612,7 +608,7 @@ public class Graphic_Interface extends JFrame{
 			newCln.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						NewClient m= new NewClient(guts,guts2);
+						NewClient m= new NewClient(guts,oz,admin);
 					}
 					catch(Exception ex) {
 						ex.printStackTrace();

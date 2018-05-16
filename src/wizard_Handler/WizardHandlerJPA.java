@@ -10,85 +10,95 @@ import pojos.db.prosthetics.*;
 
 public class WizardHandlerJPA {
 	JPAConnect estoyLlorandoEnMiHabitacion = new JPAConnect();
-
 	public WizardHandlerJPA() {
 		estoyLlorandoEnMiHabitacion.establishConnection();
+		try {
+			if(JPARead.readUser().isEmpty()) {
+				System.out.println("no users detected at JPAHandler ");
+			}
+		}catch(Exception ex) {
+			User root =new User("Root","BlueBubbleBerrie");
+			Privilege pr1 =new Privilege(1);
+			Privilege pr2 =new Privilege(0);
+			Privilege pr3 =new Privilege(2);
+			root.setUserType(pr1);
+			pr1.setUser(root);
+			try {
+				JPACreate.createPrivilege(pr1);
+				JPACreate.createPrivilege(pr2);
+				JPACreate.createPrivilege(pr3);
+				System.out.println("paso");
+				JPACreate.createUser(root);
+				ex.printStackTrace();
+			}catch(Exception o) {
+				System.out.println("Fatal error, line 34");
+			}
+		}
 	}
 	public User newUser(User user){
 		int user_id=-1;
 		try {
 			System.out.println(user.getName()+"\n"+user.getPassword()+"\n");
-			JPACreate.create(user);
-	
-		}
-		catch(IOException e) {
+			JPACreate.createUser(user);	
+			}
+		catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Failed user insertion");
 		}
-
-		
 		return user;
 	} 
-	
-	public int newPrivilege(Privilege privilege){
-		
+	public Privilege newPrivilege(Privilege privilege){
 		try {
 			System.out.println(privilege.getPrivilege()+"\n");
-			JPACreate.create2(privilege);
-	
+			JPACreate.createPrivilege(privilege);
 		}
-		catch(IOException e) {
+		catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Failed privilege insertion");
 		}
-
-		
-		return privilege.getId();
+		return privilege;
 	} 
-	//porfa modificad el código para que me devuelva los id de todos los usuarios
-	
 	public List<User> getUser() {
-		
+
 		try{
-			
 			return JPARead.readUser();
 		}catch(Exception ex){
 			ex.printStackTrace();
 			return null;
 		}
-		
 	}
 	public List<Privilege> getPrivilege() {
-		
 		try{
-			
 			return JPARead.readPrivilege();
 		}catch(Exception ex){
 			ex.printStackTrace();
 			return null;
 		}
-		
 	}
-	
 	public void deleteUser(User user) throws Exception{
 		JPADelete.deleteUser(user);
-		
 	}
 	public void deletePrivilege(Privilege privilege) throws Exception{
 		JPADelete.deletePrivilege(privilege);
-		
+
 	}
-	
 	public void EditUser(User user) throws Exception{
-		String name="";
-		JPAUpdate.EditUser(user,name);
-		
+		JPAUpdate.EditUser(user);
 	}
-	
-	
-	public void EditPrivilege(Privilege privilege) throws Exception{
-		int option=0;
-		JPAUpdate.EditPrivilege(privilege, option);		
-		
-	}	
+	public void EditPrivilege(Privilege privilege) {
+		try {
+			JPAUpdate.EditPrivilege(privilege);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	public Privilege getStatus(int stat) {
+		try {
+			return JPARead.getStatus(stat);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
