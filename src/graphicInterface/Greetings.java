@@ -14,6 +14,7 @@ import java.awt.Component;
 import javax.swing.Box;
 import net.miginfocom.swing.MigLayout;
 import pojos.db.prosthetics.User;
+import wizard_Handler.WizardHandler;
 import wizard_Handler.WizardHandlerJPA;
 
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 //import wizard_Handler.WizardHandlerJPA;
 public class Greetings extends JFrame {
 
@@ -32,12 +34,12 @@ public class Greetings extends JFrame {
 	private JTextField textField;
 	private JTextField txtPassword;
 	private JPasswordField passwordField;
-	private WizardHandlerJPA oz=new WizardHandlerJPA();
+	private WizardHandlerJPA oz;
 	int admin;
 
 	public Greetings() {
 		admin = 0;
-		//WizardHandlerJPA dumbleBore = new WizardHandlerJPA();
+		oz = new WizardHandlerJPA();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -91,53 +93,67 @@ public class Greetings extends JFrame {
 		comboBox.setSelectedIndex(0);
 		panel_1.add(comboBox, "cell 1 4 2 1,growx");
 		JButton btnOk = new JButton("Ok");
-		
+
 		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) { 
+			public void actionPerformed(ActionEvent arg0) {
 				String str = new String(passwordField.getPassword());
 				System.out.println(comboBox.getSelectedIndex() + "	" + str + "		" + textField.getText());
-				System.out.println((String)comboBox.getSelectedItem()+"privilege level");
-				if(((String)comboBox.getSelectedItem()).equals("Pleb User")) {
-					admin =0;
+				System.out.println((String) comboBox.getSelectedItem() + "privilege level");
+				if (((String) comboBox.getSelectedItem()).equals("Pleb User")) {
+					admin = 0;
 				}
-				if(((String)comboBox.getSelectedItem()).equals("Evil Overlord")) {
-					admin =1;
+				if (((String) comboBox.getSelectedItem()).equals("Evil Overlord")) {
+					admin = 1;
 				}
-				if(((String)comboBox.getSelectedItem()).equals("Auditor")) {
-					admin =2;
+				if (((String) comboBox.getSelectedItem()).equals("Auditor")) {
+					admin = 2;
 				}
 				String usr;
 				String psw;
-				User[] users=oz.getUser().toArray(new User[1]);
-				User logged=null;
-				boolean found=false;
+				User[] users = oz.getUser().toArray(new User[1]);
+				User logged = null;
+				boolean found = false;
 				for (int i = 0; i < users.length; i++) {
-					usr=users[i].getName();
-					psw=users[i].getPassword();
-					if(usr.equals(textField.getText())&&psw.equals(str)) {
-						found=true;
-						logged=users[i];
+					System.out.println(users[i]);
+					usr = users[i].getName();
+					psw = users[i].getPassword();
+					if (usr.equals(textField.getText()) && psw.equals(str)) {
+						found = true;
+						logged = users[i];
 						break;
 					}
 				}
-				if(found) {
-					Graphic_Interface g = new Graphic_Interface(oz,logged);
+				if (found) {
+					Graphic_Interface g = new Graphic_Interface(oz, logged);
 					frame.dispose();
-				}else {
-					JOptionPane.showMessageDialog(null,"Incorrect Password or username");
-					System.out.println(str+"   "+textField.getText());
+				} else {
+					JOptionPane.showMessageDialog(null, "Incorrect Password or username");
+					System.out.println(str + "   " + textField.getText());
 				}
-				
+
 			}
 		});
 		panel_1.add(btnOk, "cell 2 6,growx");
 
 	}
+
 	static Greetings frame = null;
+
 	public static void main(String[] args) {
+		WizardHandler dirtySolution = null;
+		try {
+			dirtySolution = new WizardHandler();
+			dirtySolution.createTables();
+		} catch (Exception e) {
+			System.out.println("Tables already there, you know.");
+		} finally {
+			dirtySolution.appClosed();
+
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+
 					frame = new Greetings();
 					frame.setVisible(true);
 				} catch (Exception e) {

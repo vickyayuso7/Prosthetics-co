@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class CreateUser extends JFrame {
@@ -32,11 +33,12 @@ public class CreateUser extends JFrame {
 	private JFrame frame=new JFrame();
 	private WizardHandlerJPA myNameIsTim=new WizardHandlerJPA();
 	public CreateUser() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
+		frame.setSize(489, 301);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
@@ -72,9 +74,12 @@ public class CreateUser extends JFrame {
 		panel_1.add(textField_2, "cell 4 5,alignx left");
 		textField_2.setColumns(10);
 		Privilege[] pr=new Privilege[3];
-		Iterator <Privilege> it=myNameIsTim.getPrivilege().iterator();
+		List<Privilege> list = myNameIsTim.getPrivilege();
+		System.out.println(list);
+		Iterator <Privilege> it=list.iterator();
 		for(int i=0;it.hasNext();i++) {
 			pr[i]=it.next();
+			System.out.println("HI");
 			//weird casting error
 		}
 		String[] privilege=new String[pr.length];

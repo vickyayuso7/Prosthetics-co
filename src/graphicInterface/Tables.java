@@ -12,7 +12,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import pojos.db.prosthetics.Address;
+import pojos.db.prosthetics.User;
 import wizard_Handler.WizardHandler;
+import wizard_Handler.WizardHandlerJPA;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -35,11 +37,13 @@ public class Tables extends JFrame{
 	private JFrame frame =new JFrame();
 	private JPanel contentPane;
 	private static JPanel panel_2;
+	private static WizardHandlerJPA oz;
 
 	/**
 	 * Create the application.
 	 */
-	public Tables(WizardHandler myNameIsTim) {
+	public Tables(WizardHandler myNameIsTim,WizardHandlerJPA oz) {
+		this.oz=oz;
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,22 +52,22 @@ public class Tables extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
 		contentPane.add(panel, BorderLayout.NORTH);
-		
+
 		JLabel lblTableViewer = new JLabel("Table Viewer");
 		lblTableViewer.setFont(new Font("Consolas", Font.PLAIN, 11));
 		lblTableViewer.setBackground(Color.BLACK);
 		lblTableViewer.setForeground(Color.GREEN);
 		panel.add(lblTableViewer);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLACK);
 		panel_1.setLayout(new GridLayout(7,1));
 		contentPane.add(panel_1, BorderLayout.WEST);
-		
+
 		JButton btnClients = new JButton("Clients");
 		btnClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +80,7 @@ public class Tables extends JFrame{
 		btnClients.setForeground(Color.GREEN);
 		btnClients.setBorderPainted(false);
 		panel_1.add(btnClients);
-		
+
 		JButton btnNewButton = new JButton("Prosthetics");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,7 +92,7 @@ public class Tables extends JFrame{
 		btnNewButton.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnNewButton.setBorderPainted(false);
 		panel_1.add(btnNewButton);
-		
+
 		JButton btnPayments = new JButton("Payments");
 		btnPayments.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +104,7 @@ public class Tables extends JFrame{
 		btnPayments.setBackground(Color.BLACK);
 		btnPayments.setBorderPainted(false);
 		panel_1.add(btnPayments);
-		
+
 		JButton btnMaterials = new JButton("Materials");
 		btnMaterials.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,7 +116,7 @@ public class Tables extends JFrame{
 		btnMaterials.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnMaterials.setBorderPainted(false);
 		panel_1.add(btnMaterials);
-		
+
 		JButton btnFeatures = new JButton("Features");
 		btnFeatures.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,7 +128,7 @@ public class Tables extends JFrame{
 		btnFeatures.setBackground(Color.BLACK);
 		btnFeatures.setBorderPainted(false);
 		panel_1.add(btnFeatures);
-		
+
 		JButton btnAddresses = new JButton("Addresses");
 		btnAddresses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,7 +140,7 @@ public class Tables extends JFrame{
 		btnAddresses.setForeground(Color.GREEN);
 		btnAddresses.setBorderPainted(false);
 		panel_1.add(btnAddresses);
-		
+
 		JButton btnExit = new JButton("Back");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -148,7 +152,7 @@ public class Tables extends JFrame{
 		btnExit.setFont(new Font("Consolas", Font.PLAIN, 11));
 		btnExit.setBorderPainted(false);
 		panel_1.add(btnExit);
-		
+
 		panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		contentPane.add(panel_2, BorderLayout.CENTER);
@@ -190,13 +194,13 @@ public class Tables extends JFrame{
 		for (int i = 0; i < clientIds.length; i++) {
 			names[i]=clientIds[i]+":   "+myNameIsTim.getClientFull(Integer.parseInt(clientIds[i])).getName();
 		}
-				
+
 		JList <String> listClients=new <String> JList(names);
 		listClients.setSelectedIndex(-1);
 		JList <String> listProsthetics =new JList();
 		JList <String> listPayments =new JList();
 		JList <String> listAddresses =new JList();
-		
+
 		listClients.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				int Index;
@@ -244,7 +248,9 @@ public class Tables extends JFrame{
 					String[] idadr = new String[1];
 					idadr[0]=""+myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id))+":   "+myNameIsTim.getAddressFull(myNameIsTim.getAddressIdThruClientId(Integer.parseInt(id))).getStreet();   
 					listAddresses.setListData(idadr);
-					EditClient c =new EditClient(myNameIsTim,Integer.parseInt(id));
+					User view =new User("default","pass");
+					view.setUserType(oz.getStatus(1));
+					EditClient c =new EditClient(myNameIsTim,view);
 				}
 			}
 		});
@@ -306,7 +312,7 @@ public class Tables extends JFrame{
 						}
 					}
 					System.out.println(prsId);
-				ViewPayment p= new ViewPayment(myNameIsTim, Integer.parseInt(id), Integer.parseInt(prsId));
+					ViewPayment p= new ViewPayment(myNameIsTim, Integer.parseInt(id), Integer.parseInt(prsId));
 				}
 			}
 		});
@@ -339,7 +345,7 @@ public class Tables extends JFrame{
 				}
 			}
 		});
-		
+
 		listAddresses.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -507,11 +513,11 @@ public class Tables extends JFrame{
 						}
 					}
 					System.out.println(prsId);
-				ViewPayment p= new ViewPayment(myNameIsTim, Integer.parseInt(id), Integer.parseInt(prsId));
+					ViewPayment p= new ViewPayment(myNameIsTim, Integer.parseInt(id), Integer.parseInt(prsId));
 				}
 			}
 		});
-		
+
 	}
 	private static void ModifyViewForPayments(WizardHandler myNameIsTim) {
 		panel_2.removeAll();
@@ -536,7 +542,7 @@ public class Tables extends JFrame{
 		for (int i = 0; i < clientIds.length; i++) {
 			names[i]=clientIds[i]+":   "+myNameIsTim.getClientFull(Integer.parseInt(clientIds[i])).getName();
 		}
-				
+
 		JList <String> listClients=new <String> JList(names);
 		listClients.setSelectedIndex(-1);
 		JList<String> listPayments=new JList<String>();
@@ -562,7 +568,7 @@ public class Tables extends JFrame{
 					paymentId[i]="Payment Id:   "+myNameIsTim.getPaymentIdThruProstheticId(Integer.parseInt(prosthetics[i]));
 					prosthetics[i]="Prosthetic:   "+prosthetics[i];
 				}
-				
+
 				listPayments.setListData(paymentId);
 				listPayments.setVisible(false);
 				listPayments.setVisible(true);
@@ -582,7 +588,9 @@ public class Tables extends JFrame{
 							id=id+charcmp;
 						}
 					}
-					EditClient c =new EditClient(myNameIsTim,Integer.parseInt(id));
+					User view =new User("default","pass");
+					view.setUserType(oz.getStatus(1));
+					EditClient c =new EditClient(myNameIsTim,view);
 				}
 			}
 		});
@@ -749,7 +757,7 @@ public class Tables extends JFrame{
 				String[] street = new String[orderedCountries.length];
 				String[] name = new String [orderedCountries.length];
 				int thisIsWhyWeCantHaveNiceThings=0;
-				
+
 				for (int i = 0; i < orderedCountries.length; i++) {
 					countries[i]="";
 					cities[i]="";
@@ -757,7 +765,7 @@ public class Tables extends JFrame{
 					name[i]="";
 					thisIsWhyWeCantHaveNiceThings=0;
 					char[] nastyStuff= orderedCountries[i].toCharArray();
-					
+
 					for (int j = 0; j < nastyStuff.length; j++) {
 						if(thisIsWhyWeCantHaveNiceThings ==0 && nastyStuff[j]!=';') {
 							countries[i]=countries[i]+nastyStuff[j];
@@ -780,16 +788,16 @@ public class Tables extends JFrame{
 				listCities.setListData(cities);
 				listStreets.setListData(street);
 				listClients.setListData(name);
-				
+
 				listCountry.setVisible(false);
 				listCountry.setVisible(true);
-				
+
 				listClients.setVisible(false);
 				listClients.setVisible(true);
-				
+
 				listStreets.setVisible(false);
 				listStreets.setVisible(true);
-				
+
 				listCities.setVisible(false);
 				listCities.setVisible(true);
 				//System.out.println("ordered by countires");
@@ -803,7 +811,7 @@ public class Tables extends JFrame{
 				String[] street = new String[orderedCities.length];
 				String[] name = new String [orderedCities.length];
 				int thisIsWhyWeCantHaveNiceThings=0;
-				
+
 				for (int i = 0; i < orderedCities.length; i++) {
 					countries[i]="";
 					cities[i]="";
@@ -811,7 +819,7 @@ public class Tables extends JFrame{
 					name[i]="";
 					thisIsWhyWeCantHaveNiceThings=0;
 					char[] nastyStuff= orderedCities[i].toCharArray();
-					
+
 					for (int j = 0; j < nastyStuff.length; j++) {
 						if(thisIsWhyWeCantHaveNiceThings ==0 && nastyStuff[j]!=';') {
 							countries[i]=countries[i]+nastyStuff[j];
@@ -834,16 +842,16 @@ public class Tables extends JFrame{
 				listCities.setListData(cities);
 				listStreets.setListData(street);
 				listClients.setListData(name);
-				
+
 				listCountry.setVisible(false);
 				listCountry.setVisible(true);
-				
+
 				listClients.setVisible(false);
 				listClients.setVisible(true);
-				
+
 				listStreets.setVisible(false);
 				listStreets.setVisible(true);
-				
+
 				listCities.setVisible(false);
 				listCities.setVisible(true);
 			}
@@ -856,7 +864,7 @@ public class Tables extends JFrame{
 				String[] street = new String[orderedCities.length];
 				String[] name = new String [orderedCities.length];
 				int thisIsWhyWeCantHaveNiceThings=0;
-				
+
 				for (int i = 0; i < orderedCities.length; i++) {
 					countries[i]="";
 					cities[i]="";
@@ -864,7 +872,7 @@ public class Tables extends JFrame{
 					name[i]="";
 					thisIsWhyWeCantHaveNiceThings=0;
 					char[] nastyStuff= orderedCities[i].toCharArray();
-					
+
 					for (int j = 0; j < nastyStuff.length; j++) {
 						if(thisIsWhyWeCantHaveNiceThings ==0 && nastyStuff[j]!=';') {
 							countries[i]=countries[i]+nastyStuff[j];
@@ -887,16 +895,16 @@ public class Tables extends JFrame{
 				listCities.setListData(cities);
 				listStreets.setListData(street);
 				listClients.setListData(name);
-				
+
 				listCountry.setVisible(false);
 				listCountry.setVisible(true);
-				
+
 				listClients.setVisible(false);
 				listClients.setVisible(true);
-				
+
 				listStreets.setVisible(false);
 				listStreets.setVisible(true);
-				
+
 				listCities.setVisible(false);
 				listCities.setVisible(true);
 			}
@@ -909,7 +917,7 @@ public class Tables extends JFrame{
 				String[] street = new String[orderedCities.length];
 				String[] name = new String [orderedCities.length];
 				int thisIsWhyWeCantHaveNiceThings=0;
-				
+
 				for (int i = 0; i < orderedCities.length; i++) {
 					countries[i]="";
 					cities[i]="";
@@ -917,7 +925,7 @@ public class Tables extends JFrame{
 					name[i]="";
 					thisIsWhyWeCantHaveNiceThings=0;
 					char[] nastyStuff= orderedCities[i].toCharArray();
-					
+
 					for (int j = 0; j < nastyStuff.length; j++) {
 						if(thisIsWhyWeCantHaveNiceThings ==0 && nastyStuff[j]!=';') {
 							countries[i]=countries[i]+nastyStuff[j];
@@ -940,16 +948,16 @@ public class Tables extends JFrame{
 				listCities.setListData(cities);
 				listStreets.setListData(street);
 				listClients.setListData(name);
-				
+
 				listCountry.setVisible(false);
 				listCountry.setVisible(true);
-				
+
 				listClients.setVisible(false);
 				listClients.setVisible(true);
-				
+
 				listStreets.setVisible(false);
 				listStreets.setVisible(true);
-				
+
 				listCities.setVisible(false);
 				listCities.setVisible(true);
 			}
@@ -1034,8 +1042,10 @@ public class Tables extends JFrame{
 						if(charcmp!=':') {
 							id=id+charcmp;
 						}
-					EditClient c =new EditClient(myNameIsTim,Integer.parseInt(id));
-				}
+						User view =new User("default","pass");
+						view.setUserType(oz.getStatus(1));
+						EditClient c =new EditClient(myNameIsTim,view);
+					}
 				}
 			}
 		});

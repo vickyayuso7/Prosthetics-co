@@ -613,4 +613,17 @@ public class SQLSelect{
 		}
 		return(userList);
 	}
+
+
+	public static int getClientIdThrouUserId(int id) throws SQLException{
+		String Query = "SELECT id FROM client WHERE user_id =?";
+		int idC=-1;
+		PreparedStatement stm1 =SQLConnect.getConnection().prepareStatement(Query);
+		stm1.setInt(1, id);
+		ResultSet rs=stm1.executeQuery();
+		while(rs.next()) {
+			idC=rs.getInt("id");
+		}
+		return(idC);
+	}
 }

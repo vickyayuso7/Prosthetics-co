@@ -70,7 +70,7 @@ public abstract class SQLCreate implements ILiveInAConstantStateOfFearAndMisery{
 					   + " date_of_birth      INTEGER, "
 					   + " gender  TEXT,"
 					   + " address_id   INTEGER  REFERENCES  Address(id), "
-					   + " user_id INTEGER REFERENCES user(id))";
+					   + " user_id INTEGER REFERENCES Users(id))";
 			System.out.println(sql7);
 			stmt7.executeUpdate(sql7);
 			stmt7.close();
@@ -93,34 +93,51 @@ public abstract class SQLCreate implements ILiveInAConstantStateOfFearAndMisery{
 					   + " city   TEXT   NOT NULL,"
 					   + " number   INTEGER  NOT NULL)";
 			stmt9.executeUpdate(sql9);
+			System.out.println(sql9);
 			
 			stmt9.close();
+			CreateUser(c);
 			System.out.println("Tables created.");
 	}
 	
 	
-	/*public static void CreateUser(Connection c) throws Exception{
+	public static void CreateUser(Connection c) throws Exception{
 		Statement stmt1 = c.createStatement();
 		String sql1 = "CREATE TABLE Users "
 				+"(id   INTEGER  PRIMARY KEY AUTOINCREMENT,"
 				+"name  TEXT  NOT NULL,"
 				+"password 		TEXT NOT NULL, "
-				+ "userType_id	INTEGER  REFERENCES  UseType(id))";
-		System.out.println(sql1);
+				+ "userType_id	INTEGER  REFERENCES  UserType(id))";
 		stmt1.executeUpdate(sql1);
+		System.out.println(sql1);
+
 		stmt1.close();
 		
 		Statement stmt2= c.createStatement();
 		String sql2= "CREATE TABLE UserType"
-				+"id		INTEGER PRIMARY KEY AUTOINCREMENT,"
-				+ "privilege		BOOLEAN NOT NULL)";
-		
-		System.out.println(sql2);
+				+"(id		INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ "privilege		INTEGER NOT NULL)";
 		stmt2.executeUpdate(sql2);
+		System.out.println(sql2);
+
 		stmt2.close();
-				
+		
+		Statement stmt3= c.createStatement();
+		String sql3= "INSERT INTO sqlite_sequence (name, seq) VALUES ('Users', 1)";
+		stmt3.executeUpdate(sql3);
+		System.out.println(sql3);
+
+		stmt3.close();
+		
+
+		Statement stmt4= c.createStatement();
+		String sql4= "INSERT INTO sqlite_sequence (name, seq) VALUES ('UserType', 1)";
+		stmt4.executeUpdate(sql4);
+		System.out.println(sql4);
+
+		stmt4.close();
 	
-	}*/
+	}
 	
 	public static void deleteDatabase(Connection c) throws SQLException{
 		String str1= "DROP Client;";

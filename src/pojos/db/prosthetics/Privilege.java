@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,40 +16,36 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.eclipse.persistence.jpa.config.Cascade;
+
 @Entity
-@Table(name = "userType")
+@Table(name = "UserType")
 public class Privilege implements Serializable {
 
 	private static final long serialVersionUID = -3005995623235179539L;
 	@Id
-	@GeneratedValue(generator = "Privilege")
-	@TableGenerator(name = "Privilege", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "Privilege")
-
+	@GeneratedValue(generator = "UserType")
+	@TableGenerator(name = "UserType", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "UserType")
 	private Integer id;
-	private int option;
+	private int privilege;
 	
-	@Basic(fetch = FetchType.LAZY)
-
-	@ManyToMany(fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="privilege", fetch = FetchType.LAZY, cascade=CascadeType.PERSIST)
 	private List<User> user;
 
-	@OneToOne (fetch=FetchType.LAZY)
-	private Privilege privilege;
 
 	public Privilege(int privilege) {
 		super();
 		user=new ArrayList <User>();
-		this.option=privilege;
+		this.privilege=privilege;
 	
 	}
 	public Privilege() {
 		super();
-		this.id=id;
-		this.option=option;
 	}
 	
 	public Integer getId() {
@@ -60,25 +57,18 @@ public class Privilege implements Serializable {
 	}
 
 	public int getPrivilege() {
-		return option;
+		return privilege;
 	}
 
 	public void setPrivilege(int privilege) {
-		this.option = privilege;
+		this.privilege = privilege;
 	}
 
 	public List<User> getUser() {
 		return user;
 	}
-	public Privilege getPRivilege() {
-		return privilege;
-	}
-
 	public void setUser(User user) {
 		this.user.add(user);
-	}
-	public void setPrivilege(Privilege privilege) {
-		this.privilege = privilege;
 	}
 
 	public static long getSerialversionuid() {
@@ -87,7 +77,7 @@ public class Privilege implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Privilege [id=" + id + ", option=" + option + ", user=" + user + ", privilege=" + privilege + "]";
+		return "Privilege [id=" + id + ", option=" + privilege + "]";
 	}
 
 	@Override

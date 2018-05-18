@@ -22,18 +22,15 @@ public class JPAUpdate {
 		JPAConnect.getEntityManager().getTransaction().begin();
 		user1=user;
 		JPAConnect.getEntityManager().getTransaction().commit();
-		JPAConnect.getEntityManager().flush();
 	}
 	public static void EditPrivilege(Privilege privilege) throws Exception {
 		
-		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM users WHERE id=?", User.class);
+		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM UserType WHERE id=?", Privilege.class);
 		q1.setParameter(1, privilege.getId());
 		Privilege privilege1 = (Privilege) q1.getSingleResult();
 		JPAConnect.getEntityManager().getTransaction().begin();
 		privilege1=privilege;
 		JPAConnect.getEntityManager().getTransaction().commit();
-		JPAConnect.getEntityManager().flush();
-		
 	}
 }
 

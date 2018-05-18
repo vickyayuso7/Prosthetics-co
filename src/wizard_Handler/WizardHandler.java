@@ -115,7 +115,8 @@ private int UserId;
 			return("Success");
 		}
 		catch(Exception ex){
-			ex.printStackTrace();
+			//ex.printStackTrace();
+			System.out.println("tables exist already!");
 			return("Failed");
 		}
 	}
@@ -470,6 +471,15 @@ private int UserId;
 			e.printStackTrace();
 			return("failure");
 		}
+	}
+	public int getClientIdThrouUserId(int id) {
+		try{
+			int selectedId=SQLSelect.getClientIdThrouUserId(id);
+			return(selectedId);
+		}catch(Exception ex) {
+			return -1;
+		}
+		
 	}
 	
 }
