@@ -149,7 +149,11 @@ public class Graphic_Interface extends JFrame{
 		});
 		btnNewProsthetic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewProsthetic p=new NewProsthetic(guts);
+				if(guts.getClientIdThrouUserId(admin.getId())!=-1) {
+					NewProsthetic p=new NewProsthetic(guts,admin);
+				}else {
+					JOptionPane.showMessageDialog(null, "You are not registered as a client and thus cannot order any prosthetics");
+				}
 			}
 		});
 		btnExit.addActionListener(new ActionListener() {
@@ -699,7 +703,9 @@ public class Graphic_Interface extends JFrame{
 		newPrs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					NewProsthetic p =new NewProsthetic(guts);
+					User us =new User("def", "pass");
+					us.setUserType(oz.getStatus(1));
+					NewProsthetic p =new NewProsthetic(guts,us);
 				}
 				catch(Exception ex) {
 					ex.printStackTrace();

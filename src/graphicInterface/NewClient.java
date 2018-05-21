@@ -127,6 +127,7 @@ public class NewClient extends JFrame {
 								}
 								String str = textField_14.getText() + "-" + textField_6.getText() + "-"
 										+ textField_1.getText();
+								System.out.println(str);
 								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 								LocalDate dt = LocalDate.parse(str, formatter);
 								cln.setDateOfBirth(Date.valueOf(dt));

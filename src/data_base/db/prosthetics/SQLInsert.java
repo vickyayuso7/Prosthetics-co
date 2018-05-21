@@ -140,6 +140,7 @@ public class SQLInsert {
 		return(lastId);
 	}
 	public static void newClient_Prosthetics(int client_id,int prosthetic_id) throws SQLException {
+		System.out.println(client_id+"			"+prosthetic_id);
 		String sql ="INSERT INTO Client_Prosthetics (client_id, prosthetic_id, date) VALUES (?,?,CURRENT_TIMESTAMP)";
 		PreparedStatement stm1 = SQLConnect.getConnection().prepareStatement(sql);
 		stm1.setInt(1, client_id);

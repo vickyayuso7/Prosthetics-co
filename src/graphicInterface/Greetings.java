@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
@@ -30,9 +31,9 @@ import java.awt.event.ActionEvent;
 public class Greetings extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtUser;
+	private JLabel txtUser;
 	private JTextField textField;
-	private JTextField txtPassword;
+	private JLabel txtPassword;
 	private JPasswordField passwordField;
 	private WizardHandlerJPA oz;
 	int admin;
@@ -51,7 +52,7 @@ public class Greetings extends JFrame {
 		panel.setBackground(Color.BLUE);
 		contentPane.add(panel, BorderLayout.NORTH);
 
-		JTextArea txtrGreetingsPleaseLog = new JTextArea();
+		JLabel txtrGreetingsPleaseLog = new JLabel();
 		txtrGreetingsPleaseLog.setForeground(Color.WHITE);
 		txtrGreetingsPleaseLog.setBackground(Color.BLUE);
 		txtrGreetingsPleaseLog.setText("Greetings: Please log in.");
@@ -62,28 +63,24 @@ public class Greetings extends JFrame {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new MigLayout("", "[90px][86px,grow][80px,grow][86px]", "[20px][][][][grow][][]"));
 
-		txtUser = new JTextField();
+		txtUser = new JLabel();
 		txtUser.setBackground(Color.WHITE);
 		txtUser.setFont(new Font("Times New Roman", Font.PLAIN, 11));
-		txtUser.setEditable(false);
 		txtUser.setBorder(null);
 		txtUser.setText("User:");
 		panel_1.add(txtUser, "cell 1 2,alignx left,aligny center");
-		txtUser.setColumns(10);
 
 		textField = new JTextField();
 		panel_1.add(textField, "cell 2 2,growx,aligny top");
 		textField.setColumns(10);
 		textField.setEditable(true);
 
-		txtPassword = new JTextField();
+		txtPassword = new JLabel();
 		txtPassword.setFont(new Font("Consolas", Font.PLAIN, 11));
 		txtPassword.setBackground(Color.WHITE);
-		txtPassword.setEditable(false);
 		txtPassword.setBorder(null);
 		txtPassword.setText("Password:");
 		panel_1.add(txtPassword, "cell 1 3,alignx left,aligny center");
-		txtPassword.setColumns(10);
 
 		passwordField = new JPasswordField();
 		panel_1.add(passwordField, "cell 2 3,growx");
