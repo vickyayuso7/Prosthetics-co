@@ -94,8 +94,8 @@ public class Greetings extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String str = new String(passwordField.getPassword());
-				System.out.println(comboBox.getSelectedIndex() + "	" + str + "		" + textField.getText());
-				System.out.println((String) comboBox.getSelectedItem() + "privilege level");
+				//System.out.println(comboBox.getSelectedIndex() + "	" + str + "		" + textField.getText());
+				//System.out.println((String) comboBox.getSelectedItem() + "privilege level");
 				if (((String) comboBox.getSelectedItem()).equals("Pleb User")) {
 					admin = 0;
 				}
@@ -111,7 +111,7 @@ public class Greetings extends JFrame {
 				User logged = null;
 				boolean found = false;
 				for (int i = 0; i < users.length; i++) {
-					System.out.println(users[i]);
+					//System.out.println(users[i]);
 					usr = users[i].getName();
 					psw = users[i].getPassword();
 					if (usr.equals(textField.getText()) && psw.equals(str)) {

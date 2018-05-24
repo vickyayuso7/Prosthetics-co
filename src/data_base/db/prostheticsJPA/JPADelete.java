@@ -11,17 +11,12 @@ import pojos.db.prosthetics.User;
 
 public class JPADelete {
 	public static void deleteUser(User user) throws Exception {
-		Query q1=JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM user WHERE id =?");
-		q1.setParameter(1, user.getId());
-		user=(User) q1.getSingleResult();
 		JPAConnect.getEntityManager().getTransaction().begin();
 		JPAConnect.getEntityManager().remove(user);
+		System.out.println("paso por delete");
 		JPAConnect.getEntityManager().getTransaction().commit();
 	}
 	public static void deletePrivilege(Privilege privilege) throws Exception {
-		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM privilege WHERE id=?", Privilege.class);
-		q1.setParameter(1, privilege.getId());
-		privilege=(Privilege) q1.getSingleResult();
 		JPAConnect.getEntityManager().getTransaction().begin();
 		JPAConnect.getEntityManager().remove(privilege);
 		JPAConnect.getEntityManager().getTransaction().commit();

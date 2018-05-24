@@ -32,6 +32,12 @@ public class Graphic_Interface extends JFrame{
 		if(logged.getPrivilege().getPrivilege()==0) {
 			initializeC(oz, logged);
 		}
+		if(logged.getPrivilege().getPrivilege()==2) {
+			User u =new User("default","pass");
+			u.setUserType(oz.getStatus(2));
+			guts=new WizardHandler();
+			Tables auditore=new Tables(guts, oz,u);
+		}
 	}
 
 	private void initializeC(WizardHandlerJPA oz, User admin) {
@@ -184,33 +190,10 @@ public class Graphic_Interface extends JFrame{
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 
-		JMenuItem mntmLoadTables = new JMenuItem("Reload Tables");
-		mntmLoadTables.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String str =guts.reloadTables();
-				if(str.equals("failed")) {
-					JOptionPane.showMessageDialog(null, "Something Went Terribly Wrong! I guess you just wanted some love and I couldn't comply...\n I'm sorry: as a small compensation here is a fragment of the necronomicon:\nThat is not dead which can eternal lie,\r\n" + 
-							" And with strange aeons even death may die ");
-				}
-			}
-		});
-		mnFile.add(mntmLoadTables);
-
-		JMenuItem mntmCreateTables = new JMenuItem("Create Tables");
-		mntmCreateTables.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String srt= guts.createTables();
-				if(srt.equals("Failed")) {
-					JOptionPane.showMessageDialog(null, "Tables Are Created. I guess you just wanted some love and I couldn't comply...\n I'm sorry: as a small compensation here is a fragment of the necronomicon:\n2 The Old Ones were, the Old Ones are, and the Old Ones shall be. 3 Not in the spaces we know, but between them, They walk serene and primal, undimensioned and to us unseen. ");
-				}
-			}
-		});
-		mnFile.add(mntmCreateTables);
-
-		JMenuItem mntmDeleteTables = new JMenuItem("Delete Tables");
+		JMenuItem mntmDeleteTables = new JMenuItem("Delete User");
 		mntmDeleteTables.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				guts.deleteTables();
+				DeleteUser u =new DeleteUser(oz);
 			}
 		});
 		mnFile.add(mntmDeleteTables);
@@ -222,7 +205,9 @@ public class Graphic_Interface extends JFrame{
 		mnView.add(mnShowTables);
 		mnShowTables.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Tables c= new Tables(guts,oz);
+				User u =new User("default","pass");
+				u.setUserType(oz.getStatus(1));
+				Tables c= new Tables(guts,oz,u);
 				//c.setVisible(true);
 			}
 		});
@@ -340,7 +325,9 @@ public class Graphic_Interface extends JFrame{
 		gbc_btnNewButton_3.gridy = 4;
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Tables tableViewer = new Tables(guts,oz);
+				User u =new User("default","pass");
+				u.setUserType(oz.getStatus(1));
+				Tables tableViewer = new Tables(guts,oz,u);
 			}
 		});
 		panel.add(btnNewButton_3, gbc_btnNewButton_3);

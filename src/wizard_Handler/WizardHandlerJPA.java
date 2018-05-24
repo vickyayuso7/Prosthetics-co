@@ -15,7 +15,7 @@ public class WizardHandlerJPA {
 		estoyLlorandoEnMiHabitacion.establishConnection();
 		 
 		try {
-			System.out.println(JPARead.readUser());
+			//System.out.println(JPARead.readUser());
 			if (JPARead.readUser() == null || JPARead.readUser().isEmpty()) {
 				System.out.println("no users detected at JPAHandler ");
 				User root = new User("Root", "BlueBubbleBerrie");
@@ -27,7 +27,7 @@ public class WizardHandlerJPA {
 				JPACreate.createPrivilege(pr1);
 				JPACreate.createPrivilege(pr2);
 				JPACreate.createPrivilege(pr3);
-				System.out.println("paso");
+				//System.out.println("paso");
 				JPACreate.createUser(root);
 			}
 		} catch (Exception e) {
@@ -39,7 +39,7 @@ public class WizardHandlerJPA {
 	public User newUser(User user) {
 		int user_id = -1;
 		try {
-			System.out.println(user.getName() + "\n" + user.getPassword() + "\n");
+			//System.out.println(user.getName() + "\n" + user.getPassword() + "\n");
 			JPACreate.createUser(user);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class WizardHandlerJPA {
 
 	public Privilege newPrivilege(Privilege privilege) {
 		try {
-			System.out.println(privilege.getPrivilege() + "\n");
+			//System.out.println(privilege.getPrivilege() + "\n");
 			JPACreate.createPrivilege(privilege);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,8 +78,12 @@ public class WizardHandlerJPA {
 		}
 	}
 
-	public void deleteUser(User user) throws Exception {
+	public void deleteUser(User user) {
+		try {
 		JPADelete.deleteUser(user);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	public void deletePrivilege(Privilege privilege) throws Exception {

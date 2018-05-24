@@ -38,11 +38,12 @@ public class Tables extends JFrame{
 	private JPanel contentPane;
 	private static JPanel panel_2;
 	private static WizardHandlerJPA oz;
-
+	private static User admin;
 	/**
 	 * Create the application.
 	 */
-	public Tables(WizardHandler myNameIsTim,WizardHandlerJPA oz) {
+	public Tables(WizardHandler myNameIsTim,WizardHandlerJPA oz,User admin) {
+		this.admin=admin;
 		this.oz=oz;
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setUndecorated(true);
@@ -157,6 +158,34 @@ public class Tables extends JFrame{
 		panel_2.setBackground(Color.WHITE);
 		contentPane.add(panel_2, BorderLayout.CENTER);
 		frame.add(contentPane);
+		if(admin.getPrivilege().getPrivilege()==2) {
+			btnExit.setBackground(Color.BLUE);
+			btnExit.setBackground(Color.BLUE);
+			btnAddresses.setBackground(Color.BLUE);
+			btnClients.setBackground(Color.BLUE);
+			btnFeatures.setBackground(Color.BLUE);
+			btnMaterials.setBackground(Color.BLUE);
+			btnNewButton.setBackground(Color.BLUE);
+			btnPayments.setBackground(Color.BLUE);
+			btnExit.setForeground(Color.WHITE);
+			btnAddresses.setForeground(Color.WHITE);
+			btnClients.setForeground(Color.WHITE);
+			btnFeatures.setForeground(Color.WHITE);
+			btnMaterials.setForeground(Color.WHITE);
+			btnNewButton.setForeground(Color.WHITE);
+			btnPayments.setForeground(Color.WHITE);
+			panel.setBackground(Color.BLUE);
+			panel_1.setBackground(Color.BLUE);
+			btnAddresses.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btnClients.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btnExit.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btnFeatures.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btnMaterials.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btnNewButton.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btnPayments.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			lblTableViewer.setForeground(Color.WHITE);
+			lblTableViewer.setFont(new Font("Times New Roman",Font.PLAIN,11));
+		}
 		frame.setVisible(true);
 	}
 	private static void ModifyViewForClients(WizardHandler myNameIsTim) {
@@ -386,6 +415,30 @@ public class Tables extends JFrame{
 		panel_3.add(listProsthetics);
 		panel_3.add(listPayments);
 		panel_3.add(listAddresses);
+		if(admin.getPrivilege().getPrivilege()==2) {
+			label_1.setForeground(Color.WHITE);
+			label_2.setForeground(Color.WHITE);
+			label_3.setForeground(Color.WHITE);
+			label_4.setForeground(Color.WHITE);
+			label_1.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			label_2.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			label_3.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			label_4.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			panel_3.setBackground(Color.BLUE);
+			panel_4.setBackground(Color.BLUE);
+			listAddresses.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listClients.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listPayments.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listProsthetics.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listAddresses.setBackground(Color.WHITE);
+			listClients.setBackground(Color.WHITE);
+			listPayments.setBackground(Color.WHITE);
+			listProsthetics.setBackground(Color.WHITE);
+			listAddresses.setForeground(Color.BLACK);
+			listClients.setForeground(Color.BLACK);
+			listPayments.setForeground(Color.BLACK);
+			listProsthetics.setForeground(Color.BLACK);
+		}
 		panel_2.setVisible(false);
 		panel_2.setVisible(true);
 	}
@@ -411,7 +464,6 @@ public class Tables extends JFrame{
 		panel_3.setVisible(true); 
 		panel_4.setVisible(true);
 		panel_2.setVisible(true);
-		System.out.println("i have a bad case of diahrrea");
 		JList<String> listProsthetics =new JList<String>();
 		JList<String> listPayments = new JList<String>();
 		listProsthetics.setBackground(Color.LIGHT_GRAY);
@@ -518,6 +570,21 @@ public class Tables extends JFrame{
 			}
 		});
 
+		if(admin.getPrivilege().getPrivilege()==2) {
+			label_1.setForeground(Color.WHITE);
+			label_2.setForeground(Color.WHITE);
+			label_1.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			label_2.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			listPayments.setForeground(Color.BLACK);
+			listProsthetics.setForeground(Color.BLACK);
+			panel_3.setBackground(Color.BLUE);
+			listPayments.setBackground(Color.WHITE);
+			listProsthetics.setBackground(Color.WHITE);
+			listPayments.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listProsthetics.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+		}
+		panel_2.setVisible(false);
+		panel_2.setVisible(true);
 	}
 	private static void ModifyViewForPayments(WizardHandler myNameIsTim) {
 		panel_2.removeAll();
@@ -622,6 +689,20 @@ public class Tables extends JFrame{
 		panel_4.add(listPayments);
 		panel_2.add(panel_3,BorderLayout.NORTH);
 		panel_2.add(panel_4,BorderLayout.CENTER);
+		if(admin.getPrivilege().getPrivilege()==2) {
+			client.setForeground(Color.WHITE);
+			payments.setForeground(Color.WHITE);
+			client.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			payments.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			listPayments.setForeground(Color.BLACK);
+			listClients.setForeground(Color.BLACK);
+			panel_3.setBackground(Color.BLUE);
+			listPayments.setBackground(Color.WHITE);
+			listClients.setBackground(Color.WHITE);
+			listPayments.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listClients.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+		}
+		panel_2.setVisible(false);
 		panel_2.setVisible(true);
 	}
 	private static void ModifyViewForMaterials(WizardHandler myNameIsTim) {
@@ -667,6 +748,14 @@ public class Tables extends JFrame{
 				}
 			}
 		});
+		if(admin.getPrivilege().getPrivilege()==2) {
+			label.setForeground(Color.WHITE);
+			label.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			listMaterials.setForeground(Color.BLACK);
+			panel_3.setBackground(Color.BLUE);
+			listMaterials.setBackground(Color.WHITE);
+			listMaterials.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+		}
 		panel_2.setVisible(false);
 		panel_2.setVisible(true);
 	}
@@ -713,6 +802,14 @@ public class Tables extends JFrame{
 				}
 			}
 		});
+		if(admin.getPrivilege().getPrivilege()==2) {
+			label.setForeground(Color.WHITE);
+			label.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			listFeatures.setForeground(Color.BLACK);
+			panel_3.setBackground(Color.BLUE);
+			listFeatures.setBackground(Color.WHITE);
+			listFeatures.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+		}
 		panel_2.setVisible(false);
 		panel_2.setVisible(true);
 	}
@@ -1026,6 +1123,43 @@ public class Tables extends JFrame{
 		panel_2.add(panel_3,BorderLayout.NORTH);
 		panel_2.add(panel_4,BorderLayout.CENTER);
 		panel_2.add(panel_5,BorderLayout.EAST);
+		if(admin.getPrivilege().getPrivilege()==2) {
+			btn1.setBackground(Color.BLUE);
+			btn2.setBackground(Color.BLUE);
+			btn3.setBackground(Color.BLUE);
+			btn4.setBackground(Color.BLUE);
+			panel_3.setBackground(Color.BLUE);
+			panel_5.setBackground(Color.BLUE);
+			listCities.setBackground(Color.WHITE);
+			listClients.setBackground(Color.WHITE);
+			listCountry.setBackground(Color.WHITE);
+			listStreets.setBackground(Color.WHITE);
+			btn1.setForeground(Color.WHITE);
+			btn2.setForeground(Color.WHITE);
+			btn3.setForeground(Color.WHITE);
+			btn4.setForeground(Color.WHITE);
+			listCities.setForeground(Color.BLACK);
+			listClients.setForeground(Color.BLACK);
+			listCountry.setForeground(Color.BLACK);
+			listStreets.setForeground(Color.BLACK);
+			btn1.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btn2.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btn3.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			btn4.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			listStreets.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listCities.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listClients.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			listCountry.setBorder(new LineBorder(new Color(0, 0, 255), 3, true));
+			label.setForeground(Color.WHITE);
+			label1.setForeground(Color.WHITE);
+			label2.setForeground(Color.WHITE);
+			label3.setForeground(Color.WHITE);
+			label.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			label1.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			label2.setFont(new Font("Times New Roman",Font.PLAIN,11));
+			label3.setFont(new Font("Times New Roman",Font.PLAIN,11));
+		}
+		
 		panel_2.setVisible(false);
 		panel_3.setVisible(false);
 		panel_3.setVisible(true);

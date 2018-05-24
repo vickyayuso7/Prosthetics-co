@@ -16,7 +16,7 @@ public class JPARead {
 	public static List<User> readUser() throws Exception{
 		Query q1 = JPAConnect.getEntityManager().createNativeQuery("SELECT * FROM users", User.class);
 		List<User> user = (List<User>) q1.getResultList();
-		System.out.println(user);
+		//System.out.println(user);
 		return user;
 	}
 	public static List<Privilege> readPrivilege() throws Exception{
